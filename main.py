@@ -5,6 +5,8 @@ WIDTH, HEIGHT = 1280, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Ozone Engineering Assistant")
 
+font_16 = pygame.font.SysFont(None, 16)
+font_18 = pygame.font.SysFont(None, 18)
 font = pygame.font.SysFont(None, 36)
 
 project = {
@@ -14,32 +16,57 @@ field_text = ''
 
 clock = pygame.time.Clock()
 
-field_1 = {
-    'val': '',
-    'x': 50,
-    'y': 100,
-    'w': 200,
-    'h': 30,
-}
+fields_0000 = [
+    'Client Name',
+    'Facility Name',
+    'Contact Person',
+    'Email',
+    'Phone',
+    'Location',
+    'Industry',
+]
 
-field_2 = {
-    'val': '',
-    'x': 50,
-    'y': 200,
-    'w': 200,
-    'h': 30,
-}
+fields_0001 = [
+    'Process Description',
+    'Fluid Type',
+    'Treatment Stage',
+]
+
+def field_create(name, x, y, w, h):
+    obj = {
+        'name': name,
+        'val': '',
+        'x': x,
+        'y': y,
+        'w': w,
+        'h': h,
+    }
+    return obj
 
 fields = []
-fields.append(field_1)
-fields.append(field_2)
+
+x_start = 200
+y_start = 100
+y_cur = 0
+for field in fields_0000:
+    fields.append(field_create(field, x_start, y_start + y_cur, 200, 30))
+    y_cur += 80
+
+x_start = 500
+y_start = 100
+y_cur = 0
+for field in fields_0001:
+    fields.append(field_create(field, x_start, y_start + y_cur, 200, 30))
+    y_cur += 80
 
 def draw_fields():
     for field_i, field in enumerate(fields):
-        if field_i == field_i_cur:
-            border_color = (0, 0, 255)
-        else:
-            border_color = (200, 200, 200)
+        if field_i == field_i_cur: border_color = (0, 0, 255)
+        else: border_color = (200, 200, 200)
+        # label
+        surface = font_18.render(field['name'], True, (255, 255, 255))
+        screen.blit(surface, (field['x'], field['y']-18))
+        # field
         pygame.draw.rect(screen, border_color, (field['x'], field['y'], field['w'], field['h']), 2)
         surface = font.render(field['val'], True, (255, 255, 255))
         screen.blit(surface, (field['x']+5, field['y']+5))
@@ -75,9 +102,6 @@ while running:
 
 
     screen.fill((18, 18, 18))
-
-    title = font.render("Project Management", True, (255, 255, 255))
-    screen.blit(title,(50,50))
 
     draw_fields()
 
