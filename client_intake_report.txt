@@ -1,0 +1,71 @@
+OZONE ENGINEERING CONSULTING REPORT
+Client Intake & Problem Definition
+
+Client Information
+------------------
+Client: jhjh
+Facility: kg
+Location: hjj
+Contact: kjhg
+Email: kjh
+Phone: g
+
+Process Overview
+----------------
+jlk
+
+Flow Characteristics
+--------------------
+Average Flow: 11.00 m3/h
+Maximum Flow: 22.00 m3/h
+
+Contaminants
+------------
+kjlh: 11.0 -> 1.0 mg/L
+
+Treatment Objectives
+--------------------
+Disinfection
+
+Infrastructure
+--------------
+Power: h
+Space: jgk
+Pumps: jhkg
+Oxygen Supply: kjhg
+Ventilation: kjhg
+
+Engineering Observations
+------------------------
+- Treatability of 'kjlh' with ozone should be verified.
+
+Engineering Warnings
+--------------------
+- Very high removal required for kjlh.
+
+Problem Definition
+------------------
+PROJECT PROBLEM DEFINITION
+
+Client: jhjh
+Facility: kg
+Location: hjj
+
+Process Description:
+jlk
+
+Flow Characteristics:
+Average Flow: 11.00 m3/h
+Maximum Flow: 22.00 m3/h
+
+Contaminants of Concern:
+kjlh: 11.0 -> 1.0 mg/L
+
+Treatment Objectives:
+Disinfection
+
+Engineering Observations:
+- Treatability of 'kjlh' with ozone should be verified.
+
+Engineering Warnings:
+- Very high removal required for kjlh.

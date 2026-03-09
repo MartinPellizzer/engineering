@@ -1,0 +1,67 @@
+
+### **Module 1 Summary — Client Intake & Problem Definition**
+
+1. **Define Purpose**
+
+   * Collect structured client info
+   * Understand process and treatment problem
+   * Produce the problem definition summary
+
+2. **Define Inputs**
+
+   * **Client Identification:** company, facility, contact
+   * **Process Overview:** fluid type, treatment stage
+   * **Flow Characteristics:** average & max flow, standardized units
+   * **Contaminant Information:** type, current/target concentrations
+   * **Treatment Goals:** oxidation, disinfection, etc.
+   * **Existing Infrastructure:** power, space, ventilation, pumps
+   * **Constraints:** budget, deadlines, regulatory, safety
+
+3. **Design Data Structure**
+
+   * Store all inputs in a structured project record
+   * Reusable across future steps
+
+4. **Design Screens / UI Flow**
+
+   * Multiple screens: Client Info → Process → Flow → Contaminants → Goals → Infrastructure → Constraints → Summary → Report
+
+5. **Input Validation**
+
+   * Ensure all entries are reasonable and complete
+   * Prevent missing or incorrect data
+
+6. **Unit Standardization**
+
+   * Convert all inputs to standard units for calculations
+
+7. **Preliminary Engineering Checks**
+
+   * Basic feasibility: ozone suitability, estimated flow ranges
+   * Highlight missing or problematic data
+
+8. **Problem Definition Engine**
+
+   * Summarize the process, problem, scale, and objectives
+   * Identify gaps and risks
+
+9. **Create Deliverables**
+
+   * **Client Intake & Problem Definition Report**
+   * Key sections: Client info, process description, contaminants, goals, infrastructure, observations, next steps
+
+10. **Prepare Outputs for Next Step**
+
+    * Standardized flow, contaminant list, treatment targets, site constraints
+    * Checklist for Step 2: Site Assessment
+
+11. **Progress Tracking**
+
+    * Mark Step 1 complete → unlock Step 2
+
+12. **Save Project**
+
+    * Store all input data and generated summaries for future modules
+
+---
+
