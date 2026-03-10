@@ -1,0 +1,215 @@
+import os
+import pygame
+
+# FONT_FAMILY = None
+FONT_FAMILY = 'fonts/Inter/static/Inter_18pt-Regular.ttf'
+FONT_FAMILY_INTER_MEDIUM = 'fonts/Inter/static/Inter_18pt-Medium.ttf'
+FONT_FAMILY_INTER_REGULAR = 'fonts/Inter/static/Inter_18pt-Regular.ttf'
+# FONT_FAMILY = 'fonts/Inter/static/Inter_18pt-ExtraLight.ttf'
+
+COLOR_LABEL = (16, 16, 16)
+COLOR_ENTRY = (48, 48, 48)
+COLOR_BACKGROUND = (255, 255, 255)
+COLOR_BORDER_GRAY = (200, 200, 200)
+
+pygame.init()
+WIDTH, HEIGHT = 1280, 720 
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+pygame.display.set_caption("Ozone Engineering Assistant")
+
+font_14 = pygame.font.Font(FONT_FAMILY, 14)
+font_16 = pygame.font.Font(FONT_FAMILY, 16)
+font_18 = pygame.font.Font(FONT_FAMILY, 18)
+font = pygame.font.Font(FONT_FAMILY, 36)
+
+font_label = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 14)
+font_entry = pygame.font.Font(FONT_FAMILY_INTER_REGULAR, 14)
+
+project = {
+}
+
+field_text = ''
+
+clock = pygame.time.Clock()
+
+fields_0000 = [
+    'Client Name',
+    'Facility Name',
+    'Contact Person',
+    'Email',
+    'Phone',
+    'Location',
+    'Industry',
+]
+
+def field_create(name, _type, x, y, w, h):
+    obj = {
+        'name': name,
+        'label': name,
+        'type': _type,
+        'val': '',
+        'x': x,
+        'y': y,
+        'w': w,
+        'h': h,
+    }
+    return obj
+
+fields = []
+
+x_start = 400
+y_start = 100
+y_cur = 0
+FIELD_HEIGHT = 34
+for field in fields_0000:
+    fields.append(field_create(field, 'entry', x_start, y_start + y_cur, 200, FIELD_HEIGHT))
+    y_cur += 34 + 16
+
+def draw_fields():
+    surface = font_label.render('Project Settings', True, COLOR_LABEL)
+    screen.blit(surface, (x_start, y_start))
+    for field_i, field in enumerate(fields):
+        if field_i == field_i_cur: border_color = (0, 0, 255)
+        else: border_color = COLOR_BORDER_GRAY
+        # label
+        surface = font_label.render(field['name'], True, COLOR_LABEL)
+        screen.blit(surface, (field['x'] - 200, field['y'] + (field['h'] // 4)))
+        # field
+        pygame.draw.rect(screen, border_color, (field['x'], field['y'], field['w'], field['h']), 1)
+        surface = font_entry.render(field['val'], True, COLOR_ENTRY)
+        screen.blit(surface, (field['x'] + (field['h'] // 4), field['y'] + (field['h'] // 4)))
+    # frame
+    pygame.draw.rect(screen, border_color, (x_start - 200 - 50, y_start - 50, 800, 800), 1)
+
+field_i_cur = 0
+
+
+########################################
+########################################
+########################################
+
+def component_create(_id, _type, val='', x=0, y=0, w=0, h=0):
+    obj = {
+        'id': _id,
+        'type': _type,
+        'val': val,
+        'x': x,
+        'y': y,
+        'w': w,
+        'h': h,
+        'children': [],
+    }
+    return obj
+
+frame_0000 = component_create(0, 'frame', '', 100, 100, 100, 100)
+###
+label_0000 = component_create(0, 'label', 'Client Name', 0, 0, 0, 0)
+label_0001 = component_create(0, 'label', 'Facility Name', 0, 0, 0, 0)
+label_0002 = component_create(0, 'label', 'Contact Person', 0, 0, 0, 0)
+label_0003 = component_create(0, 'label', 'Email', 0, 0, 0, 0)
+label_0004 = component_create(0, 'label', 'Phone', 0, 0, 0, 0)
+label_0005 = component_create(0, 'label', 'Location', 0, 0, 0, 0)
+label_0006 = component_create(0, 'label', 'Industry', 0, 0, 0, 0)
+###
+entry_0000 = component_create(0, 'entry', '', 200, 100, 100, 34)
+
+frame_0000['children'].append(label_0000)
+frame_0000['children'].append(label_0001)
+frame_0000['children'].append(label_0002)
+frame_0000['children'].append(label_0003)
+frame_0000['children'].append(label_0004)
+frame_0000['children'].append(label_0005)
+frame_0000['children'].append(label_0006)
+###
+frame_0000['children'].append(entry_0000)
+
+components = []
+components.append(frame_0000)
+# components.append(entry_0000)
+# components.append(label_0000)
+
+offset = 0
+
+def draw_frame(component):
+    parent = component
+    child_y_cur = 0
+    child_w_max = 0
+    for i, child in enumerate(parent['children']):
+        if child['type'] == '': pass
+        elif child['type'] == 'label': 
+            parent_y = parent['y'] + offset
+            padding = 16;
+            child['w'], child['h'] = font_label.size(child['val'])
+            if child_w_max < child['w']: child_w_max = child['w']
+            child['x'] = parent['x'] + padding
+            child['y'] = parent_y + padding + child_y_cur
+            parent['w'] = child_w_max + (padding * 2)
+            parent['h'] = child['h'] + (padding * 2) + child_y_cur
+            child_y_cur += child['h']
+            ###
+            surface = font_label.render(child['val'], True, COLOR_LABEL)
+            screen.blit(surface, (child['x'], child['y']))
+        elif child['type'] == 'entry':
+            pass
+    pygame.draw.rect(screen, COLOR_BORDER_GRAY, (parent['x'], parent_y, parent['w'], parent['h']), 1)
+
+'''
+def draw_entry(component):
+    pygame.draw.rect(screen, COLOR_BORDER_GRAY, (component['x'], component['y'], component['w'], component['h']), 1)
+    surface = font_entry.render(component['val'], True, COLOR_ENTRY)
+    screen.blit(surface, (component['x'] + (component['h'] // 4), component['y'] + (component['h'] // 4)))
+
+def draw_label(component):
+    surface = font_label.render(component['val'], True, COLOR_LABEL)
+    screen.blit(surface, (component['x'], component['y']))
+'''
+
+def draw_components():
+    for i, component in enumerate(components):
+        if component['type'] == '': pass
+        elif component['type'] == 'frame': draw_frame(component)
+        # elif component['type'] == 'entry': draw_entry(component)
+        # elif component['type'] == 'label': draw_label(component)
+
+running = True
+while running:
+    mouse_x,mouse_y = pygame.mouse.get_pos()
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
+
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_BACKSPACE:
+                fields[field_i_cur]['val'] = fields[field_i_cur]['val'][:-1]
+            elif event.key == pygame.K_TAB:
+                # active_index = (active_index + 1) % len(inputs)
+                pass
+            else:
+                fields[field_i_cur]['val'] += event.unicode
+
+        elif event.type == pygame.MOUSEBUTTONDOWN:
+            for i, field in enumerate(fields):
+                if (mouse_x > field['x'] and 
+                    mouse_x < field['x'] + field['w'] and
+                    mouse_y > field['y'] and
+                    mouse_y < field['y'] + field['h']
+                ):
+                    field_i_cur = i
+                    break
+        elif event.type == pygame.MOUSEWHEEL:
+            offset -= event.y * 30
+
+
+    screen.fill(COLOR_BACKGROUND)
+
+    # draw_fields()
+    draw_components()
+
+    mouse_pos = font.render(f'{mouse_x} - {mouse_y}', True, (255, 0, 255))
+    screen.blit(mouse_pos, (0, 0))
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
