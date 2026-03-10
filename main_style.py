@@ -11,6 +11,7 @@ COLOR_LABEL = (16, 16, 16)
 COLOR_ENTRY = (48, 48, 48)
 COLOR_BACKGROUND = (255, 255, 255)
 COLOR_BORDER_GRAY = (200, 200, 200)
+COLOR_BORDER_BLUE = (0, 0, 255)
 
 pygame.init()
 WIDTH, HEIGHT = 1280, 720 
@@ -103,23 +104,27 @@ def component_create(_id, _type, val='', x=0, y=0, w=0, h=0):
 
 frame_0000 = component_create(0, 'frame', '', 100, 100, 100, 100)
 ###
-label_0000 = component_create(0, 'label', 'Client Name', 0, 0, 0, 0)
+label_0000 = component_create(0, 'label', 'Client Name', 0, 0, 200, 34)
+'''
 label_0001 = component_create(0, 'label', 'Facility Name', 0, 0, 0, 0)
 label_0002 = component_create(0, 'label', 'Contact Person', 0, 0, 0, 0)
 label_0003 = component_create(0, 'label', 'Email', 0, 0, 0, 0)
 label_0004 = component_create(0, 'label', 'Phone', 0, 0, 0, 0)
 label_0005 = component_create(0, 'label', 'Location', 0, 0, 0, 0)
 label_0006 = component_create(0, 'label', 'Industry', 0, 0, 0, 0)
+'''
 ###
-entry_0000 = component_create(0, 'entry', '', 200, 100, 100, 34)
+entry_0000 = component_create(0, 'entry', '', 0, 0, 200, 34)
 
 frame_0000['children'].append(label_0000)
+'''
 frame_0000['children'].append(label_0001)
 frame_0000['children'].append(label_0002)
 frame_0000['children'].append(label_0003)
 frame_0000['children'].append(label_0004)
 frame_0000['children'].append(label_0005)
 frame_0000['children'].append(label_0006)
+'''
 ###
 frame_0000['children'].append(entry_0000)
 
@@ -128,7 +133,105 @@ components.append(frame_0000)
 # components.append(entry_0000)
 # components.append(label_0000)
 
-offset = 0
+row_1 = component_create(0, 'frame', '', 100, 100)
+row_1['children'].append(label_0000)
+row_1['children'].append(entry_0000)
+
+row_2 = component_create(0, 'frame', '', 100, 200)
+row_2['children'].append(label_0000)
+row_2['children'].append(entry_0000)
+
+row_3 = component_create(0, 'frame', '', 100, 300)
+row_3['children'].append(label_0000)
+row_3['children'].append(entry_0000)
+
+col_1 = component_create(0, 'frame', '', 100, 300)
+col_1['children'].append(label_0000)
+col_1['children'].append(entry_0000)
+
+col_1 = component_create(0, 'frame', '', 100, 300)
+col_1['children'].append(label_0000)
+col_1['children'].append(entry_0000)
+
+col_2 = component_create(0, 'frame', '', 100, 300)
+col_2['children'].append(row_1)
+col_2['children'].append(row_2)
+col_2['children'].append(row_3)
+
+scroll_offset = 0
+
+def draw_ui_col(root, row_1_h=0):
+    child_y_cur = 0
+    ###
+    parent = root
+    for i, child in enumerate(parent['children']):
+        child_w, child_h = font_label.size(child['val'])
+        child['x'] = parent['x']
+        child['y'] = parent['y'] + child_y_cur
+        child_y_cur += child_h
+        if child['type'] == 'label': 
+            ###
+            surface = font_label.render(child['val'], True, COLOR_LABEL)
+            screen.blit(surface, (child['x'], child['y']))
+        elif child['type'] == 'entry':
+            ###
+            pygame.draw.rect(screen, COLOR_BORDER_GRAY, (child['x'], child['y'], child['w'], child['h']), 1)
+            surface = font_entry.render(child['val'], True, COLOR_ENTRY)
+            screen.blit(surface, (child['x'] + (child['h'] // 4), child['y'] + (child['h'] // 4)))
+
+def draw_ui_row(root):
+    child_x_cur = 0
+    ###
+    parent = root
+    for i, child in enumerate(parent['children']):
+        child_w, child_h = font_label.size(child['val'])
+        child['x'] = parent['x'] + child_x_cur
+        child['y'] = parent['y']
+        child_x_cur += child_w
+        if child['type'] == 'label': 
+            ###
+            surface = font_label.render(child['val'], True, COLOR_LABEL)
+            screen.blit(surface, (child['x'], child['y']))
+        elif child['type'] == 'entry':
+            ###
+            pygame.draw.rect(screen, COLOR_BORDER_GRAY, (child['x'], child['y'], child['w'], child['h']), 1)
+            surface = font_entry.render(child['val'], True, COLOR_ENTRY)
+            screen.blit(surface, (child['x'] + (child['h'] // 4), child['y'] + (child['h'] // 4)))
+    return child['h']
+
+def draw_ui(parent, direction='row'):
+    child_x_cur = 0
+    child_y_cur = 0
+    ###
+    for i, child in enumerate(parent['children']):
+        if direction == 'row':
+            child['x'] = parent['x'] + child_x_cur
+            child['y'] = parent['y']
+            child_x_cur += child['w']
+            ###
+            parent['w'] = child_x_cur
+            if parent['h'] < child['h']: parent['h'] = child['h']
+        else:
+            child['x'] = parent['x']
+            child['y'] = parent['y'] + child_y_cur
+            child_y_cur += child['h']
+            ###
+            if parent['w'] < child['w']: parent['w'] = child['w']
+            parent['h'] = child_y_cur
+        ###
+        if child['type'] == 'label': 
+            ###
+            surface = font_label.render(child['val'], True, COLOR_LABEL)
+            screen.blit(surface, (child['x'], child['y']))
+        elif child['type'] == 'entry':
+            ###
+            pygame.draw.rect(screen, COLOR_BORDER_GRAY, (child['x'], child['y'], child['w'], child['h']), 1)
+            surface = font_entry.render(child['val'], True, COLOR_ENTRY)
+            screen.blit(surface, (child['x'] + (child['h'] // 4), child['y'] + (child['h'] // 4)))
+    ###
+    pygame.draw.rect(screen, COLOR_BORDER_BLUE, (parent['x'], parent['y'], parent['w'], parent['h']), 1)
+    return parent
+    
 
 def draw_frame(component):
     parent = component
@@ -137,7 +240,7 @@ def draw_frame(component):
     for i, child in enumerate(parent['children']):
         if child['type'] == '': pass
         elif child['type'] == 'label': 
-            parent_y = parent['y'] + offset
+            parent_y = parent['y'] + scroll_offset
             padding = 16;
             child['w'], child['h'] = font_label.size(child['val'])
             if child_w_max < child['w']: child_w_max = child['w']
@@ -198,13 +301,19 @@ while running:
                     field_i_cur = i
                     break
         elif event.type == pygame.MOUSEWHEEL:
-            offset -= event.y * 30
+            scroll_offset -= event.y * 30
 
 
     screen.fill(COLOR_BACKGROUND)
 
     # draw_fields()
-    draw_components()
+    # draw_components()
+    # row_1_h = draw_ui_row(row_1)
+    # row_2_h = draw_ui_row(row_2)
+    # row_3_h = draw_ui_row(row_3)
+    # draw_ui_col(col_2, row_1_h)
+    # draw_ui(row_1, direction='row')
+    draw_ui(row_1, direction='col')
 
     mouse_pos = font.render(f'{mouse_x} - {mouse_y}', True, (255, 0, 255))
     screen.blit(mouse_pos, (0, 0))
