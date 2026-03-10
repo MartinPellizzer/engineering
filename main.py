@@ -1,7 +1,7 @@
 import pygame
 
 pygame.init()
-WIDTH, HEIGHT = 1280, 720 
+WIDTH, HEIGHT = 1920, 1280 
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Ozone Engineering Assistant")
 
@@ -32,6 +32,33 @@ fields_0001 = [
     'Treatment Stage',
 ]
 
+fields_0002 = [
+    'Average Flow Rate',
+    'Maximum Flow Rate',
+    'Unit (m3/h or L/min)',
+]
+
+fields_0003 = [
+    'Contaminant Name',
+    'Contaminant Current',
+    'Contaminant Target',
+]
+
+fields_0004 = [
+    'Available Power',
+    'Available Space',
+    'Existing Pumps',
+    'Oxygen Supply',
+    'Ventilation',
+]
+
+fields_0005 = [
+    'Budget',
+    'Deadline',
+    'Regulatory Constraints',
+    'Safety Constraints',
+]
+
 def field_create(name, x, y, w, h):
     obj = {
         'name': name,
@@ -45,19 +72,46 @@ def field_create(name, x, y, w, h):
 
 fields = []
 
-x_start = 200
+row_size = 80
+col_size = 300
+x_start = 100
 y_start = 100
-y_cur = 0
-for field in fields_0000:
-    fields.append(field_create(field, x_start, y_start + y_cur, 200, 30))
-    y_cur += 80
 
-x_start = 500
-y_start = 100
-y_cur = 0
-for field in fields_0001:
-    fields.append(field_create(field, x_start, y_start + y_cur, 200, 30))
-    y_cur += 80
+col_i = 0
+for i, field in enumerate(fields_0000):
+    x = x_start + (col_size * col_i)
+    y = y_start + (row_size * i)
+    fields.append(field_create(field, x, y, 200, 30))
+
+col_i = 1
+for i, field in enumerate(fields_0001):
+    x = x_start + (col_size * col_i)
+    y = y_start + (row_size * i)
+    fields.append(field_create(field, x, y, 200, 30))
+
+col_i = 2
+for i, field in enumerate(fields_0002):
+    x = x_start + (col_size * col_i)
+    y = y_start + (row_size * i)
+    fields.append(field_create(field, x, y, 200, 30))
+
+col_i = 3
+for i, field in enumerate(fields_0003):
+    x = x_start + (col_size * col_i)
+    y = y_start + (row_size * i)
+    fields.append(field_create(field, x, y, 200, 30))
+
+col_i = 4
+for i, field in enumerate(fields_0004):
+    x = x_start + (col_size * col_i)
+    y = y_start + (row_size * i)
+    fields.append(field_create(field, x, y, 200, 30))
+
+col_i = 5
+for i, field in enumerate(fields_0005):
+    x = x_start + (col_size * col_i)
+    y = y_start + (row_size * i)
+    fields.append(field_create(field, x, y, 200, 30))
 
 def draw_fields():
     for field_i, field in enumerate(fields):
@@ -67,7 +121,7 @@ def draw_fields():
         surface = font_18.render(field['name'], True, (255, 255, 255))
         screen.blit(surface, (field['x'], field['y']-18))
         # field
-        pygame.draw.rect(screen, border_color, (field['x'], field['y'], field['w'], field['h']), 2)
+        pygame.draw.rect(screen, border_color, (field['x'], field['y'], field['w'], field['h']), 1)
         surface = font.render(field['val'], True, (255, 255, 255))
         screen.blit(surface, (field['x']+5, field['y']+5))
 

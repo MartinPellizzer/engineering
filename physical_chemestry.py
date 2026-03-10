@@ -98,8 +98,16 @@ def torr_to_pascal(torr_val):
     res = torr_val * 133.32
     return res
 
-def kelvin_to_celsius(kelvin_val):
+def kelvin_to_celsius(kelvin_val, decimals=-1):
     res = kelvin_val - 273.15
+    if decimals != -1:
+        res = round(res, decimals)
+    return res
+
+def celsius_to_kelvin(val, decimals=-1):
+    res = val + 273.15
+    if decimals != -1:
+        res = round(res, decimals)
     return res
 
 def amount_of_substance(m, M):
@@ -115,3 +123,4 @@ print('AMOUNT OF SUBSTANCE:', amount_of_substance(m=67, M=23))
 
 print('TORR TO PASCAL:', torr_to_pascal(torr_val=10.4))
 print('TORR TO PASCAL:', number_to_scientific(torr_to_pascal(torr_val=10.4), decimals=2))
+print('CELSIUS TO KELVIN:', celsius_to_kelvin(val=25.2, decimals=0))
