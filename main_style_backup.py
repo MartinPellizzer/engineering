@@ -160,52 +160,88 @@ col_2['children'].append(row_3)
 
 scroll_offset = 0
 
-def component_create(_type, direction='col', val='', x=0, y=0, w=0, h=0, children=[]):
-    component = {
-        'type': _type,
-        'direction': direction,
-        'val': val,
-        'x': x,
-        'y': y,
-        'w': w,
-        'h': h,
-        'focus': 0,
-        'children': children,
-    }
-    return component
+root = {
+    'type': 'frame',
+    'direction': 'col',
+    'val': '',
+    'x': 300,
+    'y': 300,
+    'w': 0,
+    'h': 0,
+    'focus': 0,
+    'children': [
 
-'''
-label_0001 = component_create('label', val='LABEL 1', w=100)
-entry_0001 = component_create('entry', w=100, h=30)
-label_0002 = component_create('label', val='LABEL 2', w=100)
-entry_0002 = component_create('entry', w=100, h=30)
-frame_0001 = component_create('frame', direction='row', children=[label_0001, entry_0001])
-frame_0002 = component_create('frame', direction='row', children=[label_0002, entry_0002])
-root = component_create('frame', direction='col', x=300, y=300, children=[frame_0001, frame_0002])
-'''
+        {
+            'type': 'frame',
+            'direction': 'row',
+            'val': '',
+            'x': 0,
+            'y': 0,
+            'w': 0,
+            'h': 0,
+            'focus': 0,
+            'children': [
+                {
+                    'type': 'label',
+                    'direction': '',
+                    'val': 'TEXT 1',
+                    'x': 0,
+                    'y': 0,
+                    'w': 100,
+                    'h': 0,
+                    'children': [],
+                    'focus': 0,
+                },
+                {
+                    'type': 'entry',
+                    'direction': '',
+                    'val': '',
+                    'x': 0,
+                    'y': 0,
+                    'w': 100,
+                    'h': 34,
+                    'children': [],
+                    'focus': 0,
+                },
+            ],
+        },
 
-root = component_create('frame', direction='col', x=300, y=300, 
-    children=[
-        component_create('frame', direction='row', 
-            children=[
-                component_create('label', val='LABEL 1', w=100),
-                component_create('entry', w=100, h=30),
-            ]
-        ),
-        component_create('frame', direction='row', 
-            children=[
-                component_create('label', val='LABEL 2', w=100),
-                component_create('entry', w=100, h=30),
-            ]
-        ),
-        component_create('frame', direction='row', 
-            children=[
-                component_create('label', val='LABEL 3', w=100),
-                component_create('entry', w=100, h=30),
-            ]
-        ),
-    ]
-)
+        {
+            'type': 'frame',
+            'direction': 'row',
+            'val': '',
+            'x': 0,
+            'y': 0,
+            'w': 0,
+            'h': 0,
+            'focus': 0,
+            'children': [
+                {
+                    'type': 'label',
+                    'direction': '',
+                    'val': 'TEXT 3',
+                    'x': 0,
+                    'y': 0,
+                    'w': 100,
+                    'h': 0,
+                    'focus': 0,
+                    'children': [],
+                },
+                {
+                    'type': 'entry',
+                    'direction': '',
+                    'val': '',
+                    'x': 0,
+                    'y': 0,
+                    'w': 100,
+                    'h': 34,
+                    'focus': 0,
+                    'children': [],
+                },
+            ],
+        },
+    ],
+}
 
 def layout_components_col_row(parent):
     level_1_y_cur = 0
@@ -489,7 +525,6 @@ while running:
                     a['focus'] = False
         elif event.type == pygame.MOUSEWHEEL:
             scroll_offset -= event.y * 30
-            root['y'] = scroll_offset
 
 
     screen.fill(COLOR_BACKGROUND)
