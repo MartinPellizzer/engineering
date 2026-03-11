@@ -1,4 +1,11 @@
 '''
+
+LEGEND:
+n: amount
+p: pressure
+T: Temperature
+
+
 How to Record Each Entry
 
 Title / Date / Context
@@ -74,6 +81,28 @@ amount of subtance: n = m/M
 ----------------------------------------
 INTENSIVE and EXTENSIVE PROPERTIES
 ----------------------------------------
+
+----------------------------------------
+EQUATIONS OF STATE
+----------------------------------------
+p = f(T, V, n)
+if perfect gas: p = nRT/V ... (R is a constant depending on the gas)
+
+----------------------------------------
+THE EMPIRICAL BASIS OF THE PERFECT GAS
+----------------------------------------
+
+Boyle's law:            pV = constant, at constant n,T
+Charles's law:           V = constant * T, at constant n,p
+                        p = constant * T, at constant n,V
+Avogadro's principle:   V = constant * n, at constant p,T
+
+Boyle and Charles are strictly true only when p -> 0
+but they are still quite accurate at p = 1 bar (used in chemestry)
+
+pV = constant * nT
+>> perfect gas law: pV = nRT
+
 '''
 
 import math
@@ -114,8 +143,8 @@ def amount_of_substance(m, M):
     res = m / M
     return res
 
-def amount_of_substance(m, M):
-    res = m / M
+def calc_number_of_molecules(n):
+    res = n * (6.0221 * (10 ** 23))
     return res
 
 print('KELVIN TO CELSIUS:', kelvin_to_celsius(kelvin_val=300))
@@ -124,3 +153,6 @@ print('AMOUNT OF SUBSTANCE:', amount_of_substance(m=67, M=23))
 print('TORR TO PASCAL:', torr_to_pascal(torr_val=10.4))
 print('TORR TO PASCAL:', number_to_scientific(torr_to_pascal(torr_val=10.4), decimals=2))
 print('CELSIUS TO KELVIN:', celsius_to_kelvin(val=25.2, decimals=0))
+print('AMOUNT OF SUBSTANCE:', number_to_scientific(amount_of_substance(m=0.560 * (10 ** (-3)), M=14.01), decimals=2))
+print('NUMBER OF MOLECULES:', number_to_scientific(calc_number_of_molecules(n=3.99 * (10 ** (-5))), decimals=2))
+
