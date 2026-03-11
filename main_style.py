@@ -160,6 +160,179 @@ col_2['children'].append(row_3)
 
 scroll_offset = 0
 
+root = {
+    'type': 'frame',
+    'direction': 'col',
+    'val': '',
+    'x': 300,
+    'y': 300,
+    'w': 0,
+    'h': 0,
+    'children': [
+
+        {
+            'type': 'frame',
+            'direction': 'row',
+            'val': '',
+            'x': 0,
+            'y': 0,
+            'w': 0,
+            'h': 0,
+            'children': [
+                {
+                    'type': 'label',
+                    'direction': '',
+                    'val': 'TEXT 1',
+                    'x': 0,
+                    'y': 0,
+                    'w': 100,
+                    'h': 0,
+                    'children': [],
+                },
+                {
+                    'type': 'entry',
+                    'direction': '',
+                    'val': 'TEXT 2',
+                    'x': 0,
+                    'y': 0,
+                    'w': 100,
+                    'h': 34,
+                    'children': [],
+                },
+            ],
+        },
+
+        {
+            'type': 'frame',
+            'direction': 'row',
+            'val': '',
+            'x': 0,
+            'y': 0,
+            'w': 0,
+            'h': 0,
+            'children': [
+                {
+                    'type': 'label',
+                    'direction': '',
+                    'val': 'TEXT 3',
+                    'x': 0,
+                    'y': 0,
+                    'w': 100,
+                    'h': 0,
+                    'children': [],
+                },
+                {
+                    'type': 'entry',
+                    'direction': '',
+                    'val': 'TEXT 4',
+                    'x': 0,
+                    'y': 0,
+                    'w': 100,
+                    'h': 34,
+                    'children': [],
+                },
+            ],
+        },
+    ],
+}
+
+def layout_components_col_row(parent):
+    level_1_y_cur = 0
+    for level_1 in parent['children']:
+        level_1['x'] = parent['x']
+        level_1['y'] = parent['y'] + level_1_y_cur
+        level_2_x_cur = 0
+        level_2_h_max = 0
+        for level_2 in level_1['children']:
+            if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+            else: level_2_w = level_2['w']
+            if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+            else: level_2_h = level_2['h']
+            level_2['x'] = level_1['x'] + level_2_x_cur
+            level_2['y'] = level_1['y']
+            level_2_x_cur += level_2_w
+            if level_2_h_max < level_2_h: level_2_h_max = level_2_h
+            ###
+            surface = font_label.render(level_2['val'], True, COLOR_LABEL)
+            screen.blit(surface, (level_2['x'], level_2['y']))
+        level_1_y_cur += level_2_h_max
+
+def layout_components_row_col(parent):
+    level_1_x_cur = 0
+    for level_1 in parent['children']:
+        level_1['x'] = parent['x'] + level_1_x_cur
+        level_1['y'] = parent['y']
+        level_2_y_cur = 0
+        level_2_w_max = 0
+        for level_2 in level_1['children']:
+            if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+            else: level_2_w = level_2['w']
+            if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+            else: level_2_h = level_2['h']
+            level_2['x'] = level_1['x']
+            level_2['y'] = level_1['y'] + level_2_y_cur
+            level_2_y_cur += level_2_h
+            if level_2_w_max < level_2_w: level_2_w_max = level_2_w
+            ###
+            surface = font_label.render(level_2['val'], True, COLOR_LABEL)
+            screen.blit(surface, (level_2['x'], level_2['y']))
+        level_1_x_cur += level_2_w_max
+
+def layout_components_auto(parent):
+    level_1_x_cur = 0
+    level_1_y_cur = 0
+    for level_1 in parent['children']:
+        if level_1['direction'] == 'col':
+            level_1['x'] = parent['x'] + level_1_x_cur
+            level_1['y'] = parent['y']
+            level_2_y_cur = 0
+            level_2_w_max = 0
+            for level_2 in level_1['children']:
+                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+                else: level_2_w = level_2['w']
+                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+                else: level_2_h = level_2['h']
+                level_2['x'] = level_1['x']
+                level_2['y'] = level_1['y'] + level_2_y_cur
+                level_2_y_cur += level_2_h
+                if level_2_w_max < level_2_w: level_2_w_max = level_2_w
+                ###
+                if level_2['type'] == 'label': 
+                    surface = font_label.render(level_2['val'], True, COLOR_LABEL)
+                    screen.blit(surface, (level_2['x'], level_2['y']))
+                elif level_2['type'] == 'entry':
+                    pygame.draw.rect(screen, COLOR_BORDER_GRAY, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
+                    surface = font_entry.render(level_2['val'], True, COLOR_ENTRY)
+                    screen.blit(surface, (level_2['x'] + (level_2['h'] // 4), level_2['y'] + (level_2['h'] // 4)))
+            level_1_x_cur += level_2_w_max
+
+        elif level_1['direction'] == 'row':
+            level_1['x'] = parent['x']
+            level_1['y'] = parent['y'] + level_1_y_cur
+            level_2_x_cur = 0
+            level_2_h_max = 0
+            for level_2 in level_1['children']:
+                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+                else: level_2_w = level_2['w']
+                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+                else: level_2_h = level_2['h']
+                level_2['x'] = level_1['x'] + level_2_x_cur
+                level_2['y'] = level_1['y']
+                level_2_x_cur += level_2_w
+                if level_2_h_max < level_2_h: level_2_h_max = level_2_h
+                ###
+                if level_2['type'] == 'label': 
+                    surface = font_label.render(level_2['val'], True, COLOR_LABEL)
+                    screen.blit(surface, (level_2['x'], level_2['y']))
+                elif level_2['type'] == 'entry':
+                    pygame.draw.rect(screen, COLOR_BORDER_GRAY, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
+                    surface = font_entry.render(level_2['val'], True, COLOR_ENTRY)
+                    screen.blit(surface, (level_2['x'] + (level_2['h'] // 4), level_2['y'] + (level_2['h'] // 4)))
+            level_1_y_cur += level_2_h_max
+
+def draw_components(parent):
+    pass
+
 def draw_ui_col(root, row_1_h=0):
     child_y_cur = 0
     ###
@@ -199,6 +372,31 @@ def draw_ui_row(root):
             screen.blit(surface, (child['x'] + (child['h'] // 4), child['y'] + (child['h'] // 4)))
     return child['h']
 
+def calc_layout(parent, direction='row'):
+    child_x_cur = 0
+    child_y_cur = 0
+    ###
+    for i, child in enumerate(parent['children']):
+        if direction == 'row':
+            child['x'] = parent['x'] + child_x_cur
+            child['y'] = parent['y']
+            child_x_cur += child['w']
+            ###
+            parent['w'] = child_x_cur
+            if parent['h'] < child['h']: parent['h'] = child['h']
+        else:
+            child['x'] = parent['x']
+            child['y'] = parent['y'] + child_y_cur
+            child_y_cur += child['h']
+            ###
+            if parent['w'] < child['w']: parent['w'] = child['w']
+            parent['h'] = child_y_cur
+    ###
+    print(parent)
+    return parent
+    
+
+
 def draw_ui(parent, direction='row'):
     child_x_cur = 0
     child_y_cur = 0
@@ -230,6 +428,7 @@ def draw_ui(parent, direction='row'):
             screen.blit(surface, (child['x'] + (child['h'] // 4), child['y'] + (child['h'] // 4)))
     ###
     pygame.draw.rect(screen, COLOR_BORDER_BLUE, (parent['x'], parent['y'], parent['w'], parent['h']), 1)
+    print(parent)
     return parent
     
 
@@ -257,22 +456,13 @@ def draw_frame(component):
     pygame.draw.rect(screen, COLOR_BORDER_GRAY, (parent['x'], parent_y, parent['w'], parent['h']), 1)
 
 '''
-def draw_entry(component):
-    pygame.draw.rect(screen, COLOR_BORDER_GRAY, (component['x'], component['y'], component['w'], component['h']), 1)
-    surface = font_entry.render(component['val'], True, COLOR_ENTRY)
-    screen.blit(surface, (component['x'] + (component['h'] // 4), component['y'] + (component['h'] // 4)))
-
-def draw_label(component):
-    surface = font_label.render(component['val'], True, COLOR_LABEL)
-    screen.blit(surface, (component['x'], component['y']))
-'''
-
 def draw_components():
     for i, component in enumerate(components):
         if component['type'] == '': pass
         elif component['type'] == 'frame': draw_frame(component)
         # elif component['type'] == 'entry': draw_entry(component)
         # elif component['type'] == 'label': draw_label(component)
+'''
 
 running = True
 while running:
@@ -313,7 +503,12 @@ while running:
     # row_3_h = draw_ui_row(row_3)
     # draw_ui_col(col_2, row_1_h)
     # draw_ui(row_1, direction='row')
-    draw_ui(row_1, direction='col')
+    # draw_ui(row_1, direction='col')
+
+    # layout_components_col_row(root)
+    # layout_components_row_col(root)
+    layout_components_auto(root)
+    # draw_components(root)
 
     mouse_pos = font.render(f'{mouse_x} - {mouse_y}', True, (255, 0, 255))
     screen.blit(mouse_pos, (0, 0))
