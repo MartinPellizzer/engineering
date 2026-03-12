@@ -89,124 +89,6 @@ field_i_cur = 0
 ########################################
 ########################################
 
-def component_create(_id, _type, val='', x=0, y=0, w=0, h=0):
-    obj = {
-        'id': _id,
-        'type': _type,
-        'val': val,
-        'x': x,
-        'y': y,
-        'w': w,
-        'h': h,
-        'children': [],
-    }
-    return obj
-
-frame_0000 = component_create(0, 'frame', '', 100, 100, 100, 100)
-###
-label_0000 = component_create(0, 'label', 'Client Name', 0, 0, 200, 34)
-'''
-label_0001 = component_create(0, 'label', 'Facility Name', 0, 0, 0, 0)
-label_0002 = component_create(0, 'label', 'Contact Person', 0, 0, 0, 0)
-label_0003 = component_create(0, 'label', 'Email', 0, 0, 0, 0)
-label_0004 = component_create(0, 'label', 'Phone', 0, 0, 0, 0)
-label_0005 = component_create(0, 'label', 'Location', 0, 0, 0, 0)
-label_0006 = component_create(0, 'label', 'Industry', 0, 0, 0, 0)
-'''
-###
-entry_0000 = component_create(0, 'entry', '', 0, 0, 200, 34)
-
-frame_0000['children'].append(label_0000)
-'''
-frame_0000['children'].append(label_0001)
-frame_0000['children'].append(label_0002)
-frame_0000['children'].append(label_0003)
-frame_0000['children'].append(label_0004)
-frame_0000['children'].append(label_0005)
-frame_0000['children'].append(label_0006)
-'''
-###
-frame_0000['children'].append(entry_0000)
-
-components = []
-components.append(frame_0000)
-# components.append(entry_0000)
-# components.append(label_0000)
-
-row_1 = component_create(0, 'frame', '', 100, 100)
-row_1['children'].append(label_0000)
-row_1['children'].append(entry_0000)
-
-row_2 = component_create(0, 'frame', '', 100, 200)
-row_2['children'].append(label_0000)
-row_2['children'].append(entry_0000)
-
-row_3 = component_create(0, 'frame', '', 100, 300)
-row_3['children'].append(label_0000)
-row_3['children'].append(entry_0000)
-
-col_1 = component_create(0, 'frame', '', 100, 300)
-col_1['children'].append(label_0000)
-col_1['children'].append(entry_0000)
-
-col_1 = component_create(0, 'frame', '', 100, 300)
-col_1['children'].append(label_0000)
-col_1['children'].append(entry_0000)
-
-col_2 = component_create(0, 'frame', '', 100, 300)
-col_2['children'].append(row_1)
-col_2['children'].append(row_2)
-col_2['children'].append(row_3)
-
-scroll_offset = 0
-
-def component_create(_type, direction='col', val='', x=0, y=0, w=0, h=0, children=[]):
-    component = {
-        'type': _type,
-        'direction': direction,
-        'val': val,
-        'x': x,
-        'y': y,
-        'w': w,
-        'h': h,
-        'focus': 0,
-        'children': children,
-    }
-    return component
-
-'''
-label_0001 = component_create('label', val='LABEL 1', w=100)
-entry_0001 = component_create('entry', w=100, h=30)
-label_0002 = component_create('label', val='LABEL 2', w=100)
-entry_0002 = component_create('entry', w=100, h=30)
-frame_0001 = component_create('frame', direction='row', children=[label_0001, entry_0001])
-frame_0002 = component_create('frame', direction='row', children=[label_0002, entry_0002])
-root = component_create('frame', direction='col', x=300, y=300, children=[frame_0001, frame_0002])
-'''
-
-root = component_create('frame', direction='col', x=300, y=300, 
-    children=[
-        component_create('frame', direction='row', 
-            children=[
-                component_create('label', val='LABEL 1', w=100),
-                component_create('entry', w=100, h=30),
-            ]
-        ),
-        component_create('frame', direction='row', 
-            children=[
-                component_create('label', val='LABEL 2', w=100),
-                component_create('entry', w=100, h=30),
-            ]
-        ),
-        component_create('frame', direction='row', 
-            children=[
-                component_create('label', val='LABEL 3', w=100),
-                component_create('entry', w=100, h=30),
-            ]
-        ),
-    ]
-)
-
 def layout_components_col_row(parent):
     level_1_y_cur = 0
     for level_1 in parent['children']:
@@ -249,13 +131,91 @@ def layout_components_row_col(parent):
             screen.blit(surface, (level_2['x'], level_2['y']))
         level_1_x_cur += level_2_w_max
 
-def layout_components_auto(parent):
+
+def component_create(_type, direction='col', val='', x=0, y=0, w=0, h=0, children=[]):
+    component = {
+        'type': _type,
+        'direction': direction,
+        'val': val,
+        'x': x,
+        'y': y,
+        'w': w,
+        'h': h,
+        'focus': 0,
+        'children': children,
+    }
+    return component
+
+'''
+label_0001 = component_create('label', val='LABEL 1', w=100)
+entry_0001 = component_create('entry', w=100, h=30)
+label_0002 = component_create('label', val='LABEL 2', w=100)
+entry_0002 = component_create('entry', w=100, h=30)
+frame_0001 = component_create('frame', direction='row', children=[label_0001, entry_0001])
+frame_0002 = component_create('frame', direction='row', children=[label_0002, entry_0002])
+root = component_create('frame', direction='col', x=300, y=300, children=[frame_0001, frame_0002])
+'''
+
+label_w_min = 200
+entry_w_min = 300
+
+root = component_create('frame', direction='col', x=300, y=200, 
+    children=[
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Client Name', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Facility Name', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Contact Person', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Email', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Phone', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Location', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Industry', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+    ]
+)
+
+scroll_offset = root['y']
+
+def layout_components_auto(root):
     level_1_x_cur = 0
     level_1_y_cur = 0
-    for level_1 in parent['children']:
+    row_gap = 0
+    for level_1 in root['children']:
         if level_1['direction'] == 'col':
-            level_1['x'] = parent['x'] + level_1_x_cur
-            level_1['y'] = parent['y']
+            level_1['x'] = root['x'] + level_1_x_cur
+            level_1['y'] = root['y']
             level_2_y_cur = 0
             level_2_w_max = 0
             for level_2 in level_1['children']:
@@ -281,10 +241,11 @@ def layout_components_auto(parent):
             level_1_x_cur += level_2_w_max
 
         elif level_1['direction'] == 'row':
-            level_1['x'] = parent['x']
-            level_1['y'] = parent['y'] + level_1_y_cur
+            level_1['x'] = root['x']
+            level_1['y'] = root['y'] + level_1_y_cur + row_gap
             level_2_x_cur = 0
             level_2_h_max = 0
+            row_gap += 16
             for level_2 in level_1['children']:
                 if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
                 else: level_2_w = level_2['w']
@@ -464,6 +425,17 @@ while running:
                     if b['focus'] == True:
                         b['val'] += event.unicode
 
+        elif event.type == pygame.MOUSEWHEEL:
+            scroll_offset -= event.y * 30
+            root['y'] = scroll_offset
+            # clear focus because wrong coords
+            for a in root['children']:
+                if 'children' in a:
+                    for b in a['children']:
+                        b['focus'] = False
+                ###
+                a['focus'] = False
+
         elif event.type == pygame.MOUSEBUTTONDOWN:
             for a in root['children']:
                 if 'children' in a:
@@ -474,7 +446,6 @@ while running:
                             mouse_y < b['y'] + b['h']
                         ):
                             b['focus'] = True
-                            print('here')
                         else:
                             b['focus'] = False
                 ###
@@ -484,12 +455,9 @@ while running:
                     mouse_y < a['y'] + a['h']
                 ):
                     a['focus'] = True
-                    print('here')
                 else:
                     a['focus'] = False
-        elif event.type == pygame.MOUSEWHEEL:
-            scroll_offset -= event.y * 30
-            root['y'] = scroll_offset
+
 
 
     screen.fill(COLOR_BACKGROUND)
