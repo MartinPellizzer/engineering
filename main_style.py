@@ -1,4 +1,5 @@
 import os
+import json
 import pygame
 
 from reportlab.pdfgen import canvas
@@ -576,6 +577,249 @@ def draw_components():
         # elif component['type'] == 'entry': draw_entry(component)
         # elif component['type'] == 'label': draw_label(component)
 
+node = {
+    'val': 1,
+    'w': 0,
+    'h': 0,
+    'children': [
+        {
+            'val': 5,
+            'w': 100,
+            'h': 30,
+            'children': [
+                {
+                    'val': 5,
+                    'w': 100,
+                    'h': 30,
+                    'children': []
+                },
+            ]
+        },
+        {
+            'val': 5,
+            'w': 100,
+            'h': 30,
+            'children': []
+        },
+    ],
+}
+
+root = {
+    'type': 'frame',
+    'val': '',
+    "width": 0,
+    "height": 0,
+    "children": [
+        {
+            'type': 'label',
+            'val': 'label 1',
+            "width": 50, 
+            "height": 20, 
+            "children": [
+                {
+                    'type': 'label',
+                    'val': 'label 3',
+                    "width": 50, 
+                    "height": 20, 
+                    "children": []
+                },
+            ]
+        },
+        {
+            'type': 'label',
+            'val': 'label 2',
+            "width": 30, "height": 40, "children": []
+        }
+    ]
+}
+
+def compute_size(node):
+    if not node['children']:
+        return node['width'], node['height']
+
+    widths = []
+    heights = []
+
+    for child in node['children']:
+        w, h = compute_size(child)
+        widths.append(w)
+        heights.append(h)
+
+    node['width'] = sum(widths)
+    node['height'] = max(heights)
+
+    return node['width'], node['height']
+
+def layout(node, x, y):
+    node['x'] = x
+    node['y'] = y
+
+    current_x = x
+
+    for child in node['children']:
+        layout(child, current_x, y)
+        current_x += child['width']
+
+def print_tree(node):
+    # print('w', node['width'])
+    # print('h', node['height'])
+    # print('x', node['x'])
+    # print('y', node['y'])
+    print(node)
+    print()
+
+    for child in node['children']:
+        print_tree(child)
+
+def print_tree(node, indent=0):
+    print(" " * indent + f"{node['type']} ({node['x']},{node['y']}) {node['width']}x{node['height']}")
+    for child in node["children"]:
+        print_tree(child, indent + 4)
+
+def node(node_type, children=None, direction=None, val=''):
+    return {
+        "type": node_type,
+        "children": children or [],
+        "direction": direction,
+
+        "width": 0,
+        "height": 0,
+        "x": 0,
+        "y": 0,
+        "val": val,
+    }
+
+def intrinsic_size(node):
+    if node['type'] == 'button':
+        return 80, 30
+    if node['type'] == 'label':
+        return 60, 20
+    if node['type'] == 'input':
+        return 120, 30
+    return 0, 0
+
+root = node("frame", [
+
+    node("frame", [
+        node("label", val='label 1'),
+        node("label", val='label 2'),
+    ], direction='row'),
+
+    node("frame", [
+        node("label", val='label 3'),
+        node("label", val='label 4')
+    ], direction='column')
+
+], direction="column")
+
+def compute_container_size(node):
+    children = node["children"]
+
+    if node["direction"] == "row":
+        total_width = 0
+        max_height = 0
+
+        for child in children:
+            total_width += child["width"]
+            max_height = max(max_height, child["height"])
+
+        node["width"] = total_width
+        node["height"] = max_height
+
+
+    elif node["direction"] == "column":
+        max_width = 0
+        total_height = 0
+
+        for child in children:
+            max_width = max(max_width, child["width"])
+            total_height += child["height"]
+
+        node["width"] = max_width
+        node["height"] = total_height
+
+def compute_size(node):
+
+    # CASE 1 — leaf node
+    if len(node["children"]) == 0:
+
+        w, h = intrinsic_size(node)
+        node["width"] = w
+        node["height"] = h
+        return
+
+
+    # CASE 2 — container node
+
+    # first compute children
+    for child in node["children"]:
+        compute_size(child)
+
+    # then compute container size
+    compute_container_size(node)
+
+def compute_position(node, x, y):
+
+    # set this node's position
+    node["x"] = x
+    node["y"] = y
+
+
+    # if leaf, nothing more to do
+    if len(node["children"]) == 0:
+        return
+
+
+    # ROW LAYOUT
+    if node["direction"] == "row":
+
+        current_x = x
+
+        for child in node["children"]:
+
+            compute_position(child, current_x, y)
+
+            current_x += child["width"]
+
+
+    # COLUMN LAYOUT
+    elif node["direction"] == "column":
+
+        current_y = y
+
+        for child in node["children"]:
+
+            compute_position(child, x, current_y)
+
+            current_y += child["height"]
+
+compute_size(root)
+compute_position(root, 0, 0)
+
+def layout(node, start_x=0, start_y=0):
+    compute_size(node)
+    compute_position(node, start_x, start_y)
+
+print_tree(root, indent=0)
+# print(json.dumps(root, indent=4))
+# quit()
+
+
+def draw_recursive(node):
+    if node['type'] == 'label': 
+        surface = font_label.render(node['val'], True, COLOR_LABEL)
+        screen.blit(surface, (node['x'], node['y']))
+    elif node['type'] == 'entry':
+        if node['focus'] == True:
+            pygame.draw.rect(screen, COLOR_BORDER_BLUE, (node['x'], node['y'], node['w'], node['h']), 1)
+        else:
+            pygame.draw.rect(screen, COLOR_BORDER_GRAY, (node['x'], node['y'], node['w'], node['h']), 1)
+        surface = font_entry.render(node['val'], True, COLOR_ENTRY)
+        screen.blit(surface, (node['x'] + (node['h'] // 4), node['y'] + (node['h'] // 4)))
+
+    for child in node['children']:
+        draw_recursive(child)
+
 running = True
 while running:
     mouse_x,mouse_y = pygame.mouse.get_pos()
@@ -650,8 +894,17 @@ while running:
     # layout_components_col_row(root)
     # layout_components_row_col(root)
     # draw_components(root)
-    layout_ui(root)
-    draw_ui(root)
+    # layout_ui(root)
+    # draw_ui(root)
+    
+    # compute_size(root)
+    # layout(root, 0, 0)
+    layout(root, start_x=100, start_y=100)
+    draw_recursive(root)
+    # print_tree(root)
+    # print(root)
+    # draw_ui(root)
+    # quit()
 
     mouse_pos = font.render(f'{mouse_x} - {mouse_y}', True, (255, 0, 255))
     screen.blit(mouse_pos, (0, 0))
