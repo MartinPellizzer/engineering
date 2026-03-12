@@ -139,6 +139,43 @@ def layout_components_row_col(parent):
             screen.blit(surface, (level_2['x'], level_2['y']))
         level_1_x_cur += level_2_w_max
 
+def layout_ui_backup(root):
+    level_1_x_cur = 0
+    level_1_y_cur = 0
+    row_gap = 0
+    for level_1 in root['children']:
+        if level_1['direction'] == 'col':
+            level_1['x'] = root['x'] + level_1_x_cur
+            level_1['y'] = root['y']
+            level_2_y_cur = 0
+            level_2_w_max = 0
+            for level_2 in level_1['children']:
+                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+                else: level_2_w = level_2['w']
+                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+                else: level_2_h = level_2['h']
+                level_2['x'] = level_1['x']
+                level_2['y'] = level_1['y'] + level_2_y_cur
+                level_2_y_cur += level_2_h
+                if level_2_w_max < level_2_w: level_2_w_max = level_2_w
+            level_1_x_cur += level_2_w_max
+        ###
+        elif level_1['direction'] == 'row':
+            level_1['x'] = root['x']
+            level_1['y'] = root['y'] + level_1_y_cur
+            level_2_x_cur = 0
+            level_2_h_max = 0
+            for level_2 in level_1['children']:
+                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+                else: level_2_w = level_2['w']
+                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+                else: level_2_h = level_2['h']
+                level_2['x'] = level_1['x'] + level_2_x_cur
+                level_2['y'] = level_1['y']
+                level_2_x_cur += level_2_w
+                if level_2_h_max < level_2_h: level_2_h_max = level_2_h
+            level_1_y_cur += level_2_h_max
+
 
 def component_create(_type, direction='col', val='', x=0, y=0, w=0, h=0, children=[]):
     component = {
@@ -167,139 +204,142 @@ root = component_create('frame', direction='col', x=300, y=300, children=[frame_
 label_w_min = 200
 entry_w_min = 300
 
-root = component_create('frame', direction='col', x=300, y=200, 
+root_direction = 'col'
+level_1_direction = 'row'
+
+root = component_create('frame', direction=root_direction, x=300, y=200, 
     children=[
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Client Name', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Facility Name', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Contact Person', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Email', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Phone', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Location', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Industry', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
         ###
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Average Flow Rate', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Maximum Flow Rate', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Unit (m3/h or L/min)', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
         ###
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Contaminant Name', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Contaminant Current', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Contaminant Target', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
         ###
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Available Power', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Available Space', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Existing Pumps', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Oxygen Supply', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Ventilation', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
         ###
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Budget', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Deadline', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Regulatory Constraints', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Safety Constraints', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
@@ -310,53 +350,64 @@ root = component_create('frame', direction='col', x=300, y=200,
 
 scroll_offset = root['y']
 
-def layout_components_auto(root):
+def layout_col(root, level_1, level_1_x_cur):
+    level_1['x'] = root['x'] + level_1_x_cur
+    level_1['y'] = root['y']
+    level_2_y_cur = 0
+    level_2_w_max = 0
+    for level_2 in level_1['children']:
+        if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+        else: level_2_w = level_2['w']
+        if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+        else: level_2_h = level_2['h']
+        level_2['x'] = level_1['x']
+        level_2['y'] = level_1['y'] + level_2_y_cur
+        level_2_y_cur += level_2_h
+        if level_2_w_max < level_2_w: level_2_w_max = level_2_w
+    level_1_x_cur += level_2_w_max
+    return level_1_x_cur
+
+def layout_row(root, level_1, level_1_y_cur):
+    level_1['x'] = root['x']
+    level_1['y'] = root['y'] + level_1_y_cur
+    level_2_x_cur = 0
+    level_2_h_max = 0
+    for level_2 in level_1['children']:
+        if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+        else: level_2_w = level_2['w']
+        if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+        else: level_2_h = level_2['h']
+        level_2['x'] = level_1['x'] + level_2_x_cur
+        level_2['y'] = level_1['y']
+        level_2_x_cur += level_2_w
+        if level_2_h_max < level_2_h: level_2_h_max = level_2_h
+    level_1_y_cur += level_2_h_max
+    return level_1_y_cur
+
+def layout_ui(root):
     level_1_x_cur = 0
     level_1_y_cur = 0
     row_gap = 0
     for level_1 in root['children']:
         if level_1['direction'] == 'col':
-            level_1['x'] = root['x'] + level_1_x_cur
-            level_1['y'] = root['y']
-            level_2_y_cur = 0
-            level_2_w_max = 0
-            for level_2 in level_1['children']:
-                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
-                else: level_2_w = level_2['w']
-                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
-                else: level_2_h = level_2['h']
-                level_2['x'] = level_1['x']
-                level_2['y'] = level_1['y'] + level_2_y_cur
-                level_2_y_cur += level_2_h
-                if level_2_w_max < level_2_w: level_2_w_max = level_2_w
-                ###
-                if level_2['type'] == 'label': 
-                    draw_label(level_2)
-                elif level_2['type'] == 'entry':
-                    draw_entry(level_2)
-            level_1_x_cur += level_2_w_max
-
+            level_1_x_cur = layout_col(root, level_1, level_1_x_cur)
+        ###
         elif level_1['direction'] == 'row':
-            level_1['x'] = root['x']
-            level_1['y'] = root['y'] + level_1_y_cur + row_gap
-            level_2_x_cur = 0
-            level_2_h_max = 0
-            row_gap += 16
-            for level_2 in level_1['children']:
-                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
-                else: level_2_w = level_2['w']
-                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
-                else: level_2_h = level_2['h']
-                level_2['x'] = level_1['x'] + level_2_x_cur
-                level_2['y'] = level_1['y']
-                level_2_x_cur += level_2_w
-                if level_2_h_max < level_2_h: level_2_h_max = level_2_h
-                ###
-                if level_2['type'] == 'label': 
-                    draw_label(level_2)
-                elif level_2['type'] == 'entry':
-                    draw_entry(level_2)
-            level_1_y_cur += level_2_h_max
+            level_1_y_cur = layout_row(root, level_1, level_1_y_cur)
+
+def draw_ui(root):
+    for level_1 in root['children']:
+        for level_2 in level_1['children']:
+            if level_2['type'] == 'label': 
+                surface = font_label.render(level_2['val'], True, COLOR_LABEL)
+                screen.blit(surface, (level_2['x'], level_2['y']))
+            elif level_2['type'] == 'entry':
+                if level_2['focus'] == True:
+                    pygame.draw.rect(screen, COLOR_BORDER_BLUE, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
+                else:
+                    pygame.draw.rect(screen, COLOR_BORDER_GRAY, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
+                surface = font_entry.render(level_2['val'], True, COLOR_ENTRY)
+                screen.blit(surface, (level_2['x'] + (level_2['h'] // 4), level_2['y'] + (level_2['h'] // 4)))
 
 def draw_label(level_2):
     surface = font_label.render(level_2['val'], True, COLOR_LABEL)
@@ -495,43 +546,6 @@ def calc_layout(parent, direction='row'):
     print(parent)
     return parent
     
-
-
-def draw_ui(parent, direction='row'):
-    child_x_cur = 0
-    child_y_cur = 0
-    ###
-    for i, child in enumerate(parent['children']):
-        if direction == 'row':
-            child['x'] = parent['x'] + child_x_cur
-            child['y'] = parent['y']
-            child_x_cur += child['w']
-            ###
-            parent['w'] = child_x_cur
-            if parent['h'] < child['h']: parent['h'] = child['h']
-        else:
-            child['x'] = parent['x']
-            child['y'] = parent['y'] + child_y_cur
-            child_y_cur += child['h']
-            ###
-            if parent['w'] < child['w']: parent['w'] = child['w']
-            parent['h'] = child_y_cur
-        ###
-        if child['type'] == 'label': 
-            ###
-            surface = font_label.render(child['val'], True, COLOR_LABEL)
-            screen.blit(surface, (child['x'], child['y']))
-        elif child['type'] == 'entry':
-            ###
-            pygame.draw.rect(screen, COLOR_BORDER_GRAY, (child['x'], child['y'], child['w'], child['h']), 1)
-            surface = font_entry.render(child['val'], True, COLOR_ENTRY)
-            screen.blit(surface, (child['x'] + (child['h'] // 4), child['y'] + (child['h'] // 4)))
-    ###
-    pygame.draw.rect(screen, COLOR_BORDER_BLUE, (parent['x'], parent['y'], parent['w'], parent['h']), 1)
-    print(parent)
-    return parent
-    
-
 def draw_frame(component):
     parent = component
     child_y_cur = 0
@@ -635,8 +649,9 @@ while running:
 
     # layout_components_col_row(root)
     # layout_components_row_col(root)
-    layout_components_auto(root)
     # draw_components(root)
+    layout_ui(root)
+    draw_ui(root)
 
     mouse_pos = font.render(f'{mouse_x} - {mouse_y}', True, (255, 0, 255))
     screen.blit(mouse_pos, (0, 0))

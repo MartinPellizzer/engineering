@@ -49,6 +49,39 @@ ohm's law
 >> check complete chart formulas
 >> check SI table
 
+========================================
+MAGNETISM
+========================================
+
+english system
+---
+
+flux: phi
+flux density: magnetic strength (lines per square inch) (B)
+
+flux density = flux lines / area
+B = phi / A
+
+total force of magnetic field: magnetomotive force (mmf)
+mmf = phi * rel (reluctance)
+pull (in pounds) = (B * A) / 72000000
+
+CGS system
+---
+
+centimeter-gram-second
+1 line = 1 maxwell
+1 maxwell / square centimeter = 1 gauss
+1 gauss = 6.4516 lines of flux / square inch
+
+in SI system, magnetomotive forced measured in ampere-turns
+in CGS, gilberts measure the same
+
+1 gilbert = 1.256 ampere-turns
+1 ampere-turn = 0.7905 gilbert
+
+>> check others / and final table
+
 '''
 
 def atom_shell_electron_number_max_get(N):
@@ -88,9 +121,8 @@ print('SHELL 5 ELECRON NUMBER:', atom_shell_electron_number_max_get(5))
 print('POWER VA (W):', calc_power_va(volt=5, ampere=3))
 print('POWER IR (W):', calc_power_ir(ampere=5, resistance=3))
 print('POWER VR (W):', calc_power_vr(volt=5, resistance=3))
-
 print('OHM E:', calc_ohm_e(i=5, r=5))
 print('OHM I:', calc_ohm_i(e=5, r=5))
 print('OHM R:', calc_ohm_r(e=5, i=5))
-
 print('POWER VA (W):', calc_power_va(volt=120, ampere=8))
+
