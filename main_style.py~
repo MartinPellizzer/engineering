@@ -345,15 +345,9 @@ def layout_components_auto(root):
                 if level_2_h_max < level_2_h: level_2_h_max = level_2_h
                 ###
                 if level_2['type'] == 'label': 
-                    surface = font_label.render(level_2['val'], True, COLOR_LABEL)
-                    screen.blit(surface, (level_2['x'], level_2['y']))
+                    draw_label(level_2)
                 elif level_2['type'] == 'entry':
-                    if level_2['focus'] == True:
-                        pygame.draw.rect(screen, COLOR_BORDER_BLUE, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
-                    else:
-                        pygame.draw.rect(screen, COLOR_BORDER_GRAY, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
-                    surface = font_entry.render(level_2['val'], True, COLOR_ENTRY)
-                    screen.blit(surface, (level_2['x'] + (level_2['h'] // 4), level_2['y'] + (level_2['h'] // 4)))
+                    draw_entry(level_2)
             level_1_y_cur += level_2_h_max
 
 def draw_label(level_2):

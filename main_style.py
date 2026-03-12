@@ -1,6 +1,14 @@
 import os
 import pygame
 
+from reportlab.pdfgen import canvas
+
+c = canvas.Canvas('hello.pdf')
+
+c.drawString(100, 700, 'Hello World')
+
+c.save()
+
 # FONT_FAMILY = None
 FONT_FAMILY = 'fonts/Inter/static/Inter_18pt-Regular.ttf'
 FONT_FAMILY_INTER_MEDIUM = 'fonts/Inter/static/Inter_18pt-Medium.ttf'
