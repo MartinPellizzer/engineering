@@ -203,8 +203,67 @@ root = component_create('frame', direction='col', x=300, y=200,
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
+        ###
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Average Flow Rate', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Maximum Flow Rate', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Unit (m3/h or L/min)', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        ###
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Contaminant Name', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Contaminant Current', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
+        component_create('frame', direction='row', 
+            children=[
+                component_create('label', val='Target', w=label_w_min),
+                component_create('entry', w=entry_w_min, h=30),
+            ]
+        ),
     ]
 )
+
+fields_0003 = [
+    'Contaminant Name',
+    'Contaminant Current',
+    'Contaminant Target',
+]
+
+fields_0004 = [
+    'Available Power',
+    'Available Space',
+    'Existing Pumps',
+    'Oxygen Supply',
+    'Ventilation',
+]
+
+fields_0005 = [
+    'Budget',
+    'Deadline',
+    'Regulatory Constraints',
+    'Safety Constraints',
+]
 
 scroll_offset = root['y']
 
@@ -426,7 +485,7 @@ while running:
                         b['val'] += event.unicode
 
         elif event.type == pygame.MOUSEWHEEL:
-            scroll_offset -= event.y * 30
+            scroll_offset += event.y * 30
             root['y'] = scroll_offset
             # clear focus because wrong coords
             for a in root['children']:
@@ -446,7 +505,6 @@ while running:
                             mouse_y < b['y'] + b['h']
                         ):
                             b['focus'] = True
-                            print('here')
                         else:
                             b['focus'] = False
                 ###
@@ -456,7 +514,6 @@ while running:
                     mouse_y < a['y'] + a['h']
                 ):
                     a['focus'] = True
-                    print('here')
                 else:
                     a['focus'] = False
 
