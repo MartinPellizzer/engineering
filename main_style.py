@@ -323,6 +323,66 @@ def layout_components_auto(root):
                 if level_2_w_max < level_2_w: level_2_w_max = level_2_w
                 ###
                 if level_2['type'] == 'label': 
+                    draw_label(level_2)
+                elif level_2['type'] == 'entry':
+                    draw_entry(level_2)
+            level_1_x_cur += level_2_w_max
+
+        elif level_1['direction'] == 'row':
+            level_1['x'] = root['x']
+            level_1['y'] = root['y'] + level_1_y_cur + row_gap
+            level_2_x_cur = 0
+            level_2_h_max = 0
+            row_gap += 16
+            for level_2 in level_1['children']:
+                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+                else: level_2_w = level_2['w']
+                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+                else: level_2_h = level_2['h']
+                level_2['x'] = level_1['x'] + level_2_x_cur
+                level_2['y'] = level_1['y']
+                level_2_x_cur += level_2_w
+                if level_2_h_max < level_2_h: level_2_h_max = level_2_h
+                ###
+                if level_2['type'] == 'label': 
+                    draw_label(level_2)
+                elif level_2['type'] == 'entry':
+                    draw_entry(level_2)
+            level_1_y_cur += level_2_h_max
+
+def draw_label(level_2):
+    surface = font_label.render(level_2['val'], True, COLOR_LABEL)
+    screen.blit(surface, (level_2['x'], level_2['y']))
+
+def draw_entry(level_2):
+    if level_2['focus'] == True:
+        pygame.draw.rect(screen, COLOR_BORDER_BLUE, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
+    else:
+        pygame.draw.rect(screen, COLOR_BORDER_GRAY, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
+    surface = font_entry.render(level_2['val'], True, COLOR_ENTRY)
+    screen.blit(surface, (level_2['x'] + (level_2['h'] // 4), level_2['y'] + (level_2['h'] // 4)))
+
+def layout_components_auto_backup(root):
+    level_1_x_cur = 0
+    level_1_y_cur = 0
+    row_gap = 0
+    for level_1 in root['children']:
+        if level_1['direction'] == 'col':
+            level_1['x'] = root['x'] + level_1_x_cur
+            level_1['y'] = root['y']
+            level_2_y_cur = 0
+            level_2_w_max = 0
+            for level_2 in level_1['children']:
+                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+                else: level_2_w = level_2['w']
+                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+                else: level_2_h = level_2['h']
+                level_2['x'] = level_1['x']
+                level_2['y'] = level_1['y'] + level_2_y_cur
+                level_2_y_cur += level_2_h
+                if level_2_w_max < level_2_w: level_2_w_max = level_2_w
+                ###
+                if level_2['type'] == 'label': 
                     surface = font_label.render(level_2['val'], True, COLOR_LABEL)
                     screen.blit(surface, (level_2['x'], level_2['y']))
                 elif level_2['type'] == 'entry':
