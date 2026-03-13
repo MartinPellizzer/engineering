@@ -1,5 +1,14 @@
 import os
+import json
 import pygame
+
+from reportlab.pdfgen import canvas
+
+c = canvas.Canvas('hello.pdf')
+
+c.drawString(100, 700, 'Hello World')
+
+c.save()
 
 # FONT_FAMILY = None
 FONT_FAMILY = 'fonts/Inter/static/Inter_18pt-Regular.ttf'
@@ -131,6 +140,43 @@ def layout_components_row_col(parent):
             screen.blit(surface, (level_2['x'], level_2['y']))
         level_1_x_cur += level_2_w_max
 
+def layout_ui_backup(root):
+    level_1_x_cur = 0
+    level_1_y_cur = 0
+    row_gap = 0
+    for level_1 in root['children']:
+        if level_1['direction'] == 'col':
+            level_1['x'] = root['x'] + level_1_x_cur
+            level_1['y'] = root['y']
+            level_2_y_cur = 0
+            level_2_w_max = 0
+            for level_2 in level_1['children']:
+                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+                else: level_2_w = level_2['w']
+                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+                else: level_2_h = level_2['h']
+                level_2['x'] = level_1['x']
+                level_2['y'] = level_1['y'] + level_2_y_cur
+                level_2_y_cur += level_2_h
+                if level_2_w_max < level_2_w: level_2_w_max = level_2_w
+            level_1_x_cur += level_2_w_max
+        ###
+        elif level_1['direction'] == 'row':
+            level_1['x'] = root['x']
+            level_1['y'] = root['y'] + level_1_y_cur
+            level_2_x_cur = 0
+            level_2_h_max = 0
+            for level_2 in level_1['children']:
+                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+                else: level_2_w = level_2['w']
+                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+                else: level_2_h = level_2['h']
+                level_2['x'] = level_1['x'] + level_2_x_cur
+                level_2['y'] = level_1['y']
+                level_2_x_cur += level_2_w
+                if level_2_h_max < level_2_h: level_2_h_max = level_2_h
+            level_1_y_cur += level_2_h_max
+
 
 def component_create(_type, direction='col', val='', x=0, y=0, w=0, h=0, children=[]):
     component = {
@@ -159,139 +205,142 @@ root = component_create('frame', direction='col', x=300, y=300, children=[frame_
 label_w_min = 200
 entry_w_min = 300
 
-root = component_create('frame', direction='col', x=300, y=200, 
+root_direction = 'col'
+level_1_direction = 'row'
+
+root = component_create('frame', direction=root_direction, x=300, y=200, 
     children=[
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Client Name', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Facility Name', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Contact Person', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Email', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Phone', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Location', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Industry', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
         ###
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Average Flow Rate', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Maximum Flow Rate', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Unit (m3/h or L/min)', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
         ###
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Contaminant Name', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Contaminant Current', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Contaminant Target', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
         ###
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Available Power', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Available Space', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Existing Pumps', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Oxygen Supply', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Ventilation', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
         ###
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Budget', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Deadline', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Regulatory Constraints', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
             ]
         ),
-        component_create('frame', direction='row', 
+        component_create('frame', direction=level_1_direction, 
             children=[
                 component_create('label', val='Safety Constraints', w=label_w_min),
                 component_create('entry', w=entry_w_min, h=30),
@@ -302,53 +351,64 @@ root = component_create('frame', direction='col', x=300, y=200,
 
 scroll_offset = root['y']
 
-def layout_components_auto(root):
+def layout_col(root, level_1, level_1_x_cur):
+    level_1['x'] = root['x'] + level_1_x_cur
+    level_1['y'] = root['y']
+    level_2_y_cur = 0
+    level_2_w_max = 0
+    for level_2 in level_1['children']:
+        if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+        else: level_2_w = level_2['w']
+        if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+        else: level_2_h = level_2['h']
+        level_2['x'] = level_1['x']
+        level_2['y'] = level_1['y'] + level_2_y_cur
+        level_2_y_cur += level_2_h
+        if level_2_w_max < level_2_w: level_2_w_max = level_2_w
+    level_1_x_cur += level_2_w_max
+    return level_1_x_cur
+
+def layout_row(root, level_1, level_1_y_cur):
+    level_1['x'] = root['x']
+    level_1['y'] = root['y'] + level_1_y_cur
+    level_2_x_cur = 0
+    level_2_h_max = 0
+    for level_2 in level_1['children']:
+        if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
+        else: level_2_w = level_2['w']
+        if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
+        else: level_2_h = level_2['h']
+        level_2['x'] = level_1['x'] + level_2_x_cur
+        level_2['y'] = level_1['y']
+        level_2_x_cur += level_2_w
+        if level_2_h_max < level_2_h: level_2_h_max = level_2_h
+    level_1_y_cur += level_2_h_max
+    return level_1_y_cur
+
+def layout_ui(root):
     level_1_x_cur = 0
     level_1_y_cur = 0
     row_gap = 0
     for level_1 in root['children']:
         if level_1['direction'] == 'col':
-            level_1['x'] = root['x'] + level_1_x_cur
-            level_1['y'] = root['y']
-            level_2_y_cur = 0
-            level_2_w_max = 0
-            for level_2 in level_1['children']:
-                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
-                else: level_2_w = level_2['w']
-                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
-                else: level_2_h = level_2['h']
-                level_2['x'] = level_1['x']
-                level_2['y'] = level_1['y'] + level_2_y_cur
-                level_2_y_cur += level_2_h
-                if level_2_w_max < level_2_w: level_2_w_max = level_2_w
-                ###
-                if level_2['type'] == 'label': 
-                    draw_label(level_2)
-                elif level_2['type'] == 'entry':
-                    draw_entry(level_2)
-            level_1_x_cur += level_2_w_max
-
+            level_1_x_cur = layout_col(root, level_1, level_1_x_cur)
+        ###
         elif level_1['direction'] == 'row':
-            level_1['x'] = root['x']
-            level_1['y'] = root['y'] + level_1_y_cur + row_gap
-            level_2_x_cur = 0
-            level_2_h_max = 0
-            row_gap += 16
-            for level_2 in level_1['children']:
-                if level_2['w'] == 0: level_2_w = font_label.size(level_2['val'])[0]
-                else: level_2_w = level_2['w']
-                if level_2['h'] == 0: level_2_h = font_label.size(level_2['val'])[1]
-                else: level_2_h = level_2['h']
-                level_2['x'] = level_1['x'] + level_2_x_cur
-                level_2['y'] = level_1['y']
-                level_2_x_cur += level_2_w
-                if level_2_h_max < level_2_h: level_2_h_max = level_2_h
-                ###
-                if level_2['type'] == 'label': 
-                    draw_label(level_2)
-                elif level_2['type'] == 'entry':
-                    draw_entry(level_2)
-            level_1_y_cur += level_2_h_max
+            level_1_y_cur = layout_row(root, level_1, level_1_y_cur)
+
+def draw_ui(root):
+    for level_1 in root['children']:
+        for level_2 in level_1['children']:
+            if level_2['type'] == 'label': 
+                surface = font_label.render(level_2['val'], True, COLOR_LABEL)
+                screen.blit(surface, (level_2['x'], level_2['y']))
+            elif level_2['type'] == 'entry':
+                if level_2['focus'] == True:
+                    pygame.draw.rect(screen, COLOR_BORDER_BLUE, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
+                else:
+                    pygame.draw.rect(screen, COLOR_BORDER_GRAY, (level_2['x'], level_2['y'], level_2['w'], level_2['h']), 1)
+                surface = font_entry.render(level_2['val'], True, COLOR_ENTRY)
+                screen.blit(surface, (level_2['x'] + (level_2['h'] // 4), level_2['y'] + (level_2['h'] // 4)))
 
 def draw_label(level_2):
     surface = font_label.render(level_2['val'], True, COLOR_LABEL)
@@ -487,43 +547,6 @@ def calc_layout(parent, direction='row'):
     print(parent)
     return parent
     
-
-
-def draw_ui(parent, direction='row'):
-    child_x_cur = 0
-    child_y_cur = 0
-    ###
-    for i, child in enumerate(parent['children']):
-        if direction == 'row':
-            child['x'] = parent['x'] + child_x_cur
-            child['y'] = parent['y']
-            child_x_cur += child['w']
-            ###
-            parent['w'] = child_x_cur
-            if parent['h'] < child['h']: parent['h'] = child['h']
-        else:
-            child['x'] = parent['x']
-            child['y'] = parent['y'] + child_y_cur
-            child_y_cur += child['h']
-            ###
-            if parent['w'] < child['w']: parent['w'] = child['w']
-            parent['h'] = child_y_cur
-        ###
-        if child['type'] == 'label': 
-            ###
-            surface = font_label.render(child['val'], True, COLOR_LABEL)
-            screen.blit(surface, (child['x'], child['y']))
-        elif child['type'] == 'entry':
-            ###
-            pygame.draw.rect(screen, COLOR_BORDER_GRAY, (child['x'], child['y'], child['w'], child['h']), 1)
-            surface = font_entry.render(child['val'], True, COLOR_ENTRY)
-            screen.blit(surface, (child['x'] + (child['h'] // 4), child['y'] + (child['h'] // 4)))
-    ###
-    pygame.draw.rect(screen, COLOR_BORDER_BLUE, (parent['x'], parent['y'], parent['w'], parent['h']), 1)
-    print(parent)
-    return parent
-    
-
 def draw_frame(component):
     parent = component
     child_y_cur = 0
@@ -553,6 +576,330 @@ def draw_components():
         elif component['type'] == 'frame': draw_frame(component)
         # elif component['type'] == 'entry': draw_entry(component)
         # elif component['type'] == 'label': draw_label(component)
+
+node = {
+    'val': 1,
+    'w': 0,
+    'h': 0,
+    'children': [
+        {
+            'val': 5,
+            'w': 100,
+            'h': 30,
+            'children': [
+                {
+                    'val': 5,
+                    'w': 100,
+                    'h': 30,
+                    'children': []
+                },
+            ]
+        },
+        {
+            'val': 5,
+            'w': 100,
+            'h': 30,
+            'children': []
+        },
+    ],
+}
+
+root = {
+    'type': 'frame',
+    'val': '',
+    "width": 0,
+    "height": 0,
+    "children": [
+        {
+            'type': 'label',
+            'val': 'label 1',
+            "width": 50, 
+            "height": 20, 
+            "children": [
+                {
+                    'type': 'label',
+                    'val': 'label 3',
+                    "width": 50, 
+                    "height": 20, 
+                    "children": []
+                },
+            ]
+        },
+        {
+            'type': 'label',
+            'val': 'label 2',
+            "width": 30, "height": 40, "children": []
+        }
+    ]
+}
+
+def compute_size(node):
+    if not node['children']:
+        return node['width'], node['height']
+
+    widths = []
+    heights = []
+
+    for child in node['children']:
+        w, h = compute_size(child)
+        widths.append(w)
+        heights.append(h)
+
+    node['width'] = sum(widths)
+    node['height'] = max(heights)
+
+    return node['width'], node['height']
+
+def layout(node, x, y):
+    node['x'] = x
+    node['y'] = y
+
+    current_x = x
+
+    for child in node['children']:
+        layout(child, current_x, y)
+        current_x += child['width']
+
+def print_tree(node):
+    # print('w', node['width'])
+    # print('h', node['height'])
+    # print('x', node['x'])
+    # print('y', node['y'])
+    print(node)
+    print()
+
+    for child in node['children']:
+        print_tree(child)
+
+def print_tree(node, indent=0):
+    print(" " * indent + f"{node['type']} ({node['x']},{node['y']}) {node['width']}x{node['height']}")
+    for child in node["children"]:
+        print_tree(child, indent + 4)
+
+def node(node_type, children=None, direction=None, gap=0, val='',
+        padding_left=0, padding_right=0, padding_top=0, padding_bottom=0,
+        align='start',
+):
+    return {
+        "type": node_type,
+        "children": children or [],
+        "direction": direction,
+        "gap": gap,
+
+        'padding_left': padding_left,
+        'padding_right': padding_right,
+        'padding_top': padding_top,
+        'padding_bottom': padding_bottom,
+
+        'align': align,
+
+        "width": 0,
+        "height": 0,
+        "x": 0,
+        "y": 0,
+        "val": val,
+    }
+
+def intrinsic_size(node):
+    if node['type'] == 'button':
+        return 80, 30
+    if node['type'] == 'label':
+        w, h = font_label.size(node['val'])
+        return w, h
+    if node['type'] == 'entry':
+        return 120, 30
+    return 0, 0
+
+root = node("frame", 
+    [
+        node("frame", 
+            [
+                node("label", val='label 1'),
+                node("entry", val='label 2'),
+            ], 
+            direction='row', 
+            gap=30,
+            align='center',
+        ),
+
+        node("frame", 
+            [
+                node("label", val='label 333'),
+                node("label", val='label 4')
+            ], 
+            direction='column', 
+            gap=30,
+            align='center',
+        ),
+
+    ], 
+    direction="column", 
+    gap=50,
+    padding_left=20,
+    padding_right=50,
+    padding_top=10,
+    padding_bottom=50,
+    align='end',
+)
+
+def compute_container_size(node):
+    children = node["children"]
+    gap = node['gap']
+    count = len(children)
+
+    pad_l = node['padding_left']
+    pad_r = node['padding_right']
+    pad_t = node['padding_top']
+    pad_b = node['padding_bottom']
+
+    if node["direction"] == "row":
+        total_width = 0
+        max_height = 0
+
+        for child in children:
+            total_width += child["width"]
+            max_height = max(max_height, child["height"])
+
+        if count > 1:
+            total_width += gap * (count -1)
+
+        node["width"] = total_width + pad_l + pad_r
+        node["height"] = max_height + pad_t + pad_b
+
+
+    elif node["direction"] == "column":
+        max_width = 0
+        total_height = 0
+
+        for child in children:
+            max_width = max(max_width, child["width"])
+            total_height += child["height"]
+
+        if count > 1:
+            total_height += gap * (count - 1)
+
+        node["width"] = max_width + pad_l + pad_r
+        node["height"] = total_height + pad_t + pad_b
+
+def compute_size(node):
+
+    # CASE 1 — leaf node
+    if len(node["children"]) == 0:
+
+        w, h = intrinsic_size(node)
+        node["width"] = w
+        node["height"] = h
+        return
+
+
+    # CASE 2 — container node
+
+    # first compute children
+    for child in node["children"]:
+        compute_size(child)
+
+    # then compute container size
+    compute_container_size(node)
+
+def compute_position(node, x, y):
+
+    # set this node's position
+    node["x"] = x
+    node["y"] = y
+
+
+    # if leaf, nothing more to do
+    if len(node["children"]) == 0:
+        return
+
+    gap = node['gap']
+
+    pad_l = node['padding_left']
+    pad_r = node['padding_right']
+    pad_t = node['padding_top']
+    pad_b = node['padding_bottom']
+
+    align = node['align']
+
+    # ROW LAYOUT
+    if node["direction"] == "row":
+
+        current_x = x + pad_l
+
+        for child in node["children"]:
+
+            free_space = node['height'] - pad_t - pad_b - child['height']
+
+            if align == 'start':
+                offset_y = 0
+            elif align == 'center':
+                offset_y = free_space / 2
+            elif align == 'end':
+                offset_y = free_space
+            else: 
+                offset_y = 0
+
+            child_y = y + pad_t + offset_y
+
+            compute_position(child, current_x, child_y)
+
+            current_x += child["width"] + gap
+
+
+    # COLUMN LAYOUT
+    elif node["direction"] == "column":
+
+        current_y = y + pad_t
+
+        for child in node["children"]:
+
+            free_space = node['width'] - pad_l - pad_r - child['width']
+
+            if align == 'start':
+                offset_x = 0
+            elif align == 'center':
+                offset_x = free_space / 2
+            elif align == 'end':
+                offset_x = free_space
+            else: 
+                offset_x = 0
+
+            child_x = x + pad_l + offset_x
+
+            compute_position(child, child_x, current_y)
+
+            current_y += child["height"] + gap
+
+compute_size(root)
+compute_position(root, 0, 0)
+
+def layout(node, start_x=0, start_y=0):
+    compute_size(node)
+    compute_position(node, start_x, start_y)
+
+print_tree(root, indent=0)
+# print(json.dumps(root, indent=4))
+# quit()
+
+
+def draw_recursive(node):
+    if node['type'] == 'frame': 
+        pygame.draw.rect(screen, (200, 200, 200,), (node['x'], node['y'], node['width'], node['height']))
+    elif node['type'] == 'label': 
+        surface = font_label.render(node['val'], True, COLOR_LABEL)
+        screen.blit(surface, (node['x'], node['y']))
+    elif node['type'] == 'entry':
+        '''
+        if node['focus'] == True:
+            pygame.draw.rect(screen, COLOR_BORDER_BLUE, (node['x'], node['y'], node['w'], node['h']), 1)
+        else:
+        '''
+        pygame.draw.rect(screen, (0, 0, 0), (node['x'], node['y'], node['width'], node['height']), 1)
+        # surface = font_entry.render(node['val'], True, COLOR_ENTRY)
+        # screen.blit(surface, (node['x'] + (node['height'] // 4), node['y'] + (node['height'] // 4)))
+
+    for child in node['children']:
+        draw_recursive(child)
 
 running = True
 while running:
@@ -627,8 +974,18 @@ while running:
 
     # layout_components_col_row(root)
     # layout_components_row_col(root)
-    layout_components_auto(root)
     # draw_components(root)
+    # layout_ui(root)
+    # draw_ui(root)
+    
+    # compute_size(root)
+    # layout(root, 0, 0)
+    layout(root, start_x=100, start_y=100)
+    draw_recursive(root)
+    # print_tree(root)
+    # print(root)
+    # draw_ui(root)
+    # quit()
 
     mouse_pos = font.render(f'{mouse_x} - {mouse_y}', True, (255, 0, 255))
     screen.blit(mouse_pos, (0, 0))

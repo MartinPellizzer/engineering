@@ -676,11 +676,22 @@ def print_tree(node, indent=0):
     for child in node["children"]:
         print_tree(child, indent + 4)
 
-def node(node_type, children=None, direction=None, val=''):
+def node(node_type, children=None, direction=None, gap=0, val='',
+        padding_left=0, padding_right=0, padding_top=0, padding_bottom=0,
+        align='start',
+):
     return {
         "type": node_type,
         "children": children or [],
         "direction": direction,
+        "gap": gap,
+
+        'padding_left': padding_left,
+        'padding_right': padding_right,
+        'padding_top': padding_top,
+        'padding_bottom': padding_bottom,
+
+        'align': align,
 
         "width": 0,
         "height": 0,
@@ -693,27 +704,53 @@ def intrinsic_size(node):
     if node['type'] == 'button':
         return 80, 30
     if node['type'] == 'label':
-        return 60, 20
-    if node['type'] == 'input':
+        w, h = font_label.size(node['val'])
+        return w, h
+    if node['type'] == 'entry':
         return 120, 30
     return 0, 0
 
-root = node("frame", [
+root = node("frame", 
+    [
+        node("frame", 
+            [
+                node("label", val='label 1'),
+                node("entry", val='label 2'),
+            ], 
+            direction='row', 
+            gap=30,
+            align='center',
+        ),
 
-    node("frame", [
-        node("label", val='label 1'),
-        node("label", val='label 2'),
-    ], direction='row'),
+        node("frame", 
+            [
+                node("label", val='label 333'),
+                node("label", val='label 4')
+            ], 
+            direction='column', 
+            gap=30,
+            align='end',
+        ),
 
-    node("frame", [
-        node("label", val='label 3'),
-        node("label", val='label 4')
-    ], direction='column')
-
-], direction="column")
+    ], 
+    direction="column", 
+    gap=50,
+    padding_left=20,
+    padding_right=50,
+    padding_top=10,
+    padding_bottom=50,
+    align='end',
+)
 
 def compute_container_size(node):
     children = node["children"]
+    gap = node['gap']
+    count = len(children)
+
+    pad_l = node['padding_left']
+    pad_r = node['padding_right']
+    pad_t = node['padding_top']
+    pad_b = node['padding_bottom']
 
     if node["direction"] == "row":
         total_width = 0
@@ -723,8 +760,11 @@ def compute_container_size(node):
             total_width += child["width"]
             max_height = max(max_height, child["height"])
 
-        node["width"] = total_width
-        node["height"] = max_height
+        if count > 1:
+            total_width += gap * (count -1)
+
+        node["width"] = total_width + pad_l + pad_r
+        node["height"] = max_height + pad_t + pad_b
 
 
     elif node["direction"] == "column":
@@ -735,8 +775,11 @@ def compute_container_size(node):
             max_width = max(max_width, child["width"])
             total_height += child["height"]
 
-        node["width"] = max_width
-        node["height"] = total_height
+        if count > 1:
+            total_height += gap * (count - 1)
+
+        node["width"] = max_width + pad_l + pad_r
+        node["height"] = total_height + pad_t + pad_b
 
 def compute_size(node):
 
@@ -769,29 +812,63 @@ def compute_position(node, x, y):
     if len(node["children"]) == 0:
         return
 
+    gap = node['gap']
+
+    pad_l = node['padding_left']
+    pad_r = node['padding_right']
+    pad_t = node['padding_top']
+    pad_b = node['padding_bottom']
+
+    align = node['align']
 
     # ROW LAYOUT
     if node["direction"] == "row":
 
-        current_x = x
+        current_x = x + pad_l
 
         for child in node["children"]:
 
-            compute_position(child, current_x, y)
+            free_space = node['height'] - pad_t - pad_b - child['height']
 
-            current_x += child["width"]
+            if align == 'start':
+                offset_y = 0
+            elif align == 'center':
+                offset_y = free_space / 2
+            elif align == 'end':
+                offset_y = free_space
+            else: 
+                offset_y = 0
+
+            child_y = y + pad_t + offset_y
+
+            compute_position(child, current_x, child_y)
+
+            current_x += child["width"] + gap
 
 
     # COLUMN LAYOUT
     elif node["direction"] == "column":
 
-        current_y = y
+        current_y = y + pad_t
 
         for child in node["children"]:
 
-            compute_position(child, x, current_y)
+            free_space = node['width'] - pad_l - pad_r - child['width']
 
-            current_y += child["height"]
+            if align == 'start':
+                offset_x = 0
+            elif align == 'center':
+                offset_x = free_space / 2
+            elif align == 'end':
+                offset_x = free_space
+            else: 
+                offset_x = 0
+
+            child_x = x + pad_l + offset_x
+
+            compute_position(child, child_x, current_y)
+
+            current_y += child["height"] + gap
 
 compute_size(root)
 compute_position(root, 0, 0)
@@ -806,16 +883,20 @@ print_tree(root, indent=0)
 
 
 def draw_recursive(node):
-    if node['type'] == 'label': 
+    if node['type'] == 'frame': 
+        pygame.draw.rect(screen, (200, 200, 200,), (node['x'], node['y'], node['width'], node['height']))
+    elif node['type'] == 'label': 
         surface = font_label.render(node['val'], True, COLOR_LABEL)
         screen.blit(surface, (node['x'], node['y']))
     elif node['type'] == 'entry':
+        '''
         if node['focus'] == True:
             pygame.draw.rect(screen, COLOR_BORDER_BLUE, (node['x'], node['y'], node['w'], node['h']), 1)
         else:
-            pygame.draw.rect(screen, COLOR_BORDER_GRAY, (node['x'], node['y'], node['w'], node['h']), 1)
-        surface = font_entry.render(node['val'], True, COLOR_ENTRY)
-        screen.blit(surface, (node['x'] + (node['h'] // 4), node['y'] + (node['h'] // 4)))
+        '''
+        pygame.draw.rect(screen, (0, 0, 0), (node['x'], node['y'], node['width'], node['height']), 1)
+        # surface = font_entry.render(node['val'], True, COLOR_ENTRY)
+        # screen.blit(surface, (node['x'] + (node['height'] // 4), node['y'] + (node['height'] // 4)))
 
     for child in node['children']:
         draw_recursive(child)
