@@ -678,7 +678,7 @@ def print_tree(node, indent=0):
 
 def node(node_type, children=None, direction=None, gap=0, val='',
         padding_left=0, padding_right=0, padding_top=0, padding_bottom=0,
-        align='start',
+        align='start', justify='start', fixed_width=None, fixed_height=None,
 ):
     return {
         "type": node_type,
@@ -692,11 +692,16 @@ def node(node_type, children=None, direction=None, gap=0, val='',
         'padding_bottom': padding_bottom,
 
         'align': align,
+        'justify': justify,
+
+        'fixed_width': fixed_width,
+        'fixed_height': fixed_height,
 
         "width": 0,
         "height": 0,
         "x": 0,
         "y": 0,
+
         "val": val,
     }
 
@@ -719,7 +724,18 @@ root = node("frame",
             ], 
             direction='row', 
             gap=30,
-            align='center',
+        ),
+
+        node("frame", 
+            [
+                node("label", val='label 10'),
+                node("label", val='label 11'),
+                node("label", val='label 12'),
+                node("label", val='label 13'),
+                node("label", val='label 14'),
+            ], 
+            direction='row', 
+            gap=30,
         ),
 
         node("frame", 
@@ -729,20 +745,23 @@ root = node("frame",
             ], 
             direction='column', 
             gap=30,
-            align='end',
         ),
 
     ], 
     direction="column", 
     gap=50,
     padding_left=20,
-    padding_right=50,
-    padding_top=10,
-    padding_bottom=50,
-    align='end',
+    padding_right=20,
+    padding_top=20,
+    padding_bottom=20,
+    align='start',
+    justify='start',
+    fixed_width=800,
+    fixed_height=600,
 )
 
 def compute_container_size(node):
+
     children = node["children"]
     gap = node['gap']
     count = len(children)
@@ -753,6 +772,7 @@ def compute_container_size(node):
     pad_b = node['padding_bottom']
 
     if node["direction"] == "row":
+
         total_width = 0
         max_height = 0
 
@@ -763,8 +783,8 @@ def compute_container_size(node):
         if count > 1:
             total_width += gap * (count -1)
 
-        node["width"] = total_width + pad_l + pad_r
-        node["height"] = max_height + pad_t + pad_b
+        width = total_width + pad_l + pad_r
+        height = max_height + pad_t + pad_b
 
 
     elif node["direction"] == "column":
@@ -778,8 +798,21 @@ def compute_container_size(node):
         if count > 1:
             total_height += gap * (count - 1)
 
-        node["width"] = max_width + pad_l + pad_r
-        node["height"] = total_height + pad_t + pad_b
+        width = max_width + pad_l + pad_r
+        height = total_height + pad_t + pad_b
+
+    else:
+        width = 0
+        height = 0
+
+    if node['fixed_width'] is not None:
+        width = node['fixed_width']
+
+    if node['fixed_height'] is not None:
+        height = node['fixed_height']
+
+    node['width'] = width
+    node['height'] = height
 
 def compute_size(node):
 
@@ -820,22 +853,38 @@ def compute_position(node, x, y):
     pad_b = node['padding_bottom']
 
     align = node['align']
+    justify = node['justify']
+
+    children = node['children']
+    count = len(children)
 
     # ROW LAYOUT
     if node["direction"] == "row":
 
-        current_x = x + pad_l
+        total_child_width = sum(c['width'] for c in children)
+        total_gap = gap * (count - 1) if count > 1 else 0
 
-        for child in node["children"]:
+        free_space = node['width'] - pad_l - pad_r - total_child_width - total_gap
 
-            free_space = node['height'] - pad_t - pad_b - child['height']
+        start_offset = 0
 
-            if align == 'start':
-                offset_y = 0
-            elif align == 'center':
-                offset_y = free_space / 2
+        if justify == 'center':
+            start_offset = free_space / 2
+        elif justify == 'end':
+            start_offset = free_space
+        elif justify == 'space-between' and count > 1:
+            gap = gap + free_space // (count - 1)
+
+        current_x = x + pad_l + start_offset
+
+        for child in children:
+
+            free_cross = node['height'] - pad_t - pad_b - child['height']
+
+            if align == 'center':
+                offset_y = free_cross // 2
             elif align == 'end':
-                offset_y = free_space
+                offset_y = free_cross
             else: 
                 offset_y = 0
 
@@ -849,18 +898,30 @@ def compute_position(node, x, y):
     # COLUMN LAYOUT
     elif node["direction"] == "column":
 
-        current_y = y + pad_t
+        total_child_height = sum(c['height'] for c in children)
+        total_gap = gap * (count - 1) if count > 1 else 0
 
-        for child in node["children"]:
+        free_space = node['height'] - pad_t - pad_b - total_child_height - total_gap
 
-            free_space = node['width'] - pad_l - pad_r - child['width']
+        start_offset = 0
 
-            if align == 'start':
-                offset_x = 0
-            elif align == 'center':
-                offset_x = free_space / 2
+        if justify == 'center':
+            start_offset = free_space // 2
+        elif justify == 'end': 
+            start_offset = free_space
+        elif justify == 'space-between' and count > 1:
+            gap = gap + free_space / (count - 1)
+
+        current_y = y + pad_t + start_offset
+
+        for child in children:
+
+            free_cross = node['width'] - pad_l - pad_r - child['width']
+
+            if align == 'center':
+                offset_x = free_cross // 2
             elif align == 'end':
-                offset_x = free_space
+                offset_x = free_cross
             else: 
                 offset_x = 0
 
