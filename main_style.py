@@ -676,91 +676,7 @@ def print_tree(node, indent=0):
     for child in node["children"]:
         print_tree(child, indent + 4)
 
-def node(node_type, children=None, direction=None, gap=0, val='',
-        padding_left=0, padding_right=0, padding_top=0, padding_bottom=0,
-        align='start', justify='start', fixed_width=None, fixed_height=None,
-):
-    return {
-        "type": node_type,
-        "children": children or [],
-        "direction": direction,
-        "gap": gap,
-
-        'padding_left': padding_left,
-        'padding_right': padding_right,
-        'padding_top': padding_top,
-        'padding_bottom': padding_bottom,
-
-        'align': align,
-        'justify': justify,
-
-        'fixed_width': fixed_width,
-        'fixed_height': fixed_height,
-
-        "width": 0,
-        "height": 0,
-        "x": 0,
-        "y": 0,
-
-        "val": val,
-    }
-
-def intrinsic_size(node):
-    if node['type'] == 'button':
-        return 80, 30
-    if node['type'] == 'label':
-        w, h = font_label.size(node['val'])
-        return w, h
-    if node['type'] == 'entry':
-        return 120, 30
-    return 0, 0
-
-root = node("frame", 
-    [
-        node("frame", 
-            [
-                node("label", val='label 1'),
-                node("entry", val='label 2'),
-            ], 
-            direction='row', 
-            gap=30,
-        ),
-
-        node("frame", 
-            [
-                node("label", val='label 10'),
-                node("label", val='label 11'),
-                node("label", val='label 12'),
-                node("label", val='label 13'),
-                node("label", val='label 14'),
-            ], 
-            direction='row', 
-            gap=30,
-        ),
-
-        node("frame", 
-            [
-                node("label", val='label 333'),
-                node("label", val='label 4')
-            ], 
-            direction='column', 
-            gap=30,
-        ),
-
-    ], 
-    direction="column", 
-    gap=50,
-    padding_left=20,
-    padding_right=20,
-    padding_top=20,
-    padding_bottom=20,
-    align='start',
-    justify='start',
-    fixed_width=800,
-    fixed_height=600,
-)
-
-def compute_container_size(node):
+def compute_container_size_backup(node):
 
     children = node["children"]
     gap = node['gap']
@@ -813,6 +729,198 @@ def compute_container_size(node):
 
     node['width'] = width
     node['height'] = height
+
+def node(node_type, children=None, direction=None, gap=0, val='',
+        padding_left=0, padding_right=0, padding_top=0, padding_bottom=0,
+        align='start', justify='start', fixed_width=None, fixed_height=None, flex=0,
+):
+    return {
+        "type": node_type,
+        "children": children or [],
+        "direction": direction,
+        "gap": gap,
+
+        'padding_left': padding_left,
+        'padding_right': padding_right,
+        'padding_top': padding_top,
+        'padding_bottom': padding_bottom,
+
+        'align': align,
+        'justify': justify,
+
+        'fixed_width': fixed_width,
+        'fixed_height': fixed_height,
+
+        'flex': flex,
+
+        "width": 0,
+        "height": 0,
+        "x": 0,
+        "y": 0,
+
+        "val": val,
+    }
+
+def intrinsic_size(node):
+    if node['type'] == 'button':
+        return 80, 30
+    if node['type'] == 'label':
+        w, h = font_label.size(node['val'])
+        return w, h
+    if node['type'] == 'entry':
+        return 120, 30
+    return 0, 0
+
+root = node("frame", 
+    [
+        node("frame", 
+            [
+                node("label", val='label 1', flex=1),
+                node("entry", val=''),
+            ], 
+            direction='row', 
+            fixed_width=800,
+        ),
+
+        node("frame", 
+            [
+                node("label", val='label 10'),
+                node("label", val='label 11'),
+                node("label", val='label 12'),
+                node("label", val='label 13'),
+                node("label", val='label 14'),
+            ], 
+            direction='row', 
+            gap=30,
+        ),
+
+        node("frame", 
+            [
+                node("label", val='label 333'),
+                node("label", val='label 4')
+            ], 
+            direction='column', 
+            gap=30,
+        ),
+
+    ], 
+    direction="column", 
+    gap=50,
+    padding_left=20,
+    padding_right=20,
+    padding_top=20,
+    padding_bottom=20,
+    align='start',
+    justify='start',
+    fixed_width=800,
+    fixed_height=600,
+)
+
+root = node(
+    'frame',
+    [
+        node('frame', fixed_width=200,),
+        node('frame', flex=1,),
+    ],
+    direction='row',
+    fixed_width=800,
+    fixed_height=600,
+)
+
+def compute_container_size(node):
+
+    children = node["children"]
+    gap = node['gap']
+    count = len(children)
+
+    pad_l = node['padding_left']
+    pad_r = node['padding_right']
+    pad_t = node['padding_top']
+    pad_b = node['padding_bottom']
+
+    if count == 0:
+        width = pad_l + pad_r
+        height = pad_t + pad_b
+        if node['fixed_width'] is not None:
+            width = node['fixed_width']
+        if node['fixed_height'] is not None:
+            height = node['fixed_height']
+        node['width'] = width
+        node['height'] = height
+        return
+
+    if node["direction"] == "row":
+        total_width = 0
+        max_height = 0
+        total_flex = 0
+
+        for child in children:
+            total_width += child["width"]
+            max_height = max(max_height, child["height"])
+            total_flex += child['flex']
+
+        if count > 1:
+            total_width += gap * (count - 1)
+
+        width = total_width + pad_l + pad_r
+        height = max_height + pad_t + pad_b
+
+        if node['fixed_width'] is not None:
+            width = node['fixed_width']
+        if node['fixed_height'] is not None:
+            height = node['fixed_height']
+
+        free_space = width - pad_l - pad_r - (total_width - (gap * (count - 1)))
+        if total_flex > 0 and free_space > 0:
+            used_space = 0
+            for i, child in enumerate(children):
+                if child['flex'] > 0:
+                    if i == len(children) - 1:
+                        extra = free_space - used_space
+                    else:
+                        extra = int(free_space * (child['flex'] / total_flex))
+                        used_space += extra
+                    child['width'] += extra
+
+        node['width'] = width
+        node['height'] = height
+
+    elif node["direction"] == "column":
+        max_width = 0
+        total_height = 0
+        total_flex = 0
+
+        for child in children:
+            max_width = max(max_width, child["width"])
+            total_height += child["height"]
+            total_flex += child['flex']
+
+        if count > 1:
+            total_height += gap * (count - 1)
+
+        width = max_width + pad_l + pad_r
+        height = total_height + pad_t + pad_b
+
+        if node['fixed_width'] is not None:
+            width = node['fixed_width']
+        if node['fixed_height'] is not None:
+            height = node['fixed_height']
+
+        free_space = height - pad_t - pad_b - (total_height - (gap * (count - 1)))
+        if total_flex > 0 and free_space > 0:
+            used_space = 0
+            for i, child in enumerate(children):
+                if child['flex'] > 0:
+                    if i == len(children) - 1:
+                        extra = free_space - used_space
+                    else:
+                        extra = int(free_space * (child['flex'] / total_flex))
+                        used_space += extra
+                    child['height'] += extra
+
+        node['width'] = width
+        node['height'] = height
+
 
 def compute_size(node):
 
@@ -945,7 +1053,8 @@ print_tree(root, indent=0)
 
 def draw_recursive(node):
     if node['type'] == 'frame': 
-        pygame.draw.rect(screen, (200, 200, 200,), (node['x'], node['y'], node['width'], node['height']))
+        # pygame.draw.rect(screen, (200, 200, 200,), (node['x'], node['y'], node['width'], node['height']))
+        pygame.draw.rect(screen, (0, 0, 0), (node['x'], node['y'], node['width'], node['height']), 1)
     elif node['type'] == 'label': 
         surface = font_label.render(node['val'], True, COLOR_LABEL)
         screen.blit(surface, (node['x'], node['y']))
