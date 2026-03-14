@@ -2,6 +2,7 @@ import pygame
 
 COLOR_BACKGROUND = (10, 10, 10)
 BORDER_COLOR = (100, 100, 100)
+COLOR_LABEL = (255, 255, 255)
 
 pygame.init()
 clock = pygame.time.Clock()
@@ -10,40 +11,11 @@ WIDTH, HEIGHT = 1280, 720
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("LAY")
 
-# 'direction': 'left_to_right',
-# 'direction': 'top_to_bottom',
+FONT_FAMILY_INTER_MEDIUM = 'fonts/Inter/static/Inter_18pt-Medium.ttf'
+font_label = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 14)
 
-root = {
-    'direction': 'top_to_bottom',
-    'x': 100,
-    'y': 100,
-    'w': 960,
-    'h': 540,
-    'padding_left': 50,
-    'padding_top': 50,
-    'gap': 50,
-    'background_color': (100, 100, 100),
-    'children': [
-        {
-            'x': 0,
-            'y': 0,
-            'w': 200,
-            'h': 200,
-            'background_color': (150, 150, 150),
-            'children': []
-        },
-        {
-            'x': 0,
-            'y': 0,
-            'w': 200,
-            'h': 200,
-            'background_color': (200, 200, 200),
-            'children': []
-        },
-    ],
-}
-
-def node(_id=0, direction='left_to_right', 
+def node(_id=0, kind='frame', val='',
+        direction='row', 
         w_min=0, h_min=0,
         x=0, y=0, w=0, h=0, 
         padding_left=0, padding_right=0, padding_top=0, padding_bottom=0,
@@ -52,6 +24,8 @@ def node(_id=0, direction='left_to_right',
 ):
     return {
         'id': _id,
+        'kind': kind,
+        'val': val,
         'direction': direction,
         'start_x': x,
         'start_y': y,
@@ -102,15 +76,57 @@ sidebar_w = 200
 topbar_h = 50
 root = node(direction='col', background_color=(255, 0, 255), children=
     [
-        node(direction='row', w=WIDTH, h=topbar_h, background_color=(30, 30, 30), children=[]),
-        node(direction='row', w=WIDTH, h=HEIGHT-topbar_h, background_color=(10, 10, 10), children=
+        # topbar
+        node(direction='row', w_min=WIDTH, h_min=topbar_h, background_color=(20, 20, 20), children=
             [
-                node(direction='row', w=sidebar_w, h=HEIGHT-topbar_h, background_color=(50, 50, 50), children=[]),
-                node(direction='row', w=WIDTH-sidebar_w, h=HEIGHT-topbar_h, background_color=(10, 10, 10), children=[]),
-            ],
+            ]
         ),
+        
+        # center frame
+        node(direction='row', w_min=WIDTH, h_min=HEIGHT-topbar_h, background_color=(40, 40, 40), children=
+            [
+                    
+                # sidebar
+                node(direction='col', w_min=sidebar_w, h_min=HEIGHT-topbar_h, 
+                    padding_left=10, padding_right=10, padding_top=10, padding_bottom=10, gap=10,
+                    background_color=(60, 60, 60), children=
+                    [
+                        
+                        # sidebar item 1
+                        node(direction='row', h=topbar_h, gap=10,
+                            background_color=(80, 80, 80), children=
+                            [
+                                node(kind='label', val='label 1', w_min=100, h_min=30, background_color=(100, 100, 100), children=[]),
+                                node(kind='label', val='label 2', w_min=100, h_min=30, background_color=(120, 120, 120), children=[]),
+                            ]
+                        ),
+                        # sidebar item 2
+                        node(direction='row', h=topbar_h, gap=10,
+                            background_color=(80, 80, 80), children=
+                            [
+                                node(kind='label', val='label 3', w_min=100, h_min=30, background_color=(100, 100, 100), children=[]),
+                                node(kind='label', val='label 4', w_min=100, h_min=30, background_color=(120, 120, 120), children=[]),
+                            ]
+                        ),
+                    ]
+                ),
+
+                # main frame
+                node(direction='col', w_min=WIDTH-sidebar_w, h_min=HEIGHT-topbar_h, background_color=(140, 140, 140), children=
+                    [
+                    ]
+                ),
+            ]
+        ),
+        
+        # center frame
+
+        # node(direction='row', w=WIDTH, h=HEIGHT-(topbar_h*3), background_color=(60, 60, 60), children=[]),
     ]
 )
+
+'''
+'''
 
 def layout_calc_size(node):
 
@@ -184,7 +200,13 @@ def layout(root):
     layout_calc_pos(root)
 
 def draw(node):
-    pygame.draw.rect(screen, node['background_color'], (node['x'], node['y'], node['w'], node['h']))
+    if node['kind'] == 'frame':
+        pygame.draw.rect(screen, node['background_color'], (node['x'], node['y'], node['w'], node['h']))
+    if node['kind'] == 'label': 
+        pygame.draw.rect(screen, node['background_color'], (node['x'], node['y'], node['w'], node['h']))
+        surface = font_label.render(node['val'], True, COLOR_LABEL)
+        screen.blit(surface, (node['x'], node['y']))
+
     for child in node['children']:
         draw(child)
 

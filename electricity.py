@@ -82,6 +82,28 @@ in CGS, gilberts measure the same
 
 >> check others / and final table
 
+========================================
+RESISTORS
+========================================
+
+conductors have low resistance
+ex. 16 AWG solid copper has 5 ohms per 1000 feet
+
+used for voltage divider
+
+fixed resistors
+- composition carbon resistor
+- metal film resistor
+- carbon film resistor
+- metal glaze resistor
+- wire-wound resistor
+
+color codes
+
+power ratings
+
+variable resistors
+
 '''
 
 def atom_shell_electron_number_max_get(N):
@@ -126,3 +148,5 @@ print('OHM I:', calc_ohm_i(e=5, r=5))
 print('OHM R:', calc_ohm_r(e=5, i=5))
 print('POWER VA (W):', calc_power_va(volt=120, ampere=8))
 
+print('OHM I:', calc_ohm_i(e=15, r=30), 'A')
+print('POWER VR (W):', calc_power_vr(volt=10, resistance=100), 'W')
