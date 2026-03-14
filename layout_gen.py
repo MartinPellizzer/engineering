@@ -12,7 +12,26 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("LAY")
 
 FONT_FAMILY_INTER_MEDIUM = 'fonts/Inter/static/Inter_18pt-Medium.ttf'
-font_label = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 14)
+
+theme_0000 = {
+    'label_font': pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 14),
+    'label_color': (16, 16, 16),
+    'label_background_color': (255, 255, 255),
+    'topbar_background_color': (200, 200, 200),
+    'sidebar_background_color': (255, 255, 255),
+}
+
+theme_0001 = {
+    'topbar_background_color': (20, 20, 20),
+    'center_background_color': (10, 10, 10),
+    'sidebar_background_color': (30, 30, 30),
+    'main_background_color': (10, 10, 10),
+    'label_font': pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 14),
+    'label_color': (255, 255, 255),
+    'label_background_color': (30, 30, 30),
+}
+
+theme_cur = theme_0001
 
 def node(_id=0, kind='frame', val='',
         direction='row', 
@@ -77,7 +96,8 @@ topbar_h = 50
 root = node(direction='col', background_color=(255, 0, 255), children=
     [
         # topbar
-        node(direction='row', w_min=WIDTH, h_min=topbar_h, background_color=(20, 20, 20), children=
+        node(direction='row', w_min=WIDTH, h_min=topbar_h, 
+            background_color=theme_cur['topbar_background_color'], children=
             [
             ]
         ),
@@ -89,44 +109,38 @@ root = node(direction='col', background_color=(255, 0, 255), children=
                 # sidebar
                 node(direction='col', w_min=sidebar_w, h_min=HEIGHT-topbar_h, 
                     padding_left=10, padding_right=10, padding_top=10, padding_bottom=10, gap=10,
-                    background_color=(60, 60, 60), children=
+                    background_color=theme_cur['sidebar_background_color'], children=
                     [
                         
                         # sidebar item 1
                         node(direction='row', h=topbar_h, gap=10,
-                            background_color=(80, 80, 80), children=
+                            background_color=theme_cur['label_background_color'], children=
                             [
-                                node(kind='label', val='label 1', w_min=100, h_min=30, background_color=(100, 100, 100), children=[]),
-                                node(kind='label', val='label 2', w_min=100, h_min=30, background_color=(120, 120, 120), children=[]),
+                                node(kind='label', val='label 1', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
+                                node(kind='label', val='label 2', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
                             ]
                         ),
                         # sidebar item 2
                         node(direction='row', h=topbar_h, gap=10,
-                            background_color=(80, 80, 80), children=
+                            background_color=theme_cur['label_background_color'], children=
                             [
-                                node(kind='label', val='label 3', w_min=100, h_min=30, background_color=(100, 100, 100), children=[]),
-                                node(kind='label', val='label 4', w_min=100, h_min=30, background_color=(120, 120, 120), children=[]),
+                                node(kind='label', val='label 3', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
+                                node(kind='label', val='label 4', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
                             ]
                         ),
                     ]
                 ),
 
                 # main frame
-                node(direction='col', w_min=WIDTH-sidebar_w, h_min=HEIGHT-topbar_h, background_color=(140, 140, 140), children=
+                node(direction='col', w_min=WIDTH-sidebar_w, h_min=HEIGHT-topbar_h, 
+                    background_color=theme_cur['center_background_color'], children=
                     [
                     ]
                 ),
             ]
         ),
-        
-        # center frame
-
-        # node(direction='row', w=WIDTH, h=HEIGHT-(topbar_h*3), background_color=(60, 60, 60), children=[]),
     ]
 )
-
-'''
-'''
 
 def layout_calc_size(node):
 
@@ -204,7 +218,7 @@ def draw(node):
         pygame.draw.rect(screen, node['background_color'], (node['x'], node['y'], node['w'], node['h']))
     if node['kind'] == 'label': 
         pygame.draw.rect(screen, node['background_color'], (node['x'], node['y'], node['w'], node['h']))
-        surface = font_label.render(node['val'], True, COLOR_LABEL)
+        surface = theme_cur['label_font'].render(node['val'], True, theme_cur['label_color'])
         screen.blit(surface, (node['x'], node['y']))
 
     for child in node['children']:
@@ -232,6 +246,15 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_t:
+                if theme_cur == theme_0000:
+                    theme_cur = theme_0001
+                else:
+                    theme_cur = theme_0000
+
+                print(theme_cur)
 
     screen.fill(COLOR_BACKGROUND)
 
