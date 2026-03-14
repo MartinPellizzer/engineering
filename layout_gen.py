@@ -43,7 +43,7 @@ root = {
     ],
 }
 
-def node(_id, direction='left_to_right', 
+def node(_id=0, direction='left_to_right', 
         w_min=0, h_min=0,
         x=0, y=0, w=0, h=0, 
         padding_left=0, padding_right=0, padding_top=0, padding_bottom=0,
@@ -70,6 +70,7 @@ def node(_id, direction='left_to_right',
         'children': children,
     }
 
+'''
 sidebar_w = 200
 root = node(_id=0, direction='row', children=
     [
@@ -86,6 +87,30 @@ root = node(_id=0, direction='row', children=
         node(_id=0, direction='row', w_min=WIDTH-sidebar_w, h_min=HEIGHT, background_color=(40, 40, 40,), children=[]), 
     ]
 )
+'''
+
+'''
+root = node(_id=0, direction='col', background_color=(100, 100, 100), children=
+    [
+        node(_id=0, direction='row', w_min=200, h_min=100, background_color=(20, 20, 20), children=[]),
+        node(_id=0, direction='row', w_min=100, h_min=200, background_color=(40, 40, 40), children=[]), 
+    ]
+)
+'''
+
+sidebar_w = 200
+topbar_h = 50
+root = node(direction='col', background_color=(255, 0, 255), children=
+    [
+        node(direction='row', w=WIDTH, h=topbar_h, background_color=(30, 30, 30), children=[]),
+        node(direction='row', w=WIDTH, h=HEIGHT-topbar_h, background_color=(10, 10, 10), children=
+            [
+                node(direction='row', w=sidebar_w, h=HEIGHT-topbar_h, background_color=(50, 50, 50), children=[]),
+                node(direction='row', w=WIDTH-sidebar_w, h=HEIGHT-topbar_h, background_color=(10, 10, 10), children=[]),
+            ],
+        ),
+    ]
+)
 
 def layout_calc_size(node):
 
@@ -95,15 +120,29 @@ def layout_calc_size(node):
 
     # >> row direction
     # calc dynamic width of node (only if 0 case)
-    node_w = 0
-    node_h = 0
-    for child in node['children']:
-        node_w += child['w']
-        node_h = max(node_h, child['h'])
-        node['w'] = node_w
-        node['h'] = node_h
-    node['w'] += node['padding_left'] + node['padding_right'] + (node['gap'] * (len(node['children']) - 1))
-    node['h'] += node['padding_top'] + node['padding_bottom']
+    if node['direction'] == 'row':
+        node_w = 0
+        node_h = 0
+        for child in node['children']:
+            node_w += child['w']
+            node_h = max(node_h, child['h'])
+            node['w'] = node_w
+            node['h'] = node_h
+        node['w'] += node['padding_left'] + node['padding_right'] + (node['gap'] * (len(node['children']) - 1))
+        node['h'] += node['padding_top'] + node['padding_bottom']
+
+    # >> col direction
+    # calc dynamic height of node (only if 0 case)
+    if node['direction'] == 'col':
+        node_w = 0
+        node_h = 0
+        for child in node['children']:
+            node_w = max(node_w, child['w'])
+            node_h += child['h']
+            node['w'] = node_w
+            node['h'] = node_h
+        node['w'] += node['padding_left'] + node['padding_right']
+        node['h'] += node['padding_top'] + node['padding_bottom'] + (node['gap'] * (len(node['children']) - 1))
 
     # override calculated sized if base size specified
     if node['w_min'] != 0:
@@ -113,13 +152,25 @@ def layout_calc_size(node):
 
 def layout_calc_pos(node):
 
+    # >> row direction
     # calc dynamic pos of children (based on current node)
-    offset_x = node['padding_left']
-    offset_y = node['padding_top']
-    for child in node['children']:
-        child['x'] = node['x'] + offset_x
-        child['y'] = node['y'] + offset_y
-        offset_x += child['w'] + node['gap']
+    if node['direction'] == 'row':
+        offset_x = node['padding_left']
+        offset_y = node['padding_top']
+        for child in node['children']:
+            child['x'] = node['x'] + offset_x
+            child['y'] = node['y'] + offset_y
+            offset_x += child['w'] + node['gap']
+
+    # >> col direction
+    # calc dynamic pos of children (based on current node)
+    if node['direction'] == 'col':
+        offset_x = node['padding_left']
+        offset_y = node['padding_top']
+        for child in node['children']:
+            child['x'] = node['x'] + offset_x
+            child['y'] = node['y'] + offset_y
+            offset_y += child['h'] + node['gap']
 
     # recursion (do this last to traverse tree id "forward" order)
     for child in node['children']:
