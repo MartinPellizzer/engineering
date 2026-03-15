@@ -93,52 +93,68 @@ root = node(_id=0, direction='col', background_color=(100, 100, 100), children=
 
 sidebar_w = 200
 topbar_h = 50
-root = node(direction='col', background_color=(255, 0, 255), children=
-    [
-        # topbar
-        node(direction='row', w_min=WIDTH, h_min=topbar_h, 
-            background_color=theme_cur['topbar_background_color'], children=
-            [
-            ]
-        ),
-        
-        # center frame
-        node(direction='row', w_min=WIDTH, h_min=HEIGHT-topbar_h, background_color=(40, 40, 40), children=
-            [
-                    
-                # sidebar
-                node(direction='col', w_min=sidebar_w, h_min=HEIGHT-topbar_h, 
-                    padding_left=10, padding_right=10, padding_top=10, padding_bottom=10, gap=10,
-                    background_color=theme_cur['sidebar_background_color'], children=
-                    [
-                        
-                        # sidebar item 1
-                        node(direction='row', h=topbar_h, gap=10,
-                            background_color=theme_cur['label_background_color'], children=
-                            [
-                                node(kind='label', val='label 1', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
-                                node(kind='label', val='label 2', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
-                            ]
-                        ),
-                        # sidebar item 2
-                        node(direction='row', h=topbar_h, gap=10,
-                            background_color=theme_cur['label_background_color'], children=
-                            [
-                                node(kind='label', val='label 3', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
-                                node(kind='label', val='label 4', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
-                            ]
-                        ),
-                    ]
-                ),
 
-                # main frame
-                node(direction='col', w_min=WIDTH-sidebar_w, h_min=HEIGHT-topbar_h, 
-                    background_color=theme_cur['center_background_color'], children=
-                    [
-                    ]
-                ),
+node_topbar = node(
+    direction='row', w_min=WIDTH, h_min=topbar_h, 
+    background_color=theme_cur['topbar_background_color'], 
+    children=
+    [
+    ]
+)
+
+node_sidebar = node(
+    direction='col', w_min=sidebar_w, h_min=HEIGHT-topbar_h, 
+    padding_left=10, padding_right=10, padding_top=10, padding_bottom=10, gap=10,
+    background_color=theme_cur['sidebar_background_color'], 
+    children=
+    [
+        
+        # sidebar item 1
+        node(
+            direction='row', h=topbar_h, gap=10,
+            background_color=theme_cur['label_background_color'], 
+            children=
+            [
+                node(kind='label', val='label 1', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
+                node(kind='entry', val='entry 1', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
             ]
         ),
+        # sidebar item 2
+        node(
+            direction='row', h=topbar_h, gap=10,
+            background_color=theme_cur['label_background_color'], 
+            children=
+            [
+                node(kind='label', val='label 3', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
+                node(kind='label', val='label 4', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
+            ]
+        ),
+    ]
+)
+
+node_main = node(
+    direction='col', w_min=WIDTH-sidebar_w, h_min=HEIGHT-topbar_h, 
+    background_color=theme_cur['center_background_color'], 
+    children=
+    [
+    ]
+)
+
+node_center = node(
+    direction='row', w_min=WIDTH, h_min=HEIGHT-topbar_h, background_color=(40, 40, 40), 
+    children=
+    [
+        node_sidebar,
+        node_main,
+    ]
+)
+
+root = node(
+    direction='col', background_color=(255, 0, 255), 
+    children=
+    [
+        node_topbar,
+        node_center,
     ]
 )
 
@@ -220,6 +236,10 @@ def draw(node):
         pygame.draw.rect(screen, node['background_color'], (node['x'], node['y'], node['w'], node['h']))
         surface = theme_cur['label_font'].render(node['val'], True, theme_cur['label_color'])
         screen.blit(surface, (node['x'], node['y']))
+    if node['kind'] == 'entry':
+        pygame.draw.rect(screen, (0, 0, 0), (node['x'], node['y'], node['w'], node['h']), 1)
+        surface = theme_cur['label_font'].render(node['val'], True, theme_cur['label_color'])
+        screen.blit(surface, (node['x'] + (node['h'] // 4), node['y'] + (node['h'] // 4)))
 
     for child in node['children']:
         draw(child)
