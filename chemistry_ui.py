@@ -13,9 +13,9 @@ pygame.display.set_caption("LAY")
 
 FONT_FAMILY_INTER_MEDIUM = 'fonts/Inter/static/Inter_18pt-Medium.ttf'
 font_details_size = 48
-font_number_start_size = 14
+font_number_start_size = 12
 font_symbol_start_size = 24
-font_name_start_size = 10
+font_name_start_size = 8
 font_details = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, font_details_size)
 font_symbol = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, font_symbol_start_size)
 font_number = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, font_number_start_size)
@@ -48,6 +48,34 @@ element_nitrogen =  element_create('7', 'N', 'nitrogen', 14, 1)
 element_oxygen =    element_create('8', 'O', 'oxygen', 15, 1)
 element_fluorine =  element_create('9', 'F', 'fluorine', 16, 1)
 element_neon =      element_create('10', 'Ne', 'neon', 17, 1)
+###
+element_sodium = element_create('11', 'Na', 'sodium', 0, 2)
+element_manganesium = element_create('12', 'Mg', 'manganesium', 1, 2)
+element_aluminium = element_create('13', 'Al', 'aluminium', 12, 2)
+element_silicon = element_create('14', 'Si', 'silicon', 13, 2)
+element_phosphorus = element_create('15', 'P', 'phosphorus', 14, 2)
+element_sulfur = element_create('16', 'S', 'sulfur', 15, 2)
+element_chlorine = element_create('17', 'Cl', 'chlorine', 16, 2)
+element_argon = element_create('18', 'Ar', 'argon', 17, 2)
+###
+element_potassium = element_create('19', 'K', 'potassium', 0, 3)
+element_calcium = element_create('20', 'Ca', 'calcium', 1, 3)
+element_scandium = element_create('21', 'Sc', 'scandium', 2, 3)
+element_titanium = element_create('22', 'Ti', 'titanium', 3, 3)
+element_vanadium = element_create('23', 'V', 'vanadium', 4, 3)
+element_chromium = element_create('24', 'Cr', 'chromium', 5, 3)
+element_manganese = element_create('25', 'Mn', 'manganese', 6, 3)
+element_iron = element_create('26', 'Fe', 'iron', 7, 3)
+element_cobalt = element_create('27', 'Co', 'cobalt', 8, 3)
+element_nickel = element_create('28', 'Ni', 'nickel', 9, 3)
+element_copper = element_create('29', 'Cu', 'copper', 10, 3)
+element_zinc = element_create('30', 'Zn', 'zinc', 11, 3)
+element_gallium = element_create('31', 'Ga', 'gallium', 12, 3)
+element_germanium = element_create('32', 'Ge', 'germanium', 13, 3)
+element_arsenic = element_create('33', 'As', 'arsenic', 14, 3)
+element_selenium = element_create('34', 'Se', 'selenium', 15, 3)
+element_bromine = element_create('35', 'Br', 'bromine', 16, 3)
+element_krypton = element_create('36', 'Kr', 'krypton', 17, 3)
 
 periodic_table = {
     'x': 0, 
@@ -65,6 +93,34 @@ periodic_table['elements'].append(element_nitrogen)
 periodic_table['elements'].append(element_oxygen)
 periodic_table['elements'].append(element_fluorine)
 periodic_table['elements'].append(element_neon)
+###
+periodic_table['elements'].append(element_sodium)
+periodic_table['elements'].append(element_manganesium)
+periodic_table['elements'].append(element_aluminium)
+periodic_table['elements'].append(element_silicon)
+periodic_table['elements'].append(element_phosphorus)
+periodic_table['elements'].append(element_sulfur)
+periodic_table['elements'].append(element_chlorine)
+periodic_table['elements'].append(element_argon)
+###
+periodic_table['elements'].append(element_potassium)
+periodic_table['elements'].append(element_calcium)
+periodic_table['elements'].append(element_scandium)
+periodic_table['elements'].append(element_titanium)
+periodic_table['elements'].append(element_vanadium)
+periodic_table['elements'].append(element_chromium)
+periodic_table['elements'].append(element_manganese)
+periodic_table['elements'].append(element_iron)
+periodic_table['elements'].append(element_cobalt)
+periodic_table['elements'].append(element_nickel)
+periodic_table['elements'].append(element_copper)
+periodic_table['elements'].append(element_zinc)
+periodic_table['elements'].append(element_gallium)
+periodic_table['elements'].append(element_germanium)
+periodic_table['elements'].append(element_arsenic)
+periodic_table['elements'].append(element_selenium)
+periodic_table['elements'].append(element_bromine)
+periodic_table['elements'].append(element_krypton)
 
 def world_to_screen(x, y):
     sx = (x - camera_x) * camera_zoom

@@ -29,6 +29,9 @@ f(x) = 2x + 3
 ex. if x = 2...
 f(2) = 2(2) + 3 = 7
 
+graphing functions
+---
+
 '''
 
 # proportions
@@ -203,3 +206,103 @@ if 1:
     print(5, ',', f(5))
     for x in range(11):
         print(x, '\t', f(x))
+
+########################################
+
+# `graph
+
+if 0:
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    plt.axis([-10, 10, -10, 10])
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    plt.plot([5], [4], 'ro')
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    for x in range(10):
+        y = 0.5 * x + 1
+        plt.plot([x], [y], 'ro')
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    print('x \t y')
+    for x in range(-5, 10):
+        y = 0.5 * x + 1
+        plt.plot([x], [y], 'ro')
+        print(x, '\t', y)
+    plt.show()
+
+if 1:
+    import matplotlib.pyplot as plt
+    import numpy as np
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    points = 2 * (xmax-xmin)
+    x = np.linspace(xmin, xmax, points)
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    y = 2 * x + 1
+    plt.plot(x, y, 'r')
+    plt.show()
+
