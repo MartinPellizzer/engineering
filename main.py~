@@ -202,7 +202,7 @@ node_sidebar = node(
             background_color=theme_cur['label_background_color'], 
             children=
             [
-                node(kind='label', val='label 2', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
+                node(kind='label', val='label 3', w_min=100, h_min=30, background_color=theme_cur['label_background_color'], children=[]),
                 node(
                     kind='entry', val='', w_min=100, h_min=30, 
                     background_color=theme_cur['entry_background_color'], 
