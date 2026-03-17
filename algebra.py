@@ -9,6 +9,26 @@ proportions
 2/4 = 5/10
 3/6 = x/4
 
+functions
+---
+take an input and do something with it
+input x -> output y
+
+y = 2x + 3
+
+ex. if x = 0...
+y = 2(0) + 3 = 3
+
+ex. if x = 1...
+y = 2(1) + 3 = 5
+
+ex. if x = 2...
+y = 2(2) + 3 = 7
+
+f(x) = 2x + 3
+ex. if x = 2...
+f(2) = 2(2) + 3 = 7
+
 '''
 
 # proportions
@@ -108,7 +128,7 @@ if 0:
     print(sympy.factor(eq))
 
 
-if 1:
+if 0:
     def string_frac(in_string):
         if '/' in in_string:
             nd = in_string.split('/')
@@ -141,3 +161,45 @@ if 1:
 
 # `fractions and decimals
 
+if 0:
+    print(10**1)
+    print(10**2)
+    print(10**3)
+    print(10**0)
+
+if 0:
+    text = input('enter a number: ')
+    num = float(text)
+    print(num + 4)
+
+if 0:
+    digits = input('Enter a decimal number to convert: ')
+    exponent = int(len(digits))-1
+    n = float(digits)
+    numerator = int(n * 10**exponent)
+    denominator = 10**exponent
+    percent = n * 100
+    print('the decimal is', n)
+    print('the fraction is', numerator, '/', denominator)
+    print('the percent is', percent, '%')
+
+########################################
+
+# `functions
+
+if 0:
+    x = 5
+    y = 4*x + 3
+    print(x, ',', y)
+    print('x \t y')
+    for x in range(11):
+        y = 4*x + 3
+        print(x, '\t', y)
+
+if 1:
+    def f(x):
+        y = 4*x + 3
+        return y
+    print(5, ',', f(5))
+    for x in range(11):
+        print(x, '\t', f(x))

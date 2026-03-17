@@ -88,7 +88,30 @@ metal with non metal
 m/nm
 ex. NaCl
 
+polyatomic ions
+---
+SO4^2- sulfate
+SO3^2- sulfite
+NO3^- nitrate
+NO2^- nitrite
+PO4^3- phosphate
+CO3^2- carbonate
+HCO3^- bicarbonate
+OH^- hydroxide
+MnO4^- permanganate
+CrO4^2- chromate
+CrO7^2- dichromate
+NH4+ ammonium
+CN^- cyanide
+
+ClO^- hypochlorite
+ClO2^- chlorite
+ClO3^- chlorate
+ClO4^- perchlorate
+(for Br and I also)
+
 2. molecular
+---
 nm/nm
 
 3. acids
@@ -110,7 +133,104 @@ exceptions: Ag+1 Cd+2 Zn+2 Al+3 (always the case with these charges)
     copper(II) solfate (II because solfate has -2 charge)
 - MgCl2 (since Cl has -1 charge, and Mg has +2 charge, you need 2 Cl to balance 1 Mg)
 
+molecular naming
+---
+nm/nm
+
+1. give the numerical prefix of the first element (omit if only one--mono)
+2. name the first element
+3. give the numerical prefix for the second element
+4. name the second element with the -ide suffix
+
+(prefixes)
+1. mono
+2. di
+3. tri
+4. tetra
+5. penta
+6. hexa
+7. hepta
+8. octa
+9. nona
+10. deca
+
+- N2O4 dinitrogen tetroxide
+- CO2 carbon dioxide (mono is dropped usually)
+- CO cabon monoxide (the second mono is usually used)
+
+acids naming
+---
+binary
+oxyacids
+
+binary acids
+name like these only when disolved in water, otherwise use rules of molecular
+- HCl(aq) hydrochloric acid (hydro-chlor-ic) 
+- H2S(aq) hydrosolfuric acid
+- H2Se(aq) hydroselenic acid
+
+oxyacids
+to find these names memorize the polyatomic ions first
+- H2SO2 sulfurous acid
+- H2SO4 sulfuric acid
+
+for Cl, Br, I, more names (4 instead of 2 like above)
+- HClO hypochlorous acid
+- HClO2 chlorous acid
+- HClO3 chloric acid
+- HClO4 perchloric acid
+
+----------------------------------------
+chemical reactions + chemical equations
+----------------------------------------
+
+1. combination
+---
+Na(s) + Cl2(g) -> NaCl2 (this is wrong, because ionic compounds don't have charges)
+Na(s) + Cl2(g) -> NaCl (this is an intermediate step, now you have to balance this thing)
+Na(s) + Cl2(g) -> 2NaCl
+2Na(s) + Cl2(g) -> 2NaCl (final balanced reaction)
+
+2. decomposition
+---
+usially needs heat to decompose (use simbol delta to indicate it)
+
+        delta
+CaCO2(s) -> CaO(s) + CO2(g)
+
+3. combustion
+---
+C3H8(g) + O2(g) -> CO2(g) + H2O(l)
+C3H8(g) + O2(g) -> 3CO2(g) + 4H2O(l)
+C3H8(g) + 5O2(g) -> 3CO2(g) + 4H2O(l)
+
+4. double replacement
+---
+check video for balancing
+AgNO3(aq) + Na2S(aq) ->  Ag2S + NaNO3
+AgNO3(aq) + Na2S(aq) ->  AgS + NaNO3
+2AgNO3(aq) + Na2S(aq) ->  Ag2S + 2NaNO3
+
+5. single replacement
+---
+Zn(s) + CuCl2(aq) -> ZnCl + Cu
+Zn(s) + CuCl2(aq) -> ZnCl2(aq) + Cu(s)
+
+----------------------------------------
+calculations with moles
+----------------------------------------
+
 '''
+
+'''
+
+PROJECTS:
+---
+1. Periodic Table
+2. Naming Compounds
+
+'''
+
 
 
 from lib import calc
