@@ -76,6 +76,25 @@ element_arsenic = element_create('33', 'As', 'arsenic', 14, 3)
 element_selenium = element_create('34', 'Se', 'selenium', 15, 3)
 element_bromine = element_create('35', 'Br', 'bromine', 16, 3)
 element_krypton = element_create('36', 'Kr', 'krypton', 17, 3)
+###
+element_rubidium = element_create('37', 'Rb', 'rubidium', 0, 4)
+element_strontium = element_create('38', 'Sr', 'strontium', 1, 4)
+element_yttrium = element_create('39', 'Y', 'yttrium', 2, 4)
+element_zirconium = element_create('40', 'Zr', 'zirconium', 3, 4)
+element_niobium = element_create('41', 'Nb', 'niobium', 4, 4)
+element_molybdenum = element_create('42', 'Mo', 'molybdenum', 5, 4)
+element_technetium = element_create('43', 'Tc', 'technetium', 6, 4)
+element_ruthenium = element_create('44', 'Ru', 'ruthenium', 7, 4)
+element_rhodium = element_create('45', 'Rh', 'rhodium', 8, 4)
+element_palladium = element_create('46', 'Pd', 'palladium', 9, 4)
+element_silver = element_create('47', 'Ag', 'silver', 10, 4)
+element_cadmium = element_create('48', 'Cd', 'cadmium', 11, 4)
+element_indium = element_create('49', 'In', 'indium', 12, 4)
+element_tin = element_create('50', 'Sn', 'tin', 13, 4)
+element_antimony = element_create('51', 'Sb', 'antimony', 14, 4)
+element_tellurium = element_create('52', 'Te', 'tellurium', 15, 4)
+element_iodine = element_create('53', 'I', 'iodine', 16, 4)
+element_xenon = element_create('54', 'Xe', 'xenon', 17, 4)
 
 periodic_table = {
     'x': 0, 
@@ -121,6 +140,25 @@ periodic_table['elements'].append(element_arsenic)
 periodic_table['elements'].append(element_selenium)
 periodic_table['elements'].append(element_bromine)
 periodic_table['elements'].append(element_krypton)
+###
+periodic_table['elements'].append(element_rubidium)
+periodic_table['elements'].append(element_strontium)
+periodic_table['elements'].append(element_yttrium)
+periodic_table['elements'].append(element_zirconium)
+periodic_table['elements'].append(element_niobium)
+periodic_table['elements'].append(element_molybdenum)
+periodic_table['elements'].append(element_technetium)
+periodic_table['elements'].append(element_ruthenium)
+periodic_table['elements'].append(element_rhodium)
+periodic_table['elements'].append(element_palladium)
+periodic_table['elements'].append(element_silver)
+periodic_table['elements'].append(element_cadmium)
+periodic_table['elements'].append(element_indium)
+periodic_table['elements'].append(element_tin)
+periodic_table['elements'].append(element_antimony)
+periodic_table['elements'].append(element_tellurium)
+periodic_table['elements'].append(element_iodine)
+periodic_table['elements'].append(element_xenon)
 
 def world_to_screen(x, y):
     sx = (x - camera_x) * camera_zoom
@@ -145,6 +183,20 @@ running = True
 while running:
     mouse_screen_x, mouse_screen_y = pygame.mouse.get_pos()
     world_x, world_y = screen_to_world(mouse_screen_x, mouse_screen_y)
+
+    # check details on hover
+    if 1:
+        for element in periodic_table['elements']:
+            tsx, tsy = world_to_screen(periodic_table["x"], periodic_table["y"])
+            sw, sh = 64 * camera_zoom, 64 * camera_zoom
+            sx = tsx + sw * element['col_i']
+            sy = tsy + sh * element['row_i']
+            element['focus'] = False
+            if (
+                mouse_screen_x > sx and mouse_screen_x < sx + sw and 
+                mouse_screen_y > sy and mouse_screen_y < sy + sh
+            ):
+                element['focus'] = True
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
