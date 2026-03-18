@@ -9,6 +9,29 @@ proportions
 2/4 = 5/10
 3/6 = x/4
 
+functions
+---
+take an input and do something with it
+input x -> output y
+
+y = 2x + 3
+
+ex. if x = 0...
+y = 2(0) + 3 = 3
+
+ex. if x = 1...
+y = 2(1) + 3 = 5
+
+ex. if x = 2...
+y = 2(2) + 3 = 7
+
+f(x) = 2x + 3
+ex. if x = 2...
+f(2) = 2(2) + 3 = 7
+
+graphing functions
+---
+
 '''
 
 # proportions
@@ -108,7 +131,7 @@ if 0:
     print(sympy.factor(eq))
 
 
-if 1:
+if 0:
     def string_frac(in_string):
         if '/' in in_string:
             nd = in_string.split('/')
@@ -140,4 +163,146 @@ if 1:
 ########################################
 
 # `fractions and decimals
+
+if 0:
+    print(10**1)
+    print(10**2)
+    print(10**3)
+    print(10**0)
+
+if 0:
+    text = input('enter a number: ')
+    num = float(text)
+    print(num + 4)
+
+if 0:
+    digits = input('Enter a decimal number to convert: ')
+    exponent = int(len(digits))-1
+    n = float(digits)
+    numerator = int(n * 10**exponent)
+    denominator = 10**exponent
+    percent = n * 100
+    print('the decimal is', n)
+    print('the fraction is', numerator, '/', denominator)
+    print('the percent is', percent, '%')
+
+########################################
+
+# `functions
+
+if 0:
+    x = 5
+    y = 4*x + 3
+    print(x, ',', y)
+    print('x \t y')
+    for x in range(11):
+        y = 4*x + 3
+        print(x, '\t', y)
+
+if 1:
+    def f(x):
+        y = 4*x + 3
+        return y
+    print(5, ',', f(5))
+    for x in range(11):
+        print(x, '\t', f(x))
+
+########################################
+
+# `graph
+
+if 0:
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    fig, ax = plt.subplots()
+    plt.axis([-10, 10, -10, 10])
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    plt.plot([5], [4], 'ro')
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    for x in range(10):
+        y = 0.5 * x + 1
+        plt.plot([x], [y], 'ro')
+    plt.show()
+
+if 0:
+    import matplotlib.pyplot as plt
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    print('x \t y')
+    for x in range(-5, 10):
+        y = 0.5 * x + 1
+        plt.plot([x], [y], 'ro')
+        print(x, '\t', y)
+    plt.show()
+
+if 1:
+    import matplotlib.pyplot as plt
+    import numpy as np
+    xmin = -10
+    xmax = 10
+    ymin = -10
+    ymax = 10
+    points = 2 * (xmax-xmin)
+    x = np.linspace(xmin, xmax, points)
+    fig, ax = plt.subplots()
+    plt.axis([xmin, xmax, ymin, ymax])
+    plt.plot([xmin, xmax], [0, 0], 'b')
+    plt.plot([0, 0], [ymin, ymax], 'b')
+    y = 2 * x + 1
+    plt.plot(x, y, 'r')
+    plt.show()
 
