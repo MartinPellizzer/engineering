@@ -36,8 +36,10 @@ components = {
     'components': []
 }
 
-component = component_create('0', 'hydrogen', 0, 0)
-components['components'].append(component)
+component_1 = component_create('0', 'hydrogen', 100, 100)
+component_2 = component_create('0', 'hydrogen', 600, 100)
+components['components'].append(component_1)
+components['components'].append(component_2)
 
 def component_coordinates_get(component):
     x, y = viewport.world_to_screen(component["x"], component["y"])
@@ -46,10 +48,15 @@ def component_coordinates_get(component):
 
 dragging = False
 drag_index = None
-drag_offset_x = 0
-drag_offset_y = 0
 drag_start_world = None
 drag_initial_positions = []
+
+GRID_SIZE = 20
+
+def snap_to_grid(x, y):
+    x = round(x / GRID_SIZE) * GRID_SIZE
+    y = round(y / GRID_SIZE) * GRID_SIZE
+    return x, y
 
 running = True
 while running:
@@ -72,6 +79,8 @@ while running:
                         component['focus'] = True
                         dragging = True
                         drag_index = component_i
+                        drag_start_world = (x, y)
+                        print(drag_start_world)
                         print(drag_index)
 
             elif event.button == 3:
@@ -113,6 +122,16 @@ while running:
                 viewport.panning = False
 
         if event.type == pygame.MOUSEMOTION:
+            if dragging:
+                dx = world_x - drag_start_world[0]
+                dy = world_y - drag_start_world[1]
+                component = components['components'][drag_index]
+                new_x = drag_start_world[0] + dx
+                new_y = drag_start_world[1] + dy
+                new_x, new_y = snap_to_grid(new_x, new_y)
+                component["x"] = new_x
+                component["y"] = new_y
+
             if viewport.panning:
                 dx = mouse_screen_x - viewport.pan_last_x
                 dy = mouse_screen_y - viewport.pan_last_y
@@ -123,14 +142,23 @@ while running:
 
     screen.fill(COLOR_BACKGROUND)
 
+    # line
+    pygame.draw.line(screen, COLOR_FOREGROUND, 
+        (component_1['x'] + component_1['w']//2, component_1['y'] + component_1['h']//2), 
+        (component_2['x'] + component_2['w']//2, component_2['y'] + component_2['h']//2), 
+        1
+    )
+
     for component in components['components']:
         x, y, w, h = component_coordinates_get(component)
 
         name = component['name']
         # frame
         if component['focus'] == False:
+            pygame.draw.rect(screen, COLOR_BACKGROUND, (x, y, w, h))
             pygame.draw.rect(screen, COLOR_FOREGROUND, (x, y, w, h), 1)
         else:
+            pygame.draw.rect(screen, COLOR_BACKGROUND, (x, y, w, h))
             pygame.draw.rect(screen, COLOR_ELEMENT_FOCUS, (x, y, w, h), 1)
         # name
         if component['focus'] == False:
@@ -141,6 +169,7 @@ while running:
             surface = font_name.render(name, True, COLOR_ELEMENT_FOCUS)
             text_w, text_h = surface.get_size()
             screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
+
 
     pygame.display.flip()
     clock.tick(60)
