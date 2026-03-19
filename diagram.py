@@ -143,15 +143,26 @@ while running:
     screen.fill(COLOR_BACKGROUND)
 
     # line
+    c1 = components['components'][0]
+    c2 = components['components'][1]
+    c1x, c1y, c1w, c1h = component_coordinates_get(c1)
+    c2x, c2y, c2w, c2h = component_coordinates_get(c2)
+    x1, y1 = c1x + c1w//2, c1y + c1h//2
+    x2, y2 = c2x + c2w//2, c1y + c1h//2
+    x3, y3 = c2x + c2w//2, c2y + c2h//2
     pygame.draw.line(screen, COLOR_FOREGROUND, 
-        (component_1['x'] + component_1['w']//2, component_1['y'] + component_1['h']//2), 
-        (component_2['x'] + component_2['w']//2, component_2['y'] + component_2['h']//2), 
+        (x1, y1), 
+        (x2, y2), 
+        1
+    )
+    pygame.draw.line(screen, COLOR_FOREGROUND, 
+        (x2, y2), 
+        (x3, y3), 
         1
     )
 
     for component in components['components']:
         x, y, w, h = component_coordinates_get(component)
-
         name = component['name']
         # frame
         if component['focus'] == False:
@@ -169,7 +180,6 @@ while running:
             surface = font_name.render(name, True, COLOR_ELEMENT_FOCUS)
             text_w, text_h = surface.get_size()
             screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
-
 
     pygame.display.flip()
     clock.tick(60)

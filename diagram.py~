@@ -142,16 +142,25 @@ while running:
 
     screen.fill(COLOR_BACKGROUND)
 
+    # line
+    c1 = components['components'][0]
+    c1x, c1y, c1w, c1h = component_coordinates_get(c1)
+    x1, y1 = c1x + c1w//2, c1y + c1h//2
+    x2, y2 = component_2['x'] + component_2['w']//2, c1y + c1h//2
+    x3, y3 = component_2['x'] + component_2['w']//2, component_2['y'] + component_2['h']//2
+    pygame.draw.line(screen, COLOR_FOREGROUND, 
+        (x1, y1), 
+        (x2, y2), 
+        1
+    )
+    pygame.draw.line(screen, COLOR_FOREGROUND, 
+        (x2, y2), 
+        (x3, y3), 
+        1
+    )
+
     for component in components['components']:
         x, y, w, h = component_coordinates_get(component)
-
-        # line
-        pygame.draw.line(screen, COLOR_FOREGROUND, 
-            (component_1['x'] + component_1['w']//2, component_1['y'] + component_1['h']//2), 
-            (component_2['x'] + component_2['w']//2, component_2['y'] + component_2['h']//2), 
-            1
-        )
-
         name = component['name']
         # frame
         if component['focus'] == False:
@@ -169,7 +178,6 @@ while running:
             surface = font_name.render(name, True, COLOR_ELEMENT_FOCUS)
             text_w, text_h = surface.get_size()
             screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
-
 
     pygame.display.flip()
     clock.tick(60)
