@@ -36,10 +36,40 @@ components = {
     'components': []
 }
 
-component_1 = component_create('0', 'hydrogen', 100, 100)
-component_2 = component_create('0', 'hydrogen', 600, 100)
+component_1 = component_create('0', 'hydrogen', 500, 100)
+component_2 = component_create('1', 'hydrogen', 800, 400)
+component_3 = component_create('2', 'hydrogen', 200, 400)
 components['components'].append(component_1)
 components['components'].append(component_2)
+components['components'].append(component_3)
+
+def edge_create(
+    _id, name='', x=0, y=0, w=256, h=64, focus=False, node_start=None, node_end=None,
+):
+    obj = {
+        'id': _id,
+        'name': name,
+        'x': x,
+        'y': y,
+        'w': w,
+        'h': h,
+        'focus': focus,
+        'node_start': node_start,
+        'node_end': node_end,
+    }
+    return obj
+
+edges = {
+    '_': 0,
+    'edges': [],
+}
+
+edge_1 = edge_create('0', '', node_start='0', node_end='1')
+edge_2 = edge_create('1', '', node_start='0', node_end='2')
+edges['edges'].append(edge_1)
+edges['edges'].append(edge_2)
+
+edge_tmp = edge_create('-1')
 
 def component_coordinates_get(component):
     x, y = viewport.world_to_screen(component["x"], component["y"])
@@ -69,6 +99,57 @@ while running:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
+                # create edge
+                if pygame.key.get_mods() & pygame.KMOD_CTRL:
+                    found = False
+                    for component_i, component in enumerate(components['components']):
+                        x, y, w, h = component_coordinates_get(component)
+                        component['focus'] = False
+                        if (
+                            mouse_screen_x > x and mouse_screen_x < x + w and 
+                            mouse_screen_y > y and mouse_screen_y < y + h
+                        ):
+                            found = True
+                            # first click
+                            if edge_tmp['node_start'] == None:
+                                edge_tmp['node_start'] = component['id']
+                            # second click
+                            else:
+                                edge_tmp['node_end'] = component['id']
+                                if (
+                                    edge_tmp['node_start'] != None and edge_tmp['node_end'] != None and
+                                    edge_tmp['node_start'] != edge_tmp['node_end']
+                                ):
+                                    # check if edge already exist betwee the 2 nodes
+                                    edge_found = False
+                                    for edge in edges['edges']:
+                                        if (
+                                            (
+                                                edge['node_start'] == edge_tmp['node_start'] and 
+                                                edge['node_end'] == edge_tmp['node_end']
+                                            ) or
+                                            (
+                                                edge['node_start'] == edge_tmp['node_end'] and 
+                                                edge['node_end'] == edge_tmp['node_start']
+                                            )
+                                        ):
+                                            edge_found = True
+                                            break
+                                    if not edge_found:
+                                        # create edge
+                                        edges['edges'].append(
+                                            edge_create(
+                                                '1', '', 
+                                                node_start=edge_tmp['node_start'], 
+                                                node_end=edge_tmp['node_end'],
+                                            )
+                                        )
+                                edge_tmp['node_start'] = None
+                                edge_tmp['node_end'] = None
+                    if not found:
+                        edge_tmp['node_start'] = None
+                        edge_tmp['node_end'] = None
+                # select/drag
                 for component_i, component in enumerate(components['components']):
                     x, y, w, h = component_coordinates_get(component)
                     component['focus'] = False
@@ -142,24 +223,34 @@ while running:
 
     screen.fill(COLOR_BACKGROUND)
 
-    # line
-    c1 = components['components'][0]
-    c2 = components['components'][1]
-    c1x, c1y, c1w, c1h = component_coordinates_get(c1)
-    c2x, c2y, c2w, c2h = component_coordinates_get(c2)
-    x1, y1 = c1x + c1w//2, c1y + c1h//2
-    x2, y2 = c2x + c2w//2, c1y + c1h//2
-    x3, y3 = c2x + c2w//2, c2y + c2h//2
-    pygame.draw.line(screen, COLOR_FOREGROUND, 
-        (x1, y1), 
-        (x2, y2), 
-        1
-    )
-    pygame.draw.line(screen, COLOR_FOREGROUND, 
-        (x2, y2), 
-        (x3, y3), 
-        1
-    )
+    for edge in edges['edges']:
+        # get start/end components of edge
+        component_1 = None
+        component_2 = None
+        for component in components['components']:
+            if edge['node_start'] == component['id']:
+                component_1 = component
+            if edge['node_end'] == component['id']:
+                component_2 = component
+        ###
+        c1 = component_1
+        c2 = component_2
+        c1x, c1y, c1w, c1h = component_coordinates_get(c1)
+        c2x, c2y, c2w, c2h = component_coordinates_get(c2)
+        x1, y1 = c1x + c1w//2, c1y + c1h//2
+        x2, y2 = c2x + c2w//2, c1y + c1h//2
+        x3, y3 = c2x + c2w//2, c2y + c2h//2
+        # line
+        pygame.draw.line(screen, COLOR_FOREGROUND, 
+            (x1, y1), 
+            (x2, y2), 
+            1
+        )
+        pygame.draw.line(screen, COLOR_FOREGROUND, 
+            (x2, y2), 
+            (x3, y3), 
+            1
+        )
 
     for component in components['components']:
         x, y, w, h = component_coordinates_get(component)

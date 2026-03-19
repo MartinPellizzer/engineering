@@ -1,3 +1,72 @@
+import subprocess
+
+from reportlab.platypus import SimpleDocTemplate, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet
+from reportlab.lib import colors
+from reportlab.platypus import Spacer
+from reportlab.platypus import Table
+from reportlab.platypus import TableStyle
+from reportlab.platypus import Image
+from reportlab.platypus import PageBreak
+
+from reportlab.lib.styles import ParagraphStyle
+
+doc = SimpleDocTemplate("doc.pdf")
+styles = getSampleStyleSheet()
+
+content = []
+
+# heading
+content.append(Paragraph("My Report", styles["Heading1"]))
+
+# spacing
+content.append(Spacer(1, 20))
+
+# paragraph
+content.append(Paragraph("This is a paragraph of text.", styles["Normal"]))
+
+content.append(Spacer(1, 20))
+
+# table
+data = [
+    ["Product", "Price"],
+    ["Apple", "$1"],
+    ["Banana", "$2"]
+]
+table = Table(data)
+table.setStyle(TableStyle([
+    ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
+    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+    ("GRID", (0, 0), (-1, -1), 1, colors.black),
+]))
+content.append(table)
+
+# image
+img = Image("logo.jpg", width=100, height=100)
+content.append(img)
+
+# page break
+content.append(PageBreak())
+
+
+custom_style = ParagraphStyle(
+    name="Custom",
+    fontSize=30,
+    leading=16,
+    spaceAfter=10
+)
+content.append(Paragraph("new page", custom_style))
+
+def header(canvas, doc):
+    canvas.drawString(100, 800, "My Header")
+
+doc.build(content, onFirstPage=header)
+
+subprocess.run(["xdg-open", "doc.pdf"])
+
+
+quit()
+
 from reportlab.platypus import *
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.pagesizes import A4
