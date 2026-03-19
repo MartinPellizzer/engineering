@@ -1,3 +1,7 @@
+# drag new line with ghosting instead of 2 clicks
+
+import json
+
 import pygame
 
 from lib import viewport
@@ -39,9 +43,9 @@ components = {
 component_1 = component_create('0', 'hydrogen', 500, 100)
 component_2 = component_create('1', 'hydrogen', 800, 400)
 component_3 = component_create('2', 'hydrogen', 200, 400)
-components['components'].append(component_1)
-components['components'].append(component_2)
-components['components'].append(component_3)
+# components['components'].append(component_1)
+# components['components'].append(component_2)
+# components['components'].append(component_3)
 
 def edge_create(
     _id, name='', x=0, y=0, w=256, h=64, focus=False, node_start=None, node_end=None,
@@ -66,8 +70,8 @@ edges = {
 
 edge_1 = edge_create('0', '', node_start='0', node_end='1')
 edge_2 = edge_create('1', '', node_start='0', node_end='2')
-edges['edges'].append(edge_1)
-edges['edges'].append(edge_2)
+# edges['edges'].append(edge_1)
+# edges['edges'].append(edge_2)
 
 edge_tmp = edge_create('-1')
 
@@ -83,10 +87,30 @@ drag_initial_positions = []
 
 GRID_SIZE = 20
 
+def save():
+    with open("data-components.json", "w") as file:
+        json.dump(components, file, indent=4)
+    with open("data-edges.json", "w") as file:
+        json.dump(edges, file, indent=4)
+
+def load():
+    global components
+    global edges
+    with open("data-components.json", "r") as file:
+        components = json.load(file)
+    with open("data-edges.json", "r") as file:
+        edges = json.load(file)
+
 def snap_to_grid(x, y):
     x = round(x / GRID_SIZE) * GRID_SIZE
     y = round(y / GRID_SIZE) * GRID_SIZE
     return x, y
+
+def component_focused_get():
+    for component_i, component in enumerate(components['components']):
+        if component['focus'] == True:
+            return component
+    return None
 
 running = True
 while running:
@@ -96,6 +120,39 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+
+        # Typing
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_BACKSPACE:
+                component = component_focused_get()
+                if component != None:
+                    component['name'] = component['name'][:-1]
+            elif event.key == pygame.K_RETURN:
+                print("Entered:", text)
+            else:
+                if pygame.key.get_mods() & pygame.KMOD_CTRL:
+                    if event.key == pygame.K_e:
+                        rect = pygame.Rect(0, 0, WIDTH, HEIGHT)
+                        snapshot = screen.subsurface(rect).copy()
+                        pygame.image.save(snapshot, 'screenshot.png')
+                    elif event.key == pygame.K_s: save()
+                    elif event.key == pygame.K_l: load()
+                    elif event.key == pygame.K_x:
+                        component = component_focused_get()
+                        if component != None:
+                            if component in components['components']:
+                                components['components'].remove(component)
+                        for edge in edges['edges']:
+                            if edge['node_start'] == component['id'] or edge['node_end'] == component['id']:
+                                edges['edges'].remove(edge)
+                        print('delete')
+                        print(components)
+                        edge_tmp['node_start'] = None
+                        edge_tmp['node_end'] = None
+                else:
+                    component = component_focused_get()
+                    if component != None:
+                        component['name'] += event.unicode
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
@@ -133,6 +190,7 @@ while running:
                                                 edge['node_end'] == edge_tmp['node_start']
                                             )
                                         ):
+                                            print(edge_tmp)
                                             edge_found = True
                                             break
                                     if not edge_found:
@@ -165,7 +223,12 @@ while running:
                         print(drag_index)
 
             elif event.button == 3:
-                components['components'].append(component_create('0', 'hydrogen', x=world_x, y=world_y))
+                components['components'].append(
+                    component_create(
+                        str(len(components['components'])+1), 'hydrogen', 
+                        x=world_x, y=world_y
+                    )
+                )
                 print(components)
 
             # ZOOM ON MOUSE POS

@@ -1,0 +1,60 @@
+{
+    "x": 0,
+    "y": 0,
+    "components": [
+        {
+            "id": "1",
+            "name": "hydrogen",
+            "x": 420.0,
+            "y": 204.0,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "2",
+            "name": "hydrogen",
+            "x": 689.0,
+            "y": 291.0,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "3",
+            "name": "hydrogen",
+            "x": 274.0,
+            "y": 391.0,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "4",
+            "name": "hydrogen",
+            "x": 610.0,
+            "y": 546.0,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "5",
+            "name": "hydrogen",
+            "x": 740,
+            "y": 100,
+            "w": 256,
+            "h": 64,
+            "focus": true
+        },
+        {
+            "id": "6",
+            "name": "hydrogen",
+            "x": 1064.0,
+            "y": 334.0,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        }
+    ]
+}

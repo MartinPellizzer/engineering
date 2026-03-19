@@ -1,0 +1,33 @@
+{
+    "x": 0,
+    "y": 0,
+    "components": [
+        {
+            "id": "1",
+            "name": "hydrogen",
+            "x": 336.0,
+            "y": 76.0,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "2",
+            "name": "hydrogen",
+            "x": 877.0,
+            "y": 190.0,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "3",
+            "name": "hydrogen",
+            "x": 338.0,
+            "y": 389.0,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        }
+    ]
+}
