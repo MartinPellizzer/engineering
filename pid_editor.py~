@@ -1,0 +1,581 @@
+'''
+Phase 1 Window + canvas 
+Phase 2 Place components 
+Phase 3 Select + drag components 
+Phase 4 Draw pipes manually 
+Phase 5 Pipe connection system 
+Phase 6 Toolbar 
+Phase 7 Save / load 
+Phase 8 Grid + snapping 
+Phase 9 Zoom and pan
+'''
+
+import pygame
+import sys
+import json
+
+pygame.init()
+
+WINDOW_WIDTH = 1200
+WINDOW_HEIGHT = 800
+
+screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+pygame.display.set_caption("P&ID Diagram Editor")
+
+clock = pygame.time.Clock()
+
+TOOLBAR_WIDTH = 200
+CANVAS_WIDTH = WINDOW_WIDTH - TOOLBAR_WIDTH
+
+COLOR_BACKGROUND = (30,30,30)
+COLOR_TOOLBAR = (50,50,50)
+COLOR_CANVAS = (240,240,240)
+
+COLOR_COMPONENT = (0,120,255)
+COLOR_SELECTED = (255,200,0)
+COLOR_PIPE = (0,0,0)
+COLOR_PORT = (200,0,0)
+
+COLOR_BUTTON = (90,90,90)
+COLOR_BUTTON_ACTIVE = (140,140,140)
+COLOR_TEXT = (255,255,255)
+
+COMPONENT_RADIUS = 10
+PORT_RADIUS = 4
+
+font = pygame.font.SysFont(None, 24)
+
+components = []
+pipes = []
+
+pipe_start = None
+
+dragging = False
+drag_index = None
+drag_offset_x = 0
+drag_offset_y = 0
+drag_start_world = None
+drag_initial_positions = []
+
+current_tool = "component"
+
+toolbar_buttons = [
+    {"name":"select","rect":pygame.Rect(20,40,160,50)},
+    {"name":"component","rect":pygame.Rect(20,120,160,50)},
+    {"name":"pipe","rect":pygame.Rect(20,200,160,50)}
+]
+
+GRID_SIZE = 20
+COLOR_GRID = (210,210,210)
+
+MIN_ZOOM = 0.5
+MAX_ZOOM = 3.0
+
+camera_x = 0
+camera_y = 0
+camera_zoom = 1.0
+panning = False
+pan_last_x = 0
+pan_last_y = 0
+
+selection_start = None
+selection_end = None
+selecting = False
+
+PIPE_SNAP_RADIUS = 12  # pixels
+hovered_port = None
+hovered_snap_x = 0
+hovered_snap_y = 0
+
+reverse_pipe_preview = False
+
+def world_to_screen(x, y):
+    sx = TOOLBAR_WIDTH + (x - TOOLBAR_WIDTH - camera_x) * camera_zoom
+    sy = (y - camera_y) * camera_zoom
+    return int(sx), int(sy)
+
+def screen_to_world(x, y):
+    wx = (x - TOOLBAR_WIDTH) / camera_zoom + TOOLBAR_WIDTH + camera_x
+    wy = y / camera_zoom + camera_y
+    return wx, wy
+
+def snap_to_grid(x, y):
+    x = round(x / GRID_SIZE) * GRID_SIZE
+    y = round(y / GRID_SIZE) * GRID_SIZE
+    return x, y
+
+def get_port_position(component,port):
+
+    return (
+        component["x"] + port["x"],
+        component["y"] + port["y"]
+    )
+
+def save_diagram():
+
+    data_components = []
+
+    for c in components:
+
+        data_components.append({
+            "x": c["x"],
+            "y": c["y"],
+            "ports": c["ports"]
+        })
+
+    data = {
+        "components": data_components,
+        "pipes": pipes
+    }
+
+    with open("diagram.json","w") as f:
+
+        json.dump(data,f,indent=4)
+
+
+def load_diagram():
+
+    global components,pipes
+
+    try:
+
+        with open("diagram.json","r") as f:
+
+            data = json.load(f)
+
+        components = []
+
+        for c in data["components"]:
+
+            components.append({
+                "x": c["x"],
+                "y": c["y"],
+                "ports": c["ports"],
+                "selected": False
+            })
+
+        pipes = data["pipes"]
+
+    except:
+
+        print("No diagram file found")
+
+running = True
+
+while running:
+
+    mouse_x,mouse_y = pygame.mouse.get_pos()
+    world_x, world_y = screen_to_world(mouse_x, mouse_y)
+
+    for event in pygame.event.get():
+
+        if event.type == pygame.QUIT:
+            running = False
+
+        if event.type == pygame.KEYDOWN:
+
+            if event.key == pygame.K_s:
+
+                save_diagram()
+
+            if event.key == pygame.K_l:
+
+                load_diagram()
+
+            if event.key == pygame.K_SPACE:
+                # Only toggle while dragging a pipe
+                if pipe_start:
+                    reverse_pipe_preview = not reverse_pipe_preview
+
+        if event.type == pygame.MOUSEBUTTONDOWN:
+
+            # ZOOM ON MOUSE POS
+            if event.button == 4 or event.button == 5:
+                # world position before zoom
+                before_x, before_y = screen_to_world(mouse_x, mouse_y)
+
+                if event.button == 4:
+                    camera_zoom *= 1.1
+                    camera_zoom = min(camera_zoom, MAX_ZOOM)
+
+                elif event.button == 5:
+                    camera_zoom /= 1.1
+                    camera_zoom = max(camera_zoom, MIN_ZOOM)
+
+                # world position after zoom
+                after_x, after_y = screen_to_world(mouse_x, mouse_y)
+
+                # adjust camera so point under cursor stays fixed
+                camera_x += before_x - after_x
+                camera_y += before_y - after_y
+
+            elif event.button == 2 and mouse_x > TOOLBAR_WIDTH:
+                panning = True
+                pan_last_x, pan_last_y = pygame.mouse.get_pos()
+
+            # ----------------------
+            # Toolbar clicks
+            # ----------------------
+
+            elif mouse_x < TOOLBAR_WIDTH:
+
+                for button in toolbar_buttons:
+
+                    if button["rect"].collidepoint(mouse_x,mouse_y):
+
+                        current_tool = button["name"]
+
+                        pipe_start = None
+
+            # ----------------------
+            # Canvas clicks
+            # ----------------------
+
+            else:
+                # SELECT TOOL
+                if current_tool == "select":
+                    clicked_component = None
+
+                    for i,component in enumerate(components):
+                        dx = world_x - component["x"]
+                        dy = world_y - component["y"]
+
+                        if dx*dx + dy*dy < COMPONENT_RADIUS*COMPONENT_RADIUS:
+                            clicked_component = i
+
+                    if clicked_component is not None:
+
+                        # If clicked component is not already selected
+                        if not components[clicked_component]["selected"]:
+                            for c in components:
+                                c["selected"] = False
+
+                            components[clicked_component]["selected"] = True
+
+                        # Start dragging the whole selection
+                        dragging = True
+                        drag_index = clicked_component
+                        drag_start_world = (world_x, world_y)
+
+                        drag_initial_positions = []
+
+                        for component in components:
+                            if component["selected"]:
+                                drag_initial_positions.append(
+                                    (component, component["x"], component["y"])
+                                )
+
+                    else:
+                        selecting = True
+                        selection_start = (world_x, world_y)
+                        selection_end = (world_x, world_y)
+
+                        for c in components:
+                            c["selected"] = False
+
+                # COMPONENT TOOL
+                elif current_tool == "component":
+                    world_x, world_y = snap_to_grid(world_x, world_y)
+
+                    components.append({
+                        "x":world_x,
+                        "y":world_y,
+                        "selected":False,
+                        "ports":[
+                            {"x":-20,"y":0},
+                            {"x":20,"y":0}
+                        ]
+                    })
+
+                # PIPE TOOL
+                elif current_tool == "pipe":
+
+                    clicked_port = None
+
+                    for ci,component in enumerate(components):
+
+                        for pi,port in enumerate(component["ports"]):
+
+                            px,py = get_port_position(component,port)
+
+                            dist_sq = (world_x - px)**2 + (world_y - py)**2
+                            if dist_sq <= PIPE_SNAP_RADIUS**2:
+                                clicked_port = (ci, pi)
+                                snap_x, snap_y = px, py  # store snapped coordinates for drawing preview
+
+                    if clicked_port:
+
+                        if pipe_start is None:
+
+                            pipe_start = clicked_port
+
+                        else:
+
+                            pipes.append({
+                                "start_comp":pipe_start[0],
+                                "start_port":pipe_start[1],
+                                "end_comp":clicked_port[0],
+                                "end_port":clicked_port[1],
+                                "reversed": reverse_pipe_preview,   # store the reversed state
+                            })
+
+                            reverse_pipe_preview = False
+                            pipe_start = None
+
+        if event.type == pygame.MOUSEBUTTONUP:
+            dragging = jhy
+            drag_index = None
+
+            if event.button == 2:
+                panning = False
+
+            # -----------------
+            # BOX SELECTING
+            # -----------------
+            if selecting:
+                selecting = False
+
+                x1, y1 = selection_start
+                x2, y2 = selection_end
+
+                min_x = min(x1, x2)
+                max_x = max(x1, x2)
+                min_y = min(y1, y2)
+                max_y = max(y1, y2)
+
+                for component in components:
+                    if (min_x <= component["x"] <= max_x and
+                        min_y <= component["y"] <= max_y):
+
+                        component["selected"] = True
+
+        if event.type == pygame.MOUSEMOTION:
+
+            mouse_x, mouse_y = pygame.mouse.get_pos()
+            world_x, world_y = screen_to_world(mouse_x, mouse_y)
+
+            # -----------------
+            # Component dragging
+            # -----------------
+            if dragging:
+                dx = world_x - drag_start_world[0]
+                dy = world_y - drag_start_world[1]
+
+                for component, start_x, start_y in drag_initial_positions:
+
+                    new_x = start_x + dx
+                    new_y = start_y + dy
+
+                    new_x, new_y = snap_to_grid(new_x, new_y)
+
+                    component["x"] = new_x
+                    component["y"] = new_y
+
+            # -----------------
+            # Camera panning
+            # -----------------
+            if panning:
+
+                dx = mouse_x - pan_last_x
+                dy = mouse_y - pan_last_y
+
+                camera_x -= dx / camera_zoom
+                camera_y -= dy / camera_zoom
+
+                pan_last_x = mouse_x
+                pan_last_y = mouse_y
+
+            # -----------------
+            # BOX SELECTING
+            # -----------------
+            if selecting:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                world_x, world_y = screen_to_world(mouse_x, mouse_y)
+
+                selection_end = (world_x, world_y)
+
+            if current_tool == "pipe" and not dragging:
+                hovered_port = None
+                for ci, component in enumerate(components):
+                    for pi, port in enumerate(component["ports"]):
+                        px, py = get_port_position(component, port)
+                        dist_sq = (world_x - px)**2 + (world_y - py)**2
+                        if dist_sq <= PIPE_SNAP_RADIUS**2:
+                            hovered_port = (ci, pi)
+                            hovered_snap_x, hovered_snap_y = px, py
+
+    screen.fill(COLOR_BACKGROUND)
+
+    toolbar_rect = pygame.Rect(0,0,TOOLBAR_WIDTH,WINDOW_HEIGHT)
+    pygame.draw.rect(screen,COLOR_TOOLBAR,toolbar_rect)
+
+    # Draw toolbar buttons
+    for button in toolbar_buttons:
+
+        color = COLOR_BUTTON
+
+        if button["name"] == current_tool:
+            color = COLOR_BUTTON_ACTIVE
+
+        pygame.draw.rect(screen,color,button["rect"])
+
+        text = font.render(button["name"].upper(),True,COLOR_TEXT)
+
+        screen.blit(
+            text,
+            (
+                button["rect"].x + 10,
+                button["rect"].y + 15
+            )
+        )
+
+    canvas_rect = pygame.Rect(TOOLBAR_WIDTH,0,CANVAS_WIDTH,WINDOW_HEIGHT)
+    pygame.draw.rect(screen,COLOR_CANVAS,canvas_rect)
+
+    screen.set_clip(canvas_rect)
+
+    ########################################
+    # GRID
+    ########################################
+    step = GRID_SIZE * camera_zoom
+
+    # Offset grid based on camera position
+    offset_x = (-camera_x * camera_zoom) % step
+    offset_y = (-camera_y * camera_zoom) % step
+
+    # Vertical lines
+    x = TOOLBAR_WIDTH + offset_x
+    while x < WINDOW_WIDTH:
+        pygame.draw.line(
+            screen,
+            COLOR_GRID,
+            (int(x), 0),
+            (int(x), WINDOW_HEIGHT),
+            1
+        )
+        x += step
+
+    # Horizontal lines
+    y = offset_y
+    while y < WINDOW_HEIGHT:
+        pygame.draw.line(
+            screen,
+            COLOR_GRID,
+            (TOOLBAR_WIDTH, int(y)),
+            (WINDOW_WIDTH, int(y)),
+            1
+        )
+        y += step
+
+    ########################################
+    # PIPES
+    ########################################
+    # Pipes
+    for pipe in pipes:
+        comp_a = components[pipe["start_comp"]]
+        comp_b = components[pipe["end_comp"]]
+
+        port_a = comp_a["ports"][pipe["start_port"]]
+        port_b = comp_b["ports"][pipe["end_port"]]
+
+        x1, y1 = get_port_position(comp_a, port_a)
+        x2, y2 = get_port_position(comp_b, port_b)
+
+        x1, y1 = world_to_screen(x1, y1)
+        x2, y2 = world_to_screen(x2, y2)
+
+        # Use the reversed flag
+        if pipe.get("reversed", False):
+            corner_x = x1
+            corner_y = y2
+        else:
+            corner_x = x2
+            corner_y = y1
+
+        pygame.draw.line(screen, COLOR_PIPE, (x1, y1), (corner_x, corner_y), max(1,int(3*camera_zoom)))
+        pygame.draw.line(screen, COLOR_PIPE, (corner_x, corner_y), (x2, y2), max(1,int(3*camera_zoom)))
+
+    # Preview pipe
+    if pipe_start:
+        comp = components[pipe_start[0]]
+        port = comp["ports"][pipe_start[1]]
+
+        x1, y1 = get_port_position(comp, port)
+        x1, y1 = world_to_screen(x1, y1)
+
+        mx, my = world_x, world_y  # default to mouse world pos
+
+        if hovered_port:  # snap if near a port
+            mx, my = hovered_snap_x, hovered_snap_y
+
+        # Swap corner direction if reverse flag is on
+        if reverse_pipe_preview:
+            corner_x = x1
+            corner_y = my
+        else:
+            corner_x = mx
+            corner_y = y1
+
+        pygame.draw.line(screen, COLOR_PIPE, (x1, y1), (corner_x, corner_y), max(1, int(3*camera_zoom)))
+        pygame.draw.line(screen, COLOR_PIPE, (corner_x, corner_y), (mx, my), max(1, int(3*camera_zoom)))
+
+    # Draw components
+    for component in components:
+
+        sx,sy = world_to_screen(component["x"],component["y"])
+
+        radius = int(COMPONENT_RADIUS * camera_zoom)
+
+        pygame.draw.circle(
+            screen,
+            COLOR_COMPONENT,
+            (sx,sy),
+            radius
+        )
+
+        if component["selected"]:
+
+            pygame.draw.circle(
+                screen,
+                COLOR_SELECTED,
+                (sx,sy),
+                radius+4,
+                2
+            )
+
+        for port in component["ports"]:
+
+            px,py = get_port_position(component,port)
+
+            sx,sy = world_to_screen(px,py)
+
+            radius = max(1,int(PORT_RADIUS * camera_zoom))
+
+            pygame.draw.circle(
+                screen,
+                COLOR_PORT,
+                (sx,sy),
+                radius
+            )
+
+    # BOX SELECTINGK
+    if selecting:
+        sx1, sy1 = world_to_screen(*selection_start)
+        sx2, sy2 = world_to_screen(*selection_end)
+
+        rect = pygame.Rect(
+            min(sx1, sx2),
+            min(sy1, sy2),
+            abs(sx2 - sx1),
+            abs(sy2 - sy1)
+        )
+
+        pygame.draw.rect(screen, (0,120,255), rect, 2)
+
+    screen.set_clip(None)
+
+    pygame.display.flip()
+    clock.tick(60)
+
+pygame.quit()
+sys.exit()
