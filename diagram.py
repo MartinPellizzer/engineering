@@ -112,6 +112,40 @@ def component_focused_get():
             return component
     return None
 
+def draw_line_angled(component_1, component_2):
+    c1 = component_1
+    c2 = component_2
+    c1x, c1y, c1w, c1h = component_coordinates_get(c1)
+    c2x, c2y, c2w, c2h = component_coordinates_get(c2)
+    x1, y1 = c1x + c1w//2, c1y + c1h//2
+    x2, y2 = c2x + c2w//2, c1y + c1h//2
+    x3, y3 = c2x + c2w//2, c2y + c2h//2
+    # line
+    pygame.draw.line(screen, COLOR_FOREGROUND, 
+        (x1, y1), 
+        (x2, y2), 
+        1
+    )
+    pygame.draw.line(screen, COLOR_FOREGROUND, 
+        (x2, y2), 
+        (x3, y3), 
+        1
+    )
+
+def draw_line_straight(component_1, component_2):
+    c1 = component_1
+    c2 = component_2
+    c1x, c1y, c1w, c1h = component_coordinates_get(c1)
+    c2x, c2y, c2w, c2h = component_coordinates_get(c2)
+    x1, y1 = c1x + c1w//2, c1y + c1h//2
+    x2, y2 = c2x + c2w//2, c2y + c2h//2
+    # line
+    pygame.draw.line(screen, COLOR_FOREGROUND, 
+        (x1, y1), 
+        (x2, y2), 
+        1
+    )
+
 running = True
 while running:
     mouse_screen_x, mouse_screen_y = pygame.mouse.get_pos()
@@ -296,24 +330,8 @@ while running:
             if edge['node_end'] == component['id']:
                 component_2 = component
         ###
-        c1 = component_1
-        c2 = component_2
-        c1x, c1y, c1w, c1h = component_coordinates_get(c1)
-        c2x, c2y, c2w, c2h = component_coordinates_get(c2)
-        x1, y1 = c1x + c1w//2, c1y + c1h//2
-        x2, y2 = c2x + c2w//2, c1y + c1h//2
-        x3, y3 = c2x + c2w//2, c2y + c2h//2
-        # line
-        pygame.draw.line(screen, COLOR_FOREGROUND, 
-            (x1, y1), 
-            (x2, y2), 
-            1
-        )
-        pygame.draw.line(screen, COLOR_FOREGROUND, 
-            (x2, y2), 
-            (x3, y3), 
-            1
-        )
+        # draw_line_angled(component_1, component_2)
+        draw_line_straight(component_1, component_2)
 
     for component in components['components']:
         x, y, w, h = component_coordinates_get(component)
