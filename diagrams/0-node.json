@@ -1,5 +1,186 @@
 {
     "x": 0,
     "y": 0,
-    "components": []
+    "components": [
+        {
+            "id": "1",
+            "name": "situation",
+            "x": 80,
+            "y": 160,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "2",
+            "name": "complication",
+            "x": 80,
+            "y": 240,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "3",
+            "name": "solution",
+            "x": 80,
+            "y": 320,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "4",
+            "name": "STANDARD",
+            "x": 80,
+            "y": 60,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "5",
+            "name": "DIRECT",
+            "x": 360,
+            "y": 60,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "6",
+            "name": "solution",
+            "x": 360,
+            "y": 160,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "7",
+            "name": "situation",
+            "x": 360,
+            "y": 240,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "8",
+            "name": "complication",
+            "x": 360,
+            "y": 320,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "9",
+            "name": "CONCERNED",
+            "x": 640,
+            "y": 60,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "10",
+            "name": "complication",
+            "x": 640,
+            "y": 160,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "11",
+            "name": "situation",
+            "x": 640,
+            "y": 240,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "12",
+            "name": "solution",
+            "x": 640,
+            "y": 320,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "13",
+            "name": "AGGRESSIVE",
+            "x": 920,
+            "y": 60,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "14",
+            "name": "question",
+            "x": 920,
+            "y": 160,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "15",
+            "name": "situation",
+            "x": 920,
+            "y": 240,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "16",
+            "name": "complication",
+            "x": 920,
+            "y": 320,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "17",
+            "name": "S",
+            "x": 80,
+            "y": -180,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "18",
+            "name": "C",
+            "x": 360,
+            "y": -180,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "19",
+            "name": "Q",
+            "x": 640,
+            "y": -180,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        },
+        {
+            "id": "20",
+            "name": "A",
+            "x": 920,
+            "y": -180,
+            "w": 256,
+            "h": 64,
+            "focus": false
+        }
+    ]
 }

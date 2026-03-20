@@ -39,7 +39,7 @@ def thing_create(
     }
     return thing
 
-canvas = {
+things = {
     'x': 0, 
     'y': 0, 
     'things': []
@@ -54,14 +54,14 @@ drag_initial_positions = []
 
 def save(slot):
     with open(f"diagrams/{slot}.json", "w") as file:
-        json.dump(canvas, file, indent=4)
+        json.dump(things, file, indent=4)
 
 def load(slot):
     global diagram_index
-    global canvas
+    global things
     try:
         with open(f"diagrams/{slot}.json", "r") as file:
-            canvas = json.load(file)
+            things = json.load(file)
     except:
         save(slot)
     diagram_index = slot
@@ -100,91 +100,6 @@ def draw_line_straight(thing_1, thing_2):
         1
     )
 
-def create_edge():
-    if pygame.key.get_mods() & pygame.KMOD_CTRL:
-        found = False
-        for thing_i, thing in enumerate(canvas['things']):
-            x, y, w, h = viewport.thing_coordinates_get(thing)
-            thing['focus'] = False
-            if (
-                mouse_screen_x > x and mouse_screen_x < x + w and 
-                mouse_screen_y > y and mouse_screen_y < y + h
-            ):
-                found = True
-                # first click
-                if edge_tmp['node_start'] == None:
-                    edge_tmp['node_start'] = thing['id']
-                # second click
-                else:
-                    edge_tmp['node_end'] = thing['id']
-                    if (
-                        edge_tmp['node_start'] != None and edge_tmp['node_end'] != None and
-                        edge_tmp['node_start'] != edge_tmp['node_end']
-                    ):
-                        # check if edge already exist betwee the 2 nodes
-                        edge_found = False
-                        for edge in canvas['things']:
-                            if (
-                                (
-                                    edge['node_start'] == edge_tmp['node_start'] and 
-                                    edge['node_end'] == edge_tmp['node_end']
-                                ) or
-                                (
-                                    edge['node_start'] == edge_tmp['node_end'] and 
-                                    edge['node_end'] == edge_tmp['node_start']
-                                )
-                            ):
-                                edge_found = True
-                                break
-                        if not edge_found:
-                            # create edge
-                            canvas['things'].append(
-                                thing_create(
-                                    str(len(canvas['things'])+1), kind='edge', 
-                                    node_start=edge_tmp['node_start'], 
-                                    node_end=edge_tmp['node_end'],
-                                )
-                            )
-                    edge_tmp['node_start'] = None
-                    edge_tmp['node_end'] = None
-        if not found:
-            edge_tmp['node_start'] = None
-            edge_tmp['node_end'] = None
-
-def node_drag_start():
-    global dragging
-    global drag_index
-    global drag_start_world
-    for thing_i, thing in enumerate(canvas['things']):
-        x, y, w, h = viewport.thing_coordinates_get(thing)
-        thing['focus'] = False
-        if (
-            mouse_screen_x > x and mouse_screen_x < x + w and 
-            mouse_screen_y > y and mouse_screen_y < y + h
-        ):
-            thing['focus'] = True
-            dragging = True
-            drag_index = thing_i
-            drag_start_world = (x, y)
-
-
-def node_drag_run():
-    if dragging:
-        dx = world_x - drag_start_world[0]
-        dy = world_y - drag_start_world[1]
-        thing = canvas['things'][drag_index]
-        new_x = drag_start_world[0] + dx
-        new_y = drag_start_world[1] + dy
-        new_x, new_y = viewport.snap_to_grid(new_x, new_y)
-        thing["x"] = new_x
-        thing["y"] = new_y
-
-def node_drag_end():
-    global dragging
-    global drag_index
-    dragging = False
-    drag_index = None
-
 running = True
 while running:
     mouse_screen_x, mouse_screen_y = pygame.mouse.get_pos()
@@ -197,7 +112,7 @@ while running:
         # Typing
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_BACKSPACE:
-                thing = viewport.thing_focused_get(canvas)
+                thing = viewport.thing_focused_get(things)
                 if thing != None:
                     if thing['kind'] == 'node':
                         thing['name'] = thing['name'][:-1]
@@ -219,30 +134,90 @@ while running:
                     elif event.key == pygame.K_8: load(8)
                     elif event.key == pygame.K_9: load(9)
                     elif event.key == pygame.K_x:
-                        thing = viewport.thing_focused_get(canvas)
+                        thing = viewport.thing_focused_get(things)
                         if thing != None:
-                            if thing in canvas['things']:
-                                canvas['things'].remove(thing)
-                        for edge in canvas['things']:
+                            if thing in things['things']:
+                                things['things'].remove(thing)
+                        for edge in things['things']:
                             if edge['node_start'] == thing['id'] or edge['node_end'] == thing['id']:
                                 edges['edges'].remove(edge)
                         edge_tmp['node_start'] = None
                         edge_tmp['node_end'] = None
                 else:
-                    thing = viewport.thing_focused_get(canvas)
+                    thing = viewport.thing_focused_get(things)
                     if thing != None:
                         if thing['kind'] == 'node':
                             thing['name'] += event.unicode
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                create_edge()
-                node_drag_start()
+                # create edge
+                if pygame.key.get_mods() & pygame.KMOD_CTRL:
+                    found = False
+                    for thing_i, thing in enumerate(things['things']):
+                        x, y, w, h = viewport.thing_coordinates_get(thing)
+                        thing['focus'] = False
+                        if (
+                            mouse_screen_x > x and mouse_screen_x < x + w and 
+                            mouse_screen_y > y and mouse_screen_y < y + h
+                        ):
+                            found = True
+                            # first click
+                            if edge_tmp['node_start'] == None:
+                                edge_tmp['node_start'] = thing['id']
+                            # second click
+                            else:
+                                edge_tmp['node_end'] = thing['id']
+                                if (
+                                    edge_tmp['node_start'] != None and edge_tmp['node_end'] != None and
+                                    edge_tmp['node_start'] != edge_tmp['node_end']
+                                ):
+                                    # check if edge already exist betwee the 2 nodes
+                                    edge_found = False
+                                    for edge in things['things']:
+                                        if (
+                                            (
+                                                edge['node_start'] == edge_tmp['node_start'] and 
+                                                edge['node_end'] == edge_tmp['node_end']
+                                            ) or
+                                            (
+                                                edge['node_start'] == edge_tmp['node_end'] and 
+                                                edge['node_end'] == edge_tmp['node_start']
+                                            )
+                                        ):
+                                            edge_found = True
+                                            break
+                                    if not edge_found:
+                                        # create edge
+                                        things['things'].append(
+                                            thing_create(
+                                                str(len(things['things'])+1), kind='edge', 
+                                                node_start=edge_tmp['node_start'], 
+                                                node_end=edge_tmp['node_end'],
+                                            )
+                                        )
+                                edge_tmp['node_start'] = None
+                                edge_tmp['node_end'] = None
+                    if not found:
+                        edge_tmp['node_start'] = None
+                        edge_tmp['node_end'] = None
+                # select/drag
+                for thing_i, thing in enumerate(things['things']):
+                    x, y, w, h = viewport.thing_coordinates_get(thing)
+                    thing['focus'] = False
+                    if (
+                        mouse_screen_x > x and mouse_screen_x < x + w and 
+                        mouse_screen_y > y and mouse_screen_y < y + h
+                    ):
+                        thing['focus'] = True
+                        dragging = True
+                        drag_index = thing_i
+                        drag_start_world = (x, y)
 
             elif event.button == 3:
-                canvas['things'].append(
+                things['things'].append(
                     thing_create(
-                        str(len(canvas['things'])+1), kind='node', name='hydrogen', 
+                        str(len(things['things'])+1), kind='node', name='hydrogen', 
                         x=world_x, y=world_y
                     )
                 )
@@ -270,25 +245,43 @@ while running:
                 viewport.camera_y += before_y - after_y
 
             elif event.button == 2:
-                viewport.pan_start(mouse_screen_x, mouse_screen_y)
+                viewport.panning = True
+                viewport.pan_last_x, viewport.pan_last_y = pygame.mouse.get_pos()
 
         if event.type == pygame.MOUSEBUTTONUP:
-            node_drag_end()
+            dragging = False
+            drag_index = None
+
             if event.button == 2:
-                viewport.pan_end()
+                viewport.panning = False
 
         if event.type == pygame.MOUSEMOTION:
-            node_drag_run()
-            viewport.pan_run(mouse_screen_x, mouse_screen_y)
+            if dragging:
+                dx = world_x - drag_start_world[0]
+                dy = world_y - drag_start_world[1]
+                thing = things['things'][drag_index]
+                new_x = drag_start_world[0] + dx
+                new_y = drag_start_world[1] + dy
+                new_x, new_y = viewport.snap_to_grid(new_x, new_y)
+                thing["x"] = new_x
+                thing["y"] = new_y
+
+            if viewport.panning:
+                dx = mouse_screen_x - viewport.pan_last_x
+                dy = mouse_screen_y - viewport.pan_last_y
+                viewport.camera_x -= dx / viewport.camera_zoom
+                viewport.camera_y -= dy / viewport.camera_zoom
+                viewport.pan_last_x = mouse_screen_x
+                viewport.pan_last_y = mouse_screen_y
 
     screen.fill(COLOR_BACKGROUND)
 
     # EDGES
-    for thing in canvas['things']:
+    for thing in things['things']:
         if thing['kind'] == 'edge':
             thing_1 = None
             thing_2 = None
-            for _thing in canvas['things']:
+            for _thing in things['things']:
                 if thing['node_start'] == _thing['id']:
                     thing_1 = _thing
                 if thing['node_end'] == _thing['id']:
@@ -297,7 +290,7 @@ while running:
             draw_line_straight(thing_1, thing_2)
 
     # NODES
-    for thing in canvas['things']:
+    for thing in things['things']:
         if thing['kind'] == 'node':
             x, y, w, h = viewport.thing_coordinates_get(thing)
             name = thing['name']
