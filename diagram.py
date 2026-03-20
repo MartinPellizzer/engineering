@@ -185,6 +185,48 @@ def node_drag_end():
     dragging = False
     drag_index = None
 
+def main_draw():
+    screen.fill(COLOR_BACKGROUND)
+    # EDGES
+    for thing in canvas['things']:
+        if thing['kind'] == 'edge':
+            thing_1 = None
+            thing_2 = None
+            for _thing in canvas['things']:
+                if thing['node_start'] == _thing['id']:
+                    thing_1 = _thing
+                if thing['node_end'] == _thing['id']:
+                    thing_2 = _thing
+            ###
+            draw_line_straight(thing_1, thing_2)
+
+    # NODES
+    for thing in canvas['things']:
+        if thing['kind'] == 'node':
+            x, y, w, h = viewport.thing_coordinates_get(thing)
+            name = thing['name']
+            # frame
+            if thing['focus'] == False:
+                pygame.draw.rect(screen, COLOR_BACKGROUND, (x, y, w, h))
+                pygame.draw.rect(screen, COLOR_FOREGROUND, (x, y, w, h), 1)
+            else:
+                pygame.draw.rect(screen, COLOR_BACKGROUND, (x, y, w, h))
+                pygame.draw.rect(screen, COLOR_ELEMENT_FOCUS, (x, y, w, h), 1)
+            # name
+            if thing['focus'] == False:
+                surface = font_name.render(name, True, COLOR_FOREGROUND)
+                text_w, text_h = surface.get_size()
+                screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
+            else:
+                surface = font_name.render(name, True, COLOR_ELEMENT_FOCUS)
+                text_w, text_h = surface.get_size()
+                screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
+
+    surface = font_name.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
+    screen.blit(surface, (0, 0))
+
+    pygame.display.flip()
+
 running = True
 while running:
     mouse_screen_x, mouse_screen_y = pygame.mouse.get_pos()
@@ -225,7 +267,7 @@ while running:
                                 canvas['things'].remove(thing)
                         for edge in canvas['things']:
                             if edge['node_start'] == thing['id'] or edge['node_end'] == thing['id']:
-                                edges['edges'].remove(edge)
+                                canvas['things'].remove(edge)
                         edge_tmp['node_start'] = None
                         edge_tmp['node_end'] = None
                 else:
@@ -236,7 +278,7 @@ while running:
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
-                create_edge()
+                create_edge() 
                 node_drag_start()
 
             elif event.button == 3:
@@ -248,26 +290,12 @@ while running:
                 )
 
             # ZOOM ON MOUSE POS
-            elif event.button == 4 or event.button == 5:
-                # world position before zoom
-                before_x, before_y = viewport.screen_to_world(mouse_screen_x, mouse_screen_y)
-
-                if event.button == 4:
-                    viewport.camera_zoom *= 1.1
-                    viewport.camera_zoom = min(viewport.camera_zoom, viewport.MAX_ZOOM)
-                    font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.camera_zoom))
-
-                elif event.button == 5:
-                    viewport.camera_zoom /= 1.1
-                    viewport.camera_zoom = max(viewport.camera_zoom, viewport.MIN_ZOOM)
-                    font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.camera_zoom))
-
-                # world position after zoom
-                after_x, after_y = viewport.screen_to_world(mouse_screen_x, mouse_screen_y)
-
-                # adjust camera so point under cursor stays fixed
-                viewport.camera_x += before_x - after_x
-                viewport.camera_y += before_y - after_y
+            elif event.button == 4:
+                viewport.zoom_run(direction='up', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
+                font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.state['camera_zoom']))
+            elif event.button == 5:
+                viewport.zoom_run(direction='down', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
+                font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.state['camera_zoom']))
 
             elif event.button == 2:
                 viewport.pan_start(mouse_screen_x, mouse_screen_y)
@@ -281,47 +309,9 @@ while running:
             node_drag_run()
             viewport.pan_run(mouse_screen_x, mouse_screen_y)
 
-    screen.fill(COLOR_BACKGROUND)
 
-    # EDGES
-    for thing in canvas['things']:
-        if thing['kind'] == 'edge':
-            thing_1 = None
-            thing_2 = None
-            for _thing in canvas['things']:
-                if thing['node_start'] == _thing['id']:
-                    thing_1 = _thing
-                if thing['node_end'] == _thing['id']:
-                    thing_2 = _thing
-            ###
-            draw_line_straight(thing_1, thing_2)
+    main_draw()
 
-    # NODES
-    for thing in canvas['things']:
-        if thing['kind'] == 'node':
-            x, y, w, h = viewport.thing_coordinates_get(thing)
-            name = thing['name']
-            # frame
-            if thing['focus'] == False:
-                pygame.draw.rect(screen, COLOR_BACKGROUND, (x, y, w, h))
-                pygame.draw.rect(screen, COLOR_FOREGROUND, (x, y, w, h), 1)
-            else:
-                pygame.draw.rect(screen, COLOR_BACKGROUND, (x, y, w, h))
-                pygame.draw.rect(screen, COLOR_ELEMENT_FOCUS, (x, y, w, h), 1)
-            # name
-            if thing['focus'] == False:
-                surface = font_name.render(name, True, COLOR_FOREGROUND)
-                text_w, text_h = surface.get_size()
-                screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
-            else:
-                surface = font_name.render(name, True, COLOR_ELEMENT_FOCUS)
-                text_w, text_h = surface.get_size()
-                screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
-
-    surface = font_name.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
-    screen.blit(surface, (0, 0))
-
-    pygame.display.flip()
     clock.tick(60)
 
 pygame.quit()

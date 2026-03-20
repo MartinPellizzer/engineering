@@ -61,6 +61,24 @@ def pan_run(mouse_screen_x, mouse_screen_y):
 def pan_end():
     state['panning'] = False
 
+def zoom_run(direction, mouse_screen_x, mouse_screen_y):
+    # world position before zoom
+    before_x, before_y = screen_to_world(mouse_screen_x, mouse_screen_y)
+
+    if direction == 'up':
+        state['camera_zoom'] *= 1.1
+        state['camera_zoom'] = min(state['camera_zoom'], MAX_ZOOM)
+
+    elif direction == 'down':
+        state['camera_zoom'] /= 1.1
+        state['camera_zoom'] = max(state['camera_zoom'], MIN_ZOOM)
+
+    # world position after zoom
+    after_x, after_y = screen_to_world(mouse_screen_x, mouse_screen_y)
+
+    # adjust camera so point under cursor stays fixed
+    state['camera_x'] += before_x - after_x
+    state['camera_y'] += before_y - after_y
 
 ################################################################################
 # DRAW
