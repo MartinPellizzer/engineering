@@ -220,6 +220,36 @@ Zn(s) + CuCl2(aq) -> ZnCl2(aq) + Cu(s)
 calculations with moles
 ----------------------------------------
 
+1 mole = 6.022 * 10^23
+
+1 mole of C atoms -> 6.02 * 10^23 C atoms
+6.02 * 10^23 a.m.u. = 1 g
+             Dalton
+
+## check periodic table for amu
+1 C atom = 12 amu (atomic weight)
+1 mole C = 12.011 g (molar mass)
+
+for molecules
+CO2: molecular weight (m.w.) = 44.01 amu (sum of elements)
+NaCl: Formula Weight (f.w.) = 58.44 amu
+CO2: molar mass = 44.01 g/mol
+NaCl: f.w. = 58.44 g/mol
+
+1 mole C
+number of atoms = 6.02 * 10^23
+12 g C
+
+3 moles C
+number of atoms = 3 * 6.02 * 10^23 = 1.806 * 10^24
+36 g C
+
+mass <---> moles <---> atoms/molecules
+
+300g CaCO3 = 3 mol CaCO3
+number of atoms of oxygen = 9 * 6.03 * 10^23 = 5.418 * 10^24
+number of grams of carbon = 36 g
+
 '''
 
 '''

@@ -20,6 +20,8 @@ pygame.display.set_caption("LAY")
 FONT_FAMILY_INTER_MEDIUM = 'fonts/Inter/static/Inter_18pt-Medium.ttf'
 font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 24)
 
+diagram_index = 0
+
 def component_create(
     _id, name, x=0, y=0, w=256, h=64, focus=False,
 ):
@@ -87,19 +89,27 @@ drag_initial_positions = []
 
 GRID_SIZE = 20
 
-def save():
-    with open("data-components.json", "w") as file:
+def save(slot):
+    with open(f"diagrams/{slot}-node.json", "w") as file:
         json.dump(components, file, indent=4)
-    with open("data-edges.json", "w") as file:
+    with open(f"diagrams/{slot}-edge.json", "w") as file:
         json.dump(edges, file, indent=4)
 
-def load():
+def load(slot):
+    global diagram_index
     global components
     global edges
-    with open("data-components.json", "r") as file:
-        components = json.load(file)
-    with open("data-edges.json", "r") as file:
-        edges = json.load(file)
+    try:
+        with open(f"diagrams/{slot}-node.json", "r") as file:
+            components = json.load(file)
+    except:
+        save(slot)
+    try:
+        with open(f"diagrams/{slot}-edge.json", "r") as file:
+            edges = json.load(file)
+    except:
+        save(slot)
+    diagram_index = slot
 
 def snap_to_grid(x, y):
     x = round(x / GRID_SIZE) * GRID_SIZE
@@ -169,8 +179,17 @@ while running:
                         rect = pygame.Rect(0, 0, WIDTH, HEIGHT)
                         snapshot = screen.subsurface(rect).copy()
                         pygame.image.save(snapshot, 'screenshot.png')
-                    elif event.key == pygame.K_s: save()
-                    elif event.key == pygame.K_l: load()
+                    elif event.key == pygame.K_s: save(diagram_index)
+                    elif event.key == pygame.K_0: load(0)
+                    elif event.key == pygame.K_1: load(1)
+                    elif event.key == pygame.K_2: load(2)
+                    elif event.key == pygame.K_3: load(3)
+                    elif event.key == pygame.K_4: load(4)
+                    elif event.key == pygame.K_5: load(5)
+                    elif event.key == pygame.K_6: load(6)
+                    elif event.key == pygame.K_7: load(7)
+                    elif event.key == pygame.K_8: load(8)
+                    elif event.key == pygame.K_9: load(9)
                     elif event.key == pygame.K_x:
                         component = component_focused_get()
                         if component != None:
@@ -352,6 +371,9 @@ while running:
             surface = font_name.render(name, True, COLOR_ELEMENT_FOCUS)
             text_w, text_h = surface.get_size()
             screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
+
+    surface = font_name.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
+    screen.blit(surface, (0, 0))
 
     pygame.display.flip()
     clock.tick(60)
