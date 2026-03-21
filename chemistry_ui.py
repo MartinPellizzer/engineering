@@ -133,6 +133,21 @@ element_moscovium = element_create('115', 'Mc', 'moscovium', 14, 6)
 element_livemorium = element_create('116', 'Lv', 'livemorium', 15, 6)
 element_tennessine = element_create('117', 'Ts', 'tennessine', 16, 6)
 element_oganesson = element_create('118', 'Og', 'oganesson', 17, 6)
+###
+element_cerium = element_create('58', 'Ce', 'cerium', 3, 8)
+element_praseodymium = element_create('59', 'Pr', 'praseodymium', 4, 8)
+element_neodymium = element_create('60', 'Nd', 'neodymium', 5, 8)
+element_promethium = element_create('61', 'Pm', 'promethium', 6, 8)
+element_samarium = element_create('62', 'Sm', 'samarium', 7, 8)
+element_europium = element_create('63', 'Eu', 'europium', 8, 8)
+element_gadolinium = element_create('64', 'Gd', 'gadolinium', 9, 8)
+element_terbium = element_create('65', 'Tb', 'terbium', 10, 8)
+element_dysprosium = element_create('66', 'Dy', 'dysprosium', 11, 8)
+element_holmium = element_create('67', 'Ho', 'holmium', 12, 8)
+element_erbium = element_create('68', 'Er', 'erbium', 13, 8)
+element_thulium = element_create('69', 'Tm', 'thulium', 14, 8)
+element_ytterbium = element_create('70', 'Yb', 'ytterbium', 15, 8)
+element_lutetium = element_create('71', 'Lu', 'lutetium', 16, 8)
 
 periodic_table = {
     'x': 0, 
@@ -235,6 +250,21 @@ periodic_table['elements'].append(element_moscovium)
 periodic_table['elements'].append(element_livemorium)
 periodic_table['elements'].append(element_tennessine)
 periodic_table['elements'].append(element_oganesson)
+###
+periodic_table['elements'].append(element_cerium)
+periodic_table['elements'].append(element_praseodymium)
+periodic_table['elements'].append(element_neodymium)
+periodic_table['elements'].append(element_promethium)
+periodic_table['elements'].append(element_samarium)
+periodic_table['elements'].append(element_europium)
+periodic_table['elements'].append(element_gadolinium)
+periodic_table['elements'].append(element_terbium)
+periodic_table['elements'].append(element_dysprosium)
+periodic_table['elements'].append(element_holmium)
+periodic_table['elements'].append(element_erbium)
+periodic_table['elements'].append(element_thulium)
+periodic_table['elements'].append(element_ytterbium)
+periodic_table['elements'].append(element_lutetium)
 
 def world_to_screen(x, y):
     sx = (x - camera_x) * camera_zoom
