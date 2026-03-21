@@ -166,16 +166,17 @@ def node_drag_start():
             dragging = True
             drag_index = thing_i
             drag_start_world = (x, y)
+            # drag_start_world = world_x, world_y
 
 
 def node_drag_run():
     if dragging:
         dx = world_x - drag_start_world[0]
         dy = world_y - drag_start_world[1]
-        thing = canvas['things'][drag_index]
         new_x = drag_start_world[0] + dx
         new_y = drag_start_world[1] + dy
         new_x, new_y = viewport.snap_to_grid(new_x, new_y)
+        thing = canvas['things'][drag_index]
         thing["x"] = new_x
         thing["y"] = new_y
 
@@ -186,7 +187,6 @@ def node_drag_end():
     drag_index = None
 
 def main_draw():
-    screen.fill(COLOR_BACKGROUND)
     # EDGES
     for thing in canvas['things']:
         if thing['kind'] == 'edge':
@@ -225,7 +225,6 @@ def main_draw():
     surface = font_name.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
     screen.blit(surface, (0, 0))
 
-    pygame.display.flip()
 
 running = True
 while running:
@@ -282,10 +281,11 @@ while running:
                 node_drag_start()
 
             elif event.button == 3:
+                snap_x, snap_y = viewport.snap_to_grid(world_x, world_y)
                 canvas['things'].append(
                     thing_create(
                         str(len(canvas['things'])+1), kind='node', name='hydrogen', 
-                        x=world_x, y=world_y
+                        x=snap_x, y=snap_y
                     )
                 )
 
@@ -310,7 +310,44 @@ while running:
             viewport.pan_run(mouse_screen_x, mouse_screen_y)
 
 
+    ########################################
+    # GRID
+    ########################################
+    step = viewport.GRID_SIZE * viewport.state['camera_zoom']
+
+    # Offset grid based on camera position
+    offset_x = (-viewport.state['camera_x'] * viewport.state['camera_zoom']) % step
+    offset_y = (-viewport.state['camera_y'] * viewport.state['camera_zoom']) % step
+
+    screen.fill(COLOR_BACKGROUND)
+
+    # Vertical lines
+    x = offset_x
+    while x < WIDTH:
+        pygame.draw.line(
+            screen,
+            (200, 200, 200),
+            (int(x), 0),
+            (int(x), HEIGHT),
+            1
+        )
+        x += step
+
+    # Horizontal lines
+    y = offset_y
+    while y < HEIGHT:
+        pygame.draw.line(
+            screen,
+            (200, 200, 200),
+            (0, int(y)),
+            (WIDTH, int(y)),
+            1
+        )
+        y += step
+
     main_draw()
+
+    pygame.display.flip()
 
     clock.tick(60)
 

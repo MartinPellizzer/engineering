@@ -31,8 +31,8 @@ def thing_coordinates_get(thing):
     return x, y, w, h
 
 def snap_to_grid(x, y):
-    x = round(x / GRID_SIZE) * GRID_SIZE
-    y = round(y / GRID_SIZE) * GRID_SIZE
+    x = round(x // GRID_SIZE) * GRID_SIZE
+    y = round(y // GRID_SIZE) * GRID_SIZE
     return x, y
 
 def thing_focused_get(things):
