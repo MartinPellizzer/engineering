@@ -23,11 +23,13 @@ font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, font_name_start_size)
 
 def element_create(
     number, symbol, name, col_i, row_i, x=0, y=0, w=64, h=64, focus=False,
+    extra=[], bg_color=None,
 ):
     element = {
         'number': number,
         'symbol': symbol,
         'name': name,
+        'group': col_i+1,
         'col_i': col_i,
         'row_i': row_i,
         'x': x,
@@ -35,31 +37,34 @@ def element_create(
         'w': w,
         'h': h,
         'focus': focus,
+        'extra': extra,
+        'bg_color': bg_color,
     }
     return element
 
 element_hydrogen =  element_create('1', 'H', 'hydrogen', 0, 0)
 element_helium =    element_create('2', 'He', 'helium', 17, 0)
-element_lithium =   element_create('3', 'Li', 'lithium', 0, 1)
-element_berylium =  element_create('4', 'Be', 'berylium', 1, 1)
-element_boron =     element_create('5', 'B', 'boron', 12, 1)
+###
+element_lithium =   element_create('3', 'Li', 'lithium', 0, 1, extra=['+1 or 1+', 'alkali metal'])
+element_berylium =  element_create('4', 'Be', 'berylium', 1, 1, extra=['+2 or 2+', 'alkali earth metal'])
+element_boron =     element_create('5', 'B', 'boron', 12, 1, bg_color=(128, 128, 128), extra=['+3 or 3+'])
 element_carbon =    element_create('6', 'C', 'carbon', 13, 1)
-element_nitrogen =  element_create('7', 'N', 'nitrogen', 14, 1)
-element_oxygen =    element_create('8', 'O', 'oxygen', 15, 1)
-element_fluorine =  element_create('9', 'F', 'fluorine', 16, 1)
+element_nitrogen =  element_create('7', 'N', 'nitrogen', 14, 1, extra=['-3 or 3-'])
+element_oxygen =    element_create('8', 'O', 'oxygen', 15, 1, extra=['-2 or 2-'])
+element_fluorine =  element_create('9', 'F', 'fluorine', 16, 1, extra=['-1 or 1-'])
 element_neon =      element_create('10', 'Ne', 'neon', 17, 1)
 ###
-element_sodium = element_create('11', 'Na', 'sodium', 0, 2)
-element_manganesium = element_create('12', 'Mg', 'manganesium', 1, 2)
-element_aluminium = element_create('13', 'Al', 'aluminium', 12, 2)
-element_silicon = element_create('14', 'Si', 'silicon', 13, 2)
-element_phosphorus = element_create('15', 'P', 'phosphorus', 14, 2)
-element_sulfur = element_create('16', 'S', 'sulfur', 15, 2)
-element_chlorine = element_create('17', 'Cl', 'chlorine', 16, 2)
+element_sodium = element_create('11', 'Na', 'sodium', 0, 2, extra=['+1 or 1+', 'alkali metal'])
+element_manganesium = element_create('12', 'Mg', 'manganesium', 1, 2, extra=['+2 or 2+', 'alkali earth metal'])
+element_aluminium = element_create('13', 'Al', 'aluminium', 12, 2, extra=['+3 or 3+'])
+element_silicon = element_create('14', 'Si', 'silicon', 13, 2, bg_color=(128, 128, 128))
+element_phosphorus = element_create('15', 'P', 'phosphorus', 14, 2, extra=['-3 or 3-'])
+element_sulfur = element_create('16', 'S', 'sulfur', 15, 2, extra=['-2 or 2-'])
+element_chlorine = element_create('17', 'Cl', 'chlorine', 16, 2, extra=['-1 or 1-'])
 element_argon = element_create('18', 'Ar', 'argon', 17, 2)
 ###
-element_potassium = element_create('19', 'K', 'potassium', 0, 3)
-element_calcium = element_create('20', 'Ca', 'calcium', 1, 3)
+element_potassium = element_create('19', 'K', 'potassium', 0, 3, extra=['+1 or 1+', 'alkali metal'])
+element_calcium = element_create('20', 'Ca', 'calcium', 1, 3, extra=['+2 or 2+', 'alkali earth metal'])
 element_scandium = element_create('21', 'Sc', 'scandium', 2, 3)
 element_titanium = element_create('22', 'Ti', 'titanium', 3, 3)
 element_vanadium = element_create('23', 'V', 'vanadium', 4, 3)
@@ -70,15 +75,15 @@ element_cobalt = element_create('27', 'Co', 'cobalt', 8, 3)
 element_nickel = element_create('28', 'Ni', 'nickel', 9, 3)
 element_copper = element_create('29', 'Cu', 'copper', 10, 3)
 element_zinc = element_create('30', 'Zn', 'zinc', 11, 3)
-element_gallium = element_create('31', 'Ga', 'gallium', 12, 3)
+element_gallium = element_create('31', 'Ga', 'gallium', 12, 3, extra=['+3 or 3+'])
 element_germanium = element_create('32', 'Ge', 'germanium', 13, 3)
-element_arsenic = element_create('33', 'As', 'arsenic', 14, 3)
-element_selenium = element_create('34', 'Se', 'selenium', 15, 3)
-element_bromine = element_create('35', 'Br', 'bromine', 16, 3)
+element_arsenic = element_create('33', 'As', 'arsenic', 14, 3, bg_color=(128, 128, 128), extra=['-3 or 3-'])
+element_selenium = element_create('34', 'Se', 'selenium', 15, 3, extra=['-2 or 2-'])
+element_bromine = element_create('35', 'Br', 'bromine', 16, 3, extra=['-1 or 1-'])
 element_krypton = element_create('36', 'Kr', 'krypton', 17, 3)
 ###
-element_rubidium = element_create('37', 'Rb', 'rubidium', 0, 4)
-element_strontium = element_create('38', 'Sr', 'strontium', 1, 4)
+element_rubidium = element_create('37', 'Rb', 'rubidium', 0, 4, extra=['+1 or 1+', 'alkali metal'])
+element_strontium = element_create('38', 'Sr', 'strontium', 1, 4, extra=['+2 or 2+', 'alkali earth metal'])
 element_yttrium = element_create('39', 'Y', 'yttrium', 2, 4)
 element_zirconium = element_create('40', 'Zr', 'zirconium', 3, 4)
 element_niobium = element_create('41', 'Nb', 'niobium', 4, 4)
@@ -89,15 +94,15 @@ element_rhodium = element_create('45', 'Rh', 'rhodium', 8, 4)
 element_palladium = element_create('46', 'Pd', 'palladium', 9, 4)
 element_silver = element_create('47', 'Ag', 'silver', 10, 4)
 element_cadmium = element_create('48', 'Cd', 'cadmium', 11, 4)
-element_indium = element_create('49', 'In', 'indium', 12, 4)
+element_indium = element_create('49', 'In', 'indium', 12, 4, extra=['+3 or 3+'])
 element_tin = element_create('50', 'Sn', 'tin', 13, 4)
-element_antimony = element_create('51', 'Sb', 'antimony', 14, 4)
-element_tellurium = element_create('52', 'Te', 'tellurium', 15, 4)
-element_iodine = element_create('53', 'I', 'iodine', 16, 4)
+element_antimony = element_create('51', 'Sb', 'antimony', 14, 4, extra=['-3 or 3-'])
+element_tellurium = element_create('52', 'Te', 'tellurium', 15, 4, bg_color=(128, 128, 128), extra=['-2 or 2-'])
+element_iodine = element_create('53', 'I', 'iodine', 16, 4, extra=['-1 or 1-'])
 element_xenon = element_create('54', 'Xe', 'xenon', 17, 4)
 ###
-element_caesium = element_create('55', 'Ca', 'caesium', 0, 5)
-element_barium = element_create('56', 'Ba', 'barium', 1, 5)
+element_caesium = element_create('55', 'Ca', 'caesium', 0, 5, extra=['+1 or 1+', 'alkali metal'])
+element_barium = element_create('56', 'Ba', 'barium', 1, 5, extra=['+2 or 2+', 'alkali earth metal'])
 element_lantharum = element_create('57', 'La', 'lantharum', 2, 5)
 element_hafnium = element_create('72', 'Hf', 'hafnium', 3, 5)
 element_tantalum = element_create('73', 'Ta', 'tantalum', 4, 5)
@@ -108,11 +113,11 @@ element_iridium = element_create('77', 'Ir', 'iridium', 8, 5)
 element_platinum = element_create('78', 'Pt', 'platinum', 9, 5)
 element_aurum = element_create('79', 'Au', 'aurum', 10, 5)
 element_mercury = element_create('80', 'Hg', 'mercury', 11, 5)
-element_thallium = element_create('81', 'Tl', 'thallium', 12, 5)
+element_thallium = element_create('81', 'Tl', 'thallium', 12, 5, extra=['+3 or 3+'])
 element_lead = element_create('82', 'Pb', 'lead', 13, 5)
-element_bismuth = element_create('83', 'Bi', 'bismuth', 14, 5)
-element_pollonium = element_create('84', 'Po', 'pollonium', 15, 5)
-element_astatine = element_create('85', 'At', 'astatine', 16, 5)
+element_bismuth = element_create('83', 'Bi', 'bismuth', 14, 5, extra=['-3 or 3-'])
+element_pollonium = element_create('84', 'Po', 'pollonium', 15, 5, extra=['-2 or 2-'])
+element_astatine = element_create('85', 'At', 'astatine', 16, 5, bg_color=(128, 128, 128), extra=['-1 or 1-'])
 element_radon = element_create('86', 'Rn', 'radon', 17, 5)
 ###
 element_francium = element_create('87', 'Fr', 'francium', 0, 6)
@@ -379,6 +384,8 @@ while running:
         name = element['name']
         # frame
         if element['focus'] == False:
+            if element['bg_color'] != None:
+                pygame.draw.rect(screen, element['bg_color'], (sx, sy, sw, sh))
             pygame.draw.rect(screen, COLOR_FOREGROUND, (sx, sy, sw, sh), 1)
         else:
             pygame.draw.rect(screen, COLOR_ELEMENT_FOCUS, (sx, sy, sw, sh), 1)
@@ -410,12 +417,16 @@ while running:
 
         # details
         if element['focus'] == True:
-            surface = font_details.render(element['number'], True, (255, 0, 255))
-            screen.blit(surface, (10, 10))
-            surface = font_details.render(element['symbol'], True, (255, 0, 255))
-            screen.blit(surface, (10, 60))
-            surface = font_details.render(element['name'], True, (255, 0, 255))
-            screen.blit(surface, (10, 110))
+            y_cur = 10
+            details = ['number', 'symbol', 'name', 'group']
+            for detail in details:
+                surface = font_details.render(f'{detail}: {element[detail]}', True, (255, 0, 255))
+                screen.blit(surface, (10, y_cur))
+                y_cur += 50
+            for extra in element['extra']:
+                surface = font_details.render(f'{extra}', True, (255, 0, 255))
+                screen.blit(surface, (10, y_cur))
+                y_cur += 50
         
         
     pygame.display.flip()
