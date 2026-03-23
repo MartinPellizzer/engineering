@@ -5,14 +5,98 @@
         {
             "id": "1",
             "kind": "node",
-            "name": "",
-            "x": 648.0,
-            "y": 172.0,
+            "name": "O3 in Acqua",
+            "x": 448,
+            "y": 192,
             "w": 256,
             "h": 64,
-            "focus": true,
+            "focus": false,
             "node_start": null,
             "node_end": null
+        },
+        {
+            "id": "2",
+            "kind": "node",
+            "name": "Ossidazione Diretta",
+            "x": 256,
+            "y": 320,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": null,
+            "node_end": null
+        },
+        {
+            "id": "3",
+            "kind": "edge",
+            "name": "",
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": "1",
+            "node_end": "2"
+        },
+        {
+            "id": "4",
+            "kind": "node",
+            "name": "Formazione Radicali",
+            "x": 640,
+            "y": 320,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": null,
+            "node_end": null
+        },
+        {
+            "id": "5",
+            "kind": "edge",
+            "name": "",
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": "4",
+            "node_end": "1"
+        },
+        {
+            "id": "6",
+            "kind": "node",
+            "name": "Degradazione / Inattivazione",
+            "x": 448,
+            "y": 448,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": null,
+            "node_end": null
+        },
+        {
+            "id": "7",
+            "kind": "edge",
+            "name": "",
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": "2",
+            "node_end": "6"
+        },
+        {
+            "id": "8",
+            "kind": "edge",
+            "name": "",
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": "4",
+            "node_end": "6"
         }
     ]
 }

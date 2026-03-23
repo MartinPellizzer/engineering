@@ -13,6 +13,7 @@ state = {
     'camera_x': 0,
     'camera_y': 0,
     'camera_zoom': 1.0,
+    'grid_show': False,
 }
 
 def world_to_screen(x, y):

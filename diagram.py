@@ -86,6 +86,7 @@ def draw_line_angled(thing_1, thing_2):
         1
     )
 
+
 def draw_line_straight(thing_1, thing_2):
     c1 = thing_1
     c2 = thing_2
@@ -198,8 +199,37 @@ def main_draw():
                 if thing['node_end'] == _thing['id']:
                     thing_2 = _thing
             ###
-            draw_line_straight(thing_1, thing_2)
+            # draw_line_straight(thing_1, thing_2)
+            draw_line_angled(thing_1, thing_2)
+            
+    thing_1 = None
+    for _thing in canvas['things']:
+        if thing['node_start'] == _thing['id']:
+            thing_1 = _thing
 
+    if thing_1:
+        print(thing_1)
+        ###
+        c1 = thing_1
+        c2 = thing_2
+        c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(c1)
+        c2x, c2y = viewport.snap_to_grid(world_x, world_y)
+        c2w, c2h = 0, 0
+        x1, y1 = c1x + c1w//2, c1y + c1h//2
+        x2, y2 = c2x + c2w//2, c1y + c1h//2
+        x3, y3 = c2x + c2w//2, c2y + c2h//2
+        # line
+        pygame.draw.line(screen, COLOR_FOREGROUND, 
+            (x1, y1), 
+            (x2, y2), 
+            1
+        )
+        pygame.draw.line(screen, COLOR_FOREGROUND, 
+            (x2, y2), 
+            (x3, y3), 
+            1
+        )
+            
     # NODES
     for thing in canvas['things']:
         if thing['kind'] == 'node':
@@ -237,43 +267,46 @@ while running:
 
         # Typing
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_BACKSPACE:
+            if pygame.key.get_mods() & pygame.KMOD_CTRL:
+                if 0: pass
+                elif event.key == pygame.K_s: save(diagram_index)
+                elif event.key == pygame.K_0: load(0)
+                elif event.key == pygame.K_1: load(1)
+                elif event.key == pygame.K_2: load(2)
+                elif event.key == pygame.K_3: load(3)
+                elif event.key == pygame.K_4: load(4)
+                elif event.key == pygame.K_5: load(5)
+                elif event.key == pygame.K_6: load(6)
+                elif event.key == pygame.K_7: load(7)
+                elif event.key == pygame.K_8: load(8)
+                elif event.key == pygame.K_9: load(9)
+                elif event.key == pygame.K_x:
+                    thing = viewport.thing_focused_get(canvas)
+                    if thing != None:
+                        if thing in canvas['things']:
+                            canvas['things'].remove(thing)
+                    for edge in canvas['things']:
+                        if edge['node_start'] == thing['id'] or edge['node_end'] == thing['id']:
+                            canvas['things'].remove(edge)
+                    edge_tmp['node_start'] = None
+                    edge_tmp['node_end'] = None
+                elif event.key == pygame.K_e:
+                    rect = pygame.Rect(0, 0, WIDTH, HEIGHT)
+                    snapshot = screen.subsurface(rect).copy()
+                    pygame.image.save(snapshot, 'screenshot.png')
+                elif event.key == pygame.K_g:
+                    if viewport.state['grid_show']: viewport.state['grid_show'] = False
+                    else: viewport.state['grid_show'] = True
+            elif event.key == pygame.K_BACKSPACE:
                 thing = viewport.thing_focused_get(canvas)
                 if thing != None:
                     if thing['kind'] == 'node':
                         thing['name'] = thing['name'][:-1]
             else:
-                if pygame.key.get_mods() & pygame.KMOD_CTRL:
-                    if event.key == pygame.K_e:
-                        rect = pygame.Rect(0, 0, WIDTH, HEIGHT)
-                        snapshot = screen.subsurface(rect).copy()
-                        pygame.image.save(snapshot, 'screenshot.png')
-                    elif event.key == pygame.K_s: save(diagram_index)
-                    elif event.key == pygame.K_0: load(0)
-                    elif event.key == pygame.K_1: load(1)
-                    elif event.key == pygame.K_2: load(2)
-                    elif event.key == pygame.K_3: load(3)
-                    elif event.key == pygame.K_4: load(4)
-                    elif event.key == pygame.K_5: load(5)
-                    elif event.key == pygame.K_6: load(6)
-                    elif event.key == pygame.K_7: load(7)
-                    elif event.key == pygame.K_8: load(8)
-                    elif event.key == pygame.K_9: load(9)
-                    elif event.key == pygame.K_x:
-                        thing = viewport.thing_focused_get(canvas)
-                        if thing != None:
-                            if thing in canvas['things']:
-                                canvas['things'].remove(thing)
-                        for edge in canvas['things']:
-                            if edge['node_start'] == thing['id'] or edge['node_end'] == thing['id']:
-                                canvas['things'].remove(edge)
-                        edge_tmp['node_start'] = None
-                        edge_tmp['node_end'] = None
-                else:
-                    thing = viewport.thing_focused_get(canvas)
-                    if thing != None:
-                        if thing['kind'] == 'node':
-                            thing['name'] += event.unicode
+                thing = viewport.thing_focused_get(canvas)
+                if thing != None:
+                    if thing['kind'] == 'node':
+                        thing['name'] += event.unicode
 
         if event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1:
@@ -309,41 +342,41 @@ while running:
             node_drag_run()
             viewport.pan_run(mouse_screen_x, mouse_screen_y)
 
+    screen.fill(COLOR_BACKGROUND)
 
     ########################################
     # GRID
     ########################################
-    step = viewport.GRID_SIZE * viewport.state['camera_zoom']
+    if viewport.state['grid_show']:
+        step = viewport.GRID_SIZE * viewport.state['camera_zoom']
 
-    # Offset grid based on camera position
-    offset_x = (-viewport.state['camera_x'] * viewport.state['camera_zoom']) % step
-    offset_y = (-viewport.state['camera_y'] * viewport.state['camera_zoom']) % step
+        # Offset grid based on camera position
+        offset_x = (-viewport.state['camera_x'] * viewport.state['camera_zoom']) % step
+        offset_y = (-viewport.state['camera_y'] * viewport.state['camera_zoom']) % step
 
-    screen.fill(COLOR_BACKGROUND)
+        # Vertical lines
+        x = offset_x
+        while x < WIDTH:
+            pygame.draw.line(
+                screen,
+                (200, 200, 200),
+                (int(x), 0),
+                (int(x), HEIGHT),
+                1
+            )
+            x += step
 
-    # Vertical lines
-    x = offset_x
-    while x < WIDTH:
-        pygame.draw.line(
-            screen,
-            (200, 200, 200),
-            (int(x), 0),
-            (int(x), HEIGHT),
-            1
-        )
-        x += step
-
-    # Horizontal lines
-    y = offset_y
-    while y < HEIGHT:
-        pygame.draw.line(
-            screen,
-            (200, 200, 200),
-            (0, int(y)),
-            (WIDTH, int(y)),
-            1
-        )
-        y += step
+        # Horizontal lines
+        y = offset_y
+        while y < HEIGHT:
+            pygame.draw.line(
+                screen,
+                (200, 200, 200),
+                (0, int(y)),
+                (WIDTH, int(y)),
+                1
+            )
+            y += step
 
     main_draw()
 
