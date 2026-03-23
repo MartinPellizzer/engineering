@@ -72,14 +72,31 @@ def draw_line_angled(thing_1, thing_2, edge_direction):
     c2 = thing_2
     c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(c1)
     c2x, c2y, c2w, c2h = viewport.thing_coordinates_get(c2)
+    arrow_size = 16
     if edge_direction == 0:
         x1, y1 = c1x + c1w//2, c1y + c1h//2
         x2, y2 = c2x + c2w//2, c1y + c1h//2
         x3, y3 = c2x + c2w//2, c2y + c2h//2
+        if y1 < y3:
+            arrow_point_1 = (x3 - (arrow_size // 2), y3 - (c2h // 2) - (arrow_size))
+            arrow_point_2 = (x3 + (arrow_size // 2), y3 - (c2h // 2) - (arrow_size))
+            arrow_point_3 = (x3, y3 - (c2h // 2))
+        else:
+            arrow_point_1 = (x3 - (arrow_size // 2), y3 + (c2h // 2) + (arrow_size))
+            arrow_point_2 = (x3 + (arrow_size // 2), y3 + (c2h // 2) + (arrow_size))
+            arrow_point_3 = (x3, y3 + (c2h // 2))
     else:
         x1, y1 = c1x + c1w//2, c1y + c1h//2
         x2, y2 = c1x + c1w//2, c2y + c2h//2
         x3, y3 = c2x + c2w//2, c2y + c2h//2
+        if x1 < x3:
+            arrow_point_1 = (x3 - (c2w // 2) - (arrow_size), y3 + (arrow_size // 2))
+            arrow_point_2 = (x3 - (c2w // 2) - (arrow_size), y3 - (arrow_size // 2))
+            arrow_point_3 = (x3 - (c2w // 2), y3)
+        else:
+            arrow_point_1 = (x3 + (c2w // 2) + (arrow_size), y3 + (arrow_size // 2))
+            arrow_point_2 = (x3 + (c2w // 2) + (arrow_size), y3 - (arrow_size // 2))
+            arrow_point_3 = (x3 + (c2w // 2), y3)
     # line
     pygame.draw.line(screen, COLOR_FOREGROUND, 
         (x1, y1), 
@@ -90,6 +107,15 @@ def draw_line_angled(thing_1, thing_2, edge_direction):
         (x2, y2), 
         (x3, y3), 
         1
+    )
+    pygame.draw.polygon(
+        screen, 
+        COLOR_FOREGROUND,
+        [
+            arrow_point_1,
+            arrow_point_2,
+            arrow_point_3,
+        ]
     )
 
 
@@ -197,7 +223,32 @@ def node_drag_end():
     dragging = False
     drag_index = None
 
-def main_draw():
+def draw_grid():
+    if viewport.state['grid_show']:
+        step = viewport.GRID_SIZE * viewport.state['camera_zoom']
+        # Offset grid based on camera position
+        offset_x = (-viewport.state['camera_x'] * viewport.state['camera_zoom']) % step
+        offset_y = (-viewport.state['camera_y'] * viewport.state['camera_zoom']) % step
+        # Vertical lines
+        x = offset_x
+        while x < WIDTH:
+            pygame.draw.line(screen, (200, 200, 200), (int(x), 0), (int(x), HEIGHT), 1)
+            x += step
+        # Horizontal lines
+        y = offset_y
+        while y < HEIGHT:
+            pygame.draw.line(screen, (200, 200, 200), (0, int(y)), (WIDTH, int(y)), 1)
+            y += step
+
+def draw_debug():
+    surface = font_name.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
+    screen.blit(surface, (0, 0))
+    surface = font_name.render(str(viewport.state['camera_zoom']), True, (255, 0, 255))
+    screen.blit(surface, (0, 30))
+    surface = font_name.render(str(viewport.state['edge_direction_cur']), True, (255, 0, 255))
+    screen.blit(surface, (0, 60))
+
+def draw_edges():
     # EDGES
     for thing in canvas['things']:
         if thing['kind'] == 'edge':
@@ -211,17 +262,15 @@ def main_draw():
             ###
             # draw_line_straight(node_start, node_end)
             draw_line_angled(node_start, node_end, thing['edge_direction'])
-            
-
     # EDGE TMP
     if viewport.state['edge_tmp_drawing']:
         # find start node
-        thing_1 = None
+        thing_start = None
         for _thing in canvas['things']:
             if edge_tmp['node_start'] == _thing['id']:
-                thing_1 = _thing
+                thing_start = _thing
         # calc points 
-        c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(thing_1)
+        c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(thing_start)
         c2x, c2y = viewport.snap_to_grid(world_x, world_y)
         c2w, c2h = 0, 0
         if viewport.state['edge_direction_cur'] == 0:
@@ -233,17 +282,10 @@ def main_draw():
             x2, y2 = c1x + c1w//2, c2y + c2h//2
             x3, y3 = c2x + c2w//2, c2y + c2h//2
         # draw lines
-        pygame.draw.line(screen, COLOR_FOREGROUND, 
-            (x1, y1), 
-            (x2, y2), 
-            1
-        )
-        pygame.draw.line(screen, COLOR_FOREGROUND, 
-            (x2, y2), 
-            (x3, y3), 
-            1
-        )
-            
+        pygame.draw.line(screen, COLOR_FOREGROUND, (x1, y1), (x2, y2), 1)
+        pygame.draw.line(screen, COLOR_FOREGROUND, (x2, y2), (x3, y3), 1)
+
+def draw_nodes():
     # NODES
     for thing in canvas['things']:
         if thing['kind'] == 'node':
@@ -266,8 +308,14 @@ def main_draw():
                 text_w, text_h = surface.get_size()
                 screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
 
-    surface = font_name.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
-    screen.blit(surface, (0, 0))
+
+def main_draw():
+    screen.fill(COLOR_BACKGROUND)
+    draw_grid()
+    draw_edges()
+    draw_nodes()
+    draw_debug()
+    pygame.display.flip()
 
 
 running = True
@@ -368,48 +416,8 @@ while running:
             node_drag_run()
             viewport.pan_run(mouse_screen_x, mouse_screen_y)
 
-    screen.fill(COLOR_BACKGROUND)
-
-    ########################################
-    # GRID
-    ########################################
-    if viewport.state['grid_show']:
-        step = viewport.GRID_SIZE * viewport.state['camera_zoom']
-
-        # Offset grid based on camera position
-        offset_x = (-viewport.state['camera_x'] * viewport.state['camera_zoom']) % step
-        offset_y = (-viewport.state['camera_y'] * viewport.state['camera_zoom']) % step
-
-        # Vertical lines
-        x = offset_x
-        while x < WIDTH:
-            pygame.draw.line(
-                screen,
-                (200, 200, 200),
-                (int(x), 0),
-                (int(x), HEIGHT),
-                1
-            )
-            x += step
-
-        # Horizontal lines
-        y = offset_y
-        while y < HEIGHT:
-            pygame.draw.line(
-                screen,
-                (200, 200, 200),
-                (0, int(y)),
-                (WIDTH, int(y)),
-                1
-            )
-            y += step
 
     main_draw()
-
-    surface = font_name.render(str(viewport.state['edge_direction_cur']), True, (255, 0, 255))
-    screen.blit(surface, (0, 50))
-
-    pygame.display.flip()
 
     clock.tick(60)
 

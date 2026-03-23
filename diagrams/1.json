@@ -6,28 +6,43 @@
             "id": "1",
             "kind": "node",
             "name": "hydrogen",
-            "x": 320,
+            "x": 576,
             "y": 128,
             "w": 256,
             "h": 64,
-            "focus": true,
+            "focus": false,
             "node_start": null,
-            "node_end": null
+            "node_end": null,
+            "edge_direction": 0
         },
         {
             "id": "2",
             "kind": "node",
             "name": "hydrogen",
             "x": 320,
+            "y": 256,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "4",
+            "kind": "node",
+            "name": "hydrogen",
+            "x": 576,
             "y": 384,
             "w": 256,
             "h": 64,
             "focus": false,
             "node_start": null,
-            "node_end": null
+            "node_end": null,
+            "edge_direction": 0
         },
         {
-            "id": "3",
+            "id": "6",
             "kind": "edge",
             "name": "",
             "x": 0,
@@ -36,7 +51,21 @@
             "h": 64,
             "focus": false,
             "node_start": "1",
-            "node_end": "2"
+            "node_end": "2",
+            "edge_direction": 0
+        },
+        {
+            "id": "7",
+            "kind": "edge",
+            "name": "",
+            "x": 0,
+            "y": 0,
+            "w": 256,
+            "h": 64,
+            "focus": false,
+            "node_start": "2",
+            "node_end": "4",
+            "edge_direction": 1
         }
     ]
 }
