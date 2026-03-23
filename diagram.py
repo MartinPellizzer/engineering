@@ -23,7 +23,7 @@ font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 24)
 diagram_index = 0
 
 def thing_create(
-    _id, kind, name='', x=0, y=0, w=256, h=64, focus=False, node_start=None, node_end=None,
+    _id, kind, name='', x=0, y=0, w=256, h=64, focus=False, node_start=None, node_end=None, edge_direction=0,
 ):
     thing = {
         'id': _id,
@@ -36,6 +36,7 @@ def thing_create(
         'focus': focus,
         'node_start': node_start,
         'node_end': node_end,
+        'edge_direction': edge_direction,
     }
     return thing
 
@@ -66,14 +67,19 @@ def load(slot):
         save(slot)
     diagram_index = slot
 
-def draw_line_angled(thing_1, thing_2):
+def draw_line_angled(thing_1, thing_2, edge_direction):
     c1 = thing_1
     c2 = thing_2
     c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(c1)
     c2x, c2y, c2w, c2h = viewport.thing_coordinates_get(c2)
-    x1, y1 = c1x + c1w//2, c1y + c1h//2
-    x2, y2 = c2x + c2w//2, c1y + c1h//2
-    x3, y3 = c2x + c2w//2, c2y + c2h//2
+    if edge_direction == 0:
+        x1, y1 = c1x + c1w//2, c1y + c1h//2
+        x2, y2 = c2x + c2w//2, c1y + c1h//2
+        x3, y3 = c2x + c2w//2, c2y + c2h//2
+    else:
+        x1, y1 = c1x + c1w//2, c1y + c1h//2
+        x2, y2 = c1x + c1w//2, c2y + c2h//2
+        x3, y3 = c2x + c2w//2, c2y + c2h//2
     # line
     pygame.draw.line(screen, COLOR_FOREGROUND, 
         (x1, y1), 
@@ -102,55 +108,59 @@ def draw_line_straight(thing_1, thing_2):
     )
 
 def create_edge():
-    if pygame.key.get_mods() & pygame.KMOD_CTRL:
-        found = False
-        for thing_i, thing in enumerate(canvas['things']):
-            x, y, w, h = viewport.thing_coordinates_get(thing)
-            thing['focus'] = False
-            if (
-                mouse_screen_x > x and mouse_screen_x < x + w and 
-                mouse_screen_y > y and mouse_screen_y < y + h
-            ):
-                found = True
-                # first click
-                if edge_tmp['node_start'] == None:
-                    edge_tmp['node_start'] = thing['id']
-                # second click
-                else:
-                    edge_tmp['node_end'] = thing['id']
-                    if (
-                        edge_tmp['node_start'] != None and edge_tmp['node_end'] != None and
-                        edge_tmp['node_start'] != edge_tmp['node_end']
-                    ):
-                        # check if edge already exist betwee the 2 nodes
-                        edge_found = False
-                        for edge in canvas['things']:
-                            if (
-                                (
-                                    edge['node_start'] == edge_tmp['node_start'] and 
-                                    edge['node_end'] == edge_tmp['node_end']
-                                ) or
-                                (
-                                    edge['node_start'] == edge_tmp['node_end'] and 
-                                    edge['node_end'] == edge_tmp['node_start']
-                                )
-                            ):
-                                edge_found = True
-                                break
-                        if not edge_found:
-                            # create edge
-                            canvas['things'].append(
-                                thing_create(
-                                    str(len(canvas['things'])+1), kind='edge', 
-                                    node_start=edge_tmp['node_start'], 
-                                    node_end=edge_tmp['node_end'],
-                                )
+    found = False
+    for thing_i, thing in enumerate(canvas['things']):
+        x, y, w, h = viewport.thing_coordinates_get(thing)
+        thing['focus'] = False
+        if (
+            mouse_screen_x > x and mouse_screen_x < x + w and 
+            mouse_screen_y > y and mouse_screen_y < y + h
+        ):
+            found = True
+            # first click
+            if edge_tmp['node_start'] == None:
+                edge_tmp['node_start'] = thing['id']
+                viewport.state['edge_tmp_drawing'] = True
+            # second click
+            else:
+                edge_tmp['node_end'] = thing['id']
+                if (
+                    edge_tmp['node_start'] != None and edge_tmp['node_end'] != None and
+                    edge_tmp['node_start'] != edge_tmp['node_end']
+                ):
+                    # check if edge already exist betwee the 2 nodes
+                    edge_found = False
+                    for edge in canvas['things']:
+                        if (
+                            (
+                                edge['node_start'] == edge_tmp['node_start'] and 
+                                edge['node_end'] == edge_tmp['node_end']
+                            ) or
+                            (
+                                edge['node_start'] == edge_tmp['node_end'] and 
+                                edge['node_end'] == edge_tmp['node_start']
                             )
-                    edge_tmp['node_start'] = None
-                    edge_tmp['node_end'] = None
-        if not found:
-            edge_tmp['node_start'] = None
-            edge_tmp['node_end'] = None
+                        ):
+                            edge_found = True
+                            break
+                    if not edge_found:
+                        # create edge
+                        canvas['things'].append(
+                            thing_create(
+                                str(len(canvas['things'])+1), kind='edge', 
+                                node_start=edge_tmp['node_start'], 
+                                node_end=edge_tmp['node_end'],
+                                edge_direction=viewport.state['edge_direction_cur'],
+                            )
+                        )
+                        print(viewport.state['edge_direction_cur'])
+                edge_tmp['node_start'] = None
+                edge_tmp['node_end'] = None
+                viewport.state['edge_tmp_drawing'] = False
+    if not found:
+        edge_tmp['node_start'] = None
+        edge_tmp['node_end'] = None
+        viewport.state['edge_tmp_drawing'] = False
 
 def node_drag_start():
     global dragging
@@ -191,34 +201,38 @@ def main_draw():
     # EDGES
     for thing in canvas['things']:
         if thing['kind'] == 'edge':
-            thing_1 = None
-            thing_2 = None
+            node_start = None
+            node_end = None
             for _thing in canvas['things']:
                 if thing['node_start'] == _thing['id']:
-                    thing_1 = _thing
+                    node_start = _thing
                 if thing['node_end'] == _thing['id']:
-                    thing_2 = _thing
+                    node_end = _thing
             ###
-            # draw_line_straight(thing_1, thing_2)
-            draw_line_angled(thing_1, thing_2)
+            # draw_line_straight(node_start, node_end)
+            draw_line_angled(node_start, node_end, thing['edge_direction'])
             
-    thing_1 = None
-    for _thing in canvas['things']:
-        if thing['node_start'] == _thing['id']:
-            thing_1 = _thing
 
-    if thing_1:
-        print(thing_1)
-        ###
-        c1 = thing_1
-        c2 = thing_2
-        c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(c1)
+    # EDGE TMP
+    if viewport.state['edge_tmp_drawing']:
+        # find start node
+        thing_1 = None
+        for _thing in canvas['things']:
+            if edge_tmp['node_start'] == _thing['id']:
+                thing_1 = _thing
+        # calc points 
+        c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(thing_1)
         c2x, c2y = viewport.snap_to_grid(world_x, world_y)
         c2w, c2h = 0, 0
-        x1, y1 = c1x + c1w//2, c1y + c1h//2
-        x2, y2 = c2x + c2w//2, c1y + c1h//2
-        x3, y3 = c2x + c2w//2, c2y + c2h//2
-        # line
+        if viewport.state['edge_direction_cur'] == 0:
+            x1, y1 = c1x + c1w//2, c1y + c1h//2
+            x2, y2 = c2x + c2w//2, c1y + c1h//2
+            x3, y3 = c2x + c2w//2, c2y + c2h//2
+        else:
+            x1, y1 = c1x + c1w//2, c1y + c1h//2
+            x2, y2 = c1x + c1w//2, c2y + c2h//2
+            x3, y3 = c2x + c2w//2, c2y + c2h//2
+        # draw lines
         pygame.draw.line(screen, COLOR_FOREGROUND, 
             (x1, y1), 
             (x2, y2), 
@@ -267,7 +281,13 @@ while running:
 
         # Typing
         if event.type == pygame.KEYDOWN:
-            if pygame.key.get_mods() & pygame.KMOD_CTRL:
+            if viewport.state['edge_tmp_drawing']:
+                if 0: pass
+                elif event.key == pygame.K_SPACE:
+                    if viewport.state['edge_direction_cur'] == 0: viewport.state['edge_direction_cur'] = 1
+                    else: viewport.state['edge_direction_cur'] = 0
+
+            elif pygame.key.get_mods() & pygame.KMOD_CTRL:
                 if 0: pass
                 elif event.key == pygame.K_s: save(diagram_index)
                 elif event.key == pygame.K_0: load(0)
@@ -309,29 +329,35 @@ while running:
                         thing['name'] += event.unicode
 
         if event.type == pygame.MOUSEBUTTONDOWN:
-            if event.button == 1:
-                create_edge() 
-                node_drag_start()
+            if pygame.key.get_mods() & pygame.KMOD_CTRL:
+                if event.button == 1:
+                    create_edge() 
+            else:
+                if event.button == 1:
+                    if viewport.state['edge_tmp_drawing']:
+                        create_edge() 
+                    else:
+                        node_drag_start()
 
-            elif event.button == 3:
-                snap_x, snap_y = viewport.snap_to_grid(world_x, world_y)
-                canvas['things'].append(
-                    thing_create(
-                        str(len(canvas['things'])+1), kind='node', name='hydrogen', 
-                        x=snap_x, y=snap_y
+                elif event.button == 2:
+                    viewport.pan_start(mouse_screen_x, mouse_screen_y)
+
+                elif event.button == 3:
+                    snap_x, snap_y = viewport.snap_to_grid(world_x, world_y)
+                    canvas['things'].append(
+                        thing_create(
+                            str(len(canvas['things'])+1), kind='node', name='hydrogen', 
+                            x=snap_x, y=snap_y
+                        )
                     )
-                )
 
-            # ZOOM ON MOUSE POS
-            elif event.button == 4:
-                viewport.zoom_run(direction='up', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
-                font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.state['camera_zoom']))
-            elif event.button == 5:
-                viewport.zoom_run(direction='down', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
-                font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.state['camera_zoom']))
-
-            elif event.button == 2:
-                viewport.pan_start(mouse_screen_x, mouse_screen_y)
+                # ZOOM ON MOUSE POS
+                elif event.button == 4:
+                    viewport.zoom_run(direction='up', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
+                    font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.state['camera_zoom']))
+                elif event.button == 5:
+                    viewport.zoom_run(direction='down', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
+                    font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.state['camera_zoom']))
 
         if event.type == pygame.MOUSEBUTTONUP:
             node_drag_end()
@@ -379,6 +405,9 @@ while running:
             y += step
 
     main_draw()
+
+    surface = font_name.render(str(viewport.state['edge_direction_cur']), True, (255, 0, 255))
+    screen.blit(surface, (0, 50))
 
     pygame.display.flip()
 
