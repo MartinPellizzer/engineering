@@ -261,22 +261,99 @@ PROJECTS:
 
 '''
 
-
-
 from lib import calc
+from lib.chem import elements
 
-print(calc.calc_scientific_notation(472000))
-print('g_to_tg:', calc.g_to_tg(75), 'tg')
-print('g_to_gg:', calc.g_to_gg(75), 'gg')
-print('g_to_Mg:', calc.g_to_Mg(75), 'Mg')
-print('g_to_kg:', calc.g_to_kg(75), 'kg')
-print('g_to_mg:', calc.g_to_mg(75), 'mg')
-print('in_to_cm:', calc.in_to_cm(1), 'cm')
-print('m_to_ft:', calc.m_to_ft(17.1), 'ft')
-print('celsius_to_kelvin:', calc.celsius_to_kelvin(10), 'K')
-print('kelvin_to_celsius:', calc.kelvin_to_celsius(10), 'C')
-print('density:', calc.density(12, 8), 'g/cm3')
-print('mass:', calc.mass(1.5, 27), 'g')
-print('atomic weigth:', calc.atomic_weight(35, 75, 37, 25))
+atomic_number_mass = {
+    "H" : [1, 1.007],
+    "He" : [2, 4.003],
+    "Li" : [3, 6.941],
+    "Be" : [4, 9.012],
+    "B" : [5, 10.812],
+    "C" : [6, 12.011],
+    "N" : [7, 1.007],
+    "O" : [8, 15.999],
+}
+
+def element_by_symbol(symbol):
+    element = None
+    for e in elements:
+        if e['symbol'] == symbol:
+            element = e
+            break
+    return element
+
+import re
+def molecular_mass_calc(formula):
+    # x = input('entrer molecular formula: ')
+    x = formula
+    y = re.findall('[a-zA-z][^A-Z]*', x)
+    z = [re.split(r'(\d+)', s)[0:2] for s in (y)]
+    molecular_mass = 0
+    for item in z:
+        element = element_by_symbol(item[0])
+        if len(item) == 2: molecular_mass += (float(element['atomic_mass']) * int(item[1]))
+        else: molecular_mass += (float(element['atomic_mass']) * 1)
+    return molecular_mass
+
+def atomic_mass_percent_calc(formula):
+    x = formula
+    y = re.findall('[a-zA-z][^A-Z]*', x)
+    z = [re.split(r'(\d+)', s)[0:2] for s in (y)]
+    molecular_mass = molecular_mass_calc(x)
+    percentages = []
+    for item in z:
+        element = element_by_symbol(item[0])
+        if len(item) == 2: mass = (float(element['atomic_mass']) * int(item[1]))
+        else: mass = (float(element['atomic_mass']) * 1)
+        percentages.append((mass / molecular_mass) * 100)
+    return percentages
+
+formula = 'H2O'
+molecular_mass = molecular_mass_calc(formula)
+mass_percent = atomic_mass_percent_calc(formula)
+print(molecular_mass)
+print(mass_percent)
+
+    
+'''
+n = 0
+molar_mass = 0
+while len(z) > n:
+    for formula in (z[n]):
+        a = formula.split(',')
+        b = ' '.join(str(x) for x in a)
+        try:
+            c = float(b)
+        except ValueError:
+            atom = str(b)
+            c = 1
+            d = atomic_number_mass.get(atom)[1]
+    molar_mass = molar_mass + (c*d)
+    n = n + 1
+    c = 1
+    d = 0
+print(molar_mass)
+'''
+
+# print(y)
+# print(z)
+
+
+
+if 0:
+    print(calc.calc_scientific_notation(472000))
+    print('g_to_tg:', calc.g_to_tg(75), 'tg')
+    print('g_to_gg:', calc.g_to_gg(75), 'gg')
+    print('g_to_Mg:', calc.g_to_Mg(75), 'Mg')
+    print('g_to_kg:', calc.g_to_kg(75), 'kg')
+    print('g_to_mg:', calc.g_to_mg(75), 'mg')
+    print('in_to_cm:', calc.in_to_cm(1), 'cm')
+    print('m_to_ft:', calc.m_to_ft(17.1), 'ft')
+    print('celsius_to_kelvin:', calc.celsius_to_kelvin(10), 'K')
+    print('kelvin_to_celsius:', calc.kelvin_to_celsius(10), 'C')
+    print('density:', calc.density(12, 8), 'g/cm3')
+    print('mass:', calc.mass(1.5, 27), 'g')
+    print('atomic weigth:', calc.atomic_weight(35, 75, 37, 25))
 
 

@@ -31,7 +31,10 @@ def screen_to_world(x, y):
 
 def thing_coordinates_get(thing):
     x, y = world_to_screen(thing["x"], thing["y"])
-    w, h = thing['w'] * state['camera_zoom'], thing['h'] * state['camera_zoom']
+    if thing['w'] > thing['w_min']: w = thing['w'] * state['camera_zoom']
+    else: w = thing['w_min'] * state['camera_zoom']
+    if thing['h'] > thing['h_min']: h = thing['h'] * state['camera_zoom']
+    else: h = thing['h_min'] * state['camera_zoom']
     return x, y, w, h
 
 def snap_to_grid(x, y):

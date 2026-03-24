@@ -23,7 +23,8 @@ font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 24)
 diagram_index = 0
 
 def thing_create(
-    _id, kind, name='', x=0, y=0, w=256, h=64, focus=False, node_start=None, node_end=None, edge_direction=0,
+    _id, kind, name='', x=0, y=0, w=0, h=0, focus=False, node_start=None, node_end=None, edge_direction=0,
+    w_min=0, h_min=0,
 ):
     thing = {
         'id': _id,
@@ -33,6 +34,8 @@ def thing_create(
         'y': y,
         'w': w,
         'h': h,
+        'w_min': w_min,
+        'h_min': h_min,
         'focus': focus,
         'node_start': node_start,
         'node_end': node_end,
@@ -203,13 +206,13 @@ def node_drag_start():
             dragging = True
             drag_index = thing_i
             drag_start_world = (x, y)
-            # drag_start_world = world_x, world_y
+            # drag_start_world = mouse_world_x, mouse_world_y
 
 
 def node_drag_run():
     if dragging:
-        dx = world_x - drag_start_world[0]
-        dy = world_y - drag_start_world[1]
+        dx = mouse_world_x - drag_start_world[0]
+        dy = mouse_world_y - drag_start_world[1]
         new_x = drag_start_world[0] + dx
         new_y = drag_start_world[1] + dy
         new_x, new_y = viewport.snap_to_grid(new_x, new_y)
@@ -274,7 +277,7 @@ def draw_edges():
                 thing_start = _thing
         # calc points 
         c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(thing_start)
-        c2x, c2y = viewport.snap_to_grid(world_x, world_y)
+        c2x, c2y = viewport.snap_to_grid(mouse_world_x, mouse_world_y)
         c2w, c2h = 0, 0
         if viewport.state['edge_direction_cur'] == 0:
             x1, y1 = c1x + c1w//2, c1y + c1h//2
@@ -311,6 +314,20 @@ def draw_nodes():
                 text_w, text_h = surface.get_size()
                 screen.blit(surface, (x + w//2 - text_w//2, y + h - int(text_h * 1.4)))
 
+def node_create():
+    snap_x, snap_y = viewport.snap_to_grid(mouse_world_x, mouse_world_y)
+    canvas['things'].append(
+        thing_create(
+            str(len(canvas['things'])+1), 
+            kind = 'node', 
+            name = 'enter text', 
+            x = snap_x, 
+            y = snap_y,
+            w_min = 256,
+            h_min = 64,
+        )
+    )
+
 
 def main_draw():
     screen.fill(COLOR_BACKGROUND)
@@ -324,7 +341,7 @@ def main_draw():
 running = True
 while running:
     mouse_screen_x, mouse_screen_y = pygame.mouse.get_pos()
-    world_x, world_y = viewport.screen_to_world(mouse_screen_x, mouse_screen_y)
+    mouse_world_x, mouse_world_y = viewport.screen_to_world(mouse_screen_x, mouse_screen_y)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -416,13 +433,7 @@ while running:
                     viewport.pan_start(mouse_screen_x, mouse_screen_y)
 
                 elif event.button == 3:
-                    snap_x, snap_y = viewport.snap_to_grid(world_x, world_y)
-                    canvas['things'].append(
-                        thing_create(
-                            str(len(canvas['things'])+1), kind='node', name='hydrogen', 
-                            x=snap_x, y=snap_y
-                        )
-                    )
+                    node_create()
 
                 # ZOOM ON MOUSE POS
                 elif event.button == 4:
