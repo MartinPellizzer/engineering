@@ -241,12 +241,15 @@ def draw_grid():
             y += step
 
 def draw_debug():
-    surface = font_name.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
-    screen.blit(surface, (0, 0))
-    surface = font_name.render(str(viewport.state['camera_zoom']), True, (255, 0, 255))
-    screen.blit(surface, (0, 30))
-    surface = font_name.render(str(viewport.state['edge_direction_cur']), True, (255, 0, 255))
-    screen.blit(surface, (0, 60))
+    if viewport.state['debug_show']:
+        surface = font_name.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
+        screen.blit(surface, (0, 0))
+        surface = font_name.render(str(viewport.state['camera_zoom']), True, (255, 0, 255))
+        screen.blit(surface, (0, 30))
+        surface = font_name.render(str(viewport.state['edge_direction_cur']), True, (255, 0, 255))
+        screen.blit(surface, (0, 60))
+        surface = font_name.render(f'{mouse_screen_x}:{mouse_screen_y}', True, (255, 0, 255))
+        screen.blit(surface, (0, 90))
 
 def draw_edges():
     # EDGES
@@ -359,12 +362,34 @@ while running:
                     edge_tmp['node_start'] = None
                     edge_tmp['node_end'] = None
                 elif event.key == pygame.K_e:
-                    rect = pygame.Rect(0, 0, WIDTH, HEIGHT)
+                    # rect = pygame.Rect(0, 0, WIDTH, HEIGHT)
+                    # snapshot = screen.subsurface(rect).copy()
+                    # pygame.image.save(snapshot, 'screenshot.png')
+                    x1, y1, x2, y2 = None, None, None, None
+                    for thing in canvas['things']:
+                        if thing['kind'] == 'node':
+                            if x1 == None: x1 = thing['x']
+                            if y1 == None: y1 = thing['y']
+                            if x2 == None: x2 = thing['x'] + thing['w']
+                            if y2 == None: y2 = thing['y'] + thing['h']
+                            if x1 > thing['x']: x1 = thing['x']
+                            if y1 > thing['y']: y1 = thing['y']
+                            if x2 < thing['x'] + thing['w']: x2 = thing['x'] + thing['w']
+                            if y2 < thing['y'] + thing['h']: y2 = thing['y'] + thing['h']
+                    x = x1
+                    y = y1
+                    w = x2 - x1
+                    h = y2 - y1
+                    rect = pygame.Rect(x, y, w, h)
+                    print(rect)
                     snapshot = screen.subsurface(rect).copy()
                     pygame.image.save(snapshot, 'screenshot.png')
                 elif event.key == pygame.K_g:
                     if viewport.state['grid_show']: viewport.state['grid_show'] = False
                     else: viewport.state['grid_show'] = True
+                elif event.key == pygame.K_d:
+                    if viewport.state['debug_show']: viewport.state['debug_show'] = False
+                    else: viewport.state['debug_show'] = True
             elif event.key == pygame.K_BACKSPACE:
                 thing = viewport.thing_focused_get(canvas)
                 if thing != None:
@@ -415,7 +440,6 @@ while running:
         if event.type == pygame.MOUSEMOTION:
             node_drag_run()
             viewport.pan_run(mouse_screen_x, mouse_screen_y)
-
 
     main_draw()
 

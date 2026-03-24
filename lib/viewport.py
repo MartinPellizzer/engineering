@@ -16,6 +16,7 @@ state = {
     'grid_show': False,
     'edge_direction_cur': 0,
     'edge_tmp_drawing': False,
+    'debug_show': False,
 }
 
 def world_to_screen(x, y):

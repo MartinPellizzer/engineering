@@ -141,7 +141,4 @@ print('log_kill:', log_kill(0.3, 1, 10))
 print('kv virus:', kv('virus', 9))
 print('kv giarda:', kv('giardia', 9))
 print('kv cryptosporidium:', kc(5))
-print('kv cryptosporidium:', kc(10))
-print('kv cryptosporidium:', kc(15))
-print('kv cryptosporidium:', kc(20))
 
