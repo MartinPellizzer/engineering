@@ -18,7 +18,7 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("FLOW")
 
 FONT_FAMILY_INTER_MEDIUM = 'fonts/Inter/static/Inter_18pt-Medium.ttf'
-font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, 24)
+font_name = pygame.font.Font(FONT_FAMILY_INTER_MEDIUM, int(24 * viewport.state['camera_zoom']))
 
 diagram_index = 0
 
@@ -56,6 +56,21 @@ drag_index = None
 drag_start_world = None
 drag_initial_positions = []
 
+def thing_coordinates_get(thing):
+    x, y = viewport.world_to_screen(thing["x"], thing["y"])
+    w_text, h_text = font_name.size(thing['name'])
+    w_min, h_min = thing['w_min'] * viewport.state['camera_zoom'], thing['h_min'] * viewport.state['camera_zoom']
+    print(w_text, w_min)
+    if w_text > w_min: 
+        w = w_text
+    else: 
+        w = w_min
+    if h_text > h_min: 
+        h = h_text
+    else: 
+        h = h_min
+    return x, y, w, h
+
 def save(slot):
     with open(f"diagrams/{slot}.json", "w") as file:
         json.dump(canvas, file, indent=4)
@@ -73,8 +88,8 @@ def load(slot):
 def draw_line_angled(thing_1, thing_2, edge_direction):
     c1 = thing_1
     c2 = thing_2
-    c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(c1)
-    c2x, c2y, c2w, c2h = viewport.thing_coordinates_get(c2)
+    c1x, c1y, c1w, c1h = thing_coordinates_get(c1)
+    c2x, c2y, c2w, c2h = thing_coordinates_get(c2)
     arrow_size = 16
     if edge_direction == 0:
         x1, y1 = c1x + c1w//2, c1y + c1h//2
@@ -125,8 +140,8 @@ def draw_line_angled(thing_1, thing_2, edge_direction):
 def draw_line_straight(thing_1, thing_2):
     c1 = thing_1
     c2 = thing_2
-    c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(c1)
-    c2x, c2y, c2w, c2h = viewport.thing_coordinates_get(c2)
+    c1x, c1y, c1w, c1h = thing_coordinates_get(c1)
+    c2x, c2y, c2w, c2h = thing_coordinates_get(c2)
     x1, y1 = c1x + c1w//2, c1y + c1h//2
     x2, y2 = c2x + c2w//2, c2y + c2h//2
     # line
@@ -139,7 +154,7 @@ def draw_line_straight(thing_1, thing_2):
 def create_edge():
     found = False
     for thing_i, thing in enumerate(canvas['things']):
-        x, y, w, h = viewport.thing_coordinates_get(thing)
+        x, y, w, h = thing_coordinates_get(thing)
         thing['focus'] = False
         if (
             mouse_screen_x > x and mouse_screen_x < x + w and 
@@ -182,7 +197,6 @@ def create_edge():
                                 edge_direction=viewport.state['edge_direction_cur'],
                             )
                         )
-                        print(viewport.state['edge_direction_cur'])
                 edge_tmp['node_start'] = None
                 edge_tmp['node_end'] = None
                 viewport.state['edge_tmp_drawing'] = False
@@ -196,7 +210,7 @@ def node_drag_start():
     global drag_index
     global drag_start_world
     for thing_i, thing in enumerate(canvas['things']):
-        x, y, w, h = viewport.thing_coordinates_get(thing)
+        x, y, w, h = thing_coordinates_get(thing)
         thing['focus'] = False
         if (
             mouse_screen_x > x and mouse_screen_x < x + w and 
@@ -276,7 +290,7 @@ def draw_edges():
             if edge_tmp['node_start'] == _thing['id']:
                 thing_start = _thing
         # calc points 
-        c1x, c1y, c1w, c1h = viewport.thing_coordinates_get(thing_start)
+        c1x, c1y, c1w, c1h = thing_coordinates_get(thing_start)
         c2x, c2y = viewport.snap_to_grid(mouse_world_x, mouse_world_y)
         c2w, c2h = 0, 0
         if viewport.state['edge_direction_cur'] == 0:
@@ -295,7 +309,7 @@ def draw_nodes():
     # NODES
     for thing in canvas['things']:
         if thing['kind'] == 'node':
-            x, y, w, h = viewport.thing_coordinates_get(thing)
+            x, y, w, h = thing_coordinates_get(thing)
             name = thing['name']
             # frame
             if thing['focus'] == False:
@@ -337,6 +351,36 @@ def main_draw():
     draw_debug()
     pygame.display.flip()
 
+def node_delete():
+    thing = viewport.thing_focused_get(canvas)
+    if thing != None:
+        if thing in canvas['things']:
+            canvas['things'].remove(thing)
+    for edge in canvas['things']:
+        if edge['node_start'] == thing['id'] or edge['node_end'] == thing['id']:
+            canvas['things'].remove(edge)
+    edge_tmp['node_start'] = None
+    edge_tmp['node_end'] = None
+
+def screenshot_create():
+    x1, y1, x2, y2 = None, None, None, None
+    for thing in canvas['things']:
+        if thing['kind'] == 'node':
+            if x1 == None: x1 = thing['x']
+            if y1 == None: y1 = thing['y']
+            if x2 == None: x2 = thing['x'] + thing['w']
+            if y2 == None: y2 = thing['y'] + thing['h']
+            if x1 > thing['x']: x1 = thing['x']
+            if y1 > thing['y']: y1 = thing['y']
+            if x2 < thing['x'] + thing['w']: x2 = thing['x'] + thing['w']
+            if y2 < thing['y'] + thing['h']: y2 = thing['y'] + thing['h']
+    x = x1
+    y = y1
+    w = x2 - x1
+    h = y2 - y1
+    rect = pygame.Rect(x, y, w, h)
+    snapshot = screen.subsurface(rect).copy()
+    pygame.image.save(snapshot, 'screenshot.png')
 
 running = True
 while running:
@@ -347,14 +391,15 @@ while running:
         if event.type == pygame.QUIT:
             running = False
 
-        # Typing
         if event.type == pygame.KEYDOWN:
+            # while creating line
             if viewport.state['edge_tmp_drawing']:
                 if 0: pass
                 elif event.key == pygame.K_SPACE:
                     if viewport.state['edge_direction_cur'] == 0: viewport.state['edge_direction_cur'] = 1
                     else: viewport.state['edge_direction_cur'] = 0
 
+            # while holding ctrl
             elif pygame.key.get_mods() & pygame.KMOD_CTRL:
                 if 0: pass
                 elif event.key == pygame.K_s: save(diagram_index)
@@ -368,45 +413,16 @@ while running:
                 elif event.key == pygame.K_7: load(7)
                 elif event.key == pygame.K_8: load(8)
                 elif event.key == pygame.K_9: load(9)
-                elif event.key == pygame.K_x:
-                    thing = viewport.thing_focused_get(canvas)
-                    if thing != None:
-                        if thing in canvas['things']:
-                            canvas['things'].remove(thing)
-                    for edge in canvas['things']:
-                        if edge['node_start'] == thing['id'] or edge['node_end'] == thing['id']:
-                            canvas['things'].remove(edge)
-                    edge_tmp['node_start'] = None
-                    edge_tmp['node_end'] = None
-                elif event.key == pygame.K_e:
-                    # rect = pygame.Rect(0, 0, WIDTH, HEIGHT)
-                    # snapshot = screen.subsurface(rect).copy()
-                    # pygame.image.save(snapshot, 'screenshot.png')
-                    x1, y1, x2, y2 = None, None, None, None
-                    for thing in canvas['things']:
-                        if thing['kind'] == 'node':
-                            if x1 == None: x1 = thing['x']
-                            if y1 == None: y1 = thing['y']
-                            if x2 == None: x2 = thing['x'] + thing['w']
-                            if y2 == None: y2 = thing['y'] + thing['h']
-                            if x1 > thing['x']: x1 = thing['x']
-                            if y1 > thing['y']: y1 = thing['y']
-                            if x2 < thing['x'] + thing['w']: x2 = thing['x'] + thing['w']
-                            if y2 < thing['y'] + thing['h']: y2 = thing['y'] + thing['h']
-                    x = x1
-                    y = y1
-                    w = x2 - x1
-                    h = y2 - y1
-                    rect = pygame.Rect(x, y, w, h)
-                    print(rect)
-                    snapshot = screen.subsurface(rect).copy()
-                    pygame.image.save(snapshot, 'screenshot.png')
+                elif event.key == pygame.K_x: node_delete()
+                elif event.key == pygame.K_e: screenshot_create()
                 elif event.key == pygame.K_g:
                     if viewport.state['grid_show']: viewport.state['grid_show'] = False
                     else: viewport.state['grid_show'] = True
                 elif event.key == pygame.K_d:
                     if viewport.state['debug_show']: viewport.state['debug_show'] = False
                     else: viewport.state['debug_show'] = True
+
+            # typing
             elif event.key == pygame.K_BACKSPACE:
                 thing = viewport.thing_focused_get(canvas)
                 if thing != None:
