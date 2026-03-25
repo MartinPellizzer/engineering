@@ -108,6 +108,13 @@ special case: Cryptosporidium
     - use CT tables
     - formula k = g * h^(Temp)
 
+---
+
+CT depends on how much log reduction you need (target)
+if the plant already do filtration and sedimentation, you need less CT
+for example if the target log reduction is 4 log, and filtration already remove 2 log: 
+    - you only need 2 log reduction with ozone
+
 '''
 
 import math
@@ -137,6 +144,10 @@ def kc(Temp):
     res = g * (h ** Temp)
     return res
 
+def log_kill_target_calc(log_kill_final, log_kill_filtration, log_kill_sedimentation):
+    res = log_kill_final - log_kill_filtration - log_kill_sedimentation
+    return res
+
 print('log_kill:', log_kill(0.3, 1, 10))
 print('kv virus:', kv('virus', 9))
 print('kv giarda:', kv('giardia', 9))
@@ -144,4 +155,5 @@ print('kv cryptosporidium:', kc(5))
 print('kv cryptosporidium:', kc(10))
 print('kv cryptosporidium:', kc(15))
 print('kv cryptosporidium:', kc(20))
+print('log_kill_target_calc:', log_kill_target_calc(4, 2, 0.5), 'log kill')
 
