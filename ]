@@ -559,9 +559,9 @@ elements.append(Paragraph("Benefici diretti", h3))
 elements.append(ListFlowable(
     [
         ListItem(Paragraph("Zero manodopera: l’utente finale non deve intervenire sul ciclo, eliminando la necessità di tecnici sul posto", list_style)),
-        ListItem(Paragraph("Qualità costante del prodotto: ogni ciclo di sanificazione è ripetibile e controllato, garantendo birra sicura e di ottima qualità", list_style)),
-        ListItem(Paragraph("Sicurezza: riduzione del rischio di contaminazioni e prodotto non consumabile", list_style)),
-        ListItem(Paragraph("Affidabilità operativa: il ciclo è automatico, veloce (10–30 secondi) e trasparente all’utente finale", list_style)),
+        ListItem(Paragraph("", list_style)),
+        ListItem(Paragraph("", list_style)),
+        ListItem(Paragraph("", list_style)),
     ],
     bulletType='bullet',   # or '1' for numbered
     leftIndent=15,
@@ -570,23 +570,6 @@ elements.append(ListFlowable(
     )
 )
 ###
-elements.append(Paragraph("Collegamento agli obiettivi", h3))
-data = [
-    ["Obiettivo", "Come la soluzione lo raggiunge"],
-    ["Automazione completa", "Tutto il ciclo gestito dal PLC, utente finale solo avvia il processo"],
-    ["Sanificazione ad ogni cambio fusto", "L’avvio del ciclo è legato alla selezione della linea post-cambio fusto"],
-    ["Qualità costante del prodotto", "Tempo e flusso dell’acqua ozonizzata predefiniti e controllati automaticamente"],
-    ["Eliminazione rischi e riduzione costi", "Nessun tecnico necessario, minori costi operativi, prodotto sempre sicuro"],
-]
-table = Table(data)
-table.setStyle(TableStyle([
-    ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
-    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-    ("GRID", (0, 0), (-1, -1), 1, colors.black),
-]))
-###
-elements.append(table)
-
 elements.append(PageBreak())
 
 # 
