@@ -586,31 +586,571 @@ table.setStyle(TableStyle([
 ]))
 ###
 elements.append(table)
-
+###
 elements.append(PageBreak())
 
-# 
+########################################
+# SOLUZIONE PROPOSTA
+########################################
 elements.append(Paragraph("Processo Operativo", h2))
+elements.append(
+    Paragraph(f'''
+        Il processo di sanificazione è gestito automaticamente tramite una sequenza controllata di fasi operative attivata dall’utente al cambio fusto.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Visione semplificata", h3))
+elements.append(
+    Paragraph(f'''
+        Il ciclo operativo si sviluppa secondo le seguenti fasi:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Selezione della linea da parte dell’utente", list_style)),
+        ListItem(Paragraph("Avvio manuale del ciclo tramite interfaccia", list_style)),
+        ListItem(Paragraph("Erogazione di acqua ozonizzata per la sanificazione della linea", list_style)),
+        ListItem(Paragraph("Ripristino automatico dell’erogazione della birra", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Il processo è progettato per essere trasparente all’utente e integrato nelle normali operazioni di spillatura.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Sequenza tecnica dettagliata", h3))
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Trigger del ciclo: L’utente, dopo aver sostituito il fusto, seleziona la linea da sanificare tramite interfaccia e avvia manualmente il ciclo.", list_style)),
+        ListItem(Paragraph("Attivazione del sistema: Il sistema di controllo riceve il comando di avvio e inizializza la sequenza operativa.", list_style)),
+        ListItem(Paragraph("Commutazione del flusso: Le valvole vengono attivate per deviare il flusso dalla modalità erogazione birra alla modalità sanificazione.", list_style)),
+        ListItem(Paragraph("Attivazione generatore di ozono: Il sistema attiva il generatore di ozono tramite segnale di controllo o alimentazione diretta.", list_style)),
+        ListItem(Paragraph("Fase di sanificazione: L’utente inizia a spillare; durante questa fase, (1) viene erogata acqua ozonizzata, (2) il fluido attraversa l’intera linea di distribuzione, (3) la sanificazione avviene lungo tutto il percorso fino alla spillatrice.", list_style)),
+        ListItem(Paragraph("Controllo temporale: Il sistema mantiene la fase di sanificazione per un tempo predefinito (attualmente 10 secondi, configurabile in futuro).", list_style)),
+        ListItem(Paragraph("Terminazione sanificazione: Al termine del tempo impostato, (1) il generatore di ozono viene disattivato, (2) le valvole riportano il sistema alla configurazione di erogazione normale.", list_style)),
+        ListItem(Paragraph("Ripristino erogazione prodotto: La birra torna automaticamente a fluire dalla spillatrice, segnalando implicitamente all’utente il completamento del ciclo.", list_style)),
+    ],
+    bulletType='1',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
+elements.append(Paragraph("Note operative e condizioni", h3))
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Il ciclo è attualmente configurato con durata fissa (10 secondi), con possibilità futura di parametrizzazione da parte di personale tecnico.", list_style)),
+        ListItem(Paragraph("Durante la fase di sanificazione, l’utente deve mantenere attiva la spillatura per consentire il passaggio completo dell’acqua ozonizzata nella linea.", list_style)),
+        ListItem(Paragraph("Il sistema, nella configurazione attuale, gestisce una linea alla volta; è prevista un’evoluzione futura per la gestione simultanea di più linee in modo indipendente.", list_style)),
+        ListItem(Paragraph("La gestione di condizioni anomale (es. interruzione del ciclo, assenza di flusso) non è ancora definita e rappresenta un punto di attenzione per le fasi successive di progettazione.", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+# 
 elements.append(PageBreak())
 
-# 
+########################################
+# ARCHITETTURA DEL SISTEMA
+########################################
 elements.append(Paragraph("Architettura del Sistema", h2))
+elements.append(
+    Paragraph(f'''
+        Il sistema è basato su un’architettura modulare controllata da microcontrollore, progettata per garantire integrazione, affidabilità operativa e scalabilità futura.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Vista ad alto livello", h3))
+elements.append(
+    Paragraph(f'''
+        L’architettura del sistema si compone dei seguenti sottosistemi principali:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Sistema di controllo centrale, responsabile della gestione della logica operativa", list_style)),
+        ListItem(Paragraph("Sistema idraulico, per la gestione dei flussi di acqua ozonizzata e prodotto", list_style)),
+        ListItem(Paragraph("Interfaccia utente, per l’avvio e il controllo del ciclo", list_style)),
+        ListItem(Paragraph("Sistema di generazione ozono, fornito dal partner e integrato nel processo", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Questi elementi operano in modo coordinato per garantire l’esecuzione automatica del ciclo di sanificazione.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Componenti principali", h3))
+elements.append(
+    Paragraph(f'''
+        Sistema di controllo:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Microcontrollore integrato su PCB custom progettata ad hoc", list_style)),
+        ListItem(Paragraph("Gestione della logica di controllo, temporizzazioni e sequenze operative", list_style)),
+        ListItem(Paragraph("Interfacciamento con sensori, attuatori e sistema ozono", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Attuatori:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Elettrovalvole on/off per (1) commutazione tra modalità sanificazione ed erogazione prodotto, (2) gestione delle linee di distribuzione", list_style)),
+        ListItem(Paragraph("Il sistema sfrutta la pressione della rete idrica (rubinetto), senza necessità di pompe dedicate", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Sensori:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Possibile integrazione futura di sensori di flusso per (1) monitoraggio del corretto svolgimento del ciclo, (2) rilevamento di anomalie (es. assenza di flusso)", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Touchscreen con interfaccia semplificata:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Touchscreen con interfaccia semplificata", list_style)),
+        ListItem(Paragraph("Funzionalità attuale (1) selezione linea, (2) avvio ciclo", list_style)),
+        ListItem(Paragraph("Possibili evoluzioni (1) configurazione parametri, (2) monitoraggio stato sistema", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Sistema di generazione ozono (partner):
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Il generatore di ozono viene integrato nel sistema tramite (1) segnale di controllo digitale (modalità preferita), (2) controllo diretto dell’alimentazione (soluzione alternativa di backup)", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Logica di interconnessione:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("L’utente interagisce con l’interfaccia e il comando viene inviato al microcontrollore", list_style)),
+        ListItem(Paragraph("Il microcontrollore (1) attiva/disattiva il generatore di ozono, (2) controlla le elettrovalvole, (3) gestisce la temporizzazione del ciclo", list_style)),
+        ListItem(Paragraph("I sensori (quando presenti) forniscono feedback al sistema di controllo per garantire il corretto funzionamento", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Questa architettura consente una gestione centralizzata e automatizzata dell’intero processo.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Scalabilità e sviluppi futuri", h3))
+elements.append(
+    Paragraph(f'''
+        L’architettura è progettata per supportare evoluzioni future, tra cui:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("gestione di più linee di spillatura in parallelo (8–10 linee)", list_style)),
+        ListItem(Paragraph("implementazione di controlli indipendenti per ciascuna linea, con valvole dedicate", list_style)),
+        ListItem(Paragraph("introduzione di sensori aggiuntivi per migliorare sicurezza e affidabilità", list_style)),
+        ListItem(Paragraph("espansione delle funzionalità dell’interfaccia utente", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        La modularità del sistema consente di adattare facilmente la soluzione a configurazioni più complesse senza modifiche sostanziali alla logica di base.
+    ''', paragraph)
+)
+#
 elements.append(PageBreak())
 
 # 
+
+########################################
+# INTEGRAZIONE CON SISTEMA PARTNER
+########################################
 elements.append(Paragraph("Integrazione con Sistema Partner", h2))
+elements.append(
+    Paragraph(f'''
+        L’integrazione con il sistema di generazione di ozono del partner è tecnicamente realizzabile, con alcune specifiche di interfaccia ancora da validare.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Modalità di integrazione", h3))
+elements.append(
+    Paragraph(f'''
+        Il sistema proposto prevede l’integrazione diretta con il generatore di ozono fornito dal partner, al fine di coordinare automaticamente la produzione di acqua ozonizzata durante il ciclo di sanificazione.
+    ''', paragraph)
+)
+elements.append(
+    Paragraph(f'''
+        L’integrazione si basa su:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("attivazione e disattivazione del generatore in funzione del ciclo operativo", list_style)),
+        ListItem(Paragraph("sincronizzazione tra produzione di ozono e flusso idraulico", list_style)),
+        ListItem(Paragraph("gestione coordinata tramite il sistema di controllo centrale", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
+elements.append(Paragraph("Interfacce tecniche previste", h3))
+elements.append(
+    Paragraph(f'''
+        L’architettura prevede due possibili modalità di controllo del generatore:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Controllo tramite segnale digitale (modalità preferita): Il sistema invia un segnale di start/stop al generatore di ozono, consentendo un’integrazione diretta e controllata.", list_style)),
+        ListItem(Paragraph("Controllo tramite alimentazione (modalità alternativa): In assenza di interfacce di controllo dedicate, il sistema può gestire l’accensione e lo spegnimento del generatore intervenendo direttamente sull’alimentazione elettrica.", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Eventuali segnali di feedback dal generatore (es. stato attivo, errore) potranno essere integrati qualora disponibili.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Aree da validare", h3))
+elements.append(
+    Paragraph(f'''
+        Alcuni aspetti tecnici risultano attualmente non definiti e richiedono approfondimento con il partner:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("disponibilità e tipologia di interfacce di controllo (segnali digitali/analogici)", list_style)),
+        ListItem(Paragraph("caratteristiche elettriche del generatore (tensione, potenza, modalità di avvio)", list_style)),
+        ListItem(Paragraph("tempi di risposta e comportamento all’avvio/arresto", list_style)),
+        ListItem(Paragraph("eventuale disponibilità di segnali di stato o diagnostica", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Questi elementi sono fondamentali per definire in modo preciso la strategia di integrazione.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Criticità e rischi", h3))
+elements.append(
+    Paragraph(f'''
+        L’integrazione con il sistema del partner rappresenta uno dei principali punti di attenzione del progetto, in quanto:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("la mancanza di interfacce standard potrebbe richiedere soluzioni alternative", list_style)),
+        ListItem(Paragraph("comportamenti non noti del generatore potrebbero influenzare il ciclo operativo", list_style)),
+        ListItem(Paragraph("eventuali tempi di avvio non trascurabili potrebbero richiedere adattamenti nella sequenza di controllo", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
+elements.append(Paragraph("Strategia di integrazione", h3))
+elements.append(
+    Paragraph(f'''
+        Per mitigare i rischi identificati, si prevede un approccio progressivo:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("raccolta dettagli tecnici dal partner", list_style)),
+        ListItem(Paragraph("sviluppo di un prototipo di integrazione", list_style)),
+        ListItem(Paragraph("test funzionali per validare il comportamento del sistema", list_style)),
+        ListItem(Paragraph("eventuale adattamento della logica di controllo", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Questo approccio consente di ridurre le incertezze e garantire una integrazione robusta ed affidabile.
+    ''', paragraph)
+)
+
 elements.append(PageBreak())
 
-# 
+########################################
+# BENEFICI ATTESI
+########################################
 elements.append(Paragraph("Benefici Attesi", h2))
+elements.append(
+    Paragraph(f'''
+        L’automazione del processo di sanificazione genera benefici significativi in termini di qualità del prodotto, efficienza operativa e riduzione dei costi, migliorando l’affidabilità complessiva del servizio.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Qualità del prodotto", h3))
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Mantenimento costante della qualità della birra durante la spillatura", list_style)),
+        ListItem(Paragraph("Eliminazione del rischio di contaminazioni nelle linee di distribuzione", list_style)),
+        ListItem(Paragraph("Preservazione delle caratteristiche organolettiche del prodotto", list_style)),
+        ListItem(Paragraph("Riduzione del rischio di prodotto non consumabile", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
+elements.append(Paragraph("Efficienza operativa", h3))
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Eliminazione della necessità di interventi da parte di tecnici specializzati", list_style)),
+        ListItem(Paragraph("Possibilità di eseguire la sanificazione direttamente da parte dell’operatore", list_style)),
+        ListItem(Paragraph("Processo immediato e integrato nel normale flusso di lavoro (cambio fusto)", list_style)),
+        ListItem(Paragraph("Eliminazione dei tempi di attesa legati alla disponibilità dei tecnici", list_style)),
+        ListItem(Paragraph("Assenza di tempi di fermo dell’impianto", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
+elements.append(Paragraph("Riduzione dei costi", h3))
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Riduzione dei costi di manodopera tecnica", list_style)),
+        ListItem(Paragraph("Riduzione delle perdite legate a prodotto scartato o restituito", list_style)),
+        ListItem(Paragraph("Eliminazione dei costi indiretti legati a inefficienze operative", list_style)),
+        ListItem(Paragraph("Riduzione del rischio di perdita di clienti e conseguente impatto economico", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
+elements.append(Paragraph("Affidabilità e valore per il business", h3))
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Maggiore affidabilità del servizio offerto al cliente finale", list_style)),
+        ListItem(Paragraph("Miglioramento della reputazione degli operatori (bar, ristoranti)", list_style)),
+        ListItem(Paragraph("Maggiore controllo sulla qualità del prodotto distribuito", list_style)),
+        ListItem(Paragraph("Vantaggio competitivo per il fornitore di birra, che può garantire standard qualitativi costanti senza dipendere da interventi esterni", list_style)),
+        ListItem(Paragraph("Possibilità di scalare il servizio su più clienti senza aumentare proporzionalmente i costi operativi", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
 elements.append(PageBreak())
 
-# 
-elements.append(Paragraph("Fattibilita e Rischi", h2))
+########################################
+# BENEFICI ATTESI
+########################################
+elements.append(Paragraph("Fattibilità e Rischi", h2))
+elements.append(
+    Paragraph(f'''
+        Questo approccio consente di ridurre le incertezze e garantire una integrazione robusta ed affidabile.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Affidabilità e valore per il business", h3))
+elements.append(
+    Paragraph(f'''
+        Il sistema proposto si basa su componenti e tecnologie consolidate, tra cui:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("sistemi di controllo basati su microcontrollore", list_style)),
+        ListItem(Paragraph("elettrovalvole per la gestione dei flussi", list_style)),
+        ListItem(Paragraph("integrazione con sistemi di generazione di ozono", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        L’architettura complessiva è relativamente semplice e non richiede lo sviluppo di tecnologie innovative, rendendo il progetto realizzabile nel breve-medio termine.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Rischi principali", h3))
+data = [
+    ["Rischio", "Impatto", "Mitigazione"],
+    ["Esecuzione non corretta del ciclo di sanificazione", "Alto", "Validazione del ciclo tramite test reali, introduzione di sensori (es. flusso) per monitoraggio"],
+    ["Parametri di sanificazione non ottimali (tempo/volume)", "Alto", "Test sperimentali per determinare durata e quantità di fluido necessarie"],
+    ["Incertezza sull’integrazione con il generatore di ozono", "Medio-Alto", "Raccolta dati tecnici dal partner e test di integrazione su prototipo"],
+    ["Utilizzo non corretto da parte dell’utente (es. mancato avvio ciclo)", "Medio", "Valutazione di sistemi automatici di rilevazione cambio fusto"],
+    ["Guasti o anomalie del sistema (valvole, flusso, assenza acqua)", "Medio", "Progettazione con controlli di sicurezza e diagnostica base"],
+]
+table = Table(data)
+table.setStyle(TableStyle([
+    ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
+    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+    ("GRID", (0, 0), (-1, -1), 1, colors.black),
+]))
+elements.append(table)
+###
+elements.append(Paragraph("Strategia di mitigazione", h3))
+elements.append(
+    Paragraph(f'''
+        Per ridurre i rischi identificati, si prevede un approccio iterativo basato su:
+    ''', paragraph)
+)
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("sviluppo di un prototipo funzionante", list_style)),
+        ListItem(Paragraph("esecuzione di test reali di sanificazione per validare l’efficacia del processo", list_style)),
+        ListItem(Paragraph("raccolta e integrazione dei dati tecnici del sistema del partner", list_style)),
+        ListItem(Paragraph("introduzione progressiva di sensori e controlli di sicurezza", list_style)),
+        ListItem(Paragraph("eventuale adattamento della logica di controllo sulla base dei risultati ottenuti", list_style)),
+    ],
+    bulletType='bullet',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+elements.append(
+    Paragraph(f'''
+        Questo approccio consente di affrontare in modo strutturato le incertezze e garantire la robustezza del sistema finale.
+    ''', paragraph)
+)
+###
 elements.append(PageBreak())
 
-# 
+########################################
+# PIANO DI IMPLEMENTAZIONE
+########################################
 elements.append(Paragraph("Piano di Implementazione", h2))
+elements.append(
+    Paragraph(f'''
+        Il progetto sarà sviluppato in fasi iterative, con prototipo e test in laboratorio per validare il sistema su una singola linea, garantendo la fattibilità del processo prima di eventuali sviluppi commerciali.
+    ''', paragraph)
+)
+###
+elements.append(Paragraph("Fasi del progetto", h3))
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Raccolta requisiti: (1) Definizione dettagliata dei parametri di sanificazione, interfacce e flussi di controllo. (2) Identificazione dei punti critici da validare con il partner.", list_style)),
+        ListItem(Paragraph("Progettazione rapida: (1) Sviluppo della logica di controllo su microcontrollore. (2) Progettazione PCB custom e schema idraulico della linea di test.", list_style)),
+        ListItem(Paragraph("Sviluppo prototipo: (1) Realizzazione di un prototipo funzionante su una singola linea. (2) Integrazione con elettrovalvole e generatore di ozono (modalità segnale o alimentazione).", list_style)),
+        ListItem(Paragraph("Test e validazione in laboratorio: (1) Verifica della corretta esecuzione del ciclo. (2) Misurazione dei parametri di sanificazione (tempo, quantità di acqua ozonizzata). (3) Identificazione e correzione di eventuali anomalie.", list_style)),
+        ListItem(Paragraph("Ottimizzazione iterativa: (1) Adattamento della logica di controllo sulla base dei risultati dei test. (2) Possibile aggiunta di sensori o miglioramenti dell’interfaccia utente.", list_style)),
+        ListItem(Paragraph("Documentazione e conclusioni: (1) Raccolta dei dati sperimentali. (2) Valutazione finale della fattibilità e preparazione delle linee guida per eventuale sviluppo futuro del prodotto vendibile.", list_style)),
+    ],
+    bulletType='1',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
+elements.append(Paragraph("Approccio", h3))
+elements.append(ListFlowable(
+    [
+        ListItem(Paragraph("Iterativo e test-driven: ogni fase produce dati concreti e consente adattamenti rapidi", list_style)),
+        ListItem(Paragraph("Prototipo singola linea: per validare il concetto senza investimenti iniziali troppo grandi", list_style)),
+        ListItem(Paragraph("Validazione in laboratorio: riduce rischi prima di qualsiasi test sul campo", list_style)),
+        ListItem(Paragraph("Obiettivo primario: validare il processo e dimostrare la fattibilità del sistema completo", list_style)),
+    ],
+    bulletType='1',   # or '1' for numbered
+    leftIndent=15,
+    bulletFontName='Helvetica',
+    bulletFontSize=8
+    )
+)
+###
 elements.append(PageBreak())
 
 # 
@@ -628,7 +1168,7 @@ elements.append(PageBreak())
 # BUILD
 doc.build(elements, onFirstPage=header_footer, onLaterPages=header_footer)
 
-subprocess.run(["xdg-open", "doc.pdf"])
+# subprocess.run(["xdg-open", "doc.pdf"])
 
 '''
 1. ad oggi, il sistema funziona che un tecnico va dal cliente a fare un operazione di lavaggio / sanificazione manuale ogni mese, e deve essere pagato da qualcuno (utente finale, o fornitore del servizio di birra)
@@ -678,4 +1218,53 @@ subprocess.run(["xdg-open", "doc.pdf"])
 8. non definito
 9. al momento no
 per spiegarti come funziona, l'utente finale cambia il fusto, avvia il ciclo, e comincia a spinare. mentre spina, esce acqua ozonizzata per 10 secondi, la quale passa per la linea sanificandola. al termine dei 10 secondi ricomincia ad uscire la birra dalla spina al posto dell'acqua.
+'''
+
+'''
+1. manualmente, utente preme un bottone (operazione da fare al cambio fusto)
+2. per ora i 10 secondi sono fissi, in futuro opzione regolabile
+3. durante il cicle l'utende deve spillare, dalla spillatrice uscira acqua ozonizzata quindi lo scopo e di sanificare tutta la linea facendo passare l'acqua ozonizzata per tutta la linea e facendola uscire dalla spillatrice. dopo 10 secondi che si sta spillando acqua, in modo automatico comincia ad uscire birra quindi l'utente sa che e pronta.
+4. se il ciclo viene interrotto, non definito al momento, grazie per aver notato questa criticita
+5. nel caso multi-linea, in futuro cicle indipendenti, per ora solo una linea
+'''
+
+'''
+1. utilizzeremo un microcontrollore, con una PBC custom progettata su misura da noi.
+2. l'impianto di sanificazione viene attaccato ad un rubinetto, quindi l'acqua la prende con pressione di rubinetto.
+3. elettrovalvole on/off
+4. solo idea per ora
+5. controllo via segnale se compatibile con microcotrollore, altrimenti si interviene sull alimentazione diretta come backup
+6. per ora un bottone per linea, in futuro probabilmente qualcosa di piu complesso come la scelta di parametri ecc.
+7. da definire, ma probabilmente ogni linea ha valvole dedicate
+'''
+
+'''
+1. non ancora chiarito
+2. non ancora chiarito
+3. non ancora chiarito
+4. non ancora chiarito
+5. non ancora chiarito
+'''
+
+'''
+1. la qualita della birra resta intatta durante la spillatura e non viene contaminata
+2. minore richiesta di interventi, zero tempi di fermo, facilita nel sanificare le linee, puo essere fatto da chi spilla la birra invece che da un tecnico specializzato, sanificazione istantanea e costante invece di attesa uscita tecnico
+3. manodopera tecnici, prodotto scartato, ritorno prodotto da parte di clienti, perdita di potenziali clienti e reputazione,
+4. non saprei, deducilo tu
+'''
+
+'''
+1. al momento rischio piu grande e avere la certezza che il cicle venga eseguito correttamente, considerando tempistiche, rilevamento flusso, ecc.
+2. 10 secondi sono un valore fittizio, bisogna verificare il valore reale di secondi (o quantita ti acqua ozonizzata da far passare) per validare il risultato.
+3. non si conosce ancora il comportamento del sistema partner
+4. salti il ciclo, valutare se rilevazione del cambio fusto viene fatta in automatico invece che indicata dall'utente
+5. possibili guasti sistema, valvole, flusso, manca acqua.
+'''
+
+'''
+1. si, per una sola linea
+2. partire rapido e iterare
+3. in laboratorio
+4. si
+5. solo validare, il prodotto vendibile sara un passo successivo
 '''
