@@ -584,8 +584,24 @@ table.setStyle(TableStyle([
     ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
     ("GRID", (0, 0), (-1, -1), 1, colors.black),
 ]))
-###
 elements.append(table)
+###
+elements.append(Paragraph("Diagramma sistema corrente (manuale)", h3))
+elements.append(Spacer(1, 10))
+mul = 0.4
+image_w = 736 * mul
+image_h = 64 * mul
+img = Image(f"projects/spillatura/diagram-0001.png", image_w, image_h)
+elements.append(img)
+###
+elements.append(Spacer(1, 20))
+elements.append(Paragraph("Diagramma sistema da sviluppare (automatico)", h3))
+elements.append(Spacer(1, 10))
+mul = 0.4
+image_w = 768 * mul
+image_h = 416 * mul
+img = Image(f"projects/spillatura/diagram-0002.png", image_w, image_h)
+elements.append(img)
 ###
 elements.append(PageBreak())
 
@@ -831,7 +847,15 @@ elements.append(
         La modularità del sistema consente di adattare facilmente la soluzione a configurazioni più complesse senza modifiche sostanziali alla logica di base.
     ''', paragraph)
 )
-#
+###
+elements.append(Paragraph("Diagramma Architettura Sistema", h3))
+elements.append(Spacer(1, 10))
+mul = 0.4
+image_w = 640 * mul
+image_h = 576 * mul
+img = Image(f"projects/spillatura/diagram-0003.png", image_w, image_h)
+elements.append(img)
+###
 elements.append(PageBreak())
 
 # 
