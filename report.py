@@ -1,73 +1,5 @@
 import subprocess
 
-if 0:
-    import subprocess
-
-    from reportlab.platypus import SimpleDocTemplate, Paragraph
-    from reportlab.lib.styles import getSampleStyleSheet
-    from reportlab.lib import colors
-    from reportlab.platypus import Spacer
-    from reportlab.platypus import Table
-    from reportlab.platypus import TableStyle
-    from reportlab.platypus import Image
-    from reportlab.platypus import PageBreak
-    from reportlab.lib.styles import ParagraphStyle
-
-    doc = SimpleDocTemplate("doc.pdf")
-    styles = getSampleStyleSheet()
-
-    content = []
-
-    # heading
-    content.append(Paragraph("My Report", styles["Heading1"]))
-
-    # spacing
-    content.append(Spacer(1, 20))
-
-    # paragraph
-    content.append(Paragraph("This is a paragraph of text.", styles["Normal"]))
-
-    content.append(Spacer(1, 20))
-
-    # table
-    data = [
-        ["Product", "Price"],
-        ["Apple", "$1"],
-        ["Banana", "$2"]
-    ]
-    table = Table(data)
-    table.setStyle(TableStyle([
-        ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
-        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-        ("GRID", (0, 0), (-1, -1), 1, colors.black),
-    ]))
-    content.append(table)
-
-    # image
-    img = Image("logo.jpg", width=100, height=100)
-    content.append(img)
-
-    # page break
-    content.append(PageBreak())
-
-
-    custom_style = ParagraphStyle(
-        name="Custom",
-        fontSize=30,
-        leading=16,
-        spaceAfter=10
-    )
-    content.append(Paragraph("new page", custom_style))
-
-    def header(canvas, doc):
-        canvas.drawString(100, 800, "My Header")
-
-    doc.build(content, onFirstPage=header)
-
-    # subprocess.run(["xdg-open", "doc.pdf"])
-
-
-
 ########################################
 # DOC ELECTROLYSIS
 ########################################
@@ -78,6 +10,23 @@ from reportlab.lib import colors
 from reportlab.lib.enums import TA_RIGHT
 from reportlab.graphics.shapes import Drawing, Rect, String
 from reportlab.graphics.charts.lineplots import LinePlot
+
+def list_gen(items):
+    items_formatted = []
+    for item in items:
+        items_formatted.append(Paragraph(item, list_style))
+    elements.append(
+        ListFlowable(
+            items_formatted,
+            bulletType='bullet',
+            leftIndent=12,
+            bulletIndent=0,
+            bulletFontName='Helvetica',
+            bulletFontSize=8,
+            spaceBefore=6,
+            spaceAfter=12,
+        )
+    )
 
 # ----------------------------
 # DOCUMENT SETUP
@@ -119,6 +68,28 @@ meta = ParagraphStyle('meta', fontSize=9, textColor=GREY)
 footer = ParagraphStyle('footer', fontSize=8,
                         textColor=GREY, alignment=TA_RIGHT)
 
+body_style = ParagraphStyle(
+    name="body_style",
+    fontName="Helvetica",
+    fontSize=10.5,
+    leading=14.5,              # line spacing
+    textColor=colors.HexColor("#222222"),
+    alignment=0,               # left align
+    spaceAfter=10,             # spacing between paragraphs
+    spaceBefore=0,
+    allowWidows=1,
+    allowOrphans=0,
+)
+
+list_style = ParagraphStyle(
+    name="list_style",
+    fontName="Helvetica",
+    fontSize=10.5,
+    leading=14.5,              # spacing within lines
+    textColor=colors.HexColor("#222222"),
+    leftIndent=0,
+    spaceAfter=0,
+)
 # ----------------------------
 # COMPONENTS
 # ----------------------------
@@ -158,7 +129,7 @@ elements.append(Paragraph("Automazione del Processo di Ozonizzazione nei Sistemi
 elements.append(Spacer(1, 20))
 elements.append(Paragraph(
     "Analisi Tecnica",
-    body
+    body_style,
 ))
 
 elements.append(Spacer(1, 100))
@@ -181,65 +152,51 @@ elements.append(Paragraph("Executive Summary", h2))
 elements.append(
     Paragraph(f'''
         Si propone lo sviluppo di un sistema automatizzato per la sanificazione delle linee di distribuzione della birra, basato su tecnologia di ozonizzazione, in grado di operare in modo autonomo ad ogni cambio fusto.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Contesto e problema", h3))
 elements.append(
     Paragraph(f'''
         L’attuale processo di sanificazione è completamente manuale e richiede l’intervento periodico di un tecnico presso il cliente finale. Questo approccio comporta:
-    ''', paragraph)
+    ''', body_style,)
 )
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("costi operativi elevati legati alla manodopera", list_style)),
-        ListItem(Paragraph("dipendenza dalla disponibilità dei tecnici", list_style)),
-        ListItem(Paragraph("ritardi nelle operazioni di pulizia", list_style)),
-        ListItem(Paragraph("variabilità nella qualità della sanificazione", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(Spacer(1, 10))
+
+list_gen(f'''
+costi operativi elevati legati alla manodopera
+dipendenza dalla disponibilità dei tecnici
+ritardi nelle operazioni di pulizia
+variabilità nella qualità della sanificazione
+'''.split('\n'))
+
 elements.append(
     Paragraph(f'''
         Tali criticità impattano direttamente sulla qualità del prodotto finale, con conseguente rischio di perdita di clientela e danno reputazionale per gli operatori.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Soluzione proposta", h3))
 elements.append(
     Paragraph(f'''
         Il progetto prevede lo sviluppo di un sistema automatizzato in grado di eseguire l’intero ciclo di sanificazione delle linee di spillatura in modo autonomo ad ogni cambio fusto.
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(
     Paragraph(f'''
         Il sistema gestirà:
-    ''', paragraph)
+    ''', body_style,)
 )
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("il ciclo completo di lavaggio e sanificazione", list_style)),
-        ListItem(Paragraph("il cambio dal ciclo di lavaggio all'erogazione della bevanda", list_style)),
-        ListItem(Paragraph("il controllo delle fasi operative senza intervento umano", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(Spacer(1, 10))
+list_gen(f'''
+il ciclo completo di lavaggio e sanificazione
+il cambio dal ciclo di lavaggio all'erogazione della bevanda
+il controllo delle fasi operative senza intervento umano
+'''.split('\n'))
 ###
 elements.append(Paragraph("Benefici attesi", h3))
 elements.append(
     Paragraph(f'''
         L’introduzione del sistema automatizzato consentirà:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -262,12 +219,12 @@ elements.append(Paragraph("Fattibilità e prossimi passi", h3))
 elements.append(
     Paragraph(f'''
         Il progetto risulta tecnicamente realizzabile, con necessità di validare nel dettaglio l’integrazione con il sistema di generazione di ozono e i parametri del processo di sanificazione.
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(
     Paragraph(f'''
         I prossimi passi prevedono:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(Spacer(1, 10))
 elements.append(ListFlowable(
@@ -293,31 +250,31 @@ elements.append(Paragraph("Contesto e Problema", h2))
 elements.append(
     Paragraph(f'''
         L’attuale gestione manuale della sanificazione limita qualità del prodotto, efficienza operativa e affidabilità del servizio.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Sistema attuale", h3))
 elements.append(
     Paragraph(f'''
         Attualmente, la sanificazione delle linee di distribuzione della birra viene eseguita manualmente tramite interventi periodici di un tecnico specializzato presso il cliente finale.
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(
     Paragraph(f'''
         Il servizio viene generalmente effettuato con frequenza mensile, ma la pianificazione non è garantita e dipende dalla disponibilità dei tecnici o dalla richiesta del cliente stesso. In molti casi, l’intervento avviene solo in seguito alla comparsa di problemi evidenti nel prodotto.
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(
     Paragraph(f'''
         Il costo del servizio è sostenuto dal cliente finale o dal distributore, generando un modello operativo basato su interventi manuali e non continuativi.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Criticità operative", h3))
 elements.append(
     Paragraph(f'''
         L’attuale approccio presenta diverse criticità strutturali:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -338,7 +295,7 @@ elements.append(Paragraph("Impatto sul cliente e sul business", h3))
 elements.append(
     Paragraph(f'''
         Le criticità del sistema attuale generano conseguenze rilevanti:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -357,7 +314,7 @@ elements.append(Spacer(1, 10))
 elements.append(
     Paragraph(f'''
         Inoltre, la natura manuale del servizio comporta:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -376,7 +333,7 @@ elements.append(Paragraph("Limiti strutturali", h3))
 elements.append(
     Paragraph(f'''
         Il modello attuale è limitato da due fattori principali:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -393,7 +350,7 @@ elements.append(Spacer(1, 10))
 elements.append(
     Paragraph(f'''
         Questi elementi rendono il sistema intrinsecamente inefficiente e non adatto a garantire standard qualitativi elevati e costanti.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(PageBreak())
@@ -405,7 +362,7 @@ elements.append(Paragraph("Obiettivi del Progetto", h2))
 elements.append(
     Paragraph(f'''
         L’automazione mira a garantire la sanificazione completa delle linee di distribuzione, ripetibile e senza intervento manuale, mantenendo costante la qualità del prodotto.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Obiettivi principali", h3))
@@ -459,19 +416,19 @@ elements.append(Paragraph("Soluzione Proposta", h2))
 elements.append(
     Paragraph(f'''
         Il sistema automatizzato gestisce l’intero ciclo di sanificazione delle linee di spillatura, garantendo qualità costante del prodotto e assenza di intervento manuale.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Sintesi", h3))
 elements.append(
     Paragraph(f'''
         Il progetto prevede lo sviluppo di un sistema che consenta all’utente finale di avviare la sanificazione delle linee semplicemente selezionando la linea tramite un’interfaccia touchscreen. Tutte le impostazioni dei parametri del ciclo, inclusi tempi e gestione del generatore di ozono, saranno preconfigurate e gestite automaticamente dal sistema, senza bisogno di intervento tecnico.
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(
     Paragraph(f'''
         Il ciclo previsto per una linea comprende:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -487,14 +444,14 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Nel caso base, il sistema gestirà una linea alla volta, con possibilità futura di estensione fino a 8–10 linee simultanee.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Dettaglio tecnico", h3))
 elements.append(
     Paragraph(f'''
         Controllo e logica
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -510,7 +467,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Attuatori principali
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -525,7 +482,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Sensori
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -541,7 +498,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Interfaccia utente
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -612,14 +569,14 @@ elements.append(Paragraph("Processo Operativo", h2))
 elements.append(
     Paragraph(f'''
         Il processo di sanificazione è gestito automaticamente tramite una sequenza controllata di fasi operative attivata dall’utente al cambio fusto.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Visione semplificata", h3))
 elements.append(
     Paragraph(f'''
         Il ciclo operativo si sviluppa secondo le seguenti fasi:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -637,7 +594,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Il processo è progettato per essere trasparente all’utente e integrato nelle normali operazioni di spillatura.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Sequenza tecnica dettagliata", h3))
@@ -691,14 +648,14 @@ elements.append(Paragraph("Architettura del Sistema", h2))
 elements.append(
     Paragraph(f'''
         Il sistema è basato su un’architettura modulare controllata da microcontrollore, progettata per garantire integrazione, affidabilità operativa e scalabilità futura.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Vista ad alto livello", h3))
 elements.append(
     Paragraph(f'''
         L’architettura del sistema si compone dei seguenti sottosistemi principali:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -716,14 +673,14 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Questi elementi operano in modo coordinato per garantire l’esecuzione automatica del ciclo di sanificazione.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Componenti principali", h3))
 elements.append(
     Paragraph(f'''
         Sistema di controllo:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -740,7 +697,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Attuatori:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -756,7 +713,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Sensori:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -771,7 +728,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Touchscreen con interfaccia semplificata:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -788,7 +745,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Sistema di generazione ozono (partner):
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -803,7 +760,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Logica di interconnessione:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -820,14 +777,14 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Questa architettura consente una gestione centralizzata e automatizzata dell’intero processo.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Scalabilità e sviluppi futuri", h3))
 elements.append(
     Paragraph(f'''
         L’architettura è progettata per supportare evoluzioni future, tra cui:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -845,7 +802,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         La modularità del sistema consente di adattare facilmente la soluzione a configurazioni più complesse senza modifiche sostanziali alla logica di base.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Diagramma Architettura Sistema", h3))
@@ -867,19 +824,19 @@ elements.append(Paragraph("Integrazione con Sistema Partner", h2))
 elements.append(
     Paragraph(f'''
         L’integrazione con il sistema di generazione di ozono del partner è tecnicamente realizzabile, con alcune specifiche di interfaccia ancora da validare.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Modalità di integrazione", h3))
 elements.append(
     Paragraph(f'''
         Il sistema proposto prevede l’integrazione diretta con il generatore di ozono fornito dal partner, al fine di coordinare automaticamente la produzione di acqua ozonizzata durante il ciclo di sanificazione.
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(
     Paragraph(f'''
         L’integrazione si basa su:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -898,7 +855,7 @@ elements.append(Paragraph("Interfacce tecniche previste", h3))
 elements.append(
     Paragraph(f'''
         L’architettura prevede due possibili modalità di controllo del generatore:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -914,14 +871,14 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Eventuali segnali di feedback dal generatore (es. stato attivo, errore) potranno essere integrati qualora disponibili.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Aree da validare", h3))
 elements.append(
     Paragraph(f'''
         Alcuni aspetti tecnici risultano attualmente non definiti e richiedono approfondimento con il partner:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -939,14 +896,14 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Questi elementi sono fondamentali per definire in modo preciso la strategia di integrazione.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Criticità e rischi", h3))
 elements.append(
     Paragraph(f'''
         L’integrazione con il sistema del partner rappresenta uno dei principali punti di attenzione del progetto, in quanto:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -965,7 +922,7 @@ elements.append(Paragraph("Strategia di integrazione", h3))
 elements.append(
     Paragraph(f'''
         Per mitigare i rischi identificati, si prevede un approccio progressivo:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -983,7 +940,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Questo approccio consente di ridurre le incertezze e garantire una integrazione robusta ed affidabile.
-    ''', paragraph)
+    ''', body_style,)
 )
 
 elements.append(PageBreak())
@@ -995,7 +952,7 @@ elements.append(Paragraph("Benefici Attesi", h2))
 elements.append(
     Paragraph(f'''
         L’automazione del processo di sanificazione genera benefici significativi in termini di qualità del prodotto, efficienza operativa e riduzione dei costi, migliorando l’affidabilità complessiva del servizio.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Qualità del prodotto", h3))
@@ -1069,14 +1026,14 @@ elements.append(Paragraph("Fattibilità e Rischi", h2))
 elements.append(
     Paragraph(f'''
         Questo approccio consente di ridurre le incertezze e garantire una integrazione robusta ed affidabile.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Affidabilità e valore per il business", h3))
 elements.append(
     Paragraph(f'''
         Il sistema proposto si basa su componenti e tecnologie consolidate, tra cui:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -1093,7 +1050,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         L’architettura complessiva è relativamente semplice e non richiede lo sviluppo di tecnologie innovative, rendendo il progetto realizzabile nel breve-medio termine.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Rischi principali", h3))
@@ -1117,7 +1074,7 @@ elements.append(Paragraph("Strategia di mitigazione", h3))
 elements.append(
     Paragraph(f'''
         Per ridurre i rischi identificati, si prevede un approccio iterativo basato su:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -1136,7 +1093,7 @@ elements.append(ListFlowable(
 elements.append(
     Paragraph(f'''
         Questo approccio consente di affrontare in modo strutturato le incertezze e garantire la robustezza del sistema finale.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(PageBreak())
@@ -1148,7 +1105,7 @@ elements.append(Paragraph("Piano di Implementazione", h2))
 elements.append(
     Paragraph(f'''
         Il progetto sarà sviluppato in fasi iterative, con prototipo e test in laboratorio per validare il sistema su una singola linea, garantendo la fattibilità del processo prima di eventuali sviluppi commerciali.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Fasi del progetto", h3))
@@ -1192,14 +1149,14 @@ elements.append(Paragraph("Stima Componenti", h2))
 elements.append(
     Paragraph(f'''
         Il sistema può essere realizzato utilizzando componenti standard e facilmente reperibili, con una struttura modulare che consente scalabilità e ottimizzazione dei costi.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Componenti principali", h3))
 elements.append(
     Paragraph(f'''
         Di seguito una stima preliminare dei principali componenti necessari per la realizzazione del sistema su una singola linea:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(Paragraph("Sistema di controllo", h3))
 elements.append(ListFlowable(
@@ -1326,14 +1283,14 @@ elements.append(Paragraph("Decisione Richiesta", h2))
 elements.append(
     Paragraph(f'''
         Si richiede l’approvazione per avviare la fase di sviluppo prototipale e validazione del sistema di sanificazione automatizzata.
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Approvazioni richieste", h3))
 elements.append(
     Paragraph(f'''
         Si richiede l’approvazione per:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -1352,7 +1309,7 @@ elements.append(Paragraph("Obiettivo della fase approvata", h3))
 elements.append(
     Paragraph(f'''
         La fase oggetto di approvazione ha l’obiettivo di:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -1371,7 +1328,7 @@ elements.append(Paragraph("Passi successivi", h3))
 elements.append(
     Paragraph(f'''
         Al termine della fase di prototipazione e test, verrà effettuata una valutazione dei risultati al fine di:
-    ''', paragraph)
+    ''', body_style,)
 )
 elements.append(ListFlowable(
     [
@@ -1413,7 +1370,7 @@ START
         Ripristina elettrovalvole → modalità erogazione birra
     END IF
 END
-    ''', paragraph)
+    ''', body_style,)
 )
 ###
 elements.append(Paragraph("Sequenza operativa formalizzata", h3))
@@ -1610,3 +1567,72 @@ per spiegarti come funziona, l'utente finale cambia il fusto, avvia il ciclo, e 
 6. touchscreen, integrato display embedded
 7. quadro e cablaggi
 '''
+
+if 0:
+    import subprocess
+
+    from reportlab.platypus import SimpleDocTemplate, Paragraph
+    from reportlab.lib.styles import getSampleStyleSheet
+    from reportlab.lib import colors
+    from reportlab.platypus import Spacer
+    from reportlab.platypus import Table
+    from reportlab.platypus import TableStyle
+    from reportlab.platypus import Image
+    from reportlab.platypus import PageBreak
+    from reportlab.lib.styles import ParagraphStyle
+
+    doc = SimpleDocTemplate("doc.pdf")
+    styles = getSampleStyleSheet()
+
+    content = []
+
+    # heading
+    content.append(Paragraph("My Report", styles["Heading1"]))
+
+    # spacing
+    content.append(Spacer(1, 20))
+
+    # paragraph
+    content.append(Paragraph("This is a paragraph of text.", styles["Normal"]))
+
+    content.append(Spacer(1, 20))
+
+    # table
+    data = [
+        ["Product", "Price"],
+        ["Apple", "$1"],
+        ["Banana", "$2"]
+    ]
+    table = Table(data)
+    table.setStyle(TableStyle([
+        ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
+        ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
+        ("GRID", (0, 0), (-1, -1), 1, colors.black),
+    ]))
+    content.append(table)
+
+    # image
+    img = Image("logo.jpg", width=100, height=100)
+    content.append(img)
+
+    # page break
+    content.append(PageBreak())
+
+
+    custom_style = ParagraphStyle(
+        name="Custom",
+        fontSize=30,
+        leading=16,
+        spaceAfter=10
+    )
+    content.append(Paragraph("new page", custom_style))
+
+    def header(canvas, doc):
+        canvas.drawString(100, 800, "My Header")
+
+    doc.build(content, onFirstPage=header)
+
+    # subprocess.run(["xdg-open", "doc.pdf"])
+
+
+
