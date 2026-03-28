@@ -206,7 +206,7 @@ elements.append(
     ''', body_style,)
 )
 list_gen(f'''
-il ciclo completo di lavaggio/sanificazione
+il ciclo completo di lavaggio sanificazione
 il cambio dal ciclo di lavaggio a quello di erogazione della bevanda (e viceversa)
 '''.split('\n'))
 ###
@@ -311,51 +311,30 @@ elements.append(PageBreak())
 elements.append(Paragraph("Obiettivi del Progetto", h2))
 elements.append(
     Paragraph(f'''
-        L’automazione mira a garantire la sanificazione completa delle linee di distribuzione, ripetibile e senza intervento manuale, mantenendo costante la qualità del prodotto.
+        L'obbiettivo del progetto è di garantire la sanificazione completa delle linee di distribuzione tramite un processo automatizzato (ripetibile e senza intervento di tecnici), mantenendo costante la qualità del prodotto.
     ''', body_style,)
 )
 ###
 elements.append(Paragraph("Obiettivi principali", h3))
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("Automazione completa del processo di lavaggio e sanificazione delle linee di spillatura, eliminando la necessità di interventi manuali da parte dei tecnici.", list_style)),
-        ListItem(Paragraph("Sanificazione ad ogni cambio fusto, con l’utente che seleziona la linea da trattare tramite un’interfaccia semplice.", list_style)),
-        ListItem(Paragraph("Mantenimento costante della qualità del prodotto, assicurando che la birra distribuita sia sempre sicura e di eccellente qualità.", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
+list_gen(f'''
+Automazione completa del processo di lavaggio e sanificazione delle linee di spillatura, eliminando la necessità di interventi manuali da parte dei tecnici.
+Sanificazione ad ogni cambio fusto, con l’utente che seleziona la linea da trattare tramite un’interfaccia semplice.
+'''.strip().split('\n'))
 ###
-elements.append(Paragraph("Obiettivi secondari / desiderati", h3))
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("Ridurre il rischio che il prodotto diventi non consumabile o potenzialmente dannoso per la salute dei consumatori.", list_style)),
-        ListItem(Paragraph("Migliorare la soddisfazione del cliente finale grazie a un servizio più affidabile e puntuale.", list_style)),
-        ListItem(Paragraph("Ridurre i costi operativi legati agli interventi dei tecnici.", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
+elements.append(Paragraph("Conseguenze degli obiettivi", h3))
+list_gen(f'''
+Ridurre i costi operativi legati agli interventi dei tecnici.
+Migliorare la soddisfazione del cliente finale grazie a un servizio più affidabile e puntuale.
+Mantenimento costante della qualità del prodotto, assicurando che la bibita distribuita sia sempre di qualità.
+Ridurre il rischio che il prodotto diventi non consumabile o potenzialmente dannoso per la salute dei consumatori.
+'''.strip().split('\n'))
 ###
-elements.append(Paragraph("Collegamento con i benefici attesi", h3))
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("L’automazione del ciclo di sanificazione garantisce clienti soddisfatti e riduce le lamentele.", list_style)),
-        ListItem(Paragraph("L’eliminazione della manodopera tecnica comporta una riduzione dei costi operativi.", list_style)),
-        ListItem(Paragraph("Il controllo preciso del processo garantisce qualità costante del prodotto e sicurezza per i consumatori.", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
+elements.append(Paragraph("Collegamento tra obiettivi e benefici attesi", h3))
+list_gen(f'''
+L’eliminazione della manodopera tecnica comporta una riduzione dei costi operativi.
+L’automazione del ciclo di sanificazione garantisce clienti soddisfatti e riduce le lamentele.
+Il controllo preciso del processo garantisce qualità costante del prodotto e sicurezza per i consumatori.
+'''.strip().split('\n'))
 ###
 elements.append(PageBreak())
 
