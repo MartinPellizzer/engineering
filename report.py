@@ -23,6 +23,25 @@ def list_gen(items):
             bulletIndent=0,
             bulletFontName='Helvetica',
             bulletFontSize=8,
+            bulletOffsetY=-2,
+            spaceBefore=6,
+            spaceAfter=12,
+        )
+    )
+
+def ol_gen(items):
+    items_formatted = []
+    for item in items:
+        items_formatted.append(Paragraph(item, list_style))
+    elements.append(
+        ListFlowable(
+            items_formatted,
+            bulletType='1',
+            leftIndent=12,
+            bulletIndent=0,
+            bulletFontName='Helvetica',
+            bulletFontSize=8,
+            bulletOffsetY=-2,
             spaceBefore=6,
             spaceAfter=12,
         )
@@ -128,7 +147,7 @@ elements.append(Spacer(1, 25))
 elements.append(Paragraph("Automazione del Processo di Ozonizzazione nei Sistemi di Spillatura", cover_title))
 elements.append(Spacer(1, 20))
 elements.append(Paragraph(
-    "Analisi Tecnica",
+    "Proposta Tecnica",
     body_style,
 ))
 
@@ -141,7 +160,7 @@ elements.append(Paragraph("Marzo 2026", meta))
 
 elements.append(Spacer(1, 120))
 elements.append(Paragraph(
-    "Strettamente Confidenziale – Proibita la divulgazione non autorizzata",
+    "Non consentita la divulgazione",
     footer
 ))
 
@@ -151,27 +170,27 @@ elements.append(PageBreak())
 elements.append(Paragraph("Executive Summary", h2))
 elements.append(
     Paragraph(f'''
-        Si propone lo sviluppo di un sistema automatizzato per la sanificazione delle linee di distribuzione della birra, basato su tecnologia di ozonizzazione, in grado di operare in modo autonomo ad ogni cambio fusto.
+        Si propone lo sviluppo di un sistema automatizzato per la sanificazione delle linee di distribuzione delle bevande (ad ogni cambio di fusto), basato su tecnologia di ozonizzazione.
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Contesto e problema", h3))
+elements.append(Paragraph("Problema da risolvere", h3))
 elements.append(
     Paragraph(f'''
-        L’attuale processo di sanificazione è completamente manuale e richiede l’intervento periodico di un tecnico presso il cliente finale. Questo approccio comporta:
+        L’attuale processo di sanificazione è completamente manuale e richiede l’intervento periodico di un tecnico presso il cliente. Questo approccio comporta:
     ''', body_style,)
 )
 
 list_gen(f'''
 costi operativi elevati legati alla manodopera
+variabilità nella qualità della sanificazione
 dipendenza dalla disponibilità dei tecnici
 ritardi nelle operazioni di pulizia
-variabilità nella qualità della sanificazione
 '''.split('\n'))
 
 elements.append(
     Paragraph(f'''
-        Tali criticità impattano direttamente sulla qualità del prodotto finale, con conseguente rischio di perdita di clientela e danno reputazionale per gli operatori.
+        Queste criticità hanno un impatto diretto sulla qualità del prodotto, con conseguente rischio di perdita di clienti e danno alla reputazione.
     ''', body_style,)
 )
 ###
@@ -187,38 +206,25 @@ elements.append(
     ''', body_style,)
 )
 list_gen(f'''
-il ciclo completo di lavaggio e sanificazione
-il cambio dal ciclo di lavaggio all'erogazione della bevanda
-il controllo delle fasi operative senza intervento umano
+il ciclo completo di lavaggio/sanificazione
+il cambio dal ciclo di lavaggio a quello di erogazione della bevanda (e viceversa)
 '''.split('\n'))
 ###
 elements.append(Paragraph("Benefici attesi", h3))
-elements.append(
-    Paragraph(f'''
-        L’introduzione del sistema automatizzato consentirà:
-    ''', body_style,)
-)
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("mantenimento costante della qualità del prodotto nel tempo", list_style)),
-        ListItem(Paragraph("eliminazione della manodopera per le operazioni di sanificazione", list_style)),
-        ListItem(Paragraph("riduzione dei costi operativi", list_style)),
-        ListItem(Paragraph("eliminazione degli errori umani", list_style)),
-        ListItem(Paragraph("maggiore affidabilità e ripetibilità del processo", list_style)),
-        ListItem(Paragraph("miglioramento della soddisfazione del cliente finale", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(Spacer(1, 10))
+list_gen(f'''
+riduzione dei costi operativi
+eliminazione degli errori umani
+maggiore affidabilità e ripetibilità del processo
+miglioramento della soddisfazione del cliente finale
+mantenimento costante della qualità del prodotto nel tempo
+eliminazione della manodopera per le operazioni di sanificazione
+'''.split('\n'))
+
 ###
 elements.append(Paragraph("Fattibilità e prossimi passi", h3))
 elements.append(
     Paragraph(f'''
-        Il progetto risulta tecnicamente realizzabile, con necessità di validare nel dettaglio l’integrazione con il sistema di generazione di ozono e i parametri del processo di sanificazione.
+        Il progetto risulta tecnicamente realizzabile, con necessità di validare nel dettaglio l’integrazione con il sistema di generazione di ozono (partner) e i parametri del processo di sanificazione.
     ''', body_style,)
 )
 elements.append(
@@ -226,20 +232,11 @@ elements.append(
         I prossimi passi prevedono:
     ''', body_style,)
 )
-elements.append(Spacer(1, 10))
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("raccolta dettagliata dei dati di processo", list_style)),
-        ListItem(Paragraph("progettazione di un sistema prototipo", list_style)),
-        ListItem(Paragraph("fase di test per validare l’efficacia della sanificazione automatica", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(Spacer(1, 10))
+ol_gen(f'''
+raccolta dei dati di processo
+progettazione di un sistema prototipo
+fase di test per validare l’efficacia della sanificazione automatica
+'''.strip().split('\n'))
 ###
 elements.append(PageBreak())
 
@@ -256,7 +253,7 @@ elements.append(
 elements.append(Paragraph("Sistema attuale", h3))
 elements.append(
     Paragraph(f'''
-        Attualmente, la sanificazione delle linee di distribuzione della birra viene eseguita manualmente tramite interventi periodici di un tecnico specializzato presso il cliente finale.
+        Attualmente, la sanificazione delle linee di distribuzione delle bevande viene eseguita manualmente tramite interventi periodici di un tecnico specializzato presso il cliente.
     ''', body_style,)
 )
 elements.append(
@@ -266,68 +263,29 @@ elements.append(
 )
 elements.append(
     Paragraph(f'''
-        Il costo del servizio è sostenuto dal cliente finale o dal distributore, generando un modello operativo basato su interventi manuali e non continuativi.
+        Il costo del servizio è sostenuto dal cliente o dal distributore, generando un modello operativo basato su interventi manuali e non continuativi.
     ''', body_style,)
 )
 ###
 elements.append(Paragraph("Criticità operative", h3))
-elements.append(
-    Paragraph(f'''
-        L’attuale approccio presenta diverse criticità strutturali:
-    ''', body_style,)
-)
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("Elevata dipendenza dalla manodopera: ogni operazione richiede la presenza fisica di un tecnico", list_style)),
-        ListItem(Paragraph("Limitata scalabilità: il numero di interventi è vincolato alla disponibilità del personale", list_style)),
-        ListItem(Paragraph("Variabilità del servizio: la qualità della sanificazione può variare tra operatori", list_style)),
-        ListItem(Paragraph("Bassa attrattività operativa: si tratta di un’attività poco gradita ai tecnici", list_style)),
-        ListItem(Paragraph("Gestione reattiva: gli interventi vengono spesso richiesti solo quando il problema è già presente", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
+list_gen(f'''
+Gestione reattiva: gli interventi vengono spesso richiesti quando il problema è già presente
+Limitata scalabilità: il numero di interventi è vincolato alla disponibilità del personale
+Dipendenza dalla manodopera: ogni operazione richiede la presenza fisica di un tecnico
+Variabilità del servizio: la qualità della sanificazione può variare tra operatori
+Bassa attrattività operativa: si tratta di un’attività poco gradita ai tecnici
+'''.strip().split('\n'))
 ###
-elements.append(Paragraph("Impatto sul cliente e sul business", h3))
-elements.append(
-    Paragraph(f'''
-        Le criticità del sistema attuale generano conseguenze rilevanti:
-    ''', body_style,)
-)
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("restituzione del prodotto da parte dei consumatori", list_style)),
-        ListItem(Paragraph("perdita di reputazione per il cliente finale", list_style)),
-        ListItem(Paragraph("riduzione della fiducia nel servizio e nel prodotto", list_style)),
-        ListItem(Paragraph("potenziale perdita di clientela", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(Spacer(1, 10))
-elements.append(
-    Paragraph(f'''
-        Inoltre, la natura manuale del servizio comporta:
-    ''', body_style,)
-)
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("costi operativi elevati", list_style)),
-        ListItem(Paragraph("inefficienze nella gestione degli interventi", list_style)),
-        ListItem(Paragraph("impossibilità di garantire un livello di servizio costante nel tempo", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
+elements.append(Paragraph("Impatto sul cliente", h3))
+list_gen(f'''
+costi operativi elevati
+potenziale perdita di clientela
+perdita di reputazione per il cliente finale
+inefficienze nella gestione degli interventi
+restituzione del prodotto da parte dei consumatori
+riduzione della fiducia nel servizio e nel prodotto
+impossibilità di garantire un livello di servizio costante nel tempo
+'''.strip().split('\n'))
 ###
 elements.append(Paragraph("Limiti strutturali", h3))
 elements.append(
@@ -335,21 +293,13 @@ elements.append(
         Il modello attuale è limitato da due fattori principali:
     ''', body_style,)
 )
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("dipendenza dalla disponibilità dei tecnici, che impedisce interventi tempestivi", list_style)),
-        ListItem(Paragraph("approccio reattivo dei clienti, che tendono a richiedere la sanificazione solo quando il problema è già manifestato", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(Spacer(1, 10))
+list_gen(f'''
+dipendenza dalla disponibilità dei tecnici, che impedisce interventi tempestivi
+approccio reattivo dei clienti, che tendono a richiedere la sanificazione solo quando il problema è già manifestato
+'''.strip().split('\n'))
 elements.append(
     Paragraph(f'''
-        Questi elementi rendono il sistema intrinsecamente inefficiente e non adatto a garantire standard qualitativi elevati e costanti.
+        Questi elementi rendono il sistema inefficiente e non adatto a garantire standard qualitativi elevati e costanti.
     ''', body_style,)
 )
 ###
