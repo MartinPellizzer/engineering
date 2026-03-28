@@ -78,21 +78,22 @@ def screenshot_create():
     x1, y1, x2, y2 = None, None, None, None
     for thing in canvas['things']:
         if thing['kind'] == 'node':
-            if x1 == None: x1 = thing['x']
-            if y1 == None: y1 = thing['y']
-            if x2 == None: x2 = thing['x'] + thing['w']
-            if y2 == None: y2 = thing['y'] + thing['h']
-            if x1 > thing['x']: x1 = thing['x']
-            if y1 > thing['y']: y1 = thing['y']
-            if x2 < thing['x'] + thing['w']: x2 = thing['x'] + thing['w']
-            if y2 < thing['y'] + thing['h']: y2 = thing['y'] + thing['h']
+            thing_x, thing_y, thing_w, thing_h = thing_bbox_get(thing)
+            if x1 == None: x1 = thing_x
+            if y1 == None: y1 = thing_y
+            if x2 == None: x2 = thing_x + thing_w
+            if y2 == None: y2 = thing_y + thing_h
+            if x1 > thing_x: x1 = thing_x
+            if y1 > thing_y: y1 = thing_y
+            if x2 < thing_x + thing_w: x2 = thing_x + thing_w
+            if y2 < thing_y + thing_h: y2 = thing_y + thing_h
     x = x1
     y = y1
     w = x2 - x1
     h = y2 - y1
     rect = pygame.Rect(x, y, w, h)
     snapshot = screen.subsurface(rect).copy()
-    pygame.image.save(snapshot, 'screenshot.png')
+    pygame.image.save(snapshot, 'exports/diagram.png')
 
 ################################################################################
 # CREATE / DELETE
@@ -235,6 +236,12 @@ def thing_bbox_get(thing):
     ### snap size to grid
     thing_w = math.ceil(thing_w / (viewport.GRID_SIZE * viewport.state['camera_zoom'])) * (viewport.GRID_SIZE * viewport.state['camera_zoom'])
     thing_h = math.ceil(thing_h / (viewport.GRID_SIZE * viewport.state['camera_zoom'])) * (viewport.GRID_SIZE * viewport.state['camera_zoom'])
+    ### padding
+    padding_left = 8 * viewport.state['camera_zoom']
+    padding_right = 8 * viewport.state['camera_zoom']
+    thing_w += padding_left
+    thing_w += padding_right
+    ###
     w = thing_w
     h = thing_h
     return x, y, w, h
@@ -525,6 +532,15 @@ while running:
                 elif event.key == pygame.K_d:
                     if viewport.state['debug_show']: viewport.state['debug_show'] = False
                     else: viewport.state['debug_show'] = True
+
+            elif event.unicode == "{":
+                print("Left curly bracket")
+                viewport.zoom_from_center('down', 1, 'add', 'int', WIDTH//2, HEIGHT//2)
+                font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
+            elif event.unicode == "}":
+                print("Right curly bracket")
+                viewport.zoom_from_center('up', 1, 'add', 'int', WIDTH//2, HEIGHT//2)
+                font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
 
             # typing
             elif event.key == pygame.K_BACKSPACE:

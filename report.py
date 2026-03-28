@@ -474,9 +474,9 @@ elements.append(img)
 elements.append(Spacer(1, 20))
 elements.append(Paragraph("Diagramma sistema da sviluppare (automatico)", h3))
 elements.append(Spacer(1, 10))
-mul = 0.4
-image_w = 768 * mul
-image_h = 416 * mul
+mul = 0.35
+image_w = 1184 * mul
+image_h = 448 * mul
 img = Image(f"projects/spillatura/diagram-0002.png", image_w, image_h)
 elements.append(img)
 ###

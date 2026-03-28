@@ -16,7 +16,7 @@ state = {
     'grid_show': False,
     'edge_direction_cur': 0,
     'edge_tmp_drawing': False,
-    'debug_show': True,
+    'debug_show': False,
 }
 
 def world_to_screen(x, y):
@@ -74,6 +74,34 @@ def zoom_run(direction, mouse_screen_x, mouse_screen_y):
 
     # world position after zoom
     after_x, after_y = screen_to_world(mouse_screen_x, mouse_screen_y)
+
+    # adjust camera so point under cursor stays fixed
+    state['camera_x'] += before_x - after_x
+    state['camera_y'] += before_y - after_y
+
+def zoom_from_center(direction, amount, op, precision, screen_center_x, screen_center_y):
+    before_x, before_y = screen_to_world(screen_center_x, screen_center_y)
+
+    if direction == 'up':
+        if op == 'add':
+            state['camera_zoom'] += amount
+        elif op == 'mul':
+            state['camera_zoom'] *= 1.1
+        if precision == 'int':
+            state['camera_zoom'] = (state['camera_zoom'] // 1) * 1
+        state['camera_zoom'] = min(state['camera_zoom'], MAX_ZOOM)
+
+    elif direction == 'down':
+        if op == 'add':
+            state['camera_zoom'] -= amount
+        elif op == 'mul':
+            state['camera_zoom'] /= 1.1
+        if precision == 'int':
+            state['camera_zoom'] = (state['camera_zoom'] // 1) * 1
+        state['camera_zoom'] = max(state['camera_zoom'], MIN_ZOOM)
+
+    # world position after zoom
+    after_x, after_y = screen_to_world(screen_center_x, screen_center_y)
 
     # adjust camera so point under cursor stays fixed
     state['camera_x'] += before_x - after_x
