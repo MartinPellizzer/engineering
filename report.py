@@ -77,6 +77,7 @@ cover_title = ParagraphStyle('cover', fontName='Helvetica-Bold', fontSize=28, le
 section = ParagraphStyle('section', fontName='Helvetica-Bold', fontSize=16, textColor=PRIMARY, spaceBefore=30)
 h2 = ParagraphStyle('h2', fontName='Helvetica-Bold', fontSize=16, textColor=PRIMARY, spaceBefore=0, spaceAfter=body_leading)
 h3 = ParagraphStyle('h3', fontName='Helvetica-Bold', fontSize=12, textColor=PRIMARY, spaceBefore=body_leading*1.5, spaceAfter=body_leading)
+h4 = ParagraphStyle('h4', fontName='Helvetica-Bold', fontSize=10, textColor=PRIMARY, spaceBefore=body_leading*1.5, spaceAfter=body_leading)
 body = ParagraphStyle('body', fontSize=body_size, leading=body_leading)
 paragraph = ParagraphStyle('paragraph', fontSize=body_size, leading=body_leading, spaceAfter=body_space_after)
 list_style = ParagraphStyle('list', parent=body, leftIndent=0, spaceAfter=2)
@@ -311,7 +312,7 @@ elements.append(PageBreak())
 elements.append(Paragraph("Obiettivi del Progetto", h2))
 elements.append(
     Paragraph(f'''
-        L'obbiettivo del progetto è di garantire la sanificazione completa delle linee di distribuzione tramite un processo automatizzato (ripetibile e senza intervento di tecnici), mantenendo costante la qualità del prodotto.
+        L'obiettivo del progetto è di garantire la sanificazione completa delle linee di distribuzione tramite un processo automatizzato (ripetibile e senza intervento di tecnici), mantenendo costante la qualità del prodotto.
     ''', body_style,)
 )
 ###
@@ -344,14 +345,19 @@ elements.append(PageBreak())
 elements.append(Paragraph("Soluzione Proposta", h2))
 elements.append(
     Paragraph(f'''
-        Il sistema automatizzato gestisce l’intero ciclo di sanificazione delle linee di spillatura, garantendo qualità costante del prodotto e assenza di intervento manuale.
+        Si propone un sistema automatizzato che gestisce l’intero ciclo di sanificazione delle linee di spillatura, garantendo qualità costante del prodotto e assenza di intervento manuale.
     ''', body_style,)
 )
 ###
 elements.append(Paragraph("Sintesi", h3))
 elements.append(
     Paragraph(f'''
-        Il progetto prevede lo sviluppo di un sistema che consenta all’utente finale di avviare la sanificazione delle linee semplicemente selezionando la linea tramite un’interfaccia touchscreen. Tutte le impostazioni dei parametri del ciclo, inclusi tempi e gestione del generatore di ozono, saranno preconfigurate e gestite automaticamente dal sistema, senza bisogno di intervento tecnico.
+        Il progetto prevede lo sviluppo di un sistema che consenta all’utente di avviare il ciclo di sanificazione delle linee semplicemente selezionando la linea tramite un’interfaccia touchscreen. 
+    ''', body_style,)
+)
+elements.append(
+    Paragraph(f'''
+        Tutte le impostazioni dei parametri del ciclo, inclusi tempi e gestione del generatore di ozono, saranno preconfigurate e gestite automaticamente dal sistema, senza bisogno di intervento tecnico.
     ''', body_style,)
 )
 elements.append(
@@ -359,118 +365,103 @@ elements.append(
         Il ciclo previsto per una linea comprende:
     ''', body_style,)
 )
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("10 secondi di passaggio di acqua ozonizzata attraverso la linea, sanificando internamente il sistema", list_style)),
-        ListItem(Paragraph("Al termine, ripristino automatico dell’erogazione della birra", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
+ol_gen(f'''
+N secondi di passaggio di acqua ozonizzata attraverso la linea, sanificandola
+Al termine, ripristino automatico dell’erogazione della bevanda
+'''.strip().split('\n'))
 elements.append(
     Paragraph(f'''
-        Nel caso base, il sistema gestirà una linea alla volta, con possibilità futura di estensione fino a 8–10 linee simultanee.
+        Nel caso base, il sistema gestirà una linea alla volta, con possibilità futura di estensione fino a 8-10 linee simultanee.
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Dettaglio tecnico", h3))
-elements.append(
-    Paragraph(f'''
-        Controllo e logica
-    ''', body_style,)
-)
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("Un PLC o sistema di controllo gestisce automaticamente il ciclo di sanificazione", list_style)),
-        ListItem(Paragraph("Il sistema avvia e spegne il generatore di ozono tramite segnale di controllo o, se necessario, tramite commutazione dell’alimentazione", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(
-    Paragraph(f'''
-        Attuatori principali
-    ''', body_style,)
-)
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("Valvole per passare dal ciclo di sanificazione all’erogazione normale del prodotto", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(
-    Paragraph(f'''
-        Sensori
-    ''', body_style,)
-)
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("Possibile utilizzo di sensori di flusso per monitorare il corretto avanzamento del ciclo di lavaggio", list_style)),
-        ListItem(Paragraph("Eventuali sensori aggiuntivi per sicurezza e conferma del completamento del ciclo", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
-elements.append(
-    Paragraph(f'''
-        Interfaccia utente
-    ''', body_style,)
-)
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("L’utente finale interagisce unicamente tramite un pulsante su touchscreen per selezionare la linea da sanificare", list_style)),
-        ListItem(Paragraph("Tutte le fasi operative, inclusi tempi e flussi, sono gestite automaticamente dal sistema", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
+elements.append(Paragraph("Dettagli tecnici", h3))
+elements.append(Paragraph("Controllo e logica", h4))
+list_gen(f'''
+Una PCB (scheda di controllo) gestisce automaticamente il ciclo di sanificazione
+Il sistema avvia e spegne il generatore di ozono tramite segnale di controllo o, se necessario, tramite commutazione dell’alimentazione
+'''.strip().split('\n'))
 ###
-elements.append(Paragraph("Benefici diretti", h3))
-elements.append(ListFlowable(
-    [
-        ListItem(Paragraph("Zero manodopera: l’utente finale non deve intervenire sul ciclo, eliminando la necessità di tecnici sul posto", list_style)),
-        ListItem(Paragraph("Qualità costante del prodotto: ogni ciclo di sanificazione è ripetibile e controllato, garantendo birra sicura e di ottima qualità", list_style)),
-        ListItem(Paragraph("Sicurezza: riduzione del rischio di contaminazioni e prodotto non consumabile", list_style)),
-        ListItem(Paragraph("Affidabilità operativa: il ciclo è automatico, veloce (10–30 secondi) e trasparente all’utente finale", list_style)),
-    ],
-    bulletType='bullet',   # or '1' for numbered
-    leftIndent=15,
-    bulletFontName='Helvetica',
-    bulletFontSize=8
-    )
-)
+elements.append(Paragraph("Attuatori", h4))
+list_gen(f'''
+Valvole per passare dal ciclo di sanificazione all’erogazione normale del prodotto
+'''.strip().split('\n'))
 ###
-elements.append(Paragraph("Collegamento agli obiettivi", h3))
+elements.append(Paragraph("Sensori", h4))
+list_gen(f'''
+Possibile utilizzo di sensori di flusso per monitorare il corretto avanzamento del ciclo di lavaggio
+Eventuali sensori aggiuntivi per sicurezza e conferma del completamento del ciclo
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Interfaccia utente", h4))
+list_gen(f'''
+L’utente finale interagisce unicamente tramite un pulsante su touchscreen per selezionare la linea da sanificare
+Tutte le fasi operative, inclusi tempi e flussi, sono gestite automaticamente dal sistema
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Obiettivi della proposta", h3))
+list_gen(f'''
+Sicurezza: riduzione del rischio di contaminazioni e prodotto non consumabile
+Affidabilità operativa: il ciclo è automatico, veloce (N secondi) e trasparente all’utente finale
+Zero manodopera: l’utente finale non deve intervenire sul ciclo, eliminando la necessità di tecnici sul posto
+Qualità costante del prodotto: ogni ciclo di sanificazione è ripetibile e controllato, garantendo bevande sicure e di qualità
+'''.strip().split('\n'))
+###
+
+def p(text):
+    return Paragraph(text, body_style)
+
+elements.append(Paragraph("Collegamento tra soluzione e obiettivi", h3))
+table_style = TableStyle([
+    ("GRID", (0, 0), (-1, -1), 0.5, colors.grey),
+    ("VALIGN", (0, 0), (-1, -1), "TOP"),  # important for wrapped text
+    ("LEFTPADDING", (0, 0), (-1, -1), 6),
+    ("RIGHTPADDING", (0, 0), (-1, -1), 6),
+    ("TOPPADDING", (0, 0), (-1, -1), 4),
+    ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+])
+
 data = [
-    ["Obiettivo", "Come la soluzione lo raggiunge"],
-    ["Automazione completa", "Tutto il ciclo gestito dal PLC, utente finale solo avvia il processo"],
-    ["Sanificazione ad ogni cambio fusto", "L’avvio del ciclo è legato alla selezione della linea post-cambio fusto"],
-    ["Qualità costante del prodotto", "Tempo e flusso dell’acqua ozonizzata predefiniti e controllati automaticamente"],
-    ["Eliminazione rischi e riduzione costi", "Nessun tecnico necessario, minori costi operativi, prodotto sempre sicuro"],
+    ["Obiettivo", "Come la soluzione raggiunge l'obiettivo"],
+    ["Automazione completa", p("Tutto il ciclo gestito dalla PCB, l'utente avvia solo il processo")],
+    ["Sanificazione ad ogni cambio fusto", p("L’avvio del ciclo è legato alla selezione della linea post-cambio fusto")],
+    ["Qualità costante del prodotto", p("Tempo e flusso dell’acqua ozonizzata predefiniti e controllati automaticamente")],
+    ["Eliminazione rischi e riduzione costi", p("Nessun tecnico necessario, minori costi operativi, prodotto sempre sicuro")],
 ]
-table = Table(data)
-table.setStyle(TableStyle([
-    ("BACKGROUND", (0, 0), (-1, 0), colors.grey),
-    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-    ("GRID", (0, 0), (-1, -1), 1, colors.black),
-]))
+
+'''
+table_style = TableStyle([
+    # Header
+    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+    ('FONTSIZE', (0, 0), (-1, -1), 9),
+    ('TEXTCOLOR', (0, 0), (-1, -1), colors.HexColor("#222222")),
+
+    # Alignment
+    ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+
+    # Padding (tight but readable)
+    ('LEFTPADDING', (0, 0), (-1, -1), 6),
+    ('RIGHTPADDING', (0, 0), (-1, -1), 6),
+    ('TOPPADDING', (0, 0), (-1, -1), 4),
+    ('BOTTOMPADDING', (0, 0), (-1, -1), 4),
+
+    # Lines (minimalist)
+    ('LINEBELOW', (0, 0), (-1, 0), 0.75, colors.black),          # header line
+    ('LINEBELOW', (0, 1), (-1, -1), 0.25, colors.HexColor("#D0D0D0")),  # row lines
+
+    # No vertical lines
+    # (intentionally omitted)
+])
+'''
+
+available_width = doc.width
+col_count = len(data[0])
+col_widths = [available_width / col_count] * col_count
+
+table = Table(data, colWidths=col_widths)
+table.setStyle(table_style)
 elements.append(table)
+
 ###
 elements.append(Paragraph("Diagramma sistema corrente (manuale)", h3))
 elements.append(Spacer(1, 10))

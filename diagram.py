@@ -97,8 +97,54 @@ def screenshot_create():
 ################################################################################
 # CREATE / DELETE
 ################################################################################
-def create_edge():
-    found = False
+def edge_create__first_click(thing):
+    edge_tmp['node_start'] = thing['id']
+    viewport.state['edge_tmp_drawing'] = True
+
+def edge_create__second_click(thing):
+    edge_tmp['node_end'] = thing['id']
+    if (
+        edge_tmp['node_start'] != None and edge_tmp['node_end'] != None and
+        edge_tmp['node_start'] != edge_tmp['node_end']
+    ):
+        # check if edge already exist betwee the 2 nodes
+        edge_found = False
+        '''
+        for edge in canvas['things']:
+            if (
+                (
+                    edge['node_start'] == edge_tmp['node_start'] and 
+                    edge['node_end'] == edge_tmp['node_end']
+                ) or
+                (
+                    edge['node_start'] == edge_tmp['node_end'] and 
+                    edge['node_end'] == edge_tmp['node_start']
+                )
+            ):
+                edge_found = True
+                break
+        '''
+        if not edge_found:
+            # create edge
+            canvas['things'].append(
+                thing_create(
+                    str(len(canvas['things'])+1), kind='edge', 
+                    node_start=edge_tmp['node_start'], 
+                    node_end=edge_tmp['node_end'],
+                    edge_direction=viewport.state['edge_direction_cur'],
+                )
+            )
+        edge_tmp['node_start'] = None
+        edge_tmp['node_end'] = None
+        viewport.state['edge_tmp_drawing'] = False
+
+def edge_create__reset():
+    edge_tmp['node_start'] = None
+    edge_tmp['node_end'] = None
+    viewport.state['edge_tmp_drawing'] = False
+
+def edge_create():
+    clicked_on_node = False
     for thing_i, thing in enumerate(canvas['things']):
         x, y, w, h = thing_bbox_get(thing)
         thing['focus'] = False
@@ -106,50 +152,12 @@ def create_edge():
             mouse_screen_x > x and mouse_screen_x < x + w and 
             mouse_screen_y > y and mouse_screen_y < y + h
         ):
-            found = True
-            # first click
-            if edge_tmp['node_start'] == None:
-                edge_tmp['node_start'] = thing['id']
-                viewport.state['edge_tmp_drawing'] = True
-            # second click
-            else:
-                edge_tmp['node_end'] = thing['id']
-                if (
-                    edge_tmp['node_start'] != None and edge_tmp['node_end'] != None and
-                    edge_tmp['node_start'] != edge_tmp['node_end']
-                ):
-                    # check if edge already exist betwee the 2 nodes
-                    edge_found = False
-                    for edge in canvas['things']:
-                        if (
-                            (
-                                edge['node_start'] == edge_tmp['node_start'] and 
-                                edge['node_end'] == edge_tmp['node_end']
-                            ) or
-                            (
-                                edge['node_start'] == edge_tmp['node_end'] and 
-                                edge['node_end'] == edge_tmp['node_start']
-                            )
-                        ):
-                            edge_found = True
-                            break
-                    if not edge_found:
-                        # create edge
-                        canvas['things'].append(
-                            thing_create(
-                                str(len(canvas['things'])+1), kind='edge', 
-                                node_start=edge_tmp['node_start'], 
-                                node_end=edge_tmp['node_end'],
-                                edge_direction=viewport.state['edge_direction_cur'],
-                            )
-                        )
-                edge_tmp['node_start'] = None
-                edge_tmp['node_end'] = None
-                viewport.state['edge_tmp_drawing'] = False
-    if not found:
-        edge_tmp['node_start'] = None
-        edge_tmp['node_end'] = None
-        viewport.state['edge_tmp_drawing'] = False
+            clicked_on_node = True
+            if edge_tmp['node_start'] == None: edge_create__first_click(thing)
+            else: edge_create__second_click(thing)
+            break
+    if not clicked_on_node:
+        edge_create__reset()
 
 def node_create():
     snap_x, snap_y = viewport.snap_to_grid(mouse_world_x, mouse_world_y)
@@ -158,7 +166,7 @@ def node_create():
             str(len(canvas['things'])+1), 
             kind = 'node', 
             text = '', 
-            text_lines = ['Touchscreen', '(interfaccia utente)'], 
+            text_lines = ['???'], 
             x = snap_x, 
             y = snap_y,
             w_min = viewport.GRID_SIZE * 4,
@@ -175,8 +183,8 @@ def node_delete():
     for edge in canvas['things']:
         if edge['node_start'] == thing['id'] or edge['node_end'] == thing['id']:
             canvas['things'].remove(edge)
-    edge_tmp['node_start'] = None
-    edge_tmp['node_end'] = None
+    ###
+    edge_create__reset()
 
 ################################################################################
 # NAVIGATION
@@ -411,11 +419,12 @@ def draw_nodes():
                 line_y = thing_y + ((thing_h - lines_h_total) // 2) + (line_i * line_h)
                 screen.blit(surface, (line_x, line_y))
                 # cursor
-                if line_i == text_cursor['line_i']:
-                    char_w, char_h = font_text.size('X')
-                    cursor_x = line_x + (char_w * text_cursor['char_i'])
-                    cursor_y = line_y
-                    pygame.draw.rect(screen, COLOR_FOREGROUND, (cursor_x, cursor_y, char_w, char_h), 1)
+                if thing['focus'] == True:
+                    if line_i == text_cursor['line_i']:
+                        char_w, char_h = font_text.size('X')
+                        cursor_x = line_x + (char_w * text_cursor['char_i'])
+                        cursor_y = line_y
+                        pygame.draw.rect(screen, COLOR_FOREGROUND, (cursor_x, cursor_y, char_w, char_h), 1)
 
 def draw_debug():
     if viewport.state['debug_show']:
@@ -449,7 +458,10 @@ def draw_debug():
             screen.blit(surface, (0, y_cur))
             y_cur += 30
             line_w, _ = font_text.size(thing['text_lines'][0])
-            surface = font_debug.render(f'''perc: {(rect_res / thing_w) * 100:.2f}''', True, (255, 0, 255))
+            if thing_w != 0:
+                surface = font_debug.render(f'''perc: {(rect_res / thing_w) * 100:.2f}''', True, (255, 0, 255))
+            else:
+                surface = font_debug.render(f'''perc: {0 * 100:.2f}''', True, (255, 0, 255))
             screen.blit(surface, (0, y_cur))
             y_cur += 30
         ###
@@ -557,11 +569,11 @@ while running:
         if event.type == pygame.MOUSEBUTTONDOWN:
             if pygame.key.get_mods() & pygame.KMOD_CTRL:
                 if event.button == 1:
-                    create_edge() 
+                    edge_create() 
             else:
                 if event.button == 1:
                     if viewport.state['edge_tmp_drawing']:
-                        create_edge() 
+                        edge_create() 
                     else:
                         node_drag_start()
 
