@@ -1,7 +1,7 @@
-GRID_SIZE = 64
+GRID_SIZE = 8
 
-MIN_ZOOM = 0.5
-MAX_ZOOM = 3.0
+MIN_ZOOM = 1.0
+MAX_ZOOM = 16.0
 panning = False
 pan_last_x = 0
 pan_last_y = 0
@@ -16,7 +16,7 @@ state = {
     'grid_show': False,
     'edge_direction_cur': 0,
     'edge_tmp_drawing': False,
-    'debug_show': False,
+    'debug_show': True,
 }
 
 def world_to_screen(x, y):
