@@ -7,10 +7,28 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Touchscreen (interfaccia utente)"
             ],
-            "x": 264,
-            "y": 416,
+            "x": 440,
+            "y": 120,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "2",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Microcontrollore (PCB Custom)"
+            ],
+            "x": 448,
+            "y": 152,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -25,10 +43,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Elettrovalvole (x2/linea)"
             ],
-            "x": 352,
-            "y": 448,
+            "x": 360,
+            "y": 184,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -43,10 +61,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Linea bevanda + acqua"
             ],
-            "x": 352,
-            "y": 392,
+            "x": 368,
+            "y": 216,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -61,10 +79,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Generatore Ozono (Partner)"
             ],
-            "x": 352,
-            "y": 360,
+            "x": 544,
+            "y": 184,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -79,28 +97,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Controllo ON/OFF (segnale o alimentaz.)"
             ],
-            "x": 400,
-            "y": 376,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "6",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "???"
-            ],
-            "x": 312,
-            "y": 416,
+            "x": 512,
+            "y": 216,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -122,9 +122,9 @@
             "w_min": 0,
             "h_min": 0,
             "focus": false,
-            "node_start": "6",
-            "node_end": "1",
-            "edge_direction": 1
+            "node_start": "1",
+            "node_end": "2",
+            "edge_direction": 0
         },
         {
             "id": "8",
@@ -138,8 +138,8 @@
             "w_min": 0,
             "h_min": 0,
             "focus": false,
-            "node_start": "3",
-            "node_end": "6",
+            "node_start": "2",
+            "node_end": "5",
             "edge_direction": 0
         },
         {
@@ -154,8 +154,8 @@
             "w_min": 0,
             "h_min": 0,
             "focus": false,
-            "node_start": "4",
-            "node_end": "6",
+            "node_start": "2",
+            "node_end": "3",
             "edge_direction": 0
         },
         {
@@ -170,7 +170,7 @@
             "w_min": 0,
             "h_min": 0,
             "focus": false,
-            "node_start": "5",
+            "node_start": "3",
             "node_end": "4",
             "edge_direction": 0
         },

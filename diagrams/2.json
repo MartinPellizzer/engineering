@@ -7,10 +7,28 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "INIZIO"
             ],
-            "x": 264,
-            "y": 416,
+            "x": 192,
+            "y": 64,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "2",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Utente cambia fusto"
+            ],
+            "x": 400,
+            "y": 64,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -25,10 +43,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Utente seleziona linea"
             ],
-            "x": 352,
-            "y": 448,
+            "x": 544,
+            "y": 64,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -43,10 +61,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Avvio sistema"
             ],
-            "x": 352,
-            "y": 392,
+            "x": 584,
+            "y": 96,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -61,10 +79,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Commutazione valvole (sanificazione)"
             ],
-            "x": 352,
-            "y": 360,
+            "x": 360,
+            "y": 96,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -79,28 +97,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "Attivazione generatore ozono"
             ],
-            "x": 400,
-            "y": 376,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "6",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "???"
-            ],
-            "x": 312,
-            "y": 416,
+            "x": 192,
+            "y": 96,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -112,6 +112,150 @@
         },
         {
             "id": "7",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Utente iniza a spillare"
+            ],
+            "x": 192,
+            "y": 128,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "8",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Flusso acqua ozonizzata nella linea"
+            ],
+            "x": 360,
+            "y": 128,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "9",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Timer attivo (N)"
+            ],
+            "x": 568,
+            "y": 128,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "10",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Timer concluso"
+            ],
+            "x": 576,
+            "y": 160,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "11",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Disattivazione ozono"
+            ],
+            "x": 400,
+            "y": 160,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "12",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Commutazione valvole (bevanda)"
+            ],
+            "x": 192,
+            "y": 160,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "13",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "Bevanda torna a uscire"
+            ],
+            "x": 192,
+            "y": 192,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "14",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "FINE"
+            ],
+            "x": 624,
+            "y": 192,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "15",
             "kind": "edge",
             "text": "",
             "text_lines": [],
@@ -122,12 +266,28 @@
             "w_min": 0,
             "h_min": 0,
             "focus": false,
-            "node_start": "6",
-            "node_end": "1",
+            "node_start": "1",
+            "node_end": "2",
             "edge_direction": 1
         },
         {
-            "id": "8",
+            "id": "16",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "2",
+            "node_end": "3",
+            "edge_direction": 1
+        },
+        {
+            "id": "17",
             "kind": "edge",
             "text": "",
             "text_lines": [],
@@ -139,11 +299,11 @@
             "h_min": 0,
             "focus": false,
             "node_start": "3",
-            "node_end": "6",
+            "node_end": "4",
             "edge_direction": 0
         },
         {
-            "id": "9",
+            "id": "18",
             "kind": "edge",
             "text": "",
             "text_lines": [],
@@ -155,27 +315,11 @@
             "h_min": 0,
             "focus": false,
             "node_start": "4",
-            "node_end": "6",
-            "edge_direction": 0
+            "node_end": "5",
+            "edge_direction": 1
         },
         {
-            "id": "10",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "5",
-            "node_end": "4",
-            "edge_direction": 0
-        },
-        {
-            "id": "11",
+            "id": "19",
             "kind": "edge",
             "text": "",
             "text_lines": [],
@@ -188,7 +332,135 @@
             "focus": false,
             "node_start": "5",
             "node_end": "6",
+            "edge_direction": 1
+        },
+        {
+            "id": "20",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "6",
+            "node_end": "7",
             "edge_direction": 0
+        },
+        {
+            "id": "21",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "7",
+            "node_end": "8",
+            "edge_direction": 1
+        },
+        {
+            "id": "22",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "8",
+            "node_end": "9",
+            "edge_direction": 1
+        },
+        {
+            "id": "23",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "9",
+            "node_end": "10",
+            "edge_direction": 0
+        },
+        {
+            "id": "24",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "10",
+            "node_end": "11",
+            "edge_direction": 1
+        },
+        {
+            "id": "25",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "11",
+            "node_end": "12",
+            "edge_direction": 1
+        },
+        {
+            "id": "26",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "12",
+            "node_end": "13",
+            "edge_direction": 0
+        },
+        {
+            "id": "27",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "13",
+            "node_end": "14",
+            "edge_direction": 1
         }
     ]
 }
