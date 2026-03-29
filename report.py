@@ -74,7 +74,7 @@ body_size = 9
 body_space_after = 8
 
 cover_title = ParagraphStyle('cover', fontName='Helvetica-Bold', fontSize=28, leading=32, textColor=PRIMARY)
-section = ParagraphStyle('section', fontName='Helvetica-Bold', fontSize=16, textColor=PRIMARY, spaceBefore=30)
+section = ParagraphStyle('section', fontName='Helvetica-Bold', fontSize=16, textColor=PRIMARY)
 h2 = ParagraphStyle('h2', fontName='Helvetica-Bold', fontSize=16, textColor=PRIMARY, spaceBefore=0, spaceAfter=body_leading)
 h3 = ParagraphStyle('h3', fontName='Helvetica-Bold', fontSize=12, textColor=PRIMARY, spaceBefore=body_leading*1.5, spaceAfter=body_leading)
 h4 = ParagraphStyle('h4', fontName='Helvetica-Bold', fontSize=10, textColor=PRIMARY, spaceBefore=body_leading*1.5, spaceAfter=body_leading)
@@ -140,7 +140,8 @@ def header_footer(canvas, doc):
 elements = []
 
 # COVER
-elements.append(Spacer(1, 140))
+elements.append(Spacer(1, 100))
+
 elements.append(AccentLine())
 elements.append(Spacer(1, 25))
 
@@ -153,10 +154,20 @@ elements.append(Paragraph(
 
 elements.append(Spacer(1, 100))
 elements.append(Paragraph("Preparata per", meta))
+elements.append(Spacer(1, 15))
 elements.append(Paragraph("Otregroup | Sweesh", section))
 
 elements.append(Spacer(1, 60))
 elements.append(Paragraph("Marzo 2026", meta))
+###
+mul = 0.15
+image_w = 239 * mul
+image_h = 230 * mul
+img = Image(f"projects/spillatura/logo.png", image_w, image_h)
+elements.append(Spacer(1, 20))
+img.hAlign = "LEFT"
+elements.append(img)
+###
 
 elements.append(Spacer(1, 120))
 elements.append(Paragraph(
@@ -206,7 +217,7 @@ elements.append(
     ''', body_style,)
 )
 list_gen(f'''
-il ciclo completo di lavaggio sanificazione
+il ciclo completo di lavaggio e sanificazione
 il cambio dal ciclo di lavaggio a quello di erogazione della bevanda (e viceversa)
 '''.split('\n'))
 ###
@@ -491,7 +502,7 @@ elements.append(
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Visione semplificata", h3))
+elements.append(Paragraph("Sintesi", h3))
 elements.append(
     Paragraph(f'''
         Il ciclo operativo si sviluppa secondo le seguenti fasi:
@@ -615,7 +626,7 @@ Sistema di generazione ozono, fornito dal partner e integrato nel processo
 '''.strip().split('\n'))
 elements.append(
     Paragraph(f'''
-        Questi elementi operano in modo coordinato per garantire l’esecuzione automatica del ciclo di sanificazione.
+        Questi elementi operano in modo coordinato per garantire l’esecuzione automatica del ciclo.
     ''', body_style,)
 )
 ###
@@ -1239,11 +1250,11 @@ Modalità di integrazione con il generatore di ozono
 Gestione condizioni di errore (interruzione ciclo, assenza flusso, ecc.)
 '''.strip().split('\n'))
 ###
-elements.append(Paragraph("Chiarimenti", h3))
+elements.append(Paragraph("Chiarimenti necessari", h3))
 list_gen(f'''
-Il sistema è implementabile senza sensore di flusso? Ovvero, come faccio a calcolare quanto tempo del timer è passato se non riesco a verificare che l'utente sta effettivamente spinando?
+Il sistema è implementabile senza sensore di flusso? Ovvero, come faccio a calcolare quanto tempo del timer è passato se non riesco a verificare che l'utente sta effettivamente spillando?
 Qual'è la probabilità che l'utente dimentichi di selezionare la linea per avviare il ciclo di sanificazione post-cambio fusto? Si ritiene utile automatizzare anche questa parte del processo, rilevando il cambio del fusto in modo automatico in qualche modo per eliminare completamente l'errore umano? 
-Cove viene sanificata la parte della linea che va dal fusto fino alla valvola di commutazione? Potrebbe provocare problemi di contaminazione crociata significativi sul resto della linea?
+Cove viene sanificata la parte della linea che va dal fusto fino alla valvola di commutazione? Nel caso non venisse sanificata, potrebbe provocare problemi di contaminazione crociata significativi sul resto della linea?
 '''.strip().split('\n'))
 ###
 elements.append(PageBreak())
