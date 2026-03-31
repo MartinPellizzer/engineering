@@ -1,0 +1,68 @@
+========================================
+defining the problem
+========================================
+
+- name the problem
+- undesired situation -> desired situation
+- the problem is the "gap" between these situations
+
+- sequential analysis
+    (define problem)
+    1. is there a problem?
+    2. where does it lie?
+    ---
+    (structure the analysis)
+    3. why does it exist?
+    ---
+    (find the solution)
+    4. what could we do about it?
+    5. what should we do about it?
+
+----------------------------------------
+problem definition framework
+----------------------------------------
+
+- define the situation (starting point / opening scene)
+- define the disturbing event
+- define the points in the situations you can act on
+
+1. what's going on?
+2. what don't we like about it?
+3. what do we want instead?
+
+- converting to an introduction
+    - S.C.Q. (situation, complication, question)
+
+- full process so far:
+    - lay out the basic parts of the problem
+    - identify where you are in terms of solution
+    - determine the appropriate question
+    - check that the introduction reflects the problem definition
+    - check that the pyramid answers the question
+
+
+----------------------------------------
+lay out the problem
+----------------------------------------
+- the starting point / opening scene
+- the disturbing event
+- R1 (undesired result)
+- RR (desired result)
+
+- the starting point
+    - space and time
+    - theatre analogy
+    - story analogy (once upon a time there was...)
+
+- the disturbing event
+    - external
+    - internal
+    - recently recognized
+
+- R1 (undesired result)
+    - can be 1 or more R1, resulting from the disturbance
+    - state R1 as briefly as possible in the diagram
+
+- R2 (desired result)
+    - state it as specifically and quantifiably as you can, to know if success
+    - use specific numbers
