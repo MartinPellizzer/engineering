@@ -5,6 +5,9 @@ import pygame
 
 from lib import viewport
 
+
+project_folderpath = 'projects/pyramid'
+
 COLOR_BACKGROUND = (255, 255, 255)
 COLOR_FOREGROUND = (10, 10, 10)
 COLOR_ELEMENT_FOCUS = (128, 128, 255)
@@ -13,6 +16,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 WIDTH, HEIGHT = 1280, 720 
+WINDOW_W, WINDOW_H = WIDTH, HEIGHT
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("FLOW")
 
@@ -24,8 +28,23 @@ font_family_text = FONT_FAMILY_IBM_PLEX_MONO
 font_size_base = 8
 font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
 font_debug = pygame.font.Font(font_family_text, 24 )
+font_toolbar = pygame.font.Font(font_family_text, 18 )
 
 diagram_index = 0
+
+toolbar_frame = {
+    'x': 0,
+    'y': 0,
+    'w': 200,
+    'h': WINDOW_H,
+}
+
+viewport_frame = {
+    'x': 200,
+    'y': 0,
+    'w': WINDOW_W - 200,
+    'h': WINDOW_H,
+}
 
 def thing_create(
     _id, kind, text='', x=0, y=0, w=0, h=0, focus=False, node_start=None, node_end=None, edge_direction=0,
@@ -61,14 +80,14 @@ edge_tmp = thing_create('-1', kind='edge')
 # UTILS
 ################################################################################
 def save(slot):
-    with open(f"diagrams/{slot}.json", "w") as file:
+    with open(f"{project_folderpath}/diagrams/{slot}.json", "w") as file:
         json.dump(canvas, file, indent=4)
 
 def load(slot):
     global diagram_index
     global canvas
     try:
-        with open(f"diagrams/{slot}.json", "r") as file:
+        with open(f"{project_folderpath}/diagrams/{slot}.json", "r") as file:
             canvas = json.load(file)
     except:
         save(slot)
@@ -377,8 +396,10 @@ def draw_edges():
                 if thing['node_end'] == _thing['id']:
                     node_end = _thing
             ###
-            # draw_line_straight(node_start, node_end)
-            draw_line_angled(node_start, node_end, thing['edge_direction'])
+            if viewport.state['edge_style'] == 0:
+                draw_line_straight(node_start, node_end)
+            else:
+                draw_line_angled(node_start, node_end, thing['edge_direction'])
     # EDGE TMP
     if viewport.state['edge_tmp_drawing']:
         # find start node
@@ -387,20 +408,29 @@ def draw_edges():
             if edge_tmp['node_start'] == _thing['id']:
                 thing_start = _thing
         # calc points 
-        c1x, c1y, c1w, c1h = thing_bbox_get(thing_start)
-        c2x, c2y = viewport.snap_to_grid(mouse_world_x, mouse_world_y)
-        c2w, c2h = 0, 0
-        if viewport.state['edge_direction_cur'] == 0:
+        if viewport.state['edge_style'] == 0:
+            c1x, c1y, c1w, c1h = thing_bbox_get(thing_start)
+            c2x, c2y = viewport.snap_to_grid(mouse_world_x, mouse_world_y)
+            c2w, c2h = 0, 0
             x1, y1 = c1x + c1w//2, c1y + c1h//2
-            x2, y2 = c2x + c2w//2, c1y + c1h//2
-            x3, y3 = c2x + c2w//2, c2y + c2h//2
+            x2, y2 = c2x + c2w//2, c2y + c2h//2
+            # draw lines
+            pygame.draw.line(screen, COLOR_FOREGROUND, (x1, y1), (x2, y2), 1)
         else:
-            x1, y1 = c1x + c1w//2, c1y + c1h//2
-            x2, y2 = c1x + c1w//2, c2y + c2h//2
-            x3, y3 = c2x + c2w//2, c2y + c2h//2
-        # draw lines
-        pygame.draw.line(screen, COLOR_FOREGROUND, (x1, y1), (x2, y2), 1)
-        pygame.draw.line(screen, COLOR_FOREGROUND, (x2, y2), (x3, y3), 1)
+            c1x, c1y, c1w, c1h = thing_bbox_get(thing_start)
+            c2x, c2y = viewport.snap_to_grid(mouse_world_x, mouse_world_y)
+            c2w, c2h = 0, 0
+            if viewport.state['edge_direction_cur'] == 0:
+                x1, y1 = c1x + c1w//2, c1y + c1h//2
+                x2, y2 = c2x + c2w//2, c1y + c1h//2
+                x3, y3 = c2x + c2w//2, c2y + c2h//2
+            else:
+                x1, y1 = c1x + c1w//2, c1y + c1h//2
+                x2, y2 = c1x + c1w//2, c2y + c2h//2
+                x3, y3 = c2x + c2w//2, c2y + c2h//2
+            # draw lines
+            pygame.draw.line(screen, COLOR_FOREGROUND, (x1, y1), (x2, y2), 1)
+            pygame.draw.line(screen, COLOR_FOREGROUND, (x2, y2), (x3, y3), 1)
 
 def draw_nodes():
     for thing in canvas['things']:
@@ -482,11 +512,64 @@ def draw_debug():
         screen.blit(surface, (0, y_cur))
         y_cur += 30
 
-def main_draw():
-    screen.fill(COLOR_BACKGROUND)
+tools = {
+    'focus_i': '-1',
+    'items': [
+        {
+            'id': '-1',
+            'kind': 'tool',
+            'name': 'arrow',
+            'label': 'arr',
+        },
+        {
+            'id': '-1',
+            'kind': 'tool',
+            'name': 'node',
+            'label': 'nod',
+        },
+    ]
+}
+
+def draw_toolbar():
+    x = toolbar_frame['x']
+    y = toolbar_frame['y']
+    w = toolbar_frame['w']
+    h = toolbar_frame['h']
+    pygame.draw.rect(screen, (200, 200, 200), (x, y, w, h))
+
+    for tool_i, tool in enumerate(tools['items']):
+        tool_w = 50
+        tool_h = 50
+        tool_x = x + (tool_w * tool_i)
+        tool_y = y
+        if tool_i % 2 == 0:
+            color = (100, 100, 100)
+        else:
+            color = (140, 140, 140)
+        if tool_i == tools['focus_i']:
+            color = (0, 0, 255)
+        pygame.draw.rect(screen, color, (tool_x, tool_y, tool_w, tool_h))
+        line = tool['label']
+        line_w, line_h = font_toolbar.size(line)
+        surface = font_toolbar.render(line, True, (255, 255, 255))
+        screen.blit(surface, (tool_x + (tool_w - line_w) // 2, tool_y + (tool_h - line_h) // 2))
+
+def draw_viewport():
+    x = viewport_frame['x']
+    y = viewport_frame['y']
+    w = viewport_frame['w']
+    h = viewport_frame['h']
+    clip_rect = (x, y, w, h)
+    screen.set_clip(clip_rect)
     draw_grid()
     draw_edges()
     draw_nodes()
+    screen.set_clip(None)
+
+def main_draw():
+    screen.fill(COLOR_BACKGROUND)
+    draw_toolbar()
+    draw_viewport()
     draw_debug()
     pygame.display.flip()
 
@@ -582,39 +665,81 @@ while running:
                     if thing['kind'] == 'node':
                         thing['text_lines'][0] += event.unicode
 
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            if pygame.key.get_mods() & pygame.KMOD_CTRL:
-                if event.button == 1:
-                    edge_create() 
-            else:
-                if event.button == 1:
-                    if viewport.state['edge_tmp_drawing']:
+        focus_context = ''
+        if (
+            mouse_screen_x > toolbar_frame['x'] and
+            mouse_screen_y > toolbar_frame['y'] and
+            mouse_screen_x < toolbar_frame['x'] + toolbar_frame['w'] and
+            mouse_screen_y < toolbar_frame['y'] + toolbar_frame['h']
+        ):
+            focus_context = 'toolbar'
+        else:
+            focus_context = 'viewport'
+
+        if focus_context == 'toolbar':
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                x = toolbar_frame['x']
+                y = toolbar_frame['y']
+                w = toolbar_frame['w']
+                h = toolbar_frame['h']
+                found = False
+                for tool_i, tool in enumerate(tools['items']):
+                    tool_w = 50
+                    tool_h = 50
+                    tool_x = x + (tool_w * tool_i)
+                    tool_y = y
+                    if (
+                        mouse_screen_x > tool_x and
+                        mouse_screen_y > tool_y and
+                        mouse_screen_x < tool_x + tool_w and
+                        mouse_screen_y < tool_y + tool_h
+                    ):
+                        tools['focus_i'] = tool_i
+                        if tool['name'] == 'arrow':
+                            if viewport.state['edge_style'] == 0: viewport.state['edge_style'] = 1
+                            else: viewport.state['edge_style'] = 0
+                        found = True
+                        break
+                if not found:
+                    tools['focus_i'] = -1
+            if event.type == pygame.MOUSEBUTTONUP:
+                tools['focus_i'] = -1
+            if event.type == pygame.MOUSEMOTION:
+                pass
+        else:
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if pygame.key.get_mods() & pygame.KMOD_CTRL:
+                    if event.button == 1:
                         edge_create() 
-                    else:
-                        node_drag_start()
+                else:
+                    if event.button == 1:
+                        if viewport.state['edge_tmp_drawing']:
+                            edge_create() 
+                        else:
+                            node_drag_start()
 
-                elif event.button == 2:
-                    viewport.pan_start(mouse_screen_x, mouse_screen_y)
+                    elif event.button == 2:
+                        viewport.pan_start(mouse_screen_x, mouse_screen_y)
 
-                elif event.button == 3:
-                    node_create()
+                    elif event.button == 3:
+                        node_create()
 
-                # ZOOM ON MOUSE POS
-                elif event.button == 4:
-                    viewport.zoom_run(direction='up', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
-                    font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
-                elif event.button == 5:
-                    viewport.zoom_run(direction='down', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
-                    font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
+                    # ZOOM ON MOUSE POS
+                    elif event.button == 4:
+                        viewport.zoom_run(direction='up', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
+                        font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
+                    elif event.button == 5:
+                        viewport.zoom_run(direction='down', mouse_screen_x=mouse_screen_x, mouse_screen_y=mouse_screen_y)
+                        font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
 
-        if event.type == pygame.MOUSEBUTTONUP:
-            node_drag_end()
-            if event.button == 2:
-                viewport.pan_end()
+            if event.type == pygame.MOUSEBUTTONUP:
+                node_drag_end()
+                if event.button == 2:
+                    viewport.pan_end()
 
-        if event.type == pygame.MOUSEMOTION:
-            node_drag_run()
-            viewport.pan_run(mouse_screen_x, mouse_screen_y)
+            if event.type == pygame.MOUSEMOTION:
+                node_drag_run()
+                viewport.pan_run(mouse_screen_x, mouse_screen_y)
 
     main_draw()
 

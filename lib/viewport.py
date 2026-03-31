@@ -16,6 +16,7 @@ state = {
     'grid_show': False,
     'edge_direction_cur': 0,
     'edge_tmp_drawing': False,
+    'edge_style': 0,
     'debug_show': False,
 }
 
