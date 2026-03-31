@@ -1,3 +1,4 @@
+import os
 import json
 import math
 
@@ -7,6 +8,12 @@ from lib import viewport
 
 
 project_folderpath = 'projects/pyramid'
+project_folderpath = 'projects/herbal-medicine'
+
+try: os.mkdir(project_folderpath)
+except: pass
+try: os.mkdir(f'''{project_folderpath}/diagrams''')
+except: pass
 
 COLOR_BACKGROUND = (255, 255, 255)
 COLOR_FOREGROUND = (10, 10, 10)
@@ -573,6 +580,37 @@ def main_draw():
     draw_debug()
     pygame.display.flip()
 
+def inputs_toolbar(event):
+    if event.type == pygame.MOUSEBUTTONDOWN:
+        x = toolbar_frame['x']
+        y = toolbar_frame['y']
+        w = toolbar_frame['w']
+        h = toolbar_frame['h']
+        found = False
+        for tool_i, tool in enumerate(tools['items']):
+            tool_w = 50
+            tool_h = 50
+            tool_x = x + (tool_w * tool_i)
+            tool_y = y
+            if (
+                mouse_screen_x > tool_x and
+                mouse_screen_y > tool_y and
+                mouse_screen_x < tool_x + tool_w and
+                mouse_screen_y < tool_y + tool_h
+            ):
+                tools['focus_i'] = tool_i
+                if tool['name'] == 'arrow':
+                    if viewport.state['edge_style'] == 0: viewport.state['edge_style'] = 1
+                    else: viewport.state['edge_style'] = 0
+                found = True
+                break
+        if not found:
+            tools['focus_i'] = -1
+    if event.type == pygame.MOUSEBUTTONUP:
+        tools['focus_i'] = -1
+    if event.type == pygame.MOUSEMOTION:
+        pass
+
 ################################################################################
 # MAIN
 ################################################################################
@@ -677,35 +715,7 @@ while running:
             focus_context = 'viewport'
 
         if focus_context == 'toolbar':
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                x = toolbar_frame['x']
-                y = toolbar_frame['y']
-                w = toolbar_frame['w']
-                h = toolbar_frame['h']
-                found = False
-                for tool_i, tool in enumerate(tools['items']):
-                    tool_w = 50
-                    tool_h = 50
-                    tool_x = x + (tool_w * tool_i)
-                    tool_y = y
-                    if (
-                        mouse_screen_x > tool_x and
-                        mouse_screen_y > tool_y and
-                        mouse_screen_x < tool_x + tool_w and
-                        mouse_screen_y < tool_y + tool_h
-                    ):
-                        tools['focus_i'] = tool_i
-                        if tool['name'] == 'arrow':
-                            if viewport.state['edge_style'] == 0: viewport.state['edge_style'] = 1
-                            else: viewport.state['edge_style'] = 0
-                        found = True
-                        break
-                if not found:
-                    tools['focus_i'] = -1
-            if event.type == pygame.MOUSEBUTTONUP:
-                tools['focus_i'] = -1
-            if event.type == pygame.MOUSEMOTION:
-                pass
+            inputs_toolbar(event)
         else:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.key.get_mods() & pygame.KMOD_CTRL:
