@@ -66,3 +66,16 @@ lay out the problem
 - R2 (desired result)
     - state it as specifically and quantifiably as you can, to know if success
     - use specific numbers
+
+========================================
+structuring the analysis of the problem
+========================================
+
+- gather data -> state findings -> draw conclusions -> recommend actions
+
+- replicate the classic scientific method
+    - generate alternative hypotheses
+    - devise a crucial experiment
+    - carry out the experiment so as to get a clean result
+    - plan remedial action accordingly
+
