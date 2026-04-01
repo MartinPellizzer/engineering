@@ -13,7 +13,7 @@ state = {
     'camera_x': 0,
     'camera_y': 0,
     'camera_zoom': 1.0,
-    'grid_show': False,
+    'grid_show': True,
     'edge_direction_cur': 0,
     'edge_tmp_drawing': False,
     'edge_style': 0,
