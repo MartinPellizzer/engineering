@@ -17,10 +17,15 @@ font_family_text = FONT_FAMILY_IBM_PLEX_MONO
 
 font_size_base = 16
 font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
+font_debug = pygame.font.Font(font_family_text, 24 )
 
 state = {
     'running': True,
     'inputs_context': '',
+    'dragging': False,
+    'drag_index': None,
+    'drag_start_world': None,
+    'drag_initial_positions': []
 }
 
 viewport_frame = {
@@ -69,6 +74,9 @@ mouse = {
 def node_create():
     snap_x, snap_y = viewport.snap_to_grid(mouse['world_x'], mouse['world_y'])
     _id = str(len(canvas['things'])+1)
+    line_length = 30
+    thing_w_world = line_length
+    thing_h_world = int(line_length * 1.5)
     canvas['things'].append(
         thing_create(
             _id,
@@ -78,6 +86,8 @@ def node_create():
             text_lines = [f'Gate', f'Valve'], 
             x = snap_x, 
             y = snap_y,
+            w = thing_w_world,
+            h = thing_h_world,
             w_min = viewport.GRID_SIZE * 4,
             h_min = viewport.GRID_SIZE,
         )
@@ -106,7 +116,7 @@ def draw_nodes():
     for thing in canvas['things']:
         if thing['kind'] == 'node':
             thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
-            line_length = int(30 * viewport.state['camera_zoom'])
+            line_length = int(thing['w'] * viewport.state['camera_zoom'])
             line_width = int(4 * viewport.state['camera_zoom'])
             ###
             p_1_x = thing_x
@@ -152,17 +162,62 @@ def draw_nodes():
                 line_x = thing_x + int(line_length - line_w) // 2
                 line_y = thing_y + int(line_length * 1.5) + (line_h * line_i)
                 screen.blit(surface, (line_x, line_y))
+            ###
+            if thing['focus'] == True:
+                thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+                thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+                pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
+
+def draw_debug():
+    if viewport.state['debug_show']:
+        y_cur = 0
+        surface = font_debug.render(f'''{mouse['screen_x']}:{mouse['screen_y']}''', True, (255, 0, 255))
+        screen.blit(surface, (0, y_cur))
+        y_cur += 30
 
 def draw_viewport():
     screen.set_clip((viewport_frame['x'], viewport_frame['y'], viewport_frame['w'], viewport_frame['h']))
     draw_grid()
     draw_nodes()
+    draw_debug()
     screen.set_clip(None)
 
 def main_draw():
     screen.fill(COLOR_BACKGROUND)
     draw_viewport()
     pygame.display.flip()
+
+def node_drag_start():
+    for thing_i, thing in enumerate(canvas['things']):
+        # x, y, w, h = thing_bbox_get(thing)
+        thing_screen_x, thing_screen_y = viewport.world_to_screen(thing['x'], thing['y'])
+        thing_screen_w = thing['w'] * viewport.state['camera_zoom']
+        thing_screen_h = thing['h'] * viewport.state['camera_zoom']
+        thing['focus'] = False
+        if (
+            mouse['screen_x'] > thing_screen_x and mouse['screen_x'] < thing_screen_x + thing_screen_w and 
+            mouse['screen_y'] > thing_screen_y and mouse['screen_y'] < thing_screen_y + thing_screen_h
+        ):
+            thing['focus'] = True
+            state['dragging'] = True
+            state['drag_index'] = thing_i
+            state['drag_start_world'] = (thing_screen_x, thing_screen_y)
+            # state['drag_start_world'] = mouse_world_x, mouse_world_y
+
+def node_drag_end():
+    state['dragging'] = False
+    state['drag_index'] = None
+
+def node_drag_run():
+    if state['dragging']:
+        dx = mouse['world_x'] - state['drag_start_world'][0]
+        dy = mouse['world_y'] - state['drag_start_world'][1]
+        new_x = state['drag_start_world'][0] + dx
+        new_y = state['drag_start_world'][1] + dy
+        new_x, new_y = viewport.snap_to_grid(new_x, new_y)
+        thing = canvas['things'][state['drag_index']]
+        thing["x"] = new_x
+        thing["y"] = new_y
 
 def main_inputs():
     global font_text
@@ -174,7 +229,7 @@ def main_inputs():
             state['running'] = False
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1: 
-                pass
+                node_drag_start()
             elif event.button == 2:
                 viewport.pan_start(mouse['screen_x'], mouse['screen_y'])
             elif event.button == 3:
@@ -185,11 +240,13 @@ def main_inputs():
             elif event.button == 5:
                 viewport.zoom_run(direction='down', mouse_screen_x=mouse['screen_x'], mouse_screen_y=mouse['screen_y'])
                 font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
+        elif event.type == pygame.MOUSEMOTION:
+            node_drag_run()
+            viewport.pan_run(mouse['screen_x'], mouse['screen_y'])
         elif event.type == pygame.MOUSEBUTTONUP:
+            node_drag_end()
             if event.button == 2:
                 viewport.pan_end()
-        elif event.type == pygame.MOUSEMOTION:
-            viewport.pan_run(mouse['screen_x'], mouse['screen_y'])
 
 def main():
     while state['running']:

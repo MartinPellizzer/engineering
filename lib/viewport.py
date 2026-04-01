@@ -17,7 +17,7 @@ state = {
     'edge_direction_cur': 0,
     'edge_tmp_drawing': False,
     'edge_style': 0,
-    'debug_show': False,
+    'debug_show': True,
 }
 
 def world_to_screen(x, y):
