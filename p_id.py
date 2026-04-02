@@ -1,3 +1,7 @@
+# TODO: create list of sockets in "thing", not "input" and "output" sockets
+# TODO: create edge while clicking on sockets
+# TODO: create new components (nodes)
+
 import pygame
 
 from lib import viewport
@@ -37,7 +41,8 @@ viewport_frame = {
 
 def thing_create(
     _id, kind, subkind, text='', x=0, y=0, w=0, h=0, focus=False, node_start_id=None, node_end_id=None, edge_direction=0,
-    w_min=0, h_min=0, text_lines=[], center_x=0, center_y=0, socket_radius=None, socket_input_x=None, socket_input_y=None,
+    w_min=0, h_min=0, text_lines=[], center_x=0, center_y=0, 
+    socket_radius=None, socket_input_x=None, socket_input_y=None, socket_output_x=None, socket_output_y=None,
 ):
     thing = {
         'id': _id,
@@ -60,6 +65,8 @@ def thing_create(
         'socket_radius': socket_radius,
         'socket_input_x': socket_input_x,
         'socket_input_y': socket_input_y,
+        'socket_output_x': socket_output_x,
+        'socket_output_y': socket_output_y,
     }
     return thing
 
@@ -84,7 +91,7 @@ def node_create(world_x=None, world_y=None):
     else:
         snap_x, snap_y = viewport.snap_to_grid(mouse['world_x'], mouse['world_y'])
     _id = str(len(canvas['things'])+1)
-    line_length = 30
+    line_length = 32
     thing_w_world = line_length
     thing_h_world = int(line_length * 1.5)
     socket_radius = 4
@@ -94,7 +101,7 @@ def node_create(world_x=None, world_y=None):
             kind = 'node', 
             subkind = 'valve', 
             text = '', 
-            text_lines = [f'Gate', f'Valve'], 
+            text_lines = [f'FV', f'01'], 
             x = snap_x, 
             y = snap_y,
             w = thing_w_world,
@@ -104,6 +111,8 @@ def node_create(world_x=None, world_y=None):
             socket_radius = socket_radius,
             socket_input_x = 0 - socket_radius,
             socket_input_y = int(thing_h_world * 0.75) - (socket_radius//2),
+            socket_output_x = int(thing_w_world) + socket_radius,
+            socket_output_y = int(thing_h_world * 0.75) - (socket_radius//2),
         )
     )
 
@@ -154,19 +163,19 @@ def draw_edges():
         if thing['kind'] == 'edge':
             node_start = node_by_id(thing['node_start_id'])
             node_end = node_by_id(thing['node_end_id'])
-            node_start_x, node_start_y = socket_screen_coords_center_get(node_start)
-            node_end_x, node_end_y = socket_screen_coords_center_get(node_end)
-            '''
-            node_start_x, node_start_y = viewport.world_to_screen(
-                node_start["x"] + node_start['w']//2, 
-                node_start["y"] + node_start['w']//2,
+            node_start_x, node_start_y = socket_screen_coords_center_get(node_start, socket='output')
+            node_end_x, node_end_y = socket_screen_coords_center_get(node_end, socket='input')
+            x1, y1 = node_start_x, node_start_y
+            x2, y2 = node_start_x, node_end_y
+            x3, y3 = node_end_x, node_end_y
+            pygame.draw.line(screen, COLOR_FOREGROUND, 
+                (x1, y1), (x2, y2), 
+                int(4 * viewport.state['camera_zoom']),
             )
-            node_end_x, node_end_y = viewport.world_to_screen(
-                node_end["x"] + node_end['w']//2, 
-                node_end["y"] + node_end['w']//2,
+            pygame.draw.line(screen, COLOR_FOREGROUND, 
+                (x2 - int(4//2 * viewport.state['camera_zoom']), y2), (x3, y3), 
+                int(4 * viewport.state['camera_zoom']),
             )
-            '''
-            pygame.draw.line(screen, COLOR_FOREGROUND, (node_start_x, node_start_y), (node_end_x, node_end_y), 1)
 
 def draw_nodes():
     for thing in canvas['things']:
@@ -231,6 +240,13 @@ def draw_nodes():
                 (socket_input_x, socket_input_y), 
                 4*viewport.state['camera_zoom']
             )
+            ###
+            socket_output_x = thing_x + (thing['socket_output_x'] * viewport.state['camera_zoom'])
+            socket_output_y = thing_y + (thing['socket_output_y'] * viewport.state['camera_zoom'])
+            pygame.draw.circle(screen, (255, 0, 0), 
+                (socket_output_x, socket_output_y), 
+                4*viewport.state['camera_zoom']
+            )
 
 def draw_debug():
     if viewport.state['debug_show']:
@@ -284,14 +300,18 @@ def node_drag_run():
         thing["x"] = new_x
         thing["y"] = new_y
 
-def socket_screen_coords_center_get(thing):
+def socket_screen_coords_center_get(thing, socket):
     thing_screen_x, thing_screen_y = viewport.world_to_screen(thing['x'], thing['y'])
-    socket_screen_x = thing_screen_x + int(thing['socket_input_x'] * viewport.state['camera_zoom'])
-    socket_screen_y = thing_screen_y + int(thing['socket_input_y'] * viewport.state['camera_zoom'])
+    if socket == 'input':
+        socket_screen_x = thing_screen_x + int(thing['socket_input_x'] * viewport.state['camera_zoom'])
+        socket_screen_y = thing_screen_y + int(thing['socket_input_y'] * viewport.state['camera_zoom'])
+    elif socket == 'output':
+        socket_screen_x = thing_screen_x + int(thing['socket_output_x'] * viewport.state['camera_zoom'])
+        socket_screen_y = thing_screen_y + int(thing['socket_output_y'] * viewport.state['camera_zoom'])
     return socket_screen_x, socket_screen_y
 
-def socket_screen_bbox_get(thing):
-    socket_screen_x, socket_screen_y = socket_screen_coords_center_get(thing)
+def socket_screen_bbox_get(thing, socket):
+    socket_screen_x, socket_screen_y = socket_screen_coords_center_get(thing, socket)
     socket_screen_radius = int(thing['socket_radius'] * viewport.state['camera_zoom'])
     socket_screen_x1 = socket_screen_x - socket_screen_radius
     socket_screen_y1 = socket_screen_y - socket_screen_radius
@@ -302,7 +322,7 @@ def socket_screen_bbox_get(thing):
 def mouse_left_button_socket():
     for thing_i, thing in enumerate(canvas['things']):
         if thing['kind'] == 'node':
-            socket_screen_x1, socket_screen_y1, socket_screen_x2, socket_screen_y2 = socket_screen_bbox_get(thing)
+            socket_screen_x1, socket_screen_y1, socket_screen_x2, socket_screen_y2 = socket_screen_bbox_get(thing, socket='input')
             if (
                 mouse['screen_x'] > socket_screen_x1 and mouse['screen_x'] < socket_screen_x2 and 
                 mouse['screen_y'] > socket_screen_y1 and mouse['screen_y'] < socket_screen_y2
