@@ -47,7 +47,7 @@ lay out the problem
 - the starting point / opening scene
 - the disturbing event
 - R1 (undesired result)
-- RR (desired result)
+- R2 (desired result)
 
 - the starting point
     - space and time
@@ -79,3 +79,14 @@ structuring the analysis of the problem
     - carry out the experiment so as to get a clean result
     - plan remedial action accordingly
 
+========================================
+========================================
+========================================
+logic in presentation
+========================================
+========================================
+========================================
+
+========================================
+reflecting the pyramid on the page
+========================================
