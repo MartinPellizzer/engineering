@@ -43,6 +43,7 @@ def thing_create(
     _id, kind, subkind, text='', x=0, y=0, w=0, h=0, focus=False, node_start_id=None, node_end_id=None, edge_direction=0,
     w_min=0, h_min=0, text_lines=[], center_x=0, center_y=0, 
     socket_radius=None, socket_input_x=None, socket_input_y=None, socket_output_x=None, socket_output_y=None,
+    points=None,
 ):
     thing = {
         'id': _id,
@@ -67,6 +68,7 @@ def thing_create(
         'socket_input_y': socket_input_y,
         'socket_output_x': socket_output_x,
         'socket_output_y': socket_output_y,
+        'points': points,
     }
     return thing
 
@@ -126,6 +128,17 @@ def edge_create():
         )
     )
 
+def edge_create_advanced(points):
+    _id = str(len(canvas['things'])+1)
+    canvas['things'].append(
+        thing_create(
+            _id,
+            kind = 'edge', 
+            subkind = '', 
+            points = points, 
+        )
+    )
+
 ########################################
 
 def draw_grid():
@@ -148,9 +161,9 @@ def draw_grid():
 node_create(world_x=100, world_y=100)
 node_create(world_x=200, world_y=200)
 
-edge_create()
-canvas['things'][2]['node_start_id'] = canvas['things'][0]['id']
-canvas['things'][2]['node_end_id'] = canvas['things'][1]['id']
+# edge_create()
+# canvas['things'][2]['node_start_id'] = canvas['things'][0]['id']
+# canvas['things'][2]['node_end_id'] = canvas['things'][1]['id']
 
 def node_by_id(_id):
     for thing in canvas['things']:
@@ -158,7 +171,12 @@ def node_by_id(_id):
             return thing
     return None
 
+edge_tmp = {
+    'points': [],
+}
+
 def draw_edges():
+    '''
     for thing in canvas['things']:
         if thing['kind'] == 'edge':
             node_start = node_by_id(thing['node_start_id'])
@@ -176,6 +194,49 @@ def draw_edges():
                 (x2 - int(4//2 * viewport.state['camera_zoom']), y2), (x3, y3), 
                 int(4 * viewport.state['camera_zoom']),
             )
+    '''
+
+    for thing in canvas['things']:
+        if thing['kind'] == 'edge':
+            print(len(thing['points']))
+            for point_i in range(len(thing['points'])-1):
+                x1, y1 = viewport.world_to_screen(thing['points'][point_i]['x'], thing['points'][point_i]['y'])
+                x2, y2 = viewport.world_to_screen(thing['points'][point_i+1]['x'], thing['points'][point_i+1]['y'])
+                pygame.draw.line(screen, COLOR_FOREGROUND, 
+                    (x1, y1), 
+                    (x2, y2), 
+                    int(4 * viewport.state['camera_zoom']),
+                )
+
+    global edge_tmp
+    '''
+    if edge_creating == True:
+        x1, y1 = viewport.world_to_screen(edge_tmp['points'][0]['x'], edge_tmp['points'][0]['y'])
+        # x1, y1 = edge_tmp['points'][0]['x'], edge_tmp['points'][0]['y']
+        x2, y2 = mouse['world_x'], mouse['world_y']
+        pygame.draw.line(screen, COLOR_FOREGROUND, 
+            (x1, y1), (x2, y2), 
+            int(4 * viewport.state['camera_zoom']),
+        )
+    '''
+    # if edge_tmp['points'] != []:
+    if edge_creating == True:
+        for point_i in range(len(edge_tmp['points'])-1):
+            x1, y1 = viewport.world_to_screen(edge_tmp['points'][point_i]['x'], edge_tmp['points'][point_i]['y'])
+            x2, y2 = viewport.world_to_screen(edge_tmp['points'][point_i+1]['x'], edge_tmp['points'][point_i+1]['y'])
+            pygame.draw.line(screen, COLOR_FOREGROUND, 
+                (x1, y1), 
+                (x2, y2), 
+                int(4 * viewport.state['camera_zoom']),
+            )
+        points_n = len(edge_tmp['points'])-1
+        x1, y1 = viewport.world_to_screen(edge_tmp['points'][points_n]['x'], edge_tmp['points'][points_n]['y'])
+        x2, y2 = mouse['screen_x'], mouse['screen_y']
+        pygame.draw.line(screen, COLOR_FOREGROUND, 
+            (x1, y1), 
+            (x2, y2), 
+            int(4 * viewport.state['camera_zoom']),
+        )
 
 def draw_nodes():
     for thing in canvas['things']:
@@ -268,23 +329,6 @@ def main_draw():
     draw_viewport()
     pygame.display.flip()
 
-def node_drag_start():
-    for thing_i, thing in enumerate(canvas['things']):
-        # x, y, w, h = thing_bbox_get(thing)
-        thing_screen_x, thing_screen_y = viewport.world_to_screen(thing['x'], thing['y'])
-        thing_screen_w = thing['w'] * viewport.state['camera_zoom']
-        thing_screen_h = thing['h'] * viewport.state['camera_zoom']
-        thing['focus'] = False
-        if (
-            mouse['screen_x'] > thing_screen_x and mouse['screen_x'] < thing_screen_x + thing_screen_w and 
-            mouse['screen_y'] > thing_screen_y and mouse['screen_y'] < thing_screen_y + thing_screen_h
-        ):
-            thing['focus'] = True
-            state['dragging'] = True
-            state['drag_index'] = thing_i
-            state['drag_start_world'] = (thing_screen_x, thing_screen_y)
-            # state['drag_start_world'] = mouse_world_x, mouse_world_y
-
 def node_drag_end():
     state['dragging'] = False
     state['drag_index'] = None
@@ -319,6 +363,8 @@ def socket_screen_bbox_get(thing, socket):
     socket_screen_y2 = socket_screen_y + socket_screen_radius
     return socket_screen_x1, socket_screen_y1, socket_screen_x2, socket_screen_y2
 
+edge_creating = False
+
 def mouse_left_button_socket():
     for thing_i, thing in enumerate(canvas['things']):
         if thing['kind'] == 'node':
@@ -327,14 +373,58 @@ def mouse_left_button_socket():
                 mouse['screen_x'] > socket_screen_x1 and mouse['screen_x'] < socket_screen_x2 and 
                 mouse['screen_y'] > socket_screen_y1 and mouse['screen_y'] < socket_screen_y2
             ):
-                print('socket')
+                socket_screen_center_x, socket_screen_center_y = socket_screen_coords_center_get(thing, socket='input')
+                socket_world_center_x, socket_world_center_y = viewport.screen_to_world(socket_screen_center_x, socket_screen_center_y)
+                # start edge (update -> if not started)
+                global edge_creating
+                global edge_tmp
+                if edge_creating == False:
+                    edge_creating = True
+                    edge_tmp['points'].append({'x': socket_world_center_x, 'y': socket_world_center_y})
+                else:
+                    edge_creating = False
+                    edge_tmp['points'].append({'x': socket_world_center_x, 'y': socket_world_center_y})
+                    edge_create_advanced(edge_tmp['points'])
+                # end edge (update -> if started)
+                # TODO
+                # return confirmation clicked socket
                 return True
                 break
     return False
 
+def mouse_left_button_canvas():
+    global edge_creating
+    global edge_tmp
+    if edge_creating == True:
+        print('mouse_left_button_canvas')
+        edge_tmp['points'].append({'x': mouse['world_x'], 'y': mouse['world_y']})
+    return True
+
+def mouse_left_button_node():
+    for thing_i, thing in enumerate(canvas['things']):
+        if thing['kind'] == 'node':
+            thing_screen_x, thing_screen_y = viewport.world_to_screen(thing['x'], thing['y'])
+            thing_screen_w = thing['w'] * viewport.state['camera_zoom']
+            thing_screen_h = thing['h'] * viewport.state['camera_zoom']
+            thing['focus'] = False
+            if (
+                mouse['screen_x'] > thing_screen_x and mouse['screen_x'] < thing_screen_x + thing_screen_w and 
+                mouse['screen_y'] > thing_screen_y and mouse['screen_y'] < thing_screen_y + thing_screen_h
+            ):
+                thing['focus'] = True
+                state['dragging'] = True
+                state['drag_index'] = thing_i
+                state['drag_start_world'] = (thing_screen_x, thing_screen_y)
+                # state['drag_start_world'] = mouse_world_x, mouse_world_y
+                return True
+                break
+    return False
+
+
 def inputs_mouse_left_button():
-    if mouse_left_button_socket(): pass
-    elif node_drag_start(): pass
+    if mouse_left_button_socket(): return
+    if mouse_left_button_node(): return
+    if mouse_left_button_canvas(): return
 
 def main_inputs():
     global font_text
