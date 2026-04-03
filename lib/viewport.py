@@ -1,3 +1,5 @@
+import math
+
 GRID_SIZE = 8
 
 MIN_ZOOM = 1.0
@@ -33,6 +35,13 @@ def screen_to_world(x, y):
 def snap_to_grid(x, y):
     x = round(x // GRID_SIZE) * GRID_SIZE
     y = round(y // GRID_SIZE) * GRID_SIZE
+    return x, y
+
+def snap_to_grid_closest(x, y):
+    x = math.floor(x / GRID_SIZE + 0.5) * GRID_SIZE
+    y = math.floor(y / GRID_SIZE + 0.5) * GRID_SIZE
+    # x = round(x // GRID_SIZE) * GRID_SIZE
+    # y = round(y // GRID_SIZE) * GRID_SIZE
     return x, y
 
 def thing_focused_get(things):

@@ -1,5 +1,4 @@
 # TODO: create list of sockets in "thing", not "input" and "output" sockets
-# TODO: create edge while clicking on sockets
 # TODO: create new components (nodes)
 
 import pygame
@@ -13,6 +12,7 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode((WINDOW_W, WINDOW_H))
 pygame.display.set_caption("P_ID")
 
+COLOR_BLUE = (0, 0, 255)
 COLOR_BACKGROUND = (255, 255, 255)
 COLOR_FOREGROUND = (10, 10, 10)
 
@@ -97,6 +97,9 @@ def node_create(world_x=None, world_y=None):
     thing_w_world = line_length
     thing_h_world = int(line_length * 1.5)
     socket_radius = 4
+    socket_input_x = 0 - socket_radius
+    socket_input_y = int(thing_h_world * 0.75) - (socket_radius//2)
+    socket_input_x, socket_input_y = viewport.snap_to_grid(socket_input_x, socket_input_y)
     canvas['things'].append(
         thing_create(
             _id,
@@ -111,8 +114,8 @@ def node_create(world_x=None, world_y=None):
             w_min = viewport.GRID_SIZE * 4,
             h_min = viewport.GRID_SIZE,
             socket_radius = socket_radius,
-            socket_input_x = 0 - socket_radius,
-            socket_input_y = int(thing_h_world * 0.75) - (socket_radius//2),
+            socket_input_x = socket_input_x,
+            socket_input_y = socket_input_y,
             socket_output_x = int(thing_w_world) + socket_radius,
             socket_output_y = int(thing_h_world * 0.75) - (socket_radius//2),
         )
@@ -198,15 +201,21 @@ def draw_edges():
 
     for thing in canvas['things']:
         if thing['kind'] == 'edge':
-            print(len(thing['points']))
             for point_i in range(len(thing['points'])-1):
                 x1, y1 = viewport.world_to_screen(thing['points'][point_i]['x'], thing['points'][point_i]['y'])
                 x2, y2 = viewport.world_to_screen(thing['points'][point_i+1]['x'], thing['points'][point_i+1]['y'])
-                pygame.draw.line(screen, COLOR_FOREGROUND, 
-                    (x1, y1), 
-                    (x2, y2), 
-                    int(4 * viewport.state['camera_zoom']),
-                )
+                if thing['focus'] == False:
+                    pygame.draw.line(screen, COLOR_FOREGROUND, 
+                        (x1, y1), 
+                        (x2, y2), 
+                        int(4 * viewport.state['camera_zoom']),
+                    )
+                else:
+                    pygame.draw.line(screen, COLOR_BLUE, 
+                        (x1, y1), 
+                        (x2, y2), 
+                        int(4 * viewport.state['camera_zoom']),
+                    )
 
     global edge_tmp
     '''
@@ -230,11 +239,22 @@ def draw_edges():
                 int(4 * viewport.state['camera_zoom']),
             )
         points_n = len(edge_tmp['points'])-1
-        x1, y1 = viewport.world_to_screen(edge_tmp['points'][points_n]['x'], edge_tmp['points'][points_n]['y'])
-        x2, y2 = mouse['screen_x'], mouse['screen_y']
+        world_x1 = edge_tmp['points'][points_n]['x']
+        world_y1 = edge_tmp['points'][points_n]['y']
+        world_x2 = mouse['world_x']
+        world_y2 = mouse['world_y']
+        ###
+        if abs(world_x2 - world_x1) > abs(world_y2 - world_y1): world_y2 = world_y1
+        else: world_x2 = world_x1
+        ###
+        world_x2, world_y2 = viewport.snap_to_grid_closest(world_x2, world_y2)
+        screen_x1, screen_y1 = viewport.world_to_screen(world_x1, world_y1)
+        screen_x2, screen_y2 = viewport.world_to_screen(world_x2, world_y2)
+        # x1, y1 = viewport.world_to_screen(world_x1, world_y1)
+        # x2, y2 = mouse['screen_x'], mouse['screen_y']
         pygame.draw.line(screen, COLOR_FOREGROUND, 
-            (x1, y1), 
-            (x2, y2), 
+            (screen_x1, screen_y1), 
+            (screen_x2, screen_y2), 
             int(4 * viewport.state['camera_zoom']),
         )
 
@@ -315,6 +335,14 @@ def draw_debug():
         surface = font_debug.render(f'''{mouse['screen_x']}:{mouse['screen_y']}''', True, (255, 0, 255))
         screen.blit(surface, (0, y_cur))
         y_cur += 30
+        world_x, world_y = int(mouse['world_x']), int(mouse['world_y'])
+        surface = font_debug.render(f'''{world_x}:{world_y}''', True, (255, 0, 255))
+        screen.blit(surface, (0, y_cur))
+        y_cur += 30
+        world_x, world_y = viewport.snap_to_grid(world_x, world_y)
+        surface = font_debug.render(f'''{world_x}:{world_y}''', True, (255, 0, 255))
+        screen.blit(surface, (0, y_cur))
+        y_cur += 30
 
 def draw_viewport():
     screen.set_clip((viewport_frame['x'], viewport_frame['y'], viewport_frame['w'], viewport_frame['h']))
@@ -380,10 +408,13 @@ def mouse_left_button_socket():
                 global edge_tmp
                 if edge_creating == False:
                     edge_creating = True
-                    edge_tmp['points'].append({'x': socket_world_center_x, 'y': socket_world_center_y})
+                    # world_x2, world_y2 = viewport.snap_to_grid(socket_world_center_x, socket_world_center_y)
+                    world_x2, world_y2 = viewport.snap_to_grid_closest(socket_world_center_x, socket_world_center_y)
+                    edge_tmp['points'].append({'x': world_x2, 'y': world_y2})
                 else:
                     edge_creating = False
-                    edge_tmp['points'].append({'x': socket_world_center_x, 'y': socket_world_center_y})
+                    world_x2, world_y2 = viewport.snap_to_grid_closest(socket_world_center_x, socket_world_center_y)
+                    edge_tmp['points'].append({'x': world_x2, 'y': world_y2})
                     edge_create_advanced(edge_tmp['points'])
                 # end edge (update -> if started)
                 # TODO
@@ -396,8 +427,24 @@ def mouse_left_button_canvas():
     global edge_creating
     global edge_tmp
     if edge_creating == True:
-        print('mouse_left_button_canvas')
-        edge_tmp['points'].append({'x': mouse['world_x'], 'y': mouse['world_y']})
+        points_n = len(edge_tmp['points'])-1
+        world_x1 = edge_tmp['points'][points_n]['x']
+        world_y1 = edge_tmp['points'][points_n]['y']
+        world_x2 = mouse['world_x']
+        world_y2 = mouse['world_y']
+        ###
+        # screen_x1, screen_y1 = viewport.world_to_screen(, edge_tmp['points'][points_n]['y'])
+        # screen_x2, screen_y2 = mouse['screen_x'], mouse['screen_y']
+        # if abs(screen_x2 - screen_x1) > abs(screen_y2 - screen_y1): screen_y2 = screen_y1
+        # else: screen_x2 = screen_x1
+        # world_x2, world_y2 = viewport.screen_to_world(screen_x2, screen_y2)
+        # world_x2, world_y2 = viewport.snap_to_grid(world_x2, world_y2)
+        if abs(world_x2 - world_x1) > abs(world_y2 - world_y1): world_y2 = world_y1
+        else: world_x2 = world_x1
+        # world_x2, world_y2 = viewport.snap_to_grid(world_x2, world_y2)
+        world_x2, world_y2 = viewport.snap_to_grid_closest(world_x2, world_y2)
+        edge_tmp['points'].append({'x': world_x2, 'y': world_y2})
+        print(f'{world_x2}:{world_y2}')
     return True
 
 def mouse_left_button_node():
@@ -406,7 +453,6 @@ def mouse_left_button_node():
             thing_screen_x, thing_screen_y = viewport.world_to_screen(thing['x'], thing['y'])
             thing_screen_w = thing['w'] * viewport.state['camera_zoom']
             thing_screen_h = thing['h'] * viewport.state['camera_zoom']
-            thing['focus'] = False
             if (
                 mouse['screen_x'] > thing_screen_x and mouse['screen_x'] < thing_screen_x + thing_screen_w and 
                 mouse['screen_y'] > thing_screen_y and mouse['screen_y'] < thing_screen_y + thing_screen_h
@@ -415,15 +461,37 @@ def mouse_left_button_node():
                 state['dragging'] = True
                 state['drag_index'] = thing_i
                 state['drag_start_world'] = (thing_screen_x, thing_screen_y)
-                # state['drag_start_world'] = mouse_world_x, mouse_world_y
                 return True
                 break
     return False
 
+def mouse_left_button_edge():
+    for thing_i, thing in enumerate(canvas['things']):
+        if thing['kind'] == 'edge':
+            for point_i in range(len(thing['points'])-1):
+                x1, y1 = viewport.world_to_screen(thing['points'][point_i]['x'], thing['points'][point_i]['y'])
+                x2, y2 = viewport.world_to_screen(thing['points'][point_i+1]['x'], thing['points'][point_i+1]['y'])
+                ###
+                x1 = x1 - int(4 * viewport.state['camera_zoom'])
+                y1 = y1 - int(4 * viewport.state['camera_zoom'])
+                x2 = x2 + int(4 * viewport.state['camera_zoom'])
+                y2 = y2 + int(4 * viewport.state['camera_zoom'])
+                if (
+                    mouse['screen_x'] > x1 and mouse['screen_x'] < x2 and 
+                    mouse['screen_y'] > y1 and mouse['screen_y'] < y2
+                ):
+                    thing['focus'] = True
+
+                    return True
+                    break
+    return False
 
 def inputs_mouse_left_button():
+    for thing_i, thing in enumerate(canvas['things']):
+        thing['focus'] = False
     if mouse_left_button_socket(): return
     if mouse_left_button_node(): return
+    if mouse_left_button_edge(): return
     if mouse_left_button_canvas(): return
 
 def main_inputs():
