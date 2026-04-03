@@ -16,10 +16,11 @@ COLOR_BLUE = (0, 0, 255)
 COLOR_BACKGROUND = (255, 255, 255)
 COLOR_FOREGROUND = (10, 10, 10)
 
-FONT_FAMILY_IBM_PLEX_MONO = 'fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf'
-font_family_text = FONT_FAMILY_IBM_PLEX_MONO
+FONT_FAMILY_IBM_PLEX_MONO_REGULAR = 'fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf'
+FONT_FAMILY_IBM_PLEX_MONO_BOLD = 'fonts/IBM_Plex_Mono/IBMPlexMono-Bold.ttf'
+font_family_text = FONT_FAMILY_IBM_PLEX_MONO_BOLD
 
-font_size_base = 16
+font_size_base = 14
 font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
 font_debug = pygame.font.Font(font_family_text, 24 )
 
@@ -85,7 +86,7 @@ mouse = {
     'world_y': 0,
 }
 
-def node_create(world_x=None, world_y=None):
+def node_create_solenoid_valve(world_x=None, world_y=None):
     # pos by parameters
     if world_x != None and world_y != None:
         snap_x, snap_y = viewport.snap_to_grid(world_x, world_y)
@@ -95,7 +96,7 @@ def node_create(world_x=None, world_y=None):
     _id = str(len(canvas['things'])+1)
     line_length = 32
     thing_w_world = line_length
-    thing_h_world = int(line_length * 1.5)
+    thing_h_world = int(line_length * 2.5)
     socket_radius = 4
     socket_input_x = 0 - socket_radius
     socket_input_y = int(thing_h_world * 0.75) - (socket_radius//2)
@@ -104,9 +105,9 @@ def node_create(world_x=None, world_y=None):
         thing_create(
             _id,
             kind = 'node', 
-            subkind = 'valve', 
+            subkind = 'solenoid_valve', 
             text = '', 
-            text_lines = [f'FV', f'01'], 
+            text_lines = [f'SV', f'01'], 
             x = snap_x, 
             y = snap_y,
             w = thing_w_world,
@@ -120,6 +121,9 @@ def node_create(world_x=None, world_y=None):
             socket_output_y = int(thing_h_world * 0.75) - (socket_radius//2),
         )
     )
+
+def node_create(world_x=None, world_y=None):
+    node_create_solenoid_valve(world_x, world_y)
 
 def edge_create():
     _id = str(len(canvas['things'])+1)
@@ -258,76 +262,190 @@ def draw_edges():
             int(4 * viewport.state['camera_zoom']),
         )
 
+def draw_nodes_valve(thing):
+    thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
+    thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+    thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+    ###
+    line_length = int(thing['w'] * viewport.state['camera_zoom'])
+    line_width = int(4 * viewport.state['camera_zoom'])
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x + line_length // 2
+    p_1_y = thing_y
+    p_2_x = thing_x + line_length // 2
+    p_2_y = thing_y + line_length
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + line_length // 2
+    p_2_x = thing_x
+    p_2_y = thing_y + int(line_length * 1.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + line_length // 2
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 1.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 0.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x + line_length
+    p_1_y = thing_y + int(line_length * 0.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 1.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    lines = thing['text_lines']            
+    for line_i, line in enumerate(lines):
+        surface = font_text.render(line, True, COLOR_FOREGROUND)
+        line_w, line_h = surface.get_size()
+        line_x = thing_x + int(line_length - line_w) // 2
+        line_y = thing_y + int(line_length * 1.5) + (line_h * line_i)
+        screen.blit(surface, (line_x, line_y))
+    ### focus
+    if thing['focus'] == True:
+        pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
+    ###
+    socket_input_x = thing_x + (thing['socket_input_x'] * viewport.state['camera_zoom'])
+    socket_input_y = thing_y + (thing['socket_input_y'] * viewport.state['camera_zoom'])
+    pygame.draw.circle(screen, (255, 0, 0), 
+        (socket_input_x, socket_input_y), 
+        4*viewport.state['camera_zoom']
+    )
+    ###
+    socket_output_x = thing_x + (thing['socket_output_x'] * viewport.state['camera_zoom'])
+    socket_output_y = thing_y + (thing['socket_output_y'] * viewport.state['camera_zoom'])
+    pygame.draw.circle(screen, (255, 0, 0), 
+        (socket_output_x, socket_output_y), 
+        4*viewport.state['camera_zoom']
+    )
+
+def draw_nodes_solenoid_valve(thing):
+    thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
+    thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+    thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+    ###
+    line_length = int(thing['w'] * viewport.state['camera_zoom'])
+    line_width = int(4 * viewport.state['camera_zoom'])
+    ### square top
+    p_1_x = thing_x
+    p_1_y = thing_y
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### square bottom
+    p_1_x = thing_x
+    p_1_y = thing_y + line_length
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + line_length
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### square left
+    p_1_x = thing_x
+    p_1_y = thing_y
+    p_2_x = thing_x
+    p_2_y = thing_y + line_length
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### square right
+    p_1_x = thing_x + line_length
+    p_1_y = thing_y
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + line_length
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### center line
+    p_1_x = thing_x + int(line_length * 0.5)
+    p_1_y = thing_y + int(line_length * 1)
+    p_2_x = thing_x + int(line_length * 0.5)
+    p_2_y = thing_y + int(line_length * 2)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### left
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 2.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 1.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x + line_length
+    p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### line bottom
+    '''
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 2.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    '''
+    ### text square
+    surface = font_text.render('S', True, COLOR_FOREGROUND)
+    line_w, line_h = surface.get_size()
+    line_x = thing_x + int(line_length//2 - line_w//2)
+    line_y = thing_y + int(line_length//2 - line_h//2)
+    screen.blit(surface, (line_x, line_y))
+    ### tag circle
+    radius = int(24*viewport.state['camera_zoom'])
+    circle_x = thing_x + int(line_length) + radius
+    circle_y = thing_y + int(line_length * 2.5) + radius
+    pygame.draw.circle(screen, (0, 0, 0), 
+        (circle_x, circle_y), 
+        radius,
+        int(4*viewport.state['camera_zoom']),
+    )
+    ### tag text
+    lines = thing['text_lines']
+    for line_i, line in enumerate(lines):
+        surface = font_text.render(line, True, COLOR_FOREGROUND)
+        line_w, line_h = surface.get_size()
+        line_x = circle_x - line_w//2
+        line_y = circle_y - (line_h*(len(lines)-1)) + (line_h * line_i)
+        screen.blit(surface, (line_x, line_y))
+    ### focus
+    if thing['focus'] == True:
+        pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
+    ###
+    socket_input_x = thing_x + (thing['socket_input_x'] * viewport.state['camera_zoom'])
+    socket_input_y = thing_y + (thing['socket_input_y'] * viewport.state['camera_zoom'])
+    pygame.draw.circle(screen, (255, 0, 0), 
+        (socket_input_x, socket_input_y), 
+        4*viewport.state['camera_zoom']
+    )
+    ###
+    socket_output_x = thing_x + (thing['socket_output_x'] * viewport.state['camera_zoom'])
+    socket_output_y = thing_y + (thing['socket_output_y'] * viewport.state['camera_zoom'])
+    pygame.draw.circle(screen, (255, 0, 0), 
+        (socket_output_x, socket_output_y), 
+        4*viewport.state['camera_zoom']
+    )
+
 def draw_nodes():
     for thing in canvas['things']:
         if thing['kind'] == 'node':
-            thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
-            thing_w = int(thing['w'] * viewport.state['camera_zoom'])
-            thing_h = int(thing['h'] * viewport.state['camera_zoom'])
-            ###
-            line_length = int(thing['w'] * viewport.state['camera_zoom'])
-            line_width = int(4 * viewport.state['camera_zoom'])
-            ###
-            p_1_x = thing_x
-            p_1_y = thing_y
-            p_2_x = thing_x + line_length
-            p_2_y = thing_y
-            pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
-            ###
-            p_1_x = thing_x + line_length // 2
-            p_1_y = thing_y
-            p_2_x = thing_x + line_length // 2
-            p_2_y = thing_y + line_length
-            pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
-            ###
-            p_1_x = thing_x
-            p_1_y = thing_y + line_length // 2
-            p_2_x = thing_x
-            p_2_y = thing_y + int(line_length * 1.5)
-            pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
-            ###
-            p_1_x = thing_x
-            p_1_y = thing_y + line_length // 2
-            p_2_x = thing_x + line_length
-            p_2_y = thing_y + int(line_length * 1.5)
-            pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
-            ###
-            p_1_x = thing_x
-            p_1_y = thing_y + int(line_length * 1.5)
-            p_2_x = thing_x + line_length
-            p_2_y = thing_y + int(line_length * 0.5)
-            pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
-            ###
-            p_1_x = thing_x + line_length
-            p_1_y = thing_y + int(line_length * 0.5)
-            p_2_x = thing_x + line_length
-            p_2_y = thing_y + int(line_length * 1.5)
-            pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
-            ###
-            lines = thing['text_lines']            
-            for line_i, line in enumerate(lines):
-                surface = font_text.render(line, True, COLOR_FOREGROUND)
-                line_w, line_h = surface.get_size()
-                line_x = thing_x + int(line_length - line_w) // 2
-                line_y = thing_y + int(line_length * 1.5) + (line_h * line_i)
-                screen.blit(surface, (line_x, line_y))
-            ### focus
-            if thing['focus'] == True:
-                pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
-            ###
-            socket_input_x = thing_x + (thing['socket_input_x'] * viewport.state['camera_zoom'])
-            socket_input_y = thing_y + (thing['socket_input_y'] * viewport.state['camera_zoom'])
-            pygame.draw.circle(screen, (255, 0, 0), 
-                (socket_input_x, socket_input_y), 
-                4*viewport.state['camera_zoom']
-            )
-            ###
-            socket_output_x = thing_x + (thing['socket_output_x'] * viewport.state['camera_zoom'])
-            socket_output_y = thing_y + (thing['socket_output_y'] * viewport.state['camera_zoom'])
-            pygame.draw.circle(screen, (255, 0, 0), 
-                (socket_output_x, socket_output_y), 
-                4*viewport.state['camera_zoom']
-            )
+            if thing['subkind'] == 'solenoid_valve':
+                draw_nodes_solenoid_valve(thing)
 
 def draw_debug():
     if viewport.state['debug_show']:
