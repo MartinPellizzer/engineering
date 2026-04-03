@@ -1,0 +1,92 @@
+{
+    "x": 0,
+    "y": 0,
+    "things": [
+        {
+            "id": "1",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "proj spillatura"
+            ],
+            "x": 544,
+            "y": 160,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "2",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "executive summary"
+            ],
+            "x": 448,
+            "y": 200,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "3",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "intro SCQ"
+            ],
+            "x": 352,
+            "y": 232,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": true,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "4",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "1",
+            "node_end": "2",
+            "edge_direction": 0
+        },
+        {
+            "id": "5",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": "2",
+            "node_end": "3",
+            "edge_direction": 0
+        }
+    ]
+}
