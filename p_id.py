@@ -2,6 +2,7 @@
 # TODO: create new components (nodes)
 
 import pygame
+import math
 
 from lib import viewport
 
@@ -24,7 +25,7 @@ font_size_base = 14
 font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
 font_debug = pygame.font.Font(font_family_text, 24 )
 
-thing_stroke = 4
+thing_stroke = 3
 base_unit = 8
 
 state = {
@@ -163,7 +164,6 @@ def node_create_ozone_generator(world_x=None, world_y=None):
         )
     )
 
-# ;jump
 def node_create_tank(world_x=None, world_y=None):
     # pos by parameters
     if world_x != None and world_y != None: snap_x, snap_y = viewport.snap_to_grid_closest(world_x, world_y)
@@ -187,6 +187,67 @@ def node_create_tank(world_x=None, world_y=None):
             subkind = 'tank', 
             text = '', 
             text_lines = [f'TN', f'01'], 
+            x = world_x, 
+            y = world_y,
+            w = world_w,
+            h = world_h,
+            socket_radius = socket_radius,
+            sockets = sockets,
+        )
+    )
+
+def node_create_valve_manual(world_x=None, world_y=None):
+    # pos by parameters
+    if world_x != None and world_y != None: snap_x, snap_y = viewport.snap_to_grid_closest(world_x, world_y)
+    # pos by mouse coords
+    else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
+    ###
+    _id = str(len(canvas['things'])+1)
+    world_w = base_unit * 4
+    world_h = base_unit * 6
+    socket_radius = 4
+    socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest(-(base_unit), (base_unit * 4),)
+    socket_0001_x, socket_0001_y = viewport.snap_to_grid_closest(world_w+(base_unit), (base_unit * 4),)
+    sockets = []
+    sockets.append({'x': socket_0000_x, 'y': socket_0000_y})
+    sockets.append({'x': socket_0001_x, 'y': socket_0001_y})
+    canvas['things'].append(
+        thing_create(
+            _id,
+            kind = 'node', 
+            subkind = 'valve_manual', 
+            text = '', 
+            text_lines = [f'MV', f'01'], 
+            x = world_x, 
+            y = world_y,
+            w = world_w,
+            h = world_h,
+            socket_radius = socket_radius,
+            sockets = sockets,
+        )
+    )
+
+# ;jump
+def node_create_plc(world_x=None, world_y=None):
+    # pos by parameters
+    if world_x != None and world_y != None: snap_x, snap_y = viewport.snap_to_grid_closest(world_x, world_y)
+    # pos by mouse coords
+    else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
+    ###
+    _id = str(len(canvas['things'])+1)
+    world_w = base_unit * 8
+    world_h = base_unit * 8
+    socket_radius = 4
+    socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest((base_unit*4), (world_h + base_unit * 1),)
+    sockets = []
+    sockets.append({'x': socket_0000_x, 'y': socket_0000_y})
+    canvas['things'].append(
+        thing_create(
+            _id,
+            kind = 'node', 
+            subkind = 'plc', 
+            text = '', 
+            text_lines = [f'PLC', f'01'], 
             x = world_x, 
             y = world_y,
             w = world_w,
@@ -222,6 +283,27 @@ def edge_create_advanced(points):
 
 ########################################
 
+def draw_dashed_line(surface, color, start_pos, end_pos, width=1, dash_length=10):
+    x1, y1 = start_pos
+    x2, y2 = end_pos
+
+    dx = x2 - x1
+    dy = y2 - y1
+    distance = math.hypot(dx, dy)
+
+    dash_count = int(distance / dash_length)
+
+    for i in range(0, dash_count, 2):
+        start = (
+            x1 + (dx / dash_count) * i,
+            y1 + (dy / dash_count) * i
+        )
+        end = (
+            x1 + (dx / dash_count) * (i + 1),
+            y1 + (dy / dash_count) * (i + 1)
+        )
+        pygame.draw.line(surface, color, start, end, width)
+
 def draw_grid():
     if viewport.state['grid_show']:
         step = viewport.GRID_SIZE * viewport.state['camera_zoom']
@@ -248,6 +330,8 @@ node_create(world_x=200, world_y=200)
 
 node_create_ozone_generator(world_x=400, world_y=200)
 node_create_tank(world_x=400, world_y=400)
+node_create_valve_manual(world_x=200, world_y=400)
+node_create_plc(world_x=600, world_y=100)
 
 def node_by_id(_id):
     for thing in canvas['things']:
@@ -338,6 +422,14 @@ def draw_edges():
             (screen_x2, screen_y2), 
             int(4 * viewport.state['camera_zoom']),
         )
+        '''
+        draw_dashed_line(screen, COLOR_FOREGROUND, 
+            (screen_x1, screen_y1), 
+            (screen_x2, screen_y2), 
+            int(4 * viewport.state['camera_zoom']),
+            int(10 * viewport.state['camera_zoom']),
+        )
+        '''
 
 def draw_nodes_valve(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
@@ -414,7 +506,7 @@ def draw_node_solenoid_valve(thing):
     thing_h = int(thing['h'] * viewport.state['camera_zoom'])
     ###
     line_length = int(thing['w'] * viewport.state['camera_zoom'])
-    line_width = int(4 * viewport.state['camera_zoom'])
+    line_width = int(thing_stroke * viewport.state['camera_zoom'])
     ### square top
     p_1_x = thing_x
     p_1_y = thing_y
@@ -490,7 +582,79 @@ def draw_node_solenoid_valve(thing):
     pygame.draw.circle(screen, (0, 0, 0), 
         (circle_x, circle_y), 
         radius,
-        int(4*viewport.state['camera_zoom']),
+        int(thing_stroke*viewport.state['camera_zoom']),
+    )
+    ### tag text
+    lines = thing['text_lines']
+    for line_i, line in enumerate(lines):
+        surface = font_text.render(line, True, COLOR_FOREGROUND)
+        line_w, line_h = surface.get_size()
+        line_x = circle_x - line_w//2
+        line_y = circle_y - (line_h*(len(lines)-1)) + (line_h * line_i)
+        screen.blit(surface, (line_x, line_y))
+    ### focus
+    if thing['focus'] == True:
+        pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
+    ### sockets
+    for socket in thing['sockets']:
+        socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
+        socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
+        pygame.draw.circle(screen, (255, 0, 0), 
+            (socket_input_x, socket_input_y), 
+            4*viewport.state['camera_zoom']
+        )
+
+def draw_node_valve_manual(thing):
+    thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
+    thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+    thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+    ###
+    line_length = int(thing['w'] * viewport.state['camera_zoom'])
+    line_width = int(thing_stroke * viewport.state['camera_zoom'])
+    ### square bottom
+    p_1_x = thing_x
+    p_1_y = thing_y
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### center line
+    p_1_x = thing_x + int(line_length * 0.5)
+    p_1_y = thing_y
+    p_2_x = thing_x + int(line_length * 0.5)
+    p_2_y = thing_y + int(line_length * 1)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### left
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 0.5)
+    p_2_x = thing_x
+    p_2_y = thing_y + int(line_length * 1.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 0.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 1.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 0.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x + line_length
+    p_1_y = thing_y + int(line_length * 0.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 1.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### tag circle
+    radius = int(24*viewport.state['camera_zoom'])
+    circle_x = thing_x + int(line_length) + radius
+    circle_y = thing_y + int(line_length * 1.5) + radius
+    pygame.draw.circle(screen, (0, 0, 0), 
+        (circle_x, circle_y), 
+        radius,
+        int(thing_stroke*viewport.state['camera_zoom']),
     )
     ### tag text
     lines = thing['text_lines']
@@ -561,7 +725,7 @@ def draw_node_ozone_generator(thing):
     pygame.draw.circle(screen, (0, 0, 0), 
         (circle_x, circle_y), 
         radius,
-        int(4*viewport.state['camera_zoom']),
+        int(thing_stroke*viewport.state['camera_zoom']),
     )
     ### tag text
     lines = thing['text_lines']
@@ -583,7 +747,6 @@ def draw_node_ozone_generator(thing):
             4*viewport.state['camera_zoom']
         )
 
-# ;jump
 def draw_node_tank(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
     thing_w = int(thing['w'] * viewport.state['camera_zoom'])
@@ -624,7 +787,85 @@ def draw_node_tank(thing):
     pygame.draw.circle(screen, (0, 0, 0), 
         (circle_x, circle_y), 
         radius,
-        int(4*viewport.state['camera_zoom']),
+        int(thing_stroke*viewport.state['camera_zoom']),
+    )
+    ### tag text
+    lines = thing['text_lines']
+    for line_i, line in enumerate(lines):
+        surface = font_text.render(line, True, COLOR_FOREGROUND)
+        line_w, line_h = surface.get_size()
+        line_x = circle_x - line_w//2
+        line_y = circle_y - (line_h*(len(lines)-1)) + (line_h * line_i)
+        screen.blit(surface, (line_x, line_y))
+    ### focus
+    if thing['focus'] == True:
+        pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
+    ### sockets
+    for socket in thing['sockets']:
+        socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
+        socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
+        pygame.draw.circle(screen, (255, 0, 0), 
+            (socket_input_x, socket_input_y), 
+            4*viewport.state['camera_zoom']
+        )
+
+# ;jump
+def draw_node_plc(thing):
+    thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
+    thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+    thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+    ###
+    # line_length = int(thing['w'] * viewport.state['camera_zoom'])
+    line_width = int(thing_stroke * viewport.state['camera_zoom'])
+    unit = base_unit * viewport.state['camera_zoom']
+    stroke_width_scaled = int(thing_stroke * viewport.state['camera_zoom'])
+    ### square
+    rect = pygame.Rect(
+        thing_x,
+        thing_y,
+        thing_w,
+        thing_h,
+    )
+    inflated_rect = rect.inflate(stroke_width_scaled, stroke_width_scaled)
+    pygame.draw.rect(screen, COLOR_FOREGROUND, inflated_rect, line_width)
+    ### line 1
+    p_1_x = thing_x 
+    p_1_y = thing_y + thing_h//2
+    p_2_x = thing_x + thing_w//2
+    p_2_y = thing_y
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### line 2
+    p_1_x = thing_x + thing_w//2
+    p_1_y = thing_y
+    p_2_x = thing_x + thing_w
+    p_2_y = thing_y + thing_h//2
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### line 3
+    p_1_x = thing_x + thing_w
+    p_1_y = thing_y + thing_h//2
+    p_2_x = thing_x + thing_w//2
+    p_2_y = thing_y + thing_h
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### line 4
+    p_1_x = thing_x + thing_w//2
+    p_1_y = thing_y + thing_h
+    p_2_x = thing_x
+    p_2_y = thing_y + thing_h//2
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### text square
+    surface = font_text.render('PLC', True, COLOR_FOREGROUND)
+    line_w, line_h = surface.get_size()
+    line_x = thing_x + int(thing_w//2 - line_w//2)
+    line_y = thing_y + int(thing_h//2 - line_h//2)
+    screen.blit(surface, (line_x, line_y))
+    ### tag circle
+    radius = int(24*viewport.state['camera_zoom'])
+    circle_x = thing_x + int(thing_w) + radius
+    circle_y = thing_y + int(thing_h) + radius
+    pygame.draw.circle(screen, (0, 0, 0), 
+        (circle_x, circle_y), 
+        radius,
+        int(thing_stroke*viewport.state['camera_zoom']),
     )
     ### tag text
     lines = thing['text_lines']
@@ -656,6 +897,10 @@ def draw_nodes():
                 draw_node_ozone_generator(thing)
             elif thing['subkind'] == 'tank':
                 draw_node_tank(thing)
+            elif thing['subkind'] == 'valve_manual':
+                draw_node_valve_manual(thing)
+            elif thing['subkind'] == 'plc':
+                draw_node_plc(thing)
 
 def draw_debug():
     if viewport.state['debug_show']:
