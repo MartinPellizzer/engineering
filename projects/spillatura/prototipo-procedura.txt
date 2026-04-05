@@ -1,0 +1,7 @@
+fase 1: verifica sistema spillatura (caso base)
+fase 2: verifica sistema ozono (produzione ozono)
+fase 3: verifica elettrovalvole (commutazione manuale)
+fase 4: implementazione ciclo (commutazione automatica, tempo statico)
+fase 5: implementazione sensori (commutazione automatica, tempo dinamico)
+
+fase 6: implementazione multi-linea
