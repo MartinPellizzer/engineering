@@ -1,5 +1,5 @@
-# TODO: create list of sockets in "thing", not "input" and "output" sockets
-# TODO: create new components (nodes)
+# TODO: create empty node (valid only as anchor point to draw arrows, hide when snapshotting)
+# TODO: auto increment ids (text in circles) of nodes of same type
 
 import pygame
 import math
@@ -43,6 +43,34 @@ viewport_frame = {
     'w': WINDOW_W,
     'h': WINDOW_H,
 }
+
+'''
+def screenshot_create_old():
+    x1, y1, x2, y2 = None, None, None, None
+    for thing in canvas['things']:
+        if thing['kind'] == 'node':
+            thing_x, thing_y, thing_w, thing_h = thing_bbox_get(thing)
+            if x1 == None: x1 = thing_x
+            if y1 == None: y1 = thing_y
+            if x2 == None: x2 = thing_x + thing_w
+            if y2 == None: y2 = thing_y + thing_h
+            if x1 > thing_x: x1 = thing_x
+            if y1 > thing_y: y1 = thing_y
+            if x2 < thing_x + thing_w: x2 = thing_x + thing_w
+            if y2 < thing_y + thing_h: y2 = thing_y + thing_h
+    x = x1
+    y = y1
+    w = x2 - x1
+    h = y2 - y1
+    rect = pygame.Rect(x, y, w, h)
+    snapshot = screen.subsurface(rect).copy()
+    pygame.image.save(snapshot, 'exports/diagram.png')
+'''
+
+def screenshot_create():
+    rect = pygame.Rect(0, 0, WINDOW_W, WINDOW_H)
+    snapshot = screen.subsurface(rect).copy()
+    pygame.image.save(snapshot, 'exports/diagram.png')
 
 def thing_create(
     _id, kind, subkind, text='', x=0, y=0, w=0, h=0, focus=False, node_start_id=None, node_end_id=None, edge_direction=0,
@@ -175,8 +203,8 @@ def node_create_tank(world_x=None, world_y=None):
     world_h = base_unit * 16
     socket_radius = 4
     socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest(
-        world_w//2 - socket_radius//2,
-        - (base_unit * 5),
+        (base_unit * 2),
+        - (base_unit * 2),
     )
     sockets = []
     sockets.append({'x': socket_0000_x, 'y': socket_0000_y})
@@ -305,33 +333,34 @@ def draw_dashed_line(surface, color, start_pos, end_pos, width=1, dash_length=10
         pygame.draw.line(surface, color, start, end, width)
 
 def draw_grid():
-    if viewport.state['grid_show']:
-        step = viewport.GRID_SIZE * viewport.state['camera_zoom']
-        # Offset grid based on camera position
-        offset_x = (-viewport.state['camera_x'] * viewport.state['camera_zoom']) % step
-        offset_y = (-viewport.state['camera_y'] * viewport.state['camera_zoom']) % step
-        # Vertical lines
-        x = offset_x
-        while x < WINDOW_W:
-            pygame.draw.line(screen, (200, 200, 200), (int(x), 0), (int(x), WINDOW_H), 1)
-            x += step
-        # Horizontal lines
-        y = offset_y
-        while y < WINDOW_H:
-            pygame.draw.line(screen, (200, 200, 200), (0, int(y)), (WINDOW_W, int(y)), 1)
-            y += step
+    if viewport.state['visual_helpers'] == True:
+        if viewport.state['grid_show'] == True:
+            step = viewport.GRID_SIZE * viewport.state['camera_zoom']
+            # Offset grid based on camera position
+            offset_x = (-viewport.state['camera_x'] * viewport.state['camera_zoom']) % step
+            offset_y = (-viewport.state['camera_y'] * viewport.state['camera_zoom']) % step
+            # Vertical lines
+            x = offset_x
+            while x < WINDOW_W:
+                pygame.draw.line(screen, (200, 200, 200), (int(x), 0), (int(x), WINDOW_H), 1)
+                x += step
+            # Horizontal lines
+            y = offset_y
+            while y < WINDOW_H:
+                pygame.draw.line(screen, (200, 200, 200), (0, int(y)), (WINDOW_W, int(y)), 1)
+                y += step
 
-node_create(world_x=100, world_y=100)
-node_create(world_x=200, world_y=200)
+# node_create(world_x=100, world_y=100)
+# node_create(world_x=200, world_y=200)
 
 # edge_create()
 # canvas['things'][2]['node_start_id'] = canvas['things'][0]['id']
 # canvas['things'][2]['node_end_id'] = canvas['things'][1]['id']
 
-node_create_ozone_generator(world_x=400, world_y=200)
-node_create_tank(world_x=400, world_y=400)
-node_create_valve_manual(world_x=200, world_y=400)
-node_create_plc(world_x=600, world_y=100)
+# node_create_ozone_generator(world_x=400, world_y=200)
+# node_create_tank(world_x=400, world_y=400)
+# node_create_valve_manual(world_x=200, world_y=400)
+# node_create_plc(world_x=600, world_y=100)
 
 def node_by_id(_id):
     for thing in canvas['things']:
@@ -343,56 +372,59 @@ edge_tmp = {
     'points': [],
 }
 
-def draw_edges():
-    '''
-    for thing in canvas['things']:
-        if thing['kind'] == 'edge':
-            node_start = node_by_id(thing['node_start_id'])
-            node_end = node_by_id(thing['node_end_id'])
-            node_start_x, node_start_y = socket_screen_coords_center_get(node_start, socket='output')
-            node_end_x, node_end_y = socket_screen_coords_center_get(node_end, socket='input')
-            x1, y1 = node_start_x, node_start_y
-            x2, y2 = node_start_x, node_end_y
-            x3, y3 = node_end_x, node_end_y
-            pygame.draw.line(screen, COLOR_FOREGROUND, 
-                (x1, y1), (x2, y2), 
-                int(4 * viewport.state['camera_zoom']),
-            )
-            pygame.draw.line(screen, COLOR_FOREGROUND, 
-                (x2 - int(4//2 * viewport.state['camera_zoom']), y2), (x3, y3), 
-                int(4 * viewport.state['camera_zoom']),
-            )
-    '''
+def draw_arrow(world_x1, world_y1, world_x2, world_y2):
+        arrow_size = 8
+        if world_x1 < world_x2:
+            world_p1 = (world_x2 + arrow_size, world_y2)
+            world_p2 = (world_x2, world_y2 + arrow_size)
+            world_p3 = (world_x2, world_y2 - arrow_size)
+        elif world_x1 > world_x2:
+            world_p1 = (world_x2 - arrow_size, world_y2)
+            world_p2 = (world_x2, world_y2 - arrow_size)
+            world_p3 = (world_x2, world_y2 + arrow_size)
+        else:
+            if world_y1 < world_y2:
+                world_p1 = (world_x2, world_y2 + arrow_size)
+                world_p2 = (world_x2 - arrow_size, world_y2)
+                world_p3 = (world_x2 + arrow_size, world_y2)
+            else:
+                world_p1 = (world_x2, world_y2 - arrow_size)
+                world_p2 = (world_x2 + arrow_size, world_y2)
+                world_p3 = (world_x2 - arrow_size, world_y2)
+        screen_x1, screen_y1 = viewport.world_to_screen(world_p1[0], world_p1[1])
+        screen_x2, screen_y2 = viewport.world_to_screen(world_p2[0], world_p2[1])
+        screen_x3, screen_y3 = viewport.world_to_screen(world_p3[0], world_p3[1])
+        screen_p1 = (screen_x1, screen_y1)
+        screen_p2 = (screen_x2, screen_y2)
+        screen_p3 = (screen_x3, screen_y3)
+        screen_points = [screen_p1, screen_p2, screen_p3]
+        pygame.draw.polygon(screen, COLOR_FOREGROUND, screen_points)
 
+def draw_edges():
     for thing in canvas['things']:
         if thing['kind'] == 'edge':
             for point_i in range(len(thing['points'])-1):
-                x1, y1 = viewport.world_to_screen(thing['points'][point_i]['x'], thing['points'][point_i]['y'])
-                x2, y2 = viewport.world_to_screen(thing['points'][point_i+1]['x'], thing['points'][point_i+1]['y'])
+                world_x1 = thing['points'][point_i]['x']
+                world_y1 = thing['points'][point_i]['y']
+                world_x2 = thing['points'][point_i+1]['x']
+                world_y2 = thing['points'][point_i+1]['y']
+                x1, y1 = viewport.world_to_screen(world_x1, world_y1)
+                x2, y2 = viewport.world_to_screen(world_x2, world_y2)
                 if thing['focus'] == False:
                     pygame.draw.line(screen, COLOR_FOREGROUND, 
                         (x1, y1), 
                         (x2, y2), 
-                        int(4 * viewport.state['camera_zoom']),
+                        int(thing_stroke * viewport.state['camera_zoom']),
                     )
                 else:
                     pygame.draw.line(screen, COLOR_BLUE, 
                         (x1, y1), 
                         (x2, y2), 
-                        int(4 * viewport.state['camera_zoom']),
+                        int(thing_stroke * viewport.state['camera_zoom']),
                     )
+            draw_arrow(world_x1, world_y1, world_x2, world_y2)
 
     global edge_tmp
-    '''
-    if edge_creating == True:
-        x1, y1 = viewport.world_to_screen(edge_tmp['points'][0]['x'], edge_tmp['points'][0]['y'])
-        # x1, y1 = edge_tmp['points'][0]['x'], edge_tmp['points'][0]['y']
-        x2, y2 = mouse['world_x'], mouse['world_y']
-        pygame.draw.line(screen, COLOR_FOREGROUND, 
-            (x1, y1), (x2, y2), 
-            int(4 * viewport.state['camera_zoom']),
-        )
-    '''
     # if edge_tmp['points'] != []:
     if edge_creating == True:
         for point_i in range(len(edge_tmp['points'])-1):
@@ -401,7 +433,7 @@ def draw_edges():
             pygame.draw.line(screen, COLOR_FOREGROUND, 
                 (x1, y1), 
                 (x2, y2), 
-                int(4 * viewport.state['camera_zoom']),
+                int(thing_stroke * viewport.state['camera_zoom']),
             )
         points_n = len(edge_tmp['points'])-1
         world_x1 = edge_tmp['points'][points_n]['x']
@@ -420,16 +452,22 @@ def draw_edges():
         pygame.draw.line(screen, COLOR_FOREGROUND, 
             (screen_x1, screen_y1), 
             (screen_x2, screen_y2), 
-            int(4 * viewport.state['camera_zoom']),
+            int(thing_stroke * viewport.state['camera_zoom']),
         )
-        '''
-        draw_dashed_line(screen, COLOR_FOREGROUND, 
-            (screen_x1, screen_y1), 
-            (screen_x2, screen_y2), 
-            int(4 * viewport.state['camera_zoom']),
-            int(10 * viewport.state['camera_zoom']),
-        )
-        '''
+        draw_arrow(world_x1, world_y1, world_x2, world_y2)
+
+def draw_sockets(thing):
+    if viewport.state['visual_helpers'] == True:
+        thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
+        thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+        thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+        for socket in thing['sockets']:
+            socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
+            socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
+            pygame.draw.circle(screen, (255, 0, 0), 
+                (socket_input_x, socket_input_y), 
+                4*viewport.state['camera_zoom']
+            )
 
 def draw_nodes_valve(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
@@ -493,12 +531,7 @@ def draw_nodes_valve(thing):
         4*viewport.state['camera_zoom']
     )
     ###
-    socket_output_x = thing_x + (thing['socket_output_x'] * viewport.state['camera_zoom'])
-    socket_output_y = thing_y + (thing['socket_output_y'] * viewport.state['camera_zoom'])
-    pygame.draw.circle(screen, (255, 0, 0), 
-        (socket_output_x, socket_output_y), 
-        4*viewport.state['camera_zoom']
-    )
+    draw_sockets(thing)
 
 def draw_node_solenoid_valve(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
@@ -596,13 +629,7 @@ def draw_node_solenoid_valve(thing):
     if thing['focus'] == True:
         pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
     ### sockets
-    for socket in thing['sockets']:
-        socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
-        socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
-        pygame.draw.circle(screen, (255, 0, 0), 
-            (socket_input_x, socket_input_y), 
-            4*viewport.state['camera_zoom']
-        )
+    draw_sockets(thing)
 
 def draw_node_valve_manual(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
@@ -668,13 +695,7 @@ def draw_node_valve_manual(thing):
     if thing['focus'] == True:
         pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
     ### sockets
-    for socket in thing['sockets']:
-        socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
-        socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
-        pygame.draw.circle(screen, (255, 0, 0), 
-            (socket_input_x, socket_input_y), 
-            4*viewport.state['camera_zoom']
-        )
+    draw_sockets(thing)
 
 def draw_node_ozone_generator(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
@@ -739,13 +760,7 @@ def draw_node_ozone_generator(thing):
     if thing['focus'] == True:
         pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
     ### sockets
-    for socket in thing['sockets']:
-        socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
-        socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
-        pygame.draw.circle(screen, (255, 0, 0), 
-            (socket_input_x, socket_input_y), 
-            4*viewport.state['camera_zoom']
-        )
+    draw_sockets(thing)
 
 def draw_node_tank(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
@@ -801,13 +816,7 @@ def draw_node_tank(thing):
     if thing['focus'] == True:
         pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
     ### sockets
-    for socket in thing['sockets']:
-        socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
-        socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
-        pygame.draw.circle(screen, (255, 0, 0), 
-            (socket_input_x, socket_input_y), 
-            4*viewport.state['camera_zoom']
-        )
+    draw_sockets(thing)
 
 # ;jump
 def draw_node_plc(thing):
@@ -879,14 +888,7 @@ def draw_node_plc(thing):
     if thing['focus'] == True:
         pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
     ### sockets
-    for socket in thing['sockets']:
-        socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
-        socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
-        pygame.draw.circle(screen, (255, 0, 0), 
-            (socket_input_x, socket_input_y), 
-            4*viewport.state['camera_zoom']
-        )
-
+    draw_sockets(thing)
 
 def draw_nodes():
     for thing in canvas['things']:
@@ -903,19 +905,23 @@ def draw_nodes():
                 draw_node_plc(thing)
 
 def draw_debug():
-    if viewport.state['debug_show']:
-        y_cur = 0
-        surface = font_debug.render(f'''{mouse['screen_x']}:{mouse['screen_y']}''', True, (255, 0, 255))
-        screen.blit(surface, (0, y_cur))
-        y_cur += 30
-        world_x, world_y = int(mouse['world_x']), int(mouse['world_y'])
-        surface = font_debug.render(f'''{world_x}:{world_y}''', True, (255, 0, 255))
-        screen.blit(surface, (0, y_cur))
-        y_cur += 30
-        world_x, world_y = viewport.snap_to_grid(world_x, world_y)
-        surface = font_debug.render(f'''{world_x}:{world_y}''', True, (255, 0, 255))
-        screen.blit(surface, (0, y_cur))
-        y_cur += 30
+    if viewport.state['visual_helpers'] == True:
+        if viewport.state['debug_show'] == True:
+            y_cur = 0
+            surface = font_debug.render(f'''{mouse['screen_x']}:{mouse['screen_y']}''', True, (255, 0, 255))
+            screen.blit(surface, (0, y_cur))
+            y_cur += 30
+            world_x, world_y = int(mouse['world_x']), int(mouse['world_y'])
+            surface = font_debug.render(f'''{world_x}:{world_y}''', True, (255, 0, 255))
+            screen.blit(surface, (0, y_cur))
+            y_cur += 30
+            world_x, world_y = viewport.snap_to_grid(world_x, world_y)
+            surface = font_debug.render(f'''{world_x}:{world_y}''', True, (255, 0, 255))
+            screen.blit(surface, (0, y_cur))
+            y_cur += 30
+            surface = font_debug.render(f'''{viewport.state['camera_zoom']}''', True, (255, 0, 255))
+            screen.blit(surface, (0, y_cur))
+            y_cur += 30
 
 def draw_viewport():
     screen.set_clip((viewport_frame['x'], viewport_frame['y'], viewport_frame['w'], viewport_frame['h']))
@@ -1037,24 +1043,39 @@ def mouse_left_button_node():
     return False
 
 def mouse_left_button_edge():
-    for thing_i, thing in enumerate(canvas['things']):
-        if thing['kind'] == 'edge':
-            for point_i in range(len(thing['points'])-1):
-                x1, y1 = viewport.world_to_screen(thing['points'][point_i]['x'], thing['points'][point_i]['y'])
-                x2, y2 = viewport.world_to_screen(thing['points'][point_i+1]['x'], thing['points'][point_i+1]['y'])
-                ###
-                x1 = x1 - int(4 * viewport.state['camera_zoom'])
-                y1 = y1 - int(4 * viewport.state['camera_zoom'])
-                x2 = x2 + int(4 * viewport.state['camera_zoom'])
-                y2 = y2 + int(4 * viewport.state['camera_zoom'])
-                if (
-                    mouse['screen_x'] > x1 and mouse['screen_x'] < x2 and 
-                    mouse['screen_y'] > y1 and mouse['screen_y'] < y2
-                ):
-                    thing['focus'] = True
+    if edge_creating == False:
+        for thing_i, thing in enumerate(canvas['things']):
+            if thing['kind'] == 'edge':
+                for point_i in range(len(thing['points'])-1):
+                    x1, y1 = viewport.world_to_screen(thing['points'][point_i]['x'], thing['points'][point_i]['y'])
+                    x2, y2 = viewport.world_to_screen(thing['points'][point_i+1]['x'], thing['points'][point_i+1]['y'])
+                    ###
+                    if x1 < x2 or y1 < y2:
+                        x1_dir = x1 - int(4 * viewport.state['camera_zoom'])
+                        y1_dir = y1 - int(4 * viewport.state['camera_zoom'])
+                        x2_dir = x2 + int(4 * viewport.state['camera_zoom'])
+                        y2_dir = y2 + int(4 * viewport.state['camera_zoom'])
+                    else:
+                        x1_dir = x2 - int(4 * viewport.state['camera_zoom'])
+                        y1_dir = y2 - int(4 * viewport.state['camera_zoom'])
+                        x2_dir = x1 + int(4 * viewport.state['camera_zoom'])
+                        y2_dir = y1 + int(4 * viewport.state['camera_zoom'])
+                    '''
+                    else:
+                        if y1 < y2:
+                            x1_dir = x1 - int(4 * viewport.state['camera_zoom'])
+                            y1_dir = y1 - int(4 * viewport.state['camera_zoom'])
+                            x2_dir = x2 + int(4 * viewport.state['camera_zoom'])
+                            y2_dir = y2 + int(4 * viewport.state['camera_zoom'])
+                    '''
+                    if (
+                        mouse['screen_x'] > x1_dir and mouse['screen_x'] < x2_dir and 
+                        mouse['screen_y'] > y1_dir and mouse['screen_y'] < y2_dir
+                    ):
+                        thing['focus'] = True
 
-                    return True
-                    break
+                        return True
+                        break
     return False
 
 def inputs_mouse_left_button():
@@ -1073,6 +1094,35 @@ def main_inputs():
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             state['running'] = False
+        elif event.type == pygame.KEYDOWN:
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_DELETE:
+                    for thing_i, thing in enumerate(canvas['things']):
+                        if thing['focus'] == True:
+                            del canvas['things'][thing_i]
+                elif event.key == pygame.K_o:
+                    node_create_ozone_generator(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_t:
+                    node_create_tank(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_s:
+                    node_create_solenoid_valve(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_m:
+                    node_create_valve_manual(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_p:
+                    node_create_plc(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_d:
+                    if viewport.state['visual_helpers'] == True: viewport.state['visual_helpers'] = False
+                    else: viewport.state['visual_helpers'] = True
+                elif event.key == pygame.K_e: 
+                    screenshot_create()
+                elif event.unicode == "{":
+                    print("Left curly bracket")
+                    viewport.zoom_from_center('down', 1, 'add', 'int', WINDOW_W//2, WINDOW_H//2)
+                    font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
+                elif event.unicode == "}":
+                    print("Right curly bracket")
+                    viewport.zoom_from_center('up', 1, 'add', 'int', WINDOW_W//2, WINDOW_H//2)
+                    font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
         elif event.type == pygame.MOUSEBUTTONDOWN:
             if event.button == 1: 
                 inputs_mouse_left_button()

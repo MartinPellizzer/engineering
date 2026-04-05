@@ -20,6 +20,7 @@ state = {
     'edge_tmp_drawing': False,
     'edge_style': 0,
     'debug_show': True,
+    'visual_helpers': True,
 }
 
 def world_to_screen(x, y):
