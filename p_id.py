@@ -1,5 +1,4 @@
-# TODO: auto increment ids (text in circles) of nodes of same type
-# TODO: ad cursor target lines, a cross that extends to the border, for alignment purposes
+# TODO: electrical lines are dashed lines
 
 import pygame
 import math
@@ -26,7 +25,7 @@ font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.sta
 font_debug = pygame.font.Font(font_family_text, 24 )
 
 thing_stroke = 3
-base_unit = 8
+base_unit = viewport.GRID_SIZE
 
 state = {
     'running': True,
@@ -43,29 +42,6 @@ viewport_frame = {
     'w': WINDOW_W,
     'h': WINDOW_H,
 }
-
-'''
-def screenshot_create_old():
-    x1, y1, x2, y2 = None, None, None, None
-    for thing in canvas['things']:
-        if thing['kind'] == 'node':
-            thing_x, thing_y, thing_w, thing_h = thing_bbox_get(thing)
-            if x1 == None: x1 = thing_x
-            if y1 == None: y1 = thing_y
-            if x2 == None: x2 = thing_x + thing_w
-            if y2 == None: y2 = thing_y + thing_h
-            if x1 > thing_x: x1 = thing_x
-            if y1 > thing_y: y1 = thing_y
-            if x2 < thing_x + thing_w: x2 = thing_x + thing_w
-            if y2 < thing_y + thing_h: y2 = thing_y + thing_h
-    x = x1
-    y = y1
-    w = x2 - x1
-    h = y2 - y1
-    rect = pygame.Rect(x, y, w, h)
-    snapshot = screen.subsurface(rect).copy()
-    pygame.image.save(snapshot, 'exports/diagram.png')
-'''
 
 def screenshot_create():
     rect = pygame.Rect(0, 0, WINDOW_W, WINDOW_H)
@@ -128,6 +104,11 @@ def node_create_solenoid_valve(world_x=None, world_y=None):
     else:
         snap_x, snap_y = viewport.snap_to_grid(mouse['world_x'], mouse['world_y'])
     _id = str(len(canvas['things'])+1)
+    subkind = 'solenoid_valve'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
     line_length = 32
     thing_w_world = line_length
     thing_h_world = int(line_length * 2.5)
@@ -138,16 +119,77 @@ def node_create_solenoid_valve(world_x=None, world_y=None):
     socket_output_x = int(thing_w_world) + socket_radius * 2
     socket_output_y = int(thing_h_world * 0.80) - (socket_radius//2)
     socket_output_x, socket_output_y = viewport.snap_to_grid_closest(socket_output_x, socket_output_y)
+    socket_0002_x, socket_0002_y = viewport.snap_to_grid_closest(
+        (base_unit * 2), 
+        (base_unit * (-1)),
+    )
     sockets = []
-    sockets.append({'x': socket_input_x, 'y': socket_input_y})
-    sockets.append({'x': socket_output_x, 'y': socket_output_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_input_x, 'y': socket_input_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_output_x, 'y': socket_output_y})
+    sockets.append({'kind': 'electric', 'x': socket_0002_x, 'y': socket_0002_y})
     canvas['things'].append(
         thing_create(
             _id,
             kind = 'node', 
-            subkind = 'solenoid_valve', 
+            subkind = subkind,
             text = '', 
-            text_lines = [f'SV', f'01'], 
+            text_lines = [f'SV', f'{_id_relative_str}'], 
+            x = snap_x, 
+            y = snap_y,
+            w = thing_w_world,
+            h = thing_h_world,
+            socket_radius = socket_radius,
+            socket_input_x = socket_input_x,
+            socket_input_y = socket_input_y,
+            socket_output_x = int(thing_w_world) + socket_radius,
+            socket_output_y = int(thing_h_world * 0.75) - (socket_radius//2),
+            sockets = sockets,
+        )
+    )
+
+def node_create_solenoid_valve_3way(world_x=None, world_y=None):
+    # pos by parameters
+    if world_x != None and world_y != None:
+        snap_x, snap_y = viewport.snap_to_grid(world_x, world_y)
+    # pos by mouse coords
+    else:
+        snap_x, snap_y = viewport.snap_to_grid(mouse['world_x'], mouse['world_y'])
+    _id = str(len(canvas['things'])+1)
+    subkind = 'solenoid_valve_3way'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
+    line_length = 32
+    thing_w_world = line_length
+    thing_h_world = int(line_length * 2.5)
+    socket_radius = 4
+    socket_input_x = 0 - socket_radius * 2
+    socket_input_y = int(thing_h_world * 0.80) - (socket_radius//2)
+    socket_input_x, socket_input_y = viewport.snap_to_grid_closest(socket_input_x, socket_input_y)
+    socket_output_x = int(thing_w_world) + socket_radius * 2
+    socket_output_y = int(thing_h_world * 0.80) - (socket_radius//2)
+    socket_output_x, socket_output_y = viewport.snap_to_grid_closest(socket_output_x, socket_output_y)
+    socket_0002_x, socket_0002_y = viewport.snap_to_grid_closest(
+        (base_unit * 2), 
+        (base_unit * (11)),
+    )
+    socket_0003_x, socket_0003_y = viewport.snap_to_grid_closest(
+        (base_unit * 2), 
+        (base_unit * (-1)),
+    )
+    sockets = []
+    sockets.append({'kind': 'hydraulic', 'x': socket_input_x, 'y': socket_input_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_output_x, 'y': socket_output_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0002_x, 'y': socket_0002_y})
+    sockets.append({'kind': 'electric', 'x': socket_0003_x, 'y': socket_0003_y})
+    canvas['things'].append(
+        thing_create(
+            _id,
+            kind = 'node', 
+            subkind = subkind,
+            text = '', 
+            text_lines = [f'SV', f'{_id_relative_str}'], 
             x = snap_x, 
             y = snap_y,
             w = thing_w_world,
@@ -168,21 +210,26 @@ def node_create_ozone_generator(world_x=None, world_y=None):
     else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
     ###
     _id = str(len(canvas['things'])+1)
+    subkind = 'ozone_generator'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
     world_w = base_unit * 10
     world_h = base_unit * 16
     socket_radius = 4
     socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest(-socket_radius * 10, world_h - (base_unit * 4))
     socket_0001_x, socket_0001_y = viewport.snap_to_grid_closest(world_w + socket_radius * 9, world_h - (base_unit * 4))
     sockets = []
-    sockets.append({'x': socket_0000_x, 'y': socket_0000_y})
-    sockets.append({'x': socket_0001_x, 'y': socket_0001_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0000_x, 'y': socket_0000_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0001_x, 'y': socket_0001_y})
     canvas['things'].append(
         thing_create(
             _id,
             kind = 'node', 
-            subkind = 'ozone_generator', 
+            subkind = subkind,
             text = '', 
-            text_lines = [f'O3', f'01'], 
+            text_lines = [f'O3', f'{_id_relative_str}'], 
             x = world_x, 
             y = world_y,
             w = world_w,
@@ -199,6 +246,11 @@ def node_create_tank(world_x=None, world_y=None):
     else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
     ###
     _id = str(len(canvas['things'])+1)
+    subkind = 'tank'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
     world_w = base_unit * 10
     world_h = base_unit * 16
     socket_radius = 4
@@ -207,14 +259,14 @@ def node_create_tank(world_x=None, world_y=None):
         - (base_unit * 2),
     )
     sockets = []
-    sockets.append({'x': socket_0000_x, 'y': socket_0000_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0000_x, 'y': socket_0000_y})
     canvas['things'].append(
         thing_create(
             _id,
             kind = 'node', 
-            subkind = 'tank', 
+            subkind = subkind,
             text = '', 
-            text_lines = [f'TN', f'01'], 
+            text_lines = [f'TN', f'{_id_relative_str}'], 
             x = world_x, 
             y = world_y,
             w = world_w,
@@ -231,21 +283,26 @@ def node_create_valve_manual(world_x=None, world_y=None):
     else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
     ###
     _id = str(len(canvas['things'])+1)
+    subkind = 'valve_manual'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
     world_w = base_unit * 4
     world_h = base_unit * 6
     socket_radius = 4
     socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest(-(base_unit), (base_unit * 4),)
     socket_0001_x, socket_0001_y = viewport.snap_to_grid_closest(world_w+(base_unit), (base_unit * 4),)
     sockets = []
-    sockets.append({'x': socket_0000_x, 'y': socket_0000_y})
-    sockets.append({'x': socket_0001_x, 'y': socket_0001_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0000_x, 'y': socket_0000_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0001_x, 'y': socket_0001_y})
     canvas['things'].append(
         thing_create(
             _id,
             kind = 'node', 
-            subkind = 'valve_manual', 
+            subkind = subkind,
             text = '', 
-            text_lines = [f'MV', f'01'], 
+            text_lines = [f'MV', f'{_id_relative_str}'], 
             x = world_x, 
             y = world_y,
             w = world_w,
@@ -262,19 +319,58 @@ def node_create_plc(world_x=None, world_y=None):
     else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
     ###
     _id = str(len(canvas['things'])+1)
+    subkind = 'plc'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
     world_w = base_unit * 8
     world_h = base_unit * 8
     socket_radius = 4
     socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest((base_unit*4), (world_h + base_unit * 1),)
     sockets = []
-    sockets.append({'x': socket_0000_x, 'y': socket_0000_y})
+    sockets.append({'kind': 'electric', 'x': socket_0000_x, 'y': socket_0000_y})
     canvas['things'].append(
         thing_create(
             _id,
             kind = 'node', 
-            subkind = 'plc', 
+            subkind = subkind, 
             text = '', 
-            text_lines = [f'PLC', f'01'], 
+            text_lines = [f'PLC', f'{_id_relative_str}'], 
+            x = world_x, 
+            y = world_y,
+            w = world_w,
+            h = world_h,
+            socket_radius = socket_radius,
+            sockets = sockets,
+        )
+    )
+
+def node_create_empty(world_x=None, world_y=None):
+    # pos by parameters
+    if world_x != None and world_y != None: snap_x, snap_y = viewport.snap_to_grid_closest(world_x, world_y)
+    # pos by mouse coords
+    else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
+    ###
+    _id = str(len(canvas['things'])+1)
+    subkind = 'empty'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
+    world_w = base_unit * 4
+    world_h = base_unit * 4
+    socket_radius = 4
+    socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest((base_unit*2), (base_unit * 2),)
+    sockets = []
+    sockets.append({'kind': 'hydraulic', 'x': socket_0000_x, 'y': socket_0000_y})
+    canvas['things'].append(
+        thing_create(
+            _id,
+            kind = 'node', 
+            subkind = subkind,
+            text = '', 
+            text_lines = [f'EM', f'{_id_relative_str}'], 
             x = world_x, 
             y = world_y,
             w = world_w,
@@ -285,26 +381,73 @@ def node_create_plc(world_x=None, world_y=None):
     )
 
 # ;jump
-def node_create_empty(world_x=None, world_y=None):
+def node_create_flow_meter(world_x=None, world_y=None):
     # pos by parameters
     if world_x != None and world_y != None: snap_x, snap_y = viewport.snap_to_grid_closest(world_x, world_y)
     # pos by mouse coords
     else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
     ###
     _id = str(len(canvas['things'])+1)
+    subkind = 'flow_meter'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
     world_w = base_unit * 4
     world_h = base_unit * 4
     socket_radius = 4
-    socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest((base_unit*2), (base_unit * 2),)
+    socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest(base_unit*(-1), base_unit * 2,)
+    socket_0001_x, socket_0001_y = viewport.snap_to_grid_closest(base_unit*(5), base_unit * 2,)
+    socket_0002_x, socket_0002_y = viewport.snap_to_grid_closest(base_unit*(2), base_unit * (-1),)
     sockets = []
-    sockets.append({'x': socket_0000_x, 'y': socket_0000_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0000_x, 'y': socket_0000_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0001_x, 'y': socket_0001_y})
+    sockets.append({'kind': 'electric', 'x': socket_0002_x, 'y': socket_0002_y})
     canvas['things'].append(
         thing_create(
             _id,
             kind = 'node', 
-            subkind = 'empty', 
+            subkind = subkind,
             text = '', 
-            text_lines = [f'EM', f'01'], 
+            text_lines = [f'FM', f'{_id_relative_str}'], 
+            x = world_x, 
+            y = world_y,
+            w = world_w,
+            h = world_h,
+            socket_radius = socket_radius,
+            sockets = sockets,
+        )
+    )
+
+def node_create_contact_meter(world_x=None, world_y=None):
+    # pos by parameters
+    if world_x != None and world_y != None: snap_x, snap_y = viewport.snap_to_grid_closest(world_x, world_y)
+    # pos by mouse coords
+    else: world_x, world_y = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
+    ###
+    _id = str(len(canvas['things'])+1)
+    subkind = 'contact_meter'
+    _id_relative = len([thing for thing in canvas['things'] if thing['subkind'] == subkind])+1
+    if _id_relative < 10: _id_relative_str = f'0{_id_relative}'
+    else: _id_relative_str = f'{_id_relative}'
+    ###
+    world_w = base_unit * 4
+    world_h = base_unit * 4
+    socket_radius = 4
+    socket_0000_x, socket_0000_y = viewport.snap_to_grid_closest(base_unit*(-1), base_unit * 2,)
+    socket_0001_x, socket_0001_y = viewport.snap_to_grid_closest(base_unit*(5), base_unit * 2,)
+    socket_0002_x, socket_0002_y = viewport.snap_to_grid_closest(base_unit*(2), base_unit * (-1),)
+    sockets = []
+    sockets.append({'kind': 'hydraulic', 'x': socket_0000_x, 'y': socket_0000_y})
+    sockets.append({'kind': 'hydraulic', 'x': socket_0001_x, 'y': socket_0001_y})
+    sockets.append({'kind': 'electric', 'x': socket_0002_x, 'y': socket_0002_y})
+    canvas['things'].append(
+        thing_create(
+            _id,
+            kind = 'node', 
+            subkind = subkind,
+            text = '', 
+            text_lines = [f'CM', f'{_id_relative_str}'], 
             x = world_x, 
             y = world_y,
             w = world_w,
@@ -379,6 +522,11 @@ def draw_grid():
                 pygame.draw.line(screen, (200, 200, 200), (0, int(y)), (WINDOW_W, int(y)), 1)
                 y += step
 
+            mouse_world_x_snap, mouse_world_y_snap = viewport.snap_to_grid_closest(mouse['world_x'], mouse['world_y'])
+            mouse_screen_x_snap, mouse_screen_y_snap = viewport.world_to_screen(mouse_world_x_snap, mouse_world_y_snap)
+            pygame.draw.line(screen, (255, 0, 0), (int(mouse_screen_x_snap), 0), (int(mouse_screen_x_snap), WINDOW_H), 1)
+            pygame.draw.line(screen, (255, 0, 0), (0, int(mouse_screen_y_snap)), (WINDOW_W, int(mouse_screen_y_snap)), 1)
+
 # node_create(world_x=100, world_y=100)
 # node_create(world_x=200, world_y=200)
 
@@ -430,6 +578,8 @@ def draw_arrow(world_x1, world_y1, world_x2, world_y2):
         pygame.draw.polygon(screen, COLOR_FOREGROUND, screen_points)
 
 def draw_edges():
+    global edge_tmp
+
     for thing in canvas['things']:
         if thing['kind'] == 'edge':
             for point_i in range(len(thing['points'])-1):
@@ -440,30 +590,48 @@ def draw_edges():
                 x1, y1 = viewport.world_to_screen(world_x1, world_y1)
                 x2, y2 = viewport.world_to_screen(world_x2, world_y2)
                 if thing['focus'] == False:
-                    pygame.draw.line(screen, COLOR_FOREGROUND, 
-                        (x1, y1), 
-                        (x2, y2), 
-                        int(thing_stroke * viewport.state['camera_zoom']),
-                    )
+                    if 'kind' in thing['points'][0] and thing['points'][0]['kind'] == 'electric':
+                        draw_dashed_line(screen, COLOR_FOREGROUND, 
+                            (x1, y1), 
+                            (x2, y2), 
+                            width=int(thing_stroke * viewport.state['camera_zoom']), 
+                            dash_length=int(thing_stroke * 2 * viewport.state['camera_zoom'])
+                        )
+                    else:
+                        pygame.draw.line(screen, COLOR_FOREGROUND, 
+                            (x1, y1), 
+                            (x2, y2), 
+                            int(thing_stroke * viewport.state['camera_zoom']),
+                        )
                 else:
                     pygame.draw.line(screen, COLOR_BLUE, 
                         (x1, y1), 
                         (x2, y2), 
                         int(thing_stroke * viewport.state['camera_zoom']),
                     )
-            draw_arrow(world_x1, world_y1, world_x2, world_y2)
+            if 'kind' in thing['points'][0] and thing['points'][0]['kind'] == 'electric':
+                pass
+            else:
+                draw_arrow(world_x1, world_y1, world_x2, world_y2)
 
-    global edge_tmp
     # if edge_tmp['points'] != []:
     if edge_creating == True:
         for point_i in range(len(edge_tmp['points'])-1):
             x1, y1 = viewport.world_to_screen(edge_tmp['points'][point_i]['x'], edge_tmp['points'][point_i]['y'])
             x2, y2 = viewport.world_to_screen(edge_tmp['points'][point_i+1]['x'], edge_tmp['points'][point_i+1]['y'])
-            pygame.draw.line(screen, COLOR_FOREGROUND, 
-                (x1, y1), 
-                (x2, y2), 
-                int(thing_stroke * viewport.state['camera_zoom']),
-            )
+            if 'kind' in edge_tmp['points'][0] and edge_tmp['points'][0]['kind'] == 'electric':
+                draw_dashed_line(screen, COLOR_FOREGROUND, 
+                    (x1, y1), 
+                    (x2, y2), 
+                    width=int(thing_stroke * viewport.state['camera_zoom']), 
+                    dash_length=int(thing_stroke * 2 * viewport.state['camera_zoom'])
+                )
+            else:
+                pygame.draw.line(screen, COLOR_FOREGROUND, 
+                    (x1, y1), 
+                    (x2, y2), 
+                    int(thing_stroke * viewport.state['camera_zoom']),
+                )
         points_n = len(edge_tmp['points'])-1
         world_x1 = edge_tmp['points'][points_n]['x']
         world_y1 = edge_tmp['points'][points_n]['y']
@@ -476,14 +644,20 @@ def draw_edges():
         world_x2, world_y2 = viewport.snap_to_grid_closest(world_x2, world_y2)
         screen_x1, screen_y1 = viewport.world_to_screen(world_x1, world_y1)
         screen_x2, screen_y2 = viewport.world_to_screen(world_x2, world_y2)
-        # x1, y1 = viewport.world_to_screen(world_x1, world_y1)
-        # x2, y2 = mouse['screen_x'], mouse['screen_y']
-        pygame.draw.line(screen, COLOR_FOREGROUND, 
-            (screen_x1, screen_y1), 
-            (screen_x2, screen_y2), 
-            int(thing_stroke * viewport.state['camera_zoom']),
-        )
-        draw_arrow(world_x1, world_y1, world_x2, world_y2)
+        if 'kind' in edge_tmp['points'][0] and edge_tmp['points'][0]['kind'] == 'electric':
+            draw_dashed_line(screen, COLOR_FOREGROUND, 
+                (screen_x1, screen_y1), 
+                (screen_x2, screen_y2), 
+                width=int(thing_stroke * viewport.state['camera_zoom']), 
+                dash_length=int(thing_stroke * 2 * viewport.state['camera_zoom'])
+            )
+        else:
+            pygame.draw.line(screen, COLOR_FOREGROUND, 
+                (screen_x1, screen_y1), 
+                (screen_x2, screen_y2), 
+                int(thing_stroke * viewport.state['camera_zoom']),
+            )
+            draw_arrow(world_x1, world_y1, world_x2, world_y2)
 
 def draw_sockets(thing):
     if viewport.state['visual_helpers'] == True:
@@ -493,10 +667,16 @@ def draw_sockets(thing):
         for socket in thing['sockets']:
             socket_input_x = thing_x + (socket['x'] * viewport.state['camera_zoom'])
             socket_input_y = thing_y + (socket['y'] * viewport.state['camera_zoom'])
-            pygame.draw.circle(screen, (255, 0, 0), 
-                (socket_input_x, socket_input_y), 
-                4*viewport.state['camera_zoom']
-            )
+            if 'kind' in socket and socket['kind'] == 'electric':
+                pygame.draw.circle(screen, (0, 255, 0), 
+                    (socket_input_x, socket_input_y), 
+                    4*viewport.state['camera_zoom']
+                )
+            else:
+                pygame.draw.circle(screen, (0, 0, 255), 
+                    (socket_input_x, socket_input_y), 
+                    4*viewport.state['camera_zoom']
+                )
 
 def draw_nodes_valve(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
@@ -620,6 +800,110 @@ def draw_node_solenoid_valve(thing):
     ###
     p_1_x = thing_x + line_length
     p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### line bottom
+    '''
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 2.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    '''
+    ### text square
+    surface = font_text.render('S', True, COLOR_FOREGROUND)
+    line_w, line_h = surface.get_size()
+    line_x = thing_x + int(line_length//2 - line_w//2)
+    line_y = thing_y + int(line_length//2 - line_h//2)
+    screen.blit(surface, (line_x, line_y))
+    ### tag circle
+    radius = int(24*viewport.state['camera_zoom'])
+    circle_x = thing_x + int(line_length) + radius
+    circle_y = thing_y + int(line_length * 2.5) + radius
+    pygame.draw.circle(screen, (0, 0, 0), 
+        (circle_x, circle_y), 
+        radius,
+        int(thing_stroke*viewport.state['camera_zoom']),
+    )
+    ### tag text
+    lines = thing['text_lines']
+    for line_i, line in enumerate(lines):
+        surface = font_text.render(line, True, COLOR_FOREGROUND)
+        line_w, line_h = surface.get_size()
+        line_x = circle_x - line_w//2
+        line_y = circle_y - (line_h*(len(lines)-1)) + (line_h * line_i)
+        screen.blit(surface, (line_x, line_y))
+    ### focus
+    if thing['focus'] == True:
+        pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
+    ### sockets
+    draw_sockets(thing)
+
+def draw_node_solenoid_valve_3way(thing):
+    thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
+    thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+    thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+    ###
+    line_length = int(thing['w'] * viewport.state['camera_zoom'])
+    line_width = int(thing_stroke * viewport.state['camera_zoom'])
+    ### square top
+    p_1_x = thing_x
+    p_1_y = thing_y
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### square bottom
+    p_1_x = thing_x
+    p_1_y = thing_y + line_length
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + line_length
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### square left
+    p_1_x = thing_x
+    p_1_y = thing_y
+    p_2_x = thing_x
+    p_2_y = thing_y + line_length
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### square right
+    p_1_x = thing_x + line_length
+    p_1_y = thing_y
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + line_length
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### center line
+    p_1_x = thing_x + int(line_length * 0.5)
+    p_1_y = thing_y + int(line_length * 1)
+    p_2_x = thing_x + int(line_length * 0.5)
+    p_2_y = thing_y + int(line_length * 2)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ### left
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 2.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 1.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x + line_length
+    p_1_y = thing_y + int(line_length * 1.5)
+    p_2_x = thing_x + line_length
+    p_2_y = thing_y + int(line_length * 2.5)
+    pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
+    ###
+    p_1_x = thing_x
+    p_1_y = thing_y + int(line_length * 2.5)
     p_2_x = thing_x + line_length
     p_2_y = thing_y + int(line_length * 2.5)
     pygame.draw.line(screen, COLOR_FOREGROUND, (p_1_x, p_1_y), (p_2_x, p_2_y), line_width)
@@ -918,7 +1202,6 @@ def draw_node_plc(thing):
     ### sockets
     draw_sockets(thing)
 
-# ;jump
 def draw_node_empty(thing):
     thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
     thing_w = int(thing['w'] * viewport.state['camera_zoom'])
@@ -963,11 +1246,106 @@ def draw_node_empty(thing):
     ### sockets
     draw_sockets(thing)
 
+# ;jump
+def draw_node_flow_meter(thing):
+    thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
+    thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+    thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+    ###
+    line_width = int(thing_stroke * viewport.state['camera_zoom'])
+    unit = base_unit * viewport.state['camera_zoom']
+    stroke_width_scaled = int(thing_stroke * viewport.state['camera_zoom'])
+    ### square
+    rect = pygame.Rect(
+        thing_x,
+        thing_y,
+        thing_w,
+        thing_h,
+    )
+    inflated_rect = rect.inflate(stroke_width_scaled, stroke_width_scaled)
+    pygame.draw.rect(screen, COLOR_FOREGROUND, inflated_rect, line_width)
+    ### text square
+    surface = font_text.render('FM', True, COLOR_FOREGROUND)
+    line_w, line_h = surface.get_size()
+    line_x = thing_x + int(thing_w//2 - line_w//2)
+    line_y = thing_y + int(thing_h//2 - line_h//2)
+    screen.blit(surface, (line_x, line_y))
+    ### tag circle
+    radius = int(24*viewport.state['camera_zoom'])
+    circle_x = thing_x + int(thing_w) + radius
+    circle_y = thing_y + int(thing_h) + radius
+    pygame.draw.circle(screen, (0, 0, 0), 
+        (circle_x, circle_y), 
+        radius,
+        int(thing_stroke*viewport.state['camera_zoom']),
+    )
+    ### tag text
+    lines = thing['text_lines']
+    for line_i, line in enumerate(lines):
+        surface = font_text.render(line, True, COLOR_FOREGROUND)
+        line_w, line_h = surface.get_size()
+        line_x = circle_x - line_w//2
+        line_y = circle_y - (line_h*(len(lines)-1)) + (line_h * line_i)
+        screen.blit(surface, (line_x, line_y))
+    ### focus
+    if thing['focus'] == True:
+        pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
+    ### sockets
+    draw_sockets(thing)
+
+def draw_node_contact_meter(thing):
+    thing_x, thing_y = viewport.world_to_screen(thing["x"], thing["y"])
+    thing_w = int(thing['w'] * viewport.state['camera_zoom'])
+    thing_h = int(thing['h'] * viewport.state['camera_zoom'])
+    ###
+    line_width = int(thing_stroke * viewport.state['camera_zoom'])
+    unit = base_unit * viewport.state['camera_zoom']
+    stroke_width_scaled = int(thing_stroke * viewport.state['camera_zoom'])
+    ### square
+    rect = pygame.Rect(
+        thing_x,
+        thing_y,
+        thing_w,
+        thing_h,
+    )
+    inflated_rect = rect.inflate(stroke_width_scaled, stroke_width_scaled)
+    pygame.draw.rect(screen, COLOR_FOREGROUND, inflated_rect, line_width)
+    ### text square
+    surface = font_text.render('CM', True, COLOR_FOREGROUND)
+    line_w, line_h = surface.get_size()
+    line_x = thing_x + int(thing_w//2 - line_w//2)
+    line_y = thing_y + int(thing_h//2 - line_h//2)
+    screen.blit(surface, (line_x, line_y))
+    ### tag circle
+    radius = int(24*viewport.state['camera_zoom'])
+    circle_x = thing_x + int(thing_w) + radius
+    circle_y = thing_y + int(thing_h) + radius
+    pygame.draw.circle(screen, (0, 0, 0), 
+        (circle_x, circle_y), 
+        radius,
+        int(thing_stroke*viewport.state['camera_zoom']),
+    )
+    ### tag text
+    lines = thing['text_lines']
+    for line_i, line in enumerate(lines):
+        surface = font_text.render(line, True, COLOR_FOREGROUND)
+        line_w, line_h = surface.get_size()
+        line_x = circle_x - line_w//2
+        line_y = circle_y - (line_h*(len(lines)-1)) + (line_h * line_i)
+        screen.blit(surface, (line_x, line_y))
+    ### focus
+    if thing['focus'] == True:
+        pygame.draw.rect(screen, (0, 0, 255), (thing_x, thing_y, thing_w, thing_h), 1)
+    ### sockets
+    draw_sockets(thing)
+
 def draw_nodes():
     for thing in canvas['things']:
         if thing['kind'] == 'node':
             if thing['subkind'] == 'solenoid_valve':
                 draw_node_solenoid_valve(thing)
+            elif thing['subkind'] == 'solenoid_valve_3way':
+                draw_node_solenoid_valve_3way(thing)
             elif thing['subkind'] == 'ozone_generator':
                 draw_node_ozone_generator(thing)
             elif thing['subkind'] == 'tank':
@@ -979,6 +1357,10 @@ def draw_nodes():
             elif thing['subkind'] == 'empty':
                 if viewport.state['visual_helpers'] == True:
                     draw_node_empty(thing)
+            elif thing['subkind'] == 'flow_meter':
+                draw_node_flow_meter(thing)
+            elif thing['subkind'] == 'contact_meter':
+                draw_node_contact_meter(thing)
 
 def draw_debug():
     if viewport.state['visual_helpers'] == True:
@@ -1062,16 +1444,14 @@ def mouse_left_button_socket():
                         edge_creating = True
                         # world_x2, world_y2 = viewport.snap_to_grid(socket_world_center_x, socket_world_center_y)
                         world_x2, world_y2 = viewport.snap_to_grid_closest(socket_world_center_x, socket_world_center_y)
-                        edge_tmp['points'].append({'x': world_x2, 'y': world_y2})
+                        edge_tmp['points'].append({'kind': socket['kind'], 'x': world_x2, 'y': world_y2})
+                    # end edge (update -> if started)
                     else:
                         edge_creating = False
                         world_x2, world_y2 = viewport.snap_to_grid_closest(socket_world_center_x, socket_world_center_y)
-                        edge_tmp['points'].append({'x': world_x2, 'y': world_y2})
+                        edge_tmp['points'].append({'kind': socket['kind'], 'x': world_x2, 'y': world_y2})
                         edge_create_advanced(edge_tmp['points'])
                         edge_tmp['points'] = []
-                    # end edge (update -> if started)
-                    # TODO
-                    # return confirmation clicked socket
                     return True
                     break
     return False
@@ -1096,7 +1476,7 @@ def mouse_left_button_canvas():
         else: world_x2 = world_x1
         # world_x2, world_y2 = viewport.snap_to_grid(world_x2, world_y2)
         world_x2, world_y2 = viewport.snap_to_grid_closest(world_x2, world_y2)
-        edge_tmp['points'].append({'x': world_x2, 'y': world_y2})
+        edge_tmp['points'].append({'kind': '', 'x': world_x2, 'y': world_y2})
         print(f'{world_x2}:{world_y2}')
     return True
 
@@ -1186,11 +1566,18 @@ def main_inputs():
                     node_create_valve_manual(world_x=mouse['world_x'], world_y=mouse['world_y'])
                 elif event.key == pygame.K_p:
                     node_create_plc(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_e: 
+                    node_create_empty(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_f: 
+                    node_create_flow_meter(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_c: 
+                    node_create_contact_meter(world_x=mouse['world_x'], world_y=mouse['world_y'])
+                elif event.key == pygame.K_y: 
+                    node_create_solenoid_valve_3way(world_x=mouse['world_x'], world_y=mouse['world_y'])
+
                 elif event.key == pygame.K_d:
                     if viewport.state['visual_helpers'] == True: viewport.state['visual_helpers'] = False
                     else: viewport.state['visual_helpers'] = True
-                elif event.key == pygame.K_e: 
-                    node_create_empty(world_x=mouse['world_x'], world_y=mouse['world_y'])
                 elif event.key == pygame.K_w: 
                     screenshot_create()
                 elif event.unicode == "{":

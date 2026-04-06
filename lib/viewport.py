@@ -2,7 +2,7 @@ import math
 
 GRID_SIZE = 8
 
-MIN_ZOOM = 1.0
+MIN_ZOOM = 0.0
 MAX_ZOOM = 16.0
 panning = False
 pan_last_x = 0
