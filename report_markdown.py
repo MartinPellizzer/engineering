@@ -50,8 +50,10 @@ def ol_gen(items):
 # ----------------------------
 # DOCUMENT SETUP
 # ----------------------------
+
+
 doc = SimpleDocTemplate(
-    "doc-md.pdf",
+    "progetto-spillatrice-prototipo-fasi.pdf",
     pagesize=A4,
     rightMargin=70,
     leftMargin=70,
@@ -132,6 +134,9 @@ def header_footer(canvas, doc):
 
     canvas.drawString(70, 30, "Confidenziale")
     canvas.drawRightString(525, 30, str(doc.page))
+    
+    canvas.setTitle('Progetto Spillatura - Fasi Prototipo')
+    canvas.setAuthor('Otregroup')
     canvas.restoreState()
 
 # ----------------------------
@@ -145,7 +150,7 @@ elements.append(Spacer(1, 100))
 elements.append(AccentLine())
 elements.append(Spacer(1, 25))
 
-elements.append(Paragraph("Automazione del Processo di Ozonizzazione nei Sistemi di Spillatura", cover_title))
+elements.append(Paragraph("Progetto Spillatrice - Fasi Prototipo", cover_title))
 elements.append(Spacer(1, 20))
 elements.append(Paragraph(
     "Proposta Tecnica Preliminare",
@@ -155,7 +160,7 @@ elements.append(Paragraph(
 elements.append(Spacer(1, 100))
 elements.append(Paragraph("Preparata per", meta))
 elements.append(Spacer(1, 15))
-elements.append(Paragraph("Otregroup | Sweesh", section))
+elements.append(Paragraph("Otregroup | Sweesh | Pozzobon Distribuzione", section))
 
 elements.append(Spacer(1, 60))
 elements.append(Paragraph("Marzo 2026", meta))
@@ -181,7 +186,7 @@ elements.append(PageBreak())
 elements.append(Paragraph("Executive Summary", h2))
 elements.append(
     Paragraph(f'''
-A seguito di vari incontri preliminari tra Otregroup, Sweesh e Pozzobon Distribuzione, si ritiene fattibile (a livello tecnico) lo sviluppo di un sistema automatizzato per il lavaggio/disinfezione dei sistemi di spillatura delle bevande. Come discusso in questi incontri, Otregroup ha il compito di sviluppare il sistema di automazione (centralina, attuatori e sensori), Sweesh ha il compito di fornire il generatore di ozono (più eventuali protocolli se lo ritiene opportuno) e Pozzobon Distribuzione ha il compito di fornire un sistema di spillatura (incluso linea di distribuzione e fusto con bevanda) assieme ad un tecnico che ne spiega il funzionamento. 
+A seguito di vari incontri preliminari tra Otregroup, Sweesh e Pozzobon Distribuzione, si ritiene fattibile (a livello tecnico) lo sviluppo di un sistema automatizzato per il lavaggio/disinfezione dei sistemi di spillatura delle bevande. Come discusso in questi incontri, Otregroup ha il compito di sviluppare il sistema di automazione (centralina, attuatori e sensori), Sweesh ha il compito di fornire il generatore di ozono (più eventuali protocolli/analisi se lo ritiene opportuno) e Pozzobon Distribuzione ha il compito di fornire un sistema di spillatura (incluso linea di distribuzione e fusto con bevanda) assieme ad un tecnico che ne spiega il funzionamento. 
     ''', body_style,)
 )
 ###
@@ -207,7 +212,7 @@ L'ambito di questo prototipo è circoscritto alla sanificazione di UNA SOLA line
 elements.append(Paragraph("Criteri di successo", h3))
 elements.append(
     Paragraph(f'''
-Il prototipo viene considerato un "successo" se entrambi gli obbiettivi indicati nella sezione precedente ("Obiettivo del prototipo") vengono raggiunti. Maggiori dettagli sulle metriche utilizzate per validare il successo del prototipo vengono fornite in una sezione dedicata.
+Il prototipo viene considerato un "successo" se entrambi gli obbiettivi indicati nella sezione precedente ("Obiettivo del prototipo") vengono raggiunti. Maggiori dettagli sulle metriche utilizzate per validare il successo del prototipo devono essere ancora forniti.
     ''', body_style,)
 )
 ###
@@ -219,10 +224,9 @@ Per progettare/sviluppare questo prototipo viene proposto di procedere in modo "
 )
 elements.append(
     Paragraph(f'''
-Questo modo di procedere viene suggerito in quanto si ritiene il più adeguato per ridurre costi, tempi ed errori complessivi nella fase di progettazione/sviluppo. Procedendo in questo modo, si stima un tempo di realizzazione del prototipo di circa 60 giorni (massimo).
+Questo modo di procedere viene suggerito in quanto si ritiene il più adeguato per ridurre costi, tempi ed errori complessivi nella fase di progettazione/sviluppo. Procedendo in questo modo, si stima un tempo di realizzazione del prototipo non superiore ai 60 giorni.
     ''', body_style,)
 )
-
 ###
 elements.append(Paragraph("Richiesta autorizzazione a procedere", h3))
 elements.append(
@@ -230,19 +234,6 @@ elements.append(
 Se tutte le entità concordano con le premesse elencate fino ad ora, si chiede l'autorizzazione a procedere con la fase di progettazione/sviluppo. Se anche solo una di queste entità non è d'accordo con una di queste premesse o ha dei dubbi a rigurado, chiediamo di essere notificati in merito, così da rivalutare la fase di progettazione/sviluppo.
     ''', body_style,)
 )
-###
-if 0:
-    elements.append(
-        Paragraph(f'''
-    Si ritiene quindi opportuno e vantaggioso procedere passo-passo (modalità iterativa) per ottenere i seguenti vantaggi:
-        ''', body_style,)
-    )
-
-    list_gen(f'''
-    riduzione dei tempi di progettazione/sviluppo
-    riduzione dei costi di progettazione/sviluppo
-    riduzione degli errori di progrogettazione/sviluppo
-    '''.split('\n'))
 ###
 elements.append(PageBreak())
 
@@ -255,7 +246,7 @@ Si propone di progettare/sviluppare il prototipo in 5 fasi:
 )
 ol_gen(f'''
 verifica sistema spillatura (caso base)
-verifica sistema ozono (produzione ozono)
+verifica sistema ozono (produzione ozono, procedure e analisi)
 verifica elettrovalvole (commutazione manuale)
 implementazione ciclo (commutazione automatica, tempo statico)
 implementazione sensori (commutazione automatica, tempo dinamico)
@@ -269,7 +260,7 @@ Queste fasi sono state pensate per ridurre il tempo di progettazione e i costi d
 elements.append(Paragraph("Tempo Sviluppo", h3))
 elements.append(
     Paragraph(f'''
-Si stima un tempo totale di sviluppo non superiore ai 30 giorni. Questo a patto che (1) tutti i componenti siano già disponibili (o che vengano forniti nell'immediato), (2) che le figure coinvolte forniscano massima disponibilità e collaborazione e (3) che le fasi di implementazione vengano rispettate con disciplina. Da aggiungere che questa stima non tiene conto di eventuali imprevisti che possono verificarsi in corso d'opera.
+Si stima un tempo totale di sviluppo non superiore ai 60 giorni. Questo a patto che (1) tutti i componenti siano già disponibili (o che vengano forniti nell'immediato), (2) che le figure coinvolte forniscano massima disponibilità e collaborazione e (3) che le fasi di implementazione vengano rispettate con disciplina.
     ''', body_style,)
 )
 ###
@@ -280,16 +271,16 @@ I costi stimati per lo sviluppo di questo prototipo sono relativamente bassi. Se
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Dettagli Svilupp (Fase per Fase)", h3))
+elements.append(Paragraph("Dettagli Sviluppo (Fase per Fase)", h3))
 elements.append(
     Paragraph(f'''
-I dettagli di ogni singola fase vengono dati nelle seguenti sezioni.
+I dettagli di ogni singola fase vengono forniti nelle seguenti sezioni.
     ''', body_style,)
 )
 elements.append(PageBreak())
 
 ###
-elements.append(Paragraph("Fase 1. Verifica Sistema Spillatura (Caso Base)", h2))
+elements.append(Paragraph("Fase 1. Verifica Sistema Spillatura", h2))
 elements.append(
     Paragraph(f'''
 Lo scopo di questa fase è quello di ottenere un sistema di spillatura funzionante e contaminato, il quale viene utilizzato come base di partenza (baseline) per progettare/sviluppare/testare il prototipo.
@@ -349,17 +340,17 @@ Le figure coinvolte in questa fase sono i seguenti:
     ''', body_style,)
 )
 list_gen(f'''
-Otregroup: richiede conferma avvio progetto e disponibilità sistema/tecnico
-Pozzobon Distribuzione: conferma avvio progetto e fornisce sistema/tecnico
-Sweesh: valuta la possibilità di partecipare a questa fase se lo ritiene opportuno (Otregroup gradirebbe la sua prezenza se non è di troppo peso)
+Otregroup
+Pozzobon Distribuzione
+Sweesh (valuta autonomante se vuole partecipare a questa fase)
 '''.strip().split('\n'))
 ###
 elements.append(PageBreak())
 
-elements.append(Paragraph("Fase 2. Verifica Sistema Ozono (Produzione Ozono)", h2))
+elements.append(Paragraph("Fase 2. Verifica Sistema Ozono", h2))
 elements.append(
     Paragraph(f'''
-Lo scopo di questa fase è quello di ottenere/testare un generatore di ozono in grado di produrre acqua ozonizzata "in linea".
+Lo scopo di questa fase è quello di ottenere/testare un generatore di ozono in grado di produrre acqua ozonizzata "in linea", nonchè di scrivere i protocolli di utilizzo e di verificare la loro efficacia con analisi microbiologiche.
     ''', body_style,)
 )
 ###
@@ -381,16 +372,57 @@ elements.append(img)
 elements.append(Paragraph("Descrizione Diagramma", h3))
 elements.append(
     Paragraph(f'''
-Il precendente diagramma mostra l'utilizzo del generatore di ozono "O3 01" per sanificare la linea di distribuzione della spillatrice. Il generatore di ozono va sostituito al fusto della bevanda e testato in isolamento per questa fase, per verificare che l'acqua ozonizzata venga erogata correttamente.
+Il precendente diagramma mostra l'utilizzo del generatore di ozono "O3 01" per sanificare la linea di distribuzione della spillatrice. Il generatore di ozono va sostituito al fusto della bevanda e testato in isolamento durante questa fase, per verificare che l'acqua ozonizzata venga erogata correttamente e che la linea venga sanificata di conseguenza.
     ''', body_style,)
 )
 ###
-elements.append(PageBreak())
-
-elements.append(Paragraph("Fase 3. Verifica Elettrovalvole (Commutazione Manuale)", h2))
+elements.append(Paragraph("Obbiettivi", h3))
 elements.append(
     Paragraph(f'''
-Lo scopo di questa fase è quello di ottenere/testare 2 elettrovalvole (valvole solienoidi) e di simulare manualmente un ciclo di sanificazione, nonchè di sviluppare il protocollo di sanificazione.
+Questa fase viene considerata un successo se si raggiungono i seguenti obbiettivi:
+    ''', body_style,)
+)
+list_gen(f'''
+il generatore di ozono è fornito a Otregroup
+il generatore di ozono è funzionante
+il generatore di ozono è attivo solo quando c'è passaggio d'acqua
+il sistema di spillatura eroga acqua quando il generatore di ozono è installato in linea
+il sensore di ozono disciolto in acqua rileva una concentrazione di ozono (PPM) idonea al processo di sanificazione nell'acqua erogata dalla spillatrice
+il protocollo di sanificazione viene scritto e testato da analisi microbiologiche
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Prerequisiti", h3))
+elements.append(
+    Paragraph(f'''
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+    ''', body_style,)
+)
+list_gen(f'''
+Otregroup deve richiedere un generatore di ozono idoneo per l'applicazione a Sweesh
+Otregroup deve richiedere il manuale tecnico relativo al generatore di ozono utilizzato (se non già fornito)
+Otregroup deve richiedere una dimostrazione pratica dell'utilizzo corretto del generatore di ozono a Sweesh
+Otregroup deve richiedere a Sweesh di contribuire allo sviluppo del protocollo di sanificazione (se Sweesh è d'accordo)
+Otregroup deve richiedere a Sweesh di valutare quale sia il miglior modo possibile di procedere per quando riguarda la fase di analisi microbiologica (se Sweesh è d'accordo)
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Figure Coinvolte", h3))
+elements.append(
+    Paragraph(f'''
+Le figure coinvolte in questa fase sono i seguenti:
+    ''', body_style,)
+)
+list_gen(f'''
+Otregroup
+Sweesh
+Laboratorio Analisi
+'''.strip().split('\n'))
+###
+elements.append(PageBreak())
+
+elements.append(Paragraph("Fase 3. Verifica Elettrovalvole", h2))
+elements.append(
+    Paragraph(f'''
+Lo scopo di questa fase è quello di ottenere/testare 2 elettrovalvole (valvole solienoidi) e di simulare manualmente un ciclo di sanificazione.
     ''', body_style,)
 )
 ###
@@ -416,9 +448,46 @@ Il precedente diagramma mostra come integrare il generatore di ozono "O3 01" e i
     ''', body_style,)
 )
 ###
+elements.append(Paragraph("Obbiettivi", h3))
+elements.append(
+    Paragraph(f'''
+Questa fase viene considerata un successo se si raggiungono i seguenti obbiettivi:
+    ''', body_style,)
+)
+list_gen(f'''
+le elettrovalvole sono fornite a Otregroup (da valutare chi è il fornitore)
+le elettrovalvole sono funzionanti
+le elettrovalvole commutano correttamente se applicata la tensione richiesta
+la spillatrice eroga correttamenta acqua ozonizzata o bevanda del fusto alla commutazione delle elettrovalvole
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Prerequisiti", h3))
+elements.append(
+    Paragraph(f'''
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+    ''', body_style,)
+)
+list_gen(f'''
+Otregroup deve identificare un fornitore di elettrovalvore idoneo per ottenere delle valvole di test (eventualmente chiedere a Pozzobon Distribuzione se ha delle valvole da fornire e/o se può consigliare delle valvole idonee ad essere installate nelle loro linee)
+Otregroup deve avere la possibilità di installare le elettrovalvole sulla linea della spillatrice (per questo si richiede il supporto del tecnico di Pozzobon Distribuzione)
+Otregroup deve identificare i componenti elettronici necessari per fare il primo test manuale (alimentazione, pulsanti e altro)
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Figure Coinvolte", h3))
+elements.append(
+    Paragraph(f'''
+Le figure coinvolte in questa fase sono i seguenti:
+    ''', body_style,)
+)
+list_gen(f'''
+Otregroup
+Pozzobon Distribuzion
+Sweesh (valuta autonomante se vuole partecipare a questa fase)
+'''.strip().split('\n'))
+###
 elements.append(PageBreak())
 
-elements.append(Paragraph("Fase 4. Implementazione Ciclo (Commutazione Automatica, Tempo Statico)", h2))
+elements.append(Paragraph("Fase 4. Implementazione Ciclo", h2))
 elements.append(
     Paragraph(f'''
 Lo scopo di questa fase è quello di integrare una centralina di controllo e di sviluppare il software necessario per automatizzare il cliclo di sanificazione, il quale viene effettuato post-cambio fusto premendo un pulsante nel touchscreen della centralina.
@@ -446,9 +515,43 @@ Il precedente diagramma mostra come integrare la centralina di controllo "PLC 01
     ''', body_style,)
 )
 ###
+elements.append(Paragraph("Obbiettivi", h3))
+elements.append(
+    Paragraph(f'''
+Questa fase viene considerata un successo se si raggiungono i seguenti obbiettivi:
+    ''', body_style,)
+)
+list_gen(f'''
+le elettrovalvole vengono commutate correttamente in maniera automatizzata alla pressione di un pulsante sullo schermo touchscreen della centralina di controllo
+il ciclo si sanificazione viene eseguito correttamente secondo le procedure sviluppate durante la fase di implementazione del generatore di ozono
+il ciclo termina dopo la procedura di sanificazione e la spillatrice ritorna ad erogare la bibita al poste dell'acqua ozonizzata
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Prerequisiti", h3))
+elements.append(
+    Paragraph(f'''
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+    ''', body_style,)
+)
+list_gen(f'''
+Otregroup deve confermare la disponibilità di una centralia di controllo (PCB con microcontrollore, o PLC) idonea a questa applicazione
+Otregroup deve rifornirsi o progettare tale centralina se non disponibile/idonea (questo aumenta significativamente i tempi di sviluppo del prototipo)
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Figure Coinvolte", h3))
+elements.append(
+    Paragraph(f'''
+Le figure coinvolte in questa fase sono i seguenti:
+    ''', body_style,)
+)
+list_gen(f'''
+Otregroup
+Sweesh (valuta autonomante se vuole partecipare a questa fase)
+'''.strip().split('\n'))
+###
 elements.append(PageBreak())
 
-elements.append(Paragraph("Fase 5. Implementazione Sensori (Commutazione Automatica, Tempo Dinamico)", h2))
+elements.append(Paragraph("Fase 5. Implementazione Sensori", h2))
 elements.append(
     Paragraph(f'''
 Lo scopo di questa fase è quello di integrare sensori per il monitoraggio delle linee (linea ozono e linea bevanda) al fine di garantire un ciclo di sanificazione affidabile.
@@ -473,9 +576,43 @@ elements.append(img)
 elements.append(Paragraph("Descrizione Diagramma", h3))
 elements.append(
     Paragraph(f'''
-Il precedente diagramma mostra come integrare 2 sensori ritenuti fondamentali per ottenere un ciclo di sanificazione completamente automatico e affidabile. Il primo sensore è un sensore di flusso "FM 01" da mettere in linea con il generatore di ozono, il quale indica se c'è un effettivo passaggio di flusso e permette di aggiornare il timer impostato per la sanificazione solo quando c'è effettivo passaggio di fluido, garantendo la sanificazione. I secondo sensore, invece, è un sensore da mettere in linea con il fusto della bevanda o direttamente sull'accoppiatore del fusto "CM 01" per rilevare in modo automatico il cambio del fusto ed evitare l'operazione di avvio del ciclo effettuata dall'operatore tramite touchscreen (così da eliminare eventuali errori di esecuzione parte degli operatori).
+Il precedente diagramma mostra come integrare 2 sensori ritenuti fondamentali per ottenere un ciclo di sanificazione completamente automatico e affidabile. Il primo sensore è un sensore di flusso "FM 01" da mettere in linea con il generatore di ozono, il quale indica se c'è un effettivo passaggio d'acqua e aggiorna il timer impostato per la sanificazione solo in questa condizione. Il secondo sensore, invece, è un sensore da mettere in linea con il fusto della bevanda o direttamente sull'accoppiatore da agganciare al fusto "CM 01" per rilevare in modo automatico il cambio del fusto ed evitare che l'avvio del ciclo venga effettuato dall'operatore tramite touchscreen.
     ''', body_style,)
     )
+###
+elements.append(Paragraph("Obbiettivi", h3))
+elements.append(
+    Paragraph(f'''
+Questa fase viene considerata un successo se si raggiungono i seguenti obbiettivi:
+    ''', body_style,)
+)
+list_gen(f'''
+il tempo del ciclo viene aggiornato solo quando il sensore di flusso rileva passaggio di acqua ozonizzata
+il ciclo parte in automatico dopo il cambio del fusto, senza avvio manuale da parte dell'operatore
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Prerequisiti", h3))
+elements.append(
+    Paragraph(f'''
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+    ''', body_style,)
+)
+list_gen(f'''
+Otregroup deve ottenere un sensore di flusso (flussostato) idoneo all'applicazione e interfacciabile alla centralina di controlo (chiedere supporto a Pozzobon Distribuzione)
+Otregroup deve ottenere un sensore di contatto (micro switch) o sensore di pressione (pressostato) idoneo all'applicazione e interfacciabile alla centralina di controlo (chiedere supporto a Pozzobon Distribuzione)
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Figure Coinvolte", h3))
+elements.append(
+    Paragraph(f'''
+Le figure coinvolte in questa fase sono i seguenti:
+    ''', body_style,)
+)
+list_gen(f'''
+Otregroup
+Pozzobon Distribuzione
+Sweesh (valuta autonomante se vuole partecipare a questa fase)
+'''.strip().split('\n'))
 ###
 elements.append(PageBreak())
 
@@ -484,7 +621,7 @@ elements.append(Paragraph("Sviluppi Futuri", h2))
 elements.append(Paragraph("Diagramma Flusso", h3))
 elements.append(
         Paragraph(f'''
-Il seguente diagramma di flusso rappresenta lo stato del sistema al termine di questa fase.
+Il seguente diagramma di flusso rappresenta come scalare il sistema per renderlo multi-linea.
     ''', body_style,)
         )
 mul = 0.35
@@ -502,7 +639,7 @@ Il precedente diagramma mostra come scalare il sistema di automazione da 1 linea
     ''', body_style,)
         )
 ###
-elements.append(Paragraph("Fase Non Inclusa Nel Prototipo", h3))
+elements.append(Paragraph("Fase Esclusa Dal Primo Prototipo", h3))
 elements.append(
         Paragraph(f'''
 Questa fase al momento non è inclusa nello sviluppo del primo prototipo. Lo sviluppo di un sistema multi-linea ha una complessità esponenziale confrontata col prototipo a singola linea. Per questo motivo si chiede di sviluppare/testare il prototipo a singola linea prima di scalare al multi-linea, in modo da consolidare il funzionameto del sistema prima di investire risorse e di rischiare sia un allungamento significativo dei tempi di sviluppo che un incremento degli errori di progettazione a causa di insufficienza di dati raccolti.
