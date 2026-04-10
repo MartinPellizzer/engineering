@@ -1,0 +1,19 @@
+A page has:
+
+1. Dominant intent
+2. Supporting intents
+3. Contextual intents
+
+The dominant intent should control:
+
+the largest section
+the most detailed explanations
+the core user satisfaction
+
+---
+
+for procedural:
+procedural intent
+procedural troubleshooting
+procedural optimization
+

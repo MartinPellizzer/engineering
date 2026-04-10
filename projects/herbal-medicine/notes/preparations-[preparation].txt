@@ -1,0 +1,551 @@
+Define → Demonstrate → Explain → Classify → Contextualize → Compare → Troubleshoot → Preserve → Safeguard
+
+---
+
+# H1
+
+# Herbal [Preparation Method]: How to Prepare It Correctly
+
+### Brief
+
+Define the entity immediately so search engines and readers understand **what the method is before encountering procedural steps**.
+
+### Subordinate text (first sentence after heading)
+
+> A herbal **[preparation method]** is a technique used in herbal medicine to extract medicinal compounds from specific plant parts using a controlled process such as **[steeping, boiling, soaking, or infusing]**.
+
+### Logical writing order
+
+1. Define the preparation method
+2. Identify plant materials typically used
+3. Mention the extraction principle
+4. Briefly mention when it is commonly used
+
+### Attributes
+
+* preparation method name
+* herbal medicine context
+* procedural intent
+* extraction process
+* plant materials used
+* purpose in herbal medicine
+
+### Questions to answer
+
+* What is a herbal [method]?
+* What does this preparation method do?
+
+### Structured content
+
+None.
+
+### Visuals
+
+Optional hero image of the finished preparation.
+
+### Links
+
+* **Herbal preparation methods (hub page)**
+
+---
+
+# H2
+
+## How to Prepare Herbal **[Preparation Method]**
+
+### Brief
+
+Provide a **clear step-by-step procedure** for preparing the herbal preparation, including quantities, timing, and practical instructions.
+
+### Logical information order
+
+1. Required ingredients and equipment
+2. Herb-to-solvent ratio
+3. Preparation of solvent
+4. Extraction process
+5. Filtering or separating plant material
+6. Immediate storage or use
+
+### Subordinate text
+
+> Preparing a herbal **[method]** involves combining plant material with the appropriate solvent and allowing the extraction process to occur under controlled time and temperature conditions.
+
+### Attributes to include
+
+* herb ratio
+* solvent type
+* extraction duration
+* temperature conditions
+* filtration method
+
+### Questions to answer
+
+* How do you make herbal [method]?
+* How much herb should be used?
+* How long should extraction take?
+* What temperature is required?
+
+### Structured content
+
+**Numbered step list**
+
+Optional **ratio table**
+
+| Herb form | Ratio |
+
+### Visuals
+
+Process photos for:
+
+* measuring herbs
+* extraction stage
+* straining
+
+### Links
+
+Link to:
+
+* herb pages mentioned as examples
+
+---
+
+# H2
+
+## What Defines a Herbal **[Preparation Method]**
+
+*(Entity identity expansion)*
+
+### Brief
+
+Explain the defining characteristics that distinguish this preparation method from other herbal extraction techniques.
+
+### Logical information order
+
+1. Core definition refinement
+2. Key characteristics
+3. Typical preparation conditions
+4. Role in herbal medicine practice
+
+### Subordinate text
+
+> A herbal **[method]** is characterized by its specific extraction process, the types of plant material it is suited for, and the conditions required to release medicinal compounds.
+
+### Attributes
+
+* extraction conditions
+* plant material suitability
+* preparation time
+
+### Questions
+
+* What makes this preparation method different?
+* Why is it used in herbal medicine?
+
+### Structured content
+
+Bullet list summarizing **key characteristics**.
+
+### Visuals
+
+None necessary.
+
+### Links
+
+Link to other preparation method pages.
+
+---
+
+# H2
+
+## How This Method Extracts Herbal Compounds
+
+*(Authority layer)*
+
+### Brief
+
+Explain the **scientific mechanism of extraction**, describing how solvent, temperature, and plant chemistry interact.
+
+### Logical information order
+
+1. solvent role
+2. temperature influence
+3. compound solubility
+4. extraction efficiency
+
+### Subordinate text
+
+> This preparation method works by allowing the solvent to dissolve specific plant compounds under controlled temperature and time conditions.
+
+### Attributes
+
+* solvent polarity
+* heat exposure
+* compound solubility
+
+### Questions
+
+* Why does this method work?
+* What compounds are extracted?
+
+### Structured content
+
+Table:
+
+| Compound type | Extracted by method |
+
+### Visuals
+
+Optional **extraction mechanism diagram**.
+
+### Links
+
+Link to herb pages containing those compounds.
+
+---
+
+# H2
+
+## Which Plant Parts Work Best With This Method
+
+*(Classification layer)*
+
+### Brief
+
+Explain which plant materials are best suited for this extraction method and why.
+
+### Logical information order
+
+1. list plant parts
+2. explain structural characteristics
+3. explain extraction suitability
+
+### Subordinate text
+
+> Herbal preparation methods are often chosen based on the physical structure of plant tissues and how easily their compounds dissolve in the solvent.
+
+### Attributes
+
+* leaf tissues
+* flowers
+* roots
+* bark
+* seeds
+
+### Questions
+
+* Which plant parts should be prepared using this method?
+
+### Structured content
+
+Table:
+
+| Plant part | Suitability |
+
+### Visuals
+
+Plant part diagram.
+
+### Links
+
+Link to herb pages representing each plant part.
+
+---
+
+# H2
+
+## When Herbalists Use This Preparation Method
+
+*(Contextual application)*
+
+### Brief
+
+Describe the practical situations where this method is preferred.
+
+### Logical information order
+
+1. plant tissue hardness
+2. compound sensitivity
+3. traditional herbal usage
+
+### Subordinate text
+
+> Herbalists choose preparation methods based on the characteristics of the plant material and the compounds they want to extract.
+
+### Attributes
+
+* plant structure
+* extraction strength
+* therapeutic context
+
+### Questions
+
+* When should this preparation method be used?
+
+### Structured content
+
+Bullet list.
+
+### Visuals
+
+Optional contextual image.
+
+### Links
+
+Link to herbal remedy pages.
+
+---
+
+# H2
+
+## Best Herbs for **[Preparation Method]**
+
+*(Entity relationship expansion)*
+
+### Brief
+
+Provide examples of herbs that are commonly prepared using this method and explain why they work well with it.
+
+### Logical information order
+
+1. herb name
+2. plant part used
+3. reason for suitability
+
+### Subordinate text
+
+> Some medicinal herbs respond particularly well to this preparation method because their active compounds are efficiently extracted under these conditions.
+
+### Attributes
+
+* herb species
+* plant parts
+* extraction suitability
+
+### Questions
+
+* Which herbs are best for this preparation method?
+
+### Structured content
+
+Table:
+
+| Herb | Plant Part | Reason |
+
+### Visuals
+
+Optional herb collage.
+
+### Links
+
+Link to herb profile pages.
+
+---
+
+# H2
+
+## **[Preparation Method]** vs Other Herbal Preparation Methods
+
+*(Comparison intent)*
+
+### Brief
+
+Compare this method with other extraction techniques used in herbal medicine.
+
+### Logical information order
+
+1. plant materials used
+2. extraction duration
+3. solvent type
+4. resulting preparation strength
+
+### Subordinate text
+
+> Different herbal preparation methods are designed for different plant materials and extraction goals.
+
+### Attributes
+
+* plant material
+* time
+* solvent
+* strength
+
+### Questions
+
+* How is this method different from infusion/decoction/tincture?
+
+### Structured content
+
+Comparison table:
+
+| Method | Plant Parts | Solvent | Time |
+
+### Visuals
+
+Optional comparison diagram.
+
+### Links
+
+Link to:
+
+* infusion
+* decoction
+* tincture
+* maceration pages
+
+---
+
+# H2
+
+## Common Mistakes When Preparing Herbal **[Preparation Method]**
+
+### Brief
+
+Explain errors that reduce extraction quality or potency.
+
+### Logical information order
+
+1. incorrect ratios
+2. improper temperature
+3. insufficient extraction time
+4. incorrect storage
+
+### Subordinate text
+
+> Small mistakes during preparation can significantly reduce the effectiveness of herbal extracts.
+
+### Attributes
+
+* ratio errors
+* temperature errors
+* timing errors
+
+### Questions
+
+* Why did my preparation fail?
+
+### Structured content
+
+Numbered list.
+
+### Visuals
+
+Optional mistake example.
+
+### Links
+
+None required.
+
+---
+
+# H2
+
+## Storage and Shelf Life
+
+### Brief
+
+Explain how long the preparation remains usable and how to store it properly.
+
+### Logical order
+
+1. shelf life
+2. storage conditions
+3. factors affecting stability
+
+### Subordinate text
+
+> The stability of herbal preparations depends on the solvent used and how the preparation is stored.
+
+### Attributes
+
+* storage temperature
+* container type
+* oxidation risk
+
+### Questions
+
+* How long does herbal [method] last?
+
+### Structured content
+
+Table:
+
+| Preparation | Shelf Life |
+
+### Visuals
+
+Optional storage containers.
+
+### Links
+
+None required.
+
+---
+
+# H2
+
+## Safety Considerations
+
+### Brief
+
+Explain potential safety concerns related to dosage and herb potency.
+
+### Logical order
+
+1. dosage caution
+2. herb strength differences
+3. contraindications
+
+### Subordinate text
+
+> Herbal preparations vary in strength, so dosage and safety considerations should always be taken into account.
+
+### Attributes
+
+* dosage limits
+* contraindications
+* potency differences
+
+### Questions
+
+* Is this preparation safe?
+
+### Structured content
+
+Bullet list.
+
+### Visuals
+
+None required.
+
+### Links
+
+Link to:
+
+* herb safety pages
+* dosage guides
+
+---
+
+# Final Result
+
+This outline satisfies **all major query classes** while avoiding redundancy:
+
+| Query type      | Section            |
+| --------------- | ------------------ |
+| definition      | introduction       |
+| procedure       | how to prepare     |
+| mechanism       | extraction science |
+| classification  | plant parts        |
+| context         | when to use        |
+| examples        | best herbs         |
+| comparison      | method vs others   |
+| troubleshooting | mistakes           |
+| practical use   | storage            |
+| risk            | safety             |
+
+This creates a **clear semantic gradient**, which is exactly how Koray structures pages to build **topical authority and contextual completeness**.
+
+---
+
+If you'd like, I can also show you **one important Koray optimization missing from almost all herbal sites** that would make these preparation method pages **much more likely to rank**:
+the **entity-attribute expansion block** that captures **dozens of additional long-tail queries without adding new sections.**

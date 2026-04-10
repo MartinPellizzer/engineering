@@ -71,3 +71,4 @@ def mass(d, V):
 def atomic_weight(mass_num_1, perc_1, mass_num_2, perc_2):
     res = ((mass_num_1 * perc_1) + (mass_num_2 * perc_2)) / 100
     return res
+
