@@ -720,11 +720,13 @@ while running:
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if pygame.key.get_mods() & pygame.KMOD_CTRL:
                     if event.button == 1:
-                        edge_create() 
+                        # edge_create() 
+                        pass
                 else:
                     if event.button == 1:
                         if viewport.state['edge_tmp_drawing']:
-                            edge_create() 
+                            # edge_create() 
+                            pass
                         else:
                             node_drag_start()
 

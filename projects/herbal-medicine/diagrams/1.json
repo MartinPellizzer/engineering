@@ -117,8 +117,8 @@
             "text_lines": [
                 "learning path comparison"
             ],
-            "x": 816,
-            "y": 232,
+            "x": 792,
+            "y": 272,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -135,8 +135,8 @@
             "text_lines": [
                 "learning path selection"
             ],
-            "x": 960,
-            "y": 232,
+            "x": 824,
+            "y": 240,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -153,8 +153,8 @@
             "text_lines": [
                 "learning path integration"
             ],
-            "x": 1104,
-            "y": 232,
+            "x": 936,
+            "y": 272,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -171,8 +171,8 @@
             "text_lines": [
                 "learning path entry points"
             ],
-            "x": 1256,
-            "y": 232,
+            "x": 952,
+            "y": 240,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1395,10 +1395,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "methods"
+                "preparation methods"
             ],
-            "x": 1472,
-            "y": -80,
+            "x": 1456,
+            "y": -88,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1549,10 +1549,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "solvents"
+                "solvents (menstruums)"
             ],
-            "x": 1472,
-            "y": 40,
+            "x": 1496,
+            "y": 64,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1569,8 +1569,8 @@
             "text_lines": [
                 "vinegar"
             ],
-            "x": 1536,
-            "y": 8,
+            "x": 1400,
+            "y": 72,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1587,8 +1587,8 @@
             "text_lines": [
                 "wine"
             ],
-            "x": 1544,
-            "y": 56,
+            "x": 1400,
+            "y": 48,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1603,10 +1603,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "water"
+                "water (aqueous)"
             ],
             "x": 1400,
-            "y": 16,
+            "y": 24,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1621,10 +1621,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "alcohol (ethyl)"
+                "ethyl alcohol"
             ],
-            "x": 1376,
-            "y": 96,
+            "x": 1624,
+            "y": 24,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1696,92 +1696,6 @@
             "focus": false,
             "node_start": "93",
             "node_end": "95",
-            "edge_direction": 0
-        },
-        {
-            "id": "102",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "preservative"
-            ],
-            "x": 1464,
-            "y": 144,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "103",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "102",
-            "node_end": "97",
-            "edge_direction": 0
-        },
-        {
-            "id": "104",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "forms"
-            ],
-            "x": 1728,
-            "y": -72,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "105",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "tinctures"
-            ],
-            "x": 1800,
-            "y": -56,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "106",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "104",
-            "node_end": "105",
             "edge_direction": 0
         },
         {
@@ -1970,108 +1884,6 @@
             "focus": false,
             "node_start": "84",
             "node_end": "113",
-            "edge_direction": 0
-        },
-        {
-            "id": "118",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "infusions"
-            ],
-            "x": 1656,
-            "y": -96,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "119",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "decoctions"
-            ],
-            "x": 1784,
-            "y": -96,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "120",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "concentrates"
-            ],
-            "x": 1656,
-            "y": -40,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "121",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "104",
-            "node_end": "118",
-            "edge_direction": 0
-        },
-        {
-            "id": "122",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "104",
-            "node_end": "120",
-            "edge_direction": 0
-        },
-        {
-            "id": "123",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "104",
-            "node_end": "119",
             "edge_direction": 0
         },
         {
@@ -2281,31 +2093,13 @@
             "edge_direction": 0
         },
         {
-            "id": "137",
+            "id": "143",
             "kind": "node",
             "text": "",
             "text_lines": [
-                "syrups"
+                "water-alcohol (hydro-alcoholic)"
             ],
-            "x": 1680,
-            "y": 24,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "138",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "waxes"
-            ],
-            "x": 1736,
+            "x": 1624,
             "y": 48,
             "w": 0,
             "h": 0,
@@ -2317,114 +2111,14 @@
             "edge_direction": 0
         },
         {
-            "id": "139",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "foods"
-            ],
-            "x": 1784,
-            "y": 24,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "140",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "104",
-            "node_end": "137",
-            "edge_direction": 0
-        },
-        {
-            "id": "141",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "104",
-            "node_end": "138",
-            "edge_direction": 0
-        },
-        {
-            "id": "142",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "104",
-            "node_end": "139",
-            "edge_direction": 0
-        },
-        {
-            "id": "143",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "water-alcohol"
-            ],
-            "x": 1368,
-            "y": 40,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "144",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "93",
-            "node_end": "143",
-            "edge_direction": 0
-        },
-        {
             "id": "145",
             "kind": "node",
             "text": "",
             "text_lines": [
                 "glycerin"
             ],
-            "x": 1384,
-            "y": 64,
+            "x": 1624,
+            "y": 96,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -2432,22 +2126,6 @@
             "focus": false,
             "node_start": null,
             "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "146",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "93",
-            "node_end": "145",
             "edge_direction": 0
         },
         {
@@ -2455,10 +2133,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "extracts"
+                "fluid extracts"
             ],
-            "x": 1880,
-            "y": 32,
+            "x": 1816,
+            "y": -144,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -2466,22 +2144,6 @@
             "focus": false,
             "node_start": null,
             "node_end": null,
-            "edge_direction": 0
-        },
-        {
-            "id": "148",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": "104",
-            "node_end": "147",
             "edge_direction": 0
         },
         {
@@ -2498,6 +2160,744 @@
             "focus": false,
             "node_start": "108",
             "node_end": "135",
+            "edge_direction": 0
+        },
+        {
+            "id": "148",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "infusions, teas (hot, cold)"
+            ],
+            "x": 1632,
+            "y": -168,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "149",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "decoctions"
+            ],
+            "x": 1632,
+            "y": -144,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "150",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "concentrates"
+            ],
+            "x": 1632,
+            "y": -120,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "151",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "tinctures (maceration [folk or weight/volume method], percolation)"
+            ],
+            "x": 1816,
+            "y": -168,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "152",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "dosage forms"
+            ],
+            "x": 1784,
+            "y": -104,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "146",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "foods"
+            ],
+            "x": 1992,
+            "y": -8,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "143",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "waxes"
+            ],
+            "x": 1992,
+            "y": 24,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "142",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "oil"
+            ],
+            "x": 1624,
+            "y": 72,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "143",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "tecniques"
+            ],
+            "x": 1504,
+            "y": -440,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "144",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "filtering"
+            ],
+            "x": 1456,
+            "y": -408,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "144",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "distillation"
+            ],
+            "x": 1536,
+            "y": -408,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "145",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "jellos"
+            ],
+            "x": 1632,
+            "y": -96,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "145",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "hydrosols"
+            ],
+            "x": 1632,
+            "y": -72,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "146",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "flower essences"
+            ],
+            "x": 1632,
+            "y": -48,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "147",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "wine infusions"
+            ],
+            "x": 1744,
+            "y": -32,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "147",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "vinegar infusions"
+            ],
+            "x": 1832,
+            "y": -32,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "148",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "glycerites"
+            ],
+            "x": 1808,
+            "y": -64,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "148",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "oil infusions"
+            ],
+            "x": 1944,
+            "y": -88,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "148",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "syrups"
+            ],
+            "x": 1848,
+            "y": 8,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "149",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "oxymels"
+            ],
+            "x": 1848,
+            "y": 32,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "149",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "elecuaries (honeys, confections)"
+            ],
+            "x": 1848,
+            "y": 56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "150",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "sugar / honey"
+            ],
+            "x": 1624,
+            "y": 128,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "150",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "succus (expressed plant juice)"
+            ],
+            "x": 1888,
+            "y": 120,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "151",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "capsules"
+            ],
+            "x": 1888,
+            "y": 144,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "152",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "pills (tablets)"
+            ],
+            "x": 1888,
+            "y": 168,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "153",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "powders"
+            ],
+            "x": 1888,
+            "y": 192,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "154",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "lozenges (troches)"
+            ],
+            "x": 1888,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "155",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "administration"
+            ],
+            "x": 2144,
+            "y": -104,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "156",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "oral"
+            ],
+            "x": 2104,
+            "y": -128,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "157",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "topical"
+            ],
+            "x": 2104,
+            "y": -72,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "158",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "liniments"
+            ],
+            "x": 2104,
+            "y": -16,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "159",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "lotions and creams"
+            ],
+            "x": 2096,
+            "y": 8,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "160",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "hydrosols"
+            ],
+            "x": 2120,
+            "y": 48,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "161",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "flower essences"
+            ],
+            "x": 2136,
+            "y": 72,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "162",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "medicinal oils and salves"
+            ],
+            "x": 2120,
+            "y": 96,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "163",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "oinments and balms"
+            ],
+            "x": 2128,
+            "y": 120,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "164",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "suppositories, boluses"
+            ],
+            "x": 2128,
+            "y": 144,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "165",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "fomentations (compresses or hot packs)"
+            ],
+            "x": 2128,
+            "y": 160,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "166",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "poultices"
+            ],
+            "x": 2120,
+            "y": 184,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "167",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "baths (full body, sits, foot and han, eye)"
+            ],
+            "x": 2120,
+            "y": 200,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "168",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "douches"
+            ],
+            "x": 2120,
+            "y": 232,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
             "edge_direction": 0
         }
     ]
