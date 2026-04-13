@@ -7,10 +7,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "preparations"
+                "herbal preparations"
             ],
-            "x": 640,
-            "y": 144,
+            "x": 624,
+            "y": 152,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -28,8 +28,8 @@
             "text_lines": [
                 "methods"
             ],
-            "x": 648,
-            "y": 184,
+            "x": 656,
+            "y": 280,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -47,8 +47,8 @@
             "text_lines": [
                 "infusion"
             ],
-            "x": 608,
-            "y": 232,
+            "x": 616,
+            "y": 304,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -66,8 +66,8 @@
             "text_lines": [
                 "decoction"
             ],
-            "x": 696,
-            "y": 232,
+            "x": 616,
+            "y": 256,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -452,10 +452,10 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "constituents"
+                "chemical compounds"
             ],
-            "x": 952,
-            "y": 272,
+            "x": 1016,
+            "y": 144,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -473,27 +473,8 @@
             "text_lines": [
                 "forms"
             ],
-            "x": 544,
-            "y": 144,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0,
-            "entity_type": ""
-        },
-        {
-            "id": "15",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "liquid"
-            ],
-            "x": 456,
-            "y": 144,
+            "x": 496,
+            "y": 272,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -511,8 +492,8 @@
             "text_lines": [
                 "semi-solid"
             ],
-            "x": 456,
-            "y": 176,
+            "x": 400,
+            "y": 280,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -521,7 +502,7 @@
             "node_start": null,
             "node_end": null,
             "edge_direction": 0,
-            "entity_type": ""
+            "entity_type": "form"
         },
         {
             "id": "17",
@@ -530,8 +511,8 @@
             "text_lines": [
                 "solid"
             ],
-            "x": 456,
-            "y": 208,
+            "x": 448,
+            "y": 320,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -540,7 +521,7 @@
             "node_start": null,
             "node_end": null,
             "edge_direction": 0,
-            "entity_type": ""
+            "entity_type": "form"
         },
         {
             "id": "18",
@@ -549,8 +530,8 @@
             "text_lines": [
                 "gaseous"
             ],
-            "x": 456,
-            "y": 240,
+            "x": 496,
+            "y": 320,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -559,7 +540,7 @@
             "node_start": null,
             "node_end": null,
             "edge_direction": 0,
-            "entity_type": ""
+            "entity_type": "form"
         },
         {
             "id": "19",
@@ -600,59 +581,6 @@
                     "forms"
                 ],
                 "x": 544,
-                "y": 144,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": ""
-            },
-            "edge_direction": 0,
-            "entity_type": ""
-        },
-        {
-            "id": "20",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": {
-                "id": "14",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "forms"
-                ],
-                "x": 544,
-                "y": 144,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": ""
-            },
-            "node_end": {
-                "id": "15",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "liquid"
-                ],
-                "x": 456,
                 "y": 144,
                 "w": 0,
                 "h": 0,
@@ -882,165 +810,6 @@
             "node_end": null,
             "edge_direction": 0,
             "entity_type": "form"
-        },
-        {
-            "id": "27",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": {
-                "id": "15",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "liquid"
-                ],
-                "x": 456,
-                "y": 144,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": ""
-            },
-            "node_end": {
-                "id": "24",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "infusion"
-                ],
-                "x": 360,
-                "y": 112,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": "form"
-            },
-            "edge_direction": 0,
-            "entity_type": ""
-        },
-        {
-            "id": "28",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": {
-                "id": "15",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "liquid"
-                ],
-                "x": 456,
-                "y": 144,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": ""
-            },
-            "node_end": {
-                "id": "25",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "decoction"
-                ],
-                "x": 360,
-                "y": 136,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": "form"
-            },
-            "edge_direction": 0,
-            "entity_type": ""
-        },
-        {
-            "id": "29",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": {
-                "id": "15",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "liquid"
-                ],
-                "x": 456,
-                "y": 144,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": ""
-            },
-            "node_end": {
-                "id": "26",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "tincture"
-                ],
-                "x": 360,
-                "y": 160,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": "form"
-            },
-            "edge_direction": 0,
-            "entity_type": ""
         },
         {
             "id": "30",
@@ -1384,33 +1153,14 @@
             "entity_type": ""
         },
         {
-            "id": "39",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "maceration"
-            ],
-            "x": 776,
-            "y": 232,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0,
-            "entity_type": "method"
-        },
-        {
             "id": "40",
             "kind": "node",
             "text": "",
             "text_lines": [
                 "digestion"
             ],
-            "x": 776,
-            "y": 256,
+            "x": 712,
+            "y": 296,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1428,8 +1178,8 @@
             "text_lines": [
                 "percolation"
             ],
-            "x": 776,
-            "y": 280,
+            "x": 664,
+            "y": 328,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -1439,59 +1189,6 @@
             "node_end": null,
             "edge_direction": 0,
             "entity_type": "methond"
-        },
-        {
-            "id": "42",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": {
-                "id": "39",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "maceration"
-                ],
-                "x": 776,
-                "y": 232,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": "method"
-            },
-            "node_end": {
-                "id": "1",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "methods"
-                ],
-                "x": 648,
-                "y": 184,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": ""
-            },
-            "edge_direction": 0,
-            "entity_type": ""
         },
         {
             "id": "43",
@@ -1615,59 +1312,6 @@
             "focus": false,
             "node_start": null,
             "node_end": null,
-            "edge_direction": 0,
-            "entity_type": ""
-        },
-        {
-            "id": "46",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": {
-                "id": "24",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "infusions"
-                ],
-                "x": 360,
-                "y": 112,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": "form"
-            },
-            "node_end": {
-                "id": "39",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "maceration"
-                ],
-                "x": 776,
-                "y": 232,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": "method"
-            },
             "edge_direction": 0,
             "entity_type": ""
         },
@@ -2311,6 +1955,362 @@
                 "node_end": null,
                 "edge_direction": 0,
                 "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "63",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "liquid"
+            ],
+            "x": 448,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "form"
+        },
+        {
+            "id": "64",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "63",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid"
+                ],
+                "x": 448,
+                "y": 240,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "node_end": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "forms"
+                ],
+                "x": 496,
+                "y": 272,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "65",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "maceration"
+            ],
+            "x": 696,
+            "y": 256,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "method"
+        },
+        {
+            "id": "66",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "methods"
+                ],
+                "x": 656,
+                "y": 280,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "65",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "maceration"
+                ],
+                "x": 696,
+                "y": 256,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "method"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "67",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "13",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "chemical compounds"
+                ],
+                "x": 1016,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "68",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal preparations"
+                ],
+                "x": 624,
+                "y": 152,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "24",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 360,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "69",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal preparations"
+                ],
+                "x": 624,
+                "y": 152,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "25",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "decoctions"
+                ],
+                "x": 360,
+                "y": 136,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "70",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal preparations"
+                ],
+                "x": 624,
+                "y": 152,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "26",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "tinctures"
+                ],
+                "x": 360,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
             },
             "edge_direction": 0,
             "entity_type": ""
