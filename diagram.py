@@ -6,7 +6,6 @@ import pygame
 
 from lib import viewport
 
-
 project_folderpath = 'projects/pyramid'
 project_folderpath = 'projects/herbal-medicine'
 

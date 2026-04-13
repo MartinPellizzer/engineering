@@ -231,7 +231,7 @@ Questo modo di procedere viene suggerito in quanto si ritiene il più adeguato p
 elements.append(Paragraph("Richiesta autorizzazione a procedere", h3))
 elements.append(
     Paragraph(f'''
-Se tutte le entità concordano con le premesse elencate fino ad ora, si chiede l'autorizzazione a procedere con la fase di progettazione/sviluppo. Se anche solo una di queste entità non è d'accordo con una di queste premesse o ha dei dubbi a rigurado, chiediamo di essere notificati in merito, così da rivalutare la fase di progettazione/sviluppo.
+Se tutte le entità concordano con le premesse elencate fino ad ora, si chiede l'autorizzazione a procedere con la fase di progettazione/sviluppo. Se anche solo una di queste entità non è d'accordo con una di queste premesse o ha dei dubbi a riguardo, chiediamo di essere notificati in merito, così da rivalutare la fase di progettazione/sviluppo.
     ''', body_style,)
 )
 ###
@@ -267,7 +267,7 @@ Si stima un tempo totale di sviluppo non superiore ai 60 giorni. Questo a patto 
 elements.append(Paragraph("Costi Sviluppo", h3))
 elements.append(
     Paragraph(f'''
-I costi stimati per lo sviluppo di questo prototipo sono relativamente bassi. Se Pozzobono Distribuzione mette a disposizione una spillatrice, Sweesh mette a disposizione un generatore di ozono e Otregroup mette a disposizione la centralina di controllo, i costi dei materiali sono limitati a valvole, sensori ed eventuali componenti accessori. I costi maggiori di questo progetto derivano dalle ore di manodopera delle figure coinvolte, nonchè da eventuali analisi di laboratorio effettuate per provare l'efficacia del sistema.
+I costi stimati per lo sviluppo di questo prototipo sono relativamente bassi. Se Pozzobon Distribuzione mette a disposizione una spillatrice, Sweesh mette a disposizione un generatore di ozono e Otregroup mette a disposizione la centralina di controllo, i costi dei materiali sono limitati a valvole, sensori ed eventuali componenti accessori. I costi maggiori di questo progetto derivano dalle ore di manodopera delle figure coinvolte, nonchè da eventuali analisi di laboratorio effettuate per provare l'efficacia del sistema.
     ''', body_style,)
 )
 ###
@@ -323,20 +323,20 @@ il sistema di spillatura è installato e operativo (i tecnici di Otregroup posso
 elements.append(Paragraph("Prerequisiti", h3))
 elements.append(
     Paragraph(f'''
-I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i seguenti:
     ''', body_style,)
 )
 list_gen(f'''
 Otregroup deve richiedere il materiale necessario a Pozzobon Distribuzione
 Otregroup deve richiedere l'intervento di un tecnico a Pozzobon Distribuzione per l'installazione e il collaudo del sistema in sede Otregroup
-Otregroup deve richiedere un dimostrazione pratica dell'utilizzo corretto del sistema di spillatura al tecnico di Pozzobon Distribuzione
+Otregroup deve richiedere una dimostrazione pratica dell'utilizzo corretto del sistema di spillatura al tecnico di Pozzobon Distribuzione
 Otregroup deve richiedere la massima disponibilità da parte del tecnico di Pozzobon Distribuzione di fornire tutti i dati necessari per lo sviluppo delle fasi sucessive e di rispondere a eventuali dubbi riguardo il funzionamento del sistema di spillatura
 '''.strip().split('\n'))
 ###
 elements.append(Paragraph("Figure Coinvolte", h3))
 elements.append(
     Paragraph(f'''
-Le figure coinvolte in questa fase sono i seguenti:
+Le figure coinvolte in questa fase sono:
     ''', body_style,)
 )
 list_gen(f'''
@@ -394,7 +394,7 @@ il protocollo di sanificazione viene scritto e testato da analisi microbiologich
 elements.append(Paragraph("Prerequisiti", h3))
 elements.append(
     Paragraph(f'''
-I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i seguenti:
     ''', body_style,)
 )
 list_gen(f'''
@@ -408,7 +408,7 @@ Otregroup deve richiedere a Sweesh di valutare quale sia il miglior modo possibi
 elements.append(Paragraph("Figure Coinvolte", h3))
 elements.append(
     Paragraph(f'''
-Le figure coinvolte in questa fase sono i seguenti:
+Le figure coinvolte in questa fase sono:
     ''', body_style,)
 )
 list_gen(f'''
@@ -464,7 +464,7 @@ la spillatrice eroga correttamenta acqua ozonizzata o bevanda del fusto alla com
 elements.append(Paragraph("Prerequisiti", h3))
 elements.append(
     Paragraph(f'''
-I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i seguenti:
     ''', body_style,)
 )
 list_gen(f'''
@@ -476,12 +476,12 @@ Otregroup deve identificare i componenti elettronici necessari per fare il primo
 elements.append(Paragraph("Figure Coinvolte", h3))
 elements.append(
     Paragraph(f'''
-Le figure coinvolte in questa fase sono i seguenti:
+Le figure coinvolte in questa fase sono:
     ''', body_style,)
 )
 list_gen(f'''
 Otregroup
-Pozzobon Distribuzion
+Pozzobon Distribuzione
 Sweesh (valuta autonomante se vuole partecipare a questa fase)
 '''.strip().split('\n'))
 ###
@@ -490,7 +490,7 @@ elements.append(PageBreak())
 elements.append(Paragraph("Fase 4. Implementazione Ciclo", h2))
 elements.append(
     Paragraph(f'''
-Lo scopo di questa fase è quello di integrare una centralina di controllo e di sviluppare il software necessario per automatizzare il cliclo di sanificazione, il quale viene effettuato post-cambio fusto premendo un pulsante nel touchscreen della centralina.
+Lo scopo di questa fase è quello di integrare una centralina di controllo e di sviluppare il software necessario per automatizzare il ciclo di sanificazione, il quale viene effettuato post-cambio fusto premendo un pulsante nel touchscreen della centralina.
     ''', body_style,)
 )
 ###
@@ -524,13 +524,13 @@ Questa fase viene considerata un successo se si raggiungono i seguenti obbiettiv
 list_gen(f'''
 le elettrovalvole vengono commutate correttamente in maniera automatizzata alla pressione di un pulsante sullo schermo touchscreen della centralina di controllo
 il ciclo si sanificazione viene eseguito correttamente secondo le procedure sviluppate durante la fase di implementazione del generatore di ozono
-il ciclo termina dopo la procedura di sanificazione e la spillatrice ritorna ad erogare la bibita al poste dell'acqua ozonizzata
+il ciclo termina dopo la procedura di sanificazione e la spillatrice ritorna ad erogare la bibita al posto dell'acqua ozonizzata
 '''.strip().split('\n'))
 ###
 elements.append(Paragraph("Prerequisiti", h3))
 elements.append(
     Paragraph(f'''
-I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i seguenti:
     ''', body_style,)
 )
 list_gen(f'''
@@ -541,7 +541,7 @@ Otregroup deve rifornirsi o progettare tale centralina se non disponibile/idonea
 elements.append(Paragraph("Figure Coinvolte", h3))
 elements.append(
     Paragraph(f'''
-Le figure coinvolte in questa fase sono i seguenti:
+Le figure coinvolte in questa fase sono:
     ''', body_style,)
 )
 list_gen(f'''
@@ -594,18 +594,18 @@ il ciclo parte in automatico dopo il cambio del fusto, senza avvio manuale da pa
 elements.append(Paragraph("Prerequisiti", h3))
 elements.append(
     Paragraph(f'''
-I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i sguenti:
+I prerequisiti necessari per raggiungere gli obbiettivi sopra elencati sono i seguenti:
     ''', body_style,)
 )
 list_gen(f'''
-Otregroup deve ottenere un sensore di flusso (flussostato) idoneo all'applicazione e interfacciabile alla centralina di controlo (chiedere supporto a Pozzobon Distribuzione)
-Otregroup deve ottenere un sensore di contatto (micro switch) o sensore di pressione (pressostato) idoneo all'applicazione e interfacciabile alla centralina di controlo (chiedere supporto a Pozzobon Distribuzione)
+Otregroup deve ottenere un sensore di flusso (flussostato) idoneo all'applicazione e interfacciabile alla centralina di controllo (chiedere supporto a Pozzobon Distribuzione)
+Otregroup deve ottenere un sensore di contatto (micro switch) o sensore di pressione (pressostato) idoneo all'applicazione e interfacciabile alla centralina di controllo (chiedere supporto a Pozzobon Distribuzione)
 '''.strip().split('\n'))
 ###
 elements.append(Paragraph("Figure Coinvolte", h3))
 elements.append(
     Paragraph(f'''
-Le figure coinvolte in questa fase sono i seguenti:
+Le figure coinvolte in questa fase sono:
     ''', body_style,)
 )
 list_gen(f'''
@@ -642,7 +642,7 @@ Il precedente diagramma mostra come scalare il sistema di automazione da 1 linea
 elements.append(Paragraph("Fase Esclusa Dal Primo Prototipo", h3))
 elements.append(
         Paragraph(f'''
-Questa fase al momento non è inclusa nello sviluppo del primo prototipo. Lo sviluppo di un sistema multi-linea ha una complessità esponenziale confrontata col prototipo a singola linea. Per questo motivo si chiede di sviluppare/testare il prototipo a singola linea prima di scalare al multi-linea, in modo da consolidare il funzionameto del sistema prima di investire risorse e di rischiare sia un allungamento significativo dei tempi di sviluppo che un incremento degli errori di progettazione a causa di insufficienza di dati raccolti.
+Questa fase al momento non è inclusa nello sviluppo del primo prototipo. Lo sviluppo di un sistema multi-linea ha una complessità esponenziale confrontata col prototipo a singola linea. Per questo motivo si chiede di sviluppare/testare il prototipo a singola linea prima di scalare al multi-linea, in modo da consolidare il funzionamento del sistema prima di investire risorse e di rischiare sia un allungamento significativo dei tempi di sviluppo che un incremento degli errori di progettazione a causa di insufficienza di dati raccolti.
     ''', body_style,)
         )
 ###
