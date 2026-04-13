@@ -1,0 +1,24 @@
+{
+    "x": 0,
+    "y": 0,
+    "things": [
+        {
+            "id": "1",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "???"
+            ],
+            "x": 632,
+            "y": 184,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        }
+    ]
+}

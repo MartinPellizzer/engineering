@@ -5,6 +5,8 @@ import pygame
 
 from lib import viewport
 
+project_folderpath = 'projects/herbal-medicine/'
+
 pygame.init()
 clock = pygame.time.Clock()
 
@@ -22,6 +24,7 @@ font_family_text = FONT_FAMILY_IBM_PLEX_MONO
 
 font_size_base = 8
 font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
+font_debug = pygame.font.Font(font_family_text, 24 )
 
 game = {
     'running': True,
@@ -82,6 +85,22 @@ canvas = {
 
 edge_tmp = thing_create('-1', kind='edge')
 
+diagram_index = 0
+
+def save(slot):
+    with open(f"{project_folderpath}/knowledge-graph/{slot}.json", "w") as file:
+        json.dump(canvas, file, indent=4)
+
+def load(slot):
+    global diagram_index
+    global canvas
+    try:
+        with open(f"{project_folderpath}/knowledge-graph/{slot}.json", "r") as file:
+            canvas = json.load(file)
+    except:
+        save(slot)
+    diagram_index = slot
+
 def node_create():
     snap_x, snap_y = viewport.snap_to_grid(mouse['world_x'], mouse['world_y'])
     canvas['things'].append(
@@ -105,10 +124,8 @@ def node_delete():
     ids_to_remove = []
     for edge in canvas['things']:
         if edge['kind'] == 'edge':
-            # print(json.dumps(edge['n'], indent=4))
             if edge['node_start']['id'] == thing['id'] or edge['node_end']['id'] == thing['id']:
                 ids_to_remove.append(edge['id'])
-    print(ids_to_remove)
     canvas['things'] = [d for d in canvas['things'] if d['id'] not in ids_to_remove ]
 
 def edge_create():
@@ -226,10 +243,23 @@ def main_inputs():
             game['running'] = False
             
         if event.type == pygame.KEYDOWN:
-            # typing
             if 0: pass
-            elif event.key == pygame.K_x: 
-                node_delete()
+            elif pygame.key.get_mods() & pygame.KMOD_CTRL:
+                if 0: pass
+                elif event.key == pygame.K_s: save(diagram_index)
+                elif event.key == pygame.K_l: save(diagram_index)
+                elif event.key == pygame.K_0: load(0)
+                elif event.key == pygame.K_1: load(1)
+                elif event.key == pygame.K_2: load(2)
+                elif event.key == pygame.K_3: load(3)
+                elif event.key == pygame.K_4: load(4)
+                elif event.key == pygame.K_5: load(5)
+                elif event.key == pygame.K_6: load(6)
+                elif event.key == pygame.K_7: load(7)
+                elif event.key == pygame.K_8: load(8)
+                elif event.key == pygame.K_9: load(9)
+                elif event.key == pygame.K_x: node_delete()
+            # typing
             elif event.key == pygame.K_BACKSPACE:
                 thing = viewport.thing_focused_get(canvas)
                 if thing != None:
@@ -368,10 +398,16 @@ def draw_viewport():
     draw_nodes()
     screen.set_clip(None)
 
+def draw_debug():
+    if viewport.state['debug_show']:
+        surface = font_debug.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
+        screen.blit(surface, (0, 0))
+
 def main_draw():
     screen.fill(COLOR_BACKGROUND)
     draw_leftbar()
     draw_viewport()
+    draw_debug()
     pygame.display.flip()
 
 
