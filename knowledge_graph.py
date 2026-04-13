@@ -1,0 +1,97 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+G = nx.DiGraph()
+# G = nx.DiGraph()
+# G = nx.MultiGraph()
+# G = nx.MultiDiGraph()
+
+'''
+G.add_node('Herbal Medicine')
+
+G.add_node('Herbs')
+G.add_node('Phytochemicals')
+G.add_node('Conditions')
+G.add_node('Preparations')
+
+G.add_node('Infusions')
+G.add_node('Decoctions')
+G.add_node('Tinctures')
+'''
+
+triplets = [
+    ('herbal tradtitions', 'favor', 'infusion'),
+    ('herbal tradtitions', 'favor', 'decoction'),
+    ('infusion', 'uses', 'medicinal plants'),
+    ('decoction', 'uses', 'medicinal plants'),
+    ('infusion', 'is a form of ', 'extraction'),
+    ('decoction', 'is a form of ', 'extraction'),
+    ('infusion', 'is a', 'liquid preparation'),
+    ('infusion', 'is a', 'extraction method'),
+    ('infusion', 'is derived from', 'Latin "infundere"'),
+    ('infusion', 'contains', 'nutritional principles'),
+    ('infusion', 'contains', 'medicinal principles'),
+    ('infusion', 'contains', 'inert or passive constituents'),
+    ('infusion', 'contains', 'tonic minerals'),
+    ('infusion', 'contains', 'pro-biotic fodder'),
+    ('infusion', 'can contain', 'starch (via hot water)'),
+    ('infusion', 'can contain', 'albumin (via cold water)'),
+    ('infusion', 'can contain', 'gum, sugar, and other extractives'),
+    ('infusion', 'uses', 'water (mestruum)'),
+    ('infusion', 'uses', 'vinegar (mestruum)'),
+    ('infusion', 'uses', 'dilute glycerin (mestruum)'),
+    ('infusion', 'uses', 'wine (mestruum)'),
+    ('infusion', 'uses', 'juice (mestruum)'),
+    ('infusion', 'can be made via', 'maceration'),
+    ('infusion', 'can be made via', 'digestion'),
+    ('infusion', 'can be made via', 'percolation'),
+    ('infusion', 'requires', 'closed vessels'),
+    ('infusion', 'requires', 'suitable vessels'),
+    ('infusion', 'requires', 'immediate use'),
+    ('infusion', 'best prepared in', 'glazed earthenware'),
+    ('infusion', 'best prepared in', 'porcelain'),
+    ('infusion', 'best prepared in', 'glass'),
+    ('infusion', 'should avoid', 'tinned iron'),
+    ('infusion', 'should avoid', 'aluminum'),
+    ('infusion', 'should avoid', 'metallic vessels'),
+    ('infusion', 'is prepared by', 'hot water'),
+    ('infusion', 'is prepared by', 'cold water'),
+    ('infusion', 'is prepared by', 'boiling water'),
+    ('infusion', 'can be prepared as', 'hot infusion'),
+    ('infusion', 'can be prepared as', 'cold infusion'),
+    ('infusion', 'is suitable for', 'flowers'),
+    ('infusion', 'is suitable for', 'most leaves'),
+    ('infusion', 'is suitable for', 'soft stems'),
+    ('infusion', 'is suitable for', 'soft tissue plants'),
+    ('infusion', 'is suitable for', 'some roots'),
+    ('infusion', 'is suitable for', 'chamomile'),
+    ('infusion', 'is suitable for', 'peppermint'),
+    ('infusion', 'is suitable for', 'valerian root'),
+    ('infusion', 'is suitable for', 'red clover blossoms'),
+    ('infusion', 'is suitable for', 'slippery elm bark (cold infusion'),
+    ('infusion', 'is suitable for', 'marshmallow root (cold infusion'),
+    ('infusion', 'provides', 'hydration'),
+    ('infusion', 'provides', 'pro-biotic proliferation'),
+    ('infusion', 'serves as', 'tonic beverage'),
+    ('infusion', 'serves as', 'plant medicine'),
+    ('infusion', 'serves as', 'herbal food'),
+    ('infusion', 'has limited', 'shelf-life/preservation'),
+    ('infusion', 'recommended dosage', 'one cupful three times a day (standard)'),
+
+    ('tinctures', 'type of', 'fractional extracts'),
+    ('tinctures', 'have high', 'concentation'),
+    ('fractional extracts', 'have high', 'concentation'),
+    ('last 100 years', 'characterized by', 'emphasis on concentrated extracts'),
+
+    ('alcohol', 'serves as', 'solvent'),
+    ('glycerin', 'serves as', 'solvent'),
+    ('alcohol', 'is used for', 'tinctures'),
+    ('glycerin', 'is used for', 'tinctures'),
+]
+
+for s, p, o in triplets:
+    G.add_edge(s, o, predicate=p)
+
+nx.draw_spring(G, with_labels=True)
+plt.show()
+

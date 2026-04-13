@@ -831,7 +831,7 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "infusion"
+                "infusions"
             ],
             "x": 360,
             "y": 112,
@@ -850,7 +850,7 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "decoction"
+                "decoctions"
             ],
             "x": 360,
             "y": 136,
@@ -869,7 +869,7 @@
             "kind": "node",
             "text": "",
             "text_lines": [
-                "tincture"
+                "tinctures"
             ],
             "x": 360,
             "y": 160,
@@ -1586,6 +1586,578 @@
                 ],
                 "x": 648,
                 "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "45",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "plant material"
+            ],
+            "x": 344,
+            "y": 16,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "46",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "24",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 360,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "node_end": {
+                "id": "39",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "maceration"
+                ],
+                "x": 776,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "method"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "47",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "flowers"
+            ],
+            "x": 280,
+            "y": -8,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "48",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "leaves"
+            ],
+            "x": 320,
+            "y": -40,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "49",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "stems"
+            ],
+            "x": 400,
+            "y": -40,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "50",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "roots"
+            ],
+            "x": 440,
+            "y": -8,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "51",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "45",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "plant material"
+                ],
+                "x": 344,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "47",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "flowers"
+                ],
+                "x": 280,
+                "y": -8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "52",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "45",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "plant material"
+                ],
+                "x": 344,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "48",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "leaves"
+                ],
+                "x": 320,
+                "y": -40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "53",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "45",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "plant material"
+                ],
+                "x": 344,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "49",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "stems"
+                ],
+                "x": 400,
+                "y": -40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "54",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "45",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "plant material"
+                ],
+                "x": 344,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "50",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "roots"
+                ],
+                "x": 440,
+                "y": -8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "55",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "24",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 360,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "node_end": {
+                "id": "47",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "flowers"
+                ],
+                "x": 280,
+                "y": -8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "56",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "24",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 360,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "node_end": {
+                "id": "48",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "leaves"
+                ],
+                "x": 320,
+                "y": -40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "57",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "24",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 360,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "node_end": {
+                "id": "49",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "stems"
+                ],
+                "x": 400,
+                "y": -40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "58",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "24",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 360,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "node_end": {
+                "id": "50",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "roots"
+                ],
+                "x": 440,
+                "y": -8,
                 "w": 0,
                 "h": 0,
                 "w_min": 32,
