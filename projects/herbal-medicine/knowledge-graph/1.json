@@ -3,13 +3,32 @@
     "y": 0,
     "things": [
         {
+            "id": "0",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "preparations"
+            ],
+            "x": 640,
+            "y": 144,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
             "id": "1",
             "kind": "node",
             "text": "",
             "text_lines": [
-                "???"
+                "methods"
             ],
-            "x": 632,
+            "x": 648,
             "y": 184,
             "w": 0,
             "h": 0,
@@ -18,7 +37,1567 @@
             "focus": false,
             "node_start": null,
             "node_end": null,
-            "edge_direction": 0
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "2",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "infusion"
+            ],
+            "x": 608,
+            "y": 232,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "method\r"
+        },
+        {
+            "id": "3",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "decoction"
+            ],
+            "x": 696,
+            "y": 232,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "method"
+        },
+        {
+            "id": "4",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparations"
+                ],
+                "x": 640,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "methods"
+                ],
+                "x": 648,
+                "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "5",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "methods"
+                ],
+                "x": 648,
+                "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "2",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 608,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "6",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "methods"
+                ],
+                "x": 648,
+                "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "3",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "decoction"
+                ],
+                "x": 696,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "7",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "solvents"
+            ],
+            "x": 648,
+            "y": 56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "8",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparations"
+                ],
+                "x": 640,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvents"
+                ],
+                "x": 648,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "9",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "alcohol"
+            ],
+            "x": 712,
+            "y": 64,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "solvent"
+        },
+        {
+            "id": "10",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "glycerin"
+            ],
+            "x": 712,
+            "y": 40,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "solvent"
+        },
+        {
+            "id": "11",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvents"
+                ],
+                "x": 648,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "9",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "alcohol"
+                ],
+                "x": 712,
+                "y": 64,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "solvent"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "12",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvents"
+                ],
+                "x": 648,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "10",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "glycerin"
+                ],
+                "x": 712,
+                "y": 40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "solvent"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "13",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "constituents"
+            ],
+            "x": 832,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "14",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "forms"
+            ],
+            "x": 544,
+            "y": 144,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "15",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "liquid"
+            ],
+            "x": 456,
+            "y": 144,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "16",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "semi-solid"
+            ],
+            "x": 456,
+            "y": 176,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "17",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "solid"
+            ],
+            "x": 456,
+            "y": 208,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "18",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "gaseous"
+            ],
+            "x": 456,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "19",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparations"
+                ],
+                "x": 640,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "forms"
+                ],
+                "x": 544,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "20",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "forms"
+                ],
+                "x": 544,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "15",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid"
+                ],
+                "x": 456,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "21",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "forms"
+                ],
+                "x": 544,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "16",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid"
+                ],
+                "x": 456,
+                "y": 176,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "22",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "forms"
+                ],
+                "x": 544,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "17",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solid"
+                ],
+                "x": 456,
+                "y": 208,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "23",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "forms"
+                ],
+                "x": 544,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "18",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "gaseous"
+                ],
+                "x": 456,
+                "y": 240,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "24",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "infusion"
+            ],
+            "x": 360,
+            "y": 112,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "form"
+        },
+        {
+            "id": "25",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "decoction"
+            ],
+            "x": 360,
+            "y": 136,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "form"
+        },
+        {
+            "id": "26",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "tincture"
+            ],
+            "x": 360,
+            "y": 160,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "form"
+        },
+        {
+            "id": "27",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "15",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid"
+                ],
+                "x": 456,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "24",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 360,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "28",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "15",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid"
+                ],
+                "x": 456,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "25",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "decoction"
+                ],
+                "x": 360,
+                "y": 136,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "29",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "15",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid"
+                ],
+                "x": 456,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "26",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "tincture"
+                ],
+                "x": 360,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "30",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "water"
+            ],
+            "x": 576,
+            "y": 16,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "solvent"
+        },
+        {
+            "id": "31",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "vinegar"
+            ],
+            "x": 576,
+            "y": 40,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "solvent"
+        },
+        {
+            "id": "32",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "wine"
+            ],
+            "x": 576,
+            "y": 64,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "solvent"
+        },
+        {
+            "id": "33",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "juice"
+            ],
+            "x": 576,
+            "y": 88,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "solvent"
+        },
+        {
+            "id": "34",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvents"
+                ],
+                "x": 648,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "30",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "water"
+                ],
+                "x": 576,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "solvent"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "35",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvents"
+                ],
+                "x": 648,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "31",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "vinegar"
+                ],
+                "x": 576,
+                "y": 40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "solvent"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "36",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvents"
+                ],
+                "x": 648,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "32",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "wine"
+                ],
+                "x": 576,
+                "y": 64,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "solvent"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "37",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvents"
+                ],
+                "x": 648,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "33",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "juice"
+                ],
+                "x": 576,
+                "y": 88,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "solvent"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "38",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "24",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 360,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "form"
+            },
+            "node_end": {
+                "id": "30",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "water"
+                ],
+                "x": 576,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "solvent"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "39",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "maceration"
+            ],
+            "x": 776,
+            "y": 232,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "method"
+        },
+        {
+            "id": "40",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "digestion"
+            ],
+            "x": 776,
+            "y": 256,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "method"
+        },
+        {
+            "id": "41",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "percolation"
+            ],
+            "x": 776,
+            "y": 280,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": "methond"
+        },
+        {
+            "id": "42",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "39",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "maceration"
+                ],
+                "x": 776,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "method"
+            },
+            "node_end": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "methods"
+                ],
+                "x": 648,
+                "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "43",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "40",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "digestion"
+                ],
+                "x": 776,
+                "y": 256,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "method"
+            },
+            "node_end": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "methods"
+                ],
+                "x": 648,
+                "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "44",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "41",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "percolation"
+                ],
+                "x": 776,
+                "y": 280,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": "methond"
+            },
+            "node_end": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "methods"
+                ],
+                "x": 648,
+                "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
         }
     ]
 }

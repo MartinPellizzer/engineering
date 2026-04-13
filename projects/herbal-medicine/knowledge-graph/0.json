@@ -9,8 +9,8 @@
             "text_lines": [
                 "preparations"
             ],
-            "x": 640,
-            "y": 192,
+            "x": 600,
+            "y": 168,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -27,8 +27,8 @@
             "text_lines": [
                 "dosage forms"
             ],
-            "x": 648,
-            "y": 248,
+            "x": 600,
+            "y": 232,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -45,8 +45,8 @@
             "text_lines": [
                 "infusions"
             ],
-            "x": 656,
-            "y": 296,
+            "x": 896,
+            "y": 120,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -145,6 +145,4768 @@
                 ],
                 "x": 656,
                 "y": 296,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "6",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "liquid"
+            ],
+            "x": 808,
+            "y": 232,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "7",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "semi-solid"
+            ],
+            "x": 808,
+            "y": 264,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "8",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "solid"
+            ],
+            "x": 808,
+            "y": 296,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "9",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "gaseous"
+            ],
+            "x": 808,
+            "y": 328,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "10",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "2",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "dosage forms"
+                ],
+                "x": 600,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "11",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "2",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "dosage forms"
+                ],
+                "x": 600,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "12",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "2",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "dosage forms"
+                ],
+                "x": 600,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "8",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solid forms"
+                ],
+                "x": 808,
+                "y": 296,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "13",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "2",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "dosage forms"
+                ],
+                "x": 600,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "9",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "gaseous forms"
+                ],
+                "x": 808,
+                "y": 328,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "14",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "tinctures"
+            ],
+            "x": 968,
+            "y": 120,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "15",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "decoctions"
+            ],
+            "x": 1040,
+            "y": 120,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "16",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "extracts"
+            ],
+            "x": 928,
+            "y": 144,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "17",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "syrups"
+            ],
+            "x": 1000,
+            "y": 144,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "18",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "elixirs"
+            ],
+            "x": 896,
+            "y": 168,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "19",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "glycerites"
+            ],
+            "x": 960,
+            "y": 168,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "20",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "oxymels"
+            ],
+            "x": 1040,
+            "y": 168,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "21",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "hydro-alcoholic extracts"
+            ],
+            "x": 936,
+            "y": 192,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "22",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "3",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 896,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "23",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "16",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "extracts"
+                ],
+                "x": 928,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "24",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "tinctures"
+                ],
+                "x": 968,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "25",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "17",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "syrups"
+                ],
+                "x": 1000,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "26",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "15",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "decoctions"
+                ],
+                "x": 1040,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "27",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "18",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "elixirs"
+                ],
+                "x": 896,
+                "y": 168,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "28",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "19",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "glycerites"
+                ],
+                "x": 960,
+                "y": 168,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "29",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "20",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "oxymels"
+                ],
+                "x": 1040,
+                "y": 168,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "30",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "21",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "hydro-alcoholic extracts"
+                ],
+                "x": 936,
+                "y": 192,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liquid forms"
+                ],
+                "x": 808,
+                "y": 232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "31",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "salves (oinments)"
+            ],
+            "x": 936,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "32",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "balms"
+            ],
+            "x": 1056,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "33",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "poultices"
+            ],
+            "x": 1120,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "34",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "plasters"
+            ],
+            "x": 960,
+            "y": 264,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "35",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "gels"
+            ],
+            "x": 1040,
+            "y": 264,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "36",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "creams"
+            ],
+            "x": 968,
+            "y": 288,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "37",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "liniments"
+            ],
+            "x": 1032,
+            "y": 288,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "38",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "essential oil blends"
+            ],
+            "x": 1112,
+            "y": 288,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "39",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "31",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "salves (oinments)"
+                ],
+                "x": 936,
+                "y": 240,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "40",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "32",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "balms"
+                ],
+                "x": 1056,
+                "y": 240,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "41",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "33",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "poultices"
+                ],
+                "x": 1120,
+                "y": 240,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "42",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "34",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "plasters"
+                ],
+                "x": 960,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "43",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "35",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "gels"
+                ],
+                "x": 1040,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "44",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "36",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "creams"
+                ],
+                "x": 968,
+                "y": 288,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "45",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "37",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "liniments"
+                ],
+                "x": 1032,
+                "y": 288,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "46",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "38",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "essential oil blends"
+                ],
+                "x": 1112,
+                "y": 288,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "semi-solid forms"
+                ],
+                "x": 808,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "47",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "powders"
+            ],
+            "x": 952,
+            "y": 328,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "48",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "capsules"
+            ],
+            "x": 1040,
+            "y": 328,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "49",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "tablets"
+            ],
+            "x": 1112,
+            "y": 328,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "50",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "granules"
+            ],
+            "x": 1008,
+            "y": 352,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "51",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "dried herb"
+            ],
+            "x": 1080,
+            "y": 352,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "52",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "47",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "powders"
+                ],
+                "x": 952,
+                "y": 328,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "8",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solid forms"
+                ],
+                "x": 808,
+                "y": 296,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "53",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "48",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "capsules"
+                ],
+                "x": 1040,
+                "y": 328,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "8",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solid forms"
+                ],
+                "x": 808,
+                "y": 296,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "54",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "49",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "tablets"
+                ],
+                "x": 1112,
+                "y": 328,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "8",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solid forms"
+                ],
+                "x": 808,
+                "y": 296,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "55",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "50",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "granules"
+                ],
+                "x": 1008,
+                "y": 352,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "8",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solid forms"
+                ],
+                "x": 808,
+                "y": 296,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "56",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "51",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "dried herb"
+                ],
+                "x": 1080,
+                "y": 352,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "8",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solid forms"
+                ],
+                "x": 808,
+                "y": 296,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "57",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "essential oils"
+            ],
+            "x": 960,
+            "y": 400,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "58",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "steam distillate (hyrosols)"
+            ],
+            "x": 1072,
+            "y": 400,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "59",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "aromatherapy inhalants"
+            ],
+            "x": 1048,
+            "y": 424,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "60",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "57",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "essential oils"
+                ],
+                "x": 960,
+                "y": 400,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "9",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "gaseous forms"
+                ],
+                "x": 808,
+                "y": 328,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "61",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "58",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "steam distillate (hyrosols)"
+                ],
+                "x": 1072,
+                "y": 400,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "9",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "gaseous forms"
+                ],
+                "x": 808,
+                "y": 328,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "62",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "59",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "aromatherapy inhalants"
+                ],
+                "x": 1048,
+                "y": 424,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "9",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "gaseous forms"
+                ],
+                "x": 808,
+                "y": 328,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "63",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "solvent (menstruum)"
+            ],
+            "x": 848,
+            "y": -56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "64",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "water"
+            ],
+            "x": 768,
+            "y": -96,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "65",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "vinegar"
+            ],
+            "x": 768,
+            "y": -72,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "66",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "glycerin"
+            ],
+            "x": 960,
+            "y": -80,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "67",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "wine"
+            ],
+            "x": 768,
+            "y": -24,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "68",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "juice"
+            ],
+            "x": 768,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "70",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "63",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvent (menstruum)"
+                ],
+                "x": 848,
+                "y": -56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "64",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "water"
+                ],
+                "x": 768,
+                "y": -96,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "71",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "63",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvent (menstruum)"
+                ],
+                "x": 848,
+                "y": -56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "65",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "vinegar"
+                ],
+                "x": 768,
+                "y": -72,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "72",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "63",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvent (menstruum)"
+                ],
+                "x": 848,
+                "y": -56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "66",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "glycerin"
+                ],
+                "x": 768,
+                "y": -48,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "73",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "63",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvent (menstruum)"
+                ],
+                "x": 848,
+                "y": -56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "67",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "wine"
+                ],
+                "x": 768,
+                "y": -24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "74",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "63",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvent (menstruum)"
+                ],
+                "x": 848,
+                "y": -56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "68",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "juice"
+                ],
+                "x": 768,
+                "y": 0,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "75",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "preparation methods"
+            ],
+            "x": 584,
+            "y": 112,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "76",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "maceration"
+            ],
+            "x": 648,
+            "y": 56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "77",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "digestion"
+            ],
+            "x": 720,
+            "y": 56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "78",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "percolation"
+            ],
+            "x": 792,
+            "y": 56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "79",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "75",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation methods"
+                ],
+                "x": 584,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "76",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "maceration"
+                ],
+                "x": 568,
+                "y": 64,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "80",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "75",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation methods"
+                ],
+                "x": 584,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "77",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "digestion"
+                ],
+                "x": 656,
+                "y": 64,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "81",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "75",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation methods"
+                ],
+                "x": 584,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "78",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "percolation"
+                ],
+                "x": 736,
+                "y": 64,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "82",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "infusion"
+            ],
+            "x": 512,
+            "y": 56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "83",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "75",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation methods"
+                ],
+                "x": 584,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "82",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 608,
+                "y": 32,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "84",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparations"
+                ],
+                "x": 600,
+                "y": 144,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "75",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation methods"
+                ],
+                "x": 584,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "85",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "82",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 608,
+                "y": 32,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "64",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "water"
+                ],
+                "x": 768,
+                "y": -96,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "86",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "82",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 608,
+                "y": 32,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "65",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "vinegar"
+                ],
+                "x": 768,
+                "y": -72,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "87",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "82",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 608,
+                "y": 32,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "66",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "glycerin"
+                ],
+                "x": 768,
+                "y": -48,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "88",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "82",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 608,
+                "y": 32,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "67",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "wine"
+                ],
+                "x": 768,
+                "y": -24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "89",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "preparation processes"
+            ],
+            "x": 328,
+            "y": 80,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "91",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparations"
+                ],
+                "x": 600,
+                "y": 168,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "89",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation processes"
+                ],
+                "x": 328,
+                "y": 80,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "92",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "infusion"
+            ],
+            "x": 288,
+            "y": 24,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "93",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "89",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation processes"
+                ],
+                "x": 328,
+                "y": 80,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "92",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 288,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "94",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "76",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "maceration"
+                ],
+                "x": 648,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "92",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 288,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "95",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "maceration"
+            ],
+            "x": 352,
+            "y": 24,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "96",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "extraction"
+            ],
+            "x": 424,
+            "y": 24,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "97",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "77",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "digestion"
+                ],
+                "x": 720,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "95",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "maceration"
+                ],
+                "x": 352,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "98",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "78",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "percolation"
+                ],
+                "x": 792,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "96",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "extraction"
+                ],
+                "x": 424,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "99",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "89",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation processes"
+                ],
+                "x": 328,
+                "y": 80,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "95",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "maceration"
+                ],
+                "x": 352,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "100",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "89",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation processes"
+                ],
+                "x": 328,
+                "y": 80,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "96",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "extraction"
+                ],
+                "x": 424,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "101",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "decoction"
+            ],
+            "x": 576,
+            "y": 56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "102",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "75",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparation methods"
+                ],
+                "x": 584,
+                "y": 112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "101",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "decoction"
+                ],
+                "x": 576,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "103",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "82",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusion"
+                ],
+                "x": 512,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "96",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "extraction"
+                ],
+                "x": 424,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "104",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "101",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "decoction"
+                ],
+                "x": 576,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "96",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "extraction"
+                ],
+                "x": 424,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "105",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "alcohol"
+            ],
+            "x": 960,
+            "y": -104,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "106",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "63",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "solvent (menstruum)"
+                ],
+                "x": 848,
+                "y": -56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "105",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "alcohol"
+                ],
+                "x": 960,
+                "y": -104,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "107",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "tinctures"
+                ],
+                "x": 968,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "105",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "alcohol"
+                ],
+                "x": 960,
+                "y": -104,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "108",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "14",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "tinctures"
+                ],
+                "x": 968,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "66",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "glycerin"
+                ],
+                "x": 960,
+                "y": -80,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "109",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "active components"
+            ],
+            "x": 1072,
+            "y": 8,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "110",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "passive components"
+            ],
+            "x": 1312,
+            "y": -40,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "111",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "inert components"
+            ],
+            "x": 1312,
+            "y": 8,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "112",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "chemical components"
+            ],
+            "x": 1208,
+            "y": 40,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "113",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "112",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "chemical components"
+                ],
+                "x": 1208,
+                "y": 40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "109",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "active components"
+                ],
+                "x": 1072,
+                "y": 8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "114",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "112",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "chemical components"
+                ],
+                "x": 1208,
+                "y": 40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "110",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "passive components"
+                ],
+                "x": 1312,
+                "y": -40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "115",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "112",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "chemical components"
+                ],
+                "x": 1208,
+                "y": 40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "111",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "inert components"
+                ],
+                "x": 1312,
+                "y": 8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "116",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "3",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 896,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "111",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "inert components"
+                ],
+                "x": 1312,
+                "y": 8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "117",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "15",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "decoctions"
+                ],
+                "x": 1040,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "111",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "inert components"
+                ],
+                "x": 1312,
+                "y": 8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "118",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "110",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "passive components"
+                ],
+                "x": 1312,
+                "y": -40,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "111",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "inert components"
+                ],
+                "x": 1312,
+                "y": 8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "119",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "microorganisms"
+            ],
+            "x": 1528,
+            "y": 56,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "120",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "probiotics"
+            ],
+            "x": 1472,
+            "y": 16,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "121",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "pathogenic organisms"
+            ],
+            "x": 1584,
+            "y": 16,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "122",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "119",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "microorganisms"
+                ],
+                "x": 1528,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "120",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "probiotics"
+                ],
+                "x": 1472,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "123",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "119",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "microorganisms"
+                ],
+                "x": 1528,
+                "y": 56,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "121",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "pathogenic organisms"
+                ],
+                "x": 1584,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "124",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "probiotic fodder"
+            ],
+            "x": 1464,
+            "y": -24,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "125",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "120",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "probiotics"
+                ],
+                "x": 1472,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "124",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "probiotic fodder"
+                ],
+                "x": 1464,
+                "y": -24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "126",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "anatomical locations"
+            ],
+            "x": 1440,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "127",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "gastrointestinal tract"
+            ],
+            "x": 1360,
+            "y": 184,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "128",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "127",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "gastrointestinal tract"
+                ],
+                "x": 1360,
+                "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "126",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "anatomical locations"
+                ],
+                "x": 1440,
+                "y": 240,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "129",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "120",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "probiotics"
+                ],
+                "x": 1472,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "127",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "gastrointestinal tract"
+                ],
+                "x": 1360,
+                "y": 184,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "130",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "biological systems"
+            ],
+            "x": 1688,
+            "y": 240,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "131",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "physical immune system"
+            ],
+            "x": 1768,
+            "y": 192,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "132",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "130",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "biological systems"
+                ],
+                "x": 1688,
+                "y": 240,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "131",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "physical immune system"
+                ],
+                "x": 1768,
+                "y": 192,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "133",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "120",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "probiotics"
+                ],
+                "x": 1472,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "131",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "physical immune system"
+                ],
+                "x": 1768,
+                "y": 192,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "138",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "biological processes"
+            ],
+            "x": 1696,
+            "y": 392,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "139",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "nutrient assimilation"
+            ],
+            "x": 1696,
+            "y": 352,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0
+        },
+        {
+            "id": "140",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "138",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "biological processes"
+                ],
+                "x": 1696,
+                "y": 392,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "139",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "nutrient assimilation"
+                ],
+                "x": 1696,
+                "y": 352,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "141",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "120",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "probiotics"
+                ],
+                "x": 1472,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "139",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "nutrient assimilation"
+                ],
+                "x": 1696,
+                "y": 352,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "142",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "121",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "pathogenic organisms"
+                ],
+                "x": 1584,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "120",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "probiotics"
+                ],
+                "x": 1472,
+                "y": 16,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "143",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "3",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 896,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "96",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "extraction"
+                ],
+                "x": 424,
+                "y": 24,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "edge_direction": 0
+        },
+        {
+            "id": "144",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "3",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "infusions"
+                ],
+                "x": 896,
+                "y": 120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0
+            },
+            "node_end": {
+                "id": "76",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "maceration"
+                ],
+                "x": 648,
+                "y": 56,
                 "w": 0,
                 "h": 0,
                 "w_min": 32,

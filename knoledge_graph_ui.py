@@ -23,7 +23,9 @@ FONT_FAMILY_IBM_PLEX_MONO = 'fonts/IBM_Plex_Mono/IBMPlexMono-Regular.ttf'
 font_family_text = FONT_FAMILY_IBM_PLEX_MONO
 
 font_size_base = 8
+
 font_text = pygame.font.Font(font_family_text, int(font_size_base * viewport.state['camera_zoom']))
+font_ui_components = pygame.font.Font(font_family_text, int((font_size_base*2) * viewport.state['camera_zoom']))
 font_debug = pygame.font.Font(font_family_text, 24 )
 
 game = {
@@ -58,6 +60,7 @@ drag_start_world = None
 def thing_create(
     _id, kind, text='', x=0, y=0, w=0, h=0, focus=False, node_start=None, node_end=None, edge_direction=0,
     w_min=0, h_min=0, text_lines=[],
+    entity_type='',
 ):
     thing = {
         'id': _id,
@@ -74,6 +77,7 @@ def thing_create(
         'node_start': node_start,
         'node_end': node_end,
         'edge_direction': edge_direction,
+        'entity_type': entity_type,
     }
     return thing
 
@@ -86,6 +90,23 @@ canvas = {
 edge_tmp = thing_create('-1', kind='edge')
 
 diagram_index = 0
+
+def ui_component_create(
+    _id, kind, field, text, command, x, y, w, h, focus=False
+):
+    thing = {
+        'id': _id,
+        'kind': kind,
+        'field': field,
+        'text': text,
+        'command': command,
+        'x': x,
+        'y': y,
+        'w': w,
+        'h': h,
+        'focus': focus,
+    }
+    return thing
 
 def save(slot):
     with open(f"{project_folderpath}/knowledge-graph/{slot}.json", "w") as file:
@@ -100,12 +121,17 @@ def load(slot):
     except:
         save(slot)
     diagram_index = slot
+    main_init()
 
 def node_create():
     snap_x, snap_y = viewport.snap_to_grid(mouse['world_x'], mouse['world_y'])
+    _id = -1
+    for thing in canvas['things']:
+        if _id < int(thing['id']): _id = int(thing['id'])
+    _id += 1
     canvas['things'].append(
         thing_create(
-            str(len(canvas['things'])+1), 
+            str(_id), 
             kind = 'node', 
             text = '', 
             text_lines = ['???'], 
@@ -128,17 +154,39 @@ def node_delete():
                 ids_to_remove.append(edge['id'])
     canvas['things'] = [d for d in canvas['things'] if d['id'] not in ids_to_remove ]
 
+debug_print = False
 def edge_create():
+    global debug_print
     if edge_tmp['node_start'] != None and edge_tmp['node_end'] != None:
-        _id = str(len(canvas['things'])+1)
+        _id = -1
+        for thing in canvas['things']:
+            if _id < int(thing['id']): _id = int(thing['id'])
+        _id += 1
         canvas['things'].append(
             thing_create(
-                _id,
+                str(_id),
                 kind = 'edge', 
                 node_start = edge_tmp['node_start'], 
                 node_end = edge_tmp['node_end'], 
             )
         )
+        debug_print = True
+
+def entry_create(screen_x, screen_y, screen_w, screen_h):
+    _id = -1
+    for thing in canvas['things']:
+        if _id < int(thing['id']): _id = int(thing['id'])
+    _id += 1
+    canvas['things'].append(
+        thing_create(
+            str(_id),
+            kind = 'entry', 
+            x = screen_x, 
+            y = screen_y,
+            w = screen_w,
+            h = screen_h,
+        )
+    )
 
 def node_drag_start():
     global dragging
@@ -198,19 +246,62 @@ def edge_create_end():
     edge_tmp['node_start'] = None
     edge_tmp['node_end'] = None
 
+def node_select():
+    for thing_i, thing in enumerate(canvas['things']):
+        x, y, w, h = thing_bbox(thing)
+        thing['focus'] = False
+        if (
+            mouse['screen_x'] > x and mouse['screen_x'] < x + w and 
+            mouse['screen_y'] > y and mouse['screen_y'] < y + h
+        ):
+            thing['focus'] = True
+            for ui_component in ui_components:
+                if ui_component['field'] == 'entity_type':
+                    ui_component['text'] = thing['entity_type']
+
+# ;jump
+def ui_component_select():
+    for ui_component in ui_components:
+        ui_component['focus'] = False
+        if (
+            mouse['screen_x'] > leftbar_frame['x'] + ui_component['x'] and 
+            mouse['screen_y'] > leftbar_frame['y'] + ui_component['y'] and 
+            mouse['screen_x'] < leftbar_frame['x'] + ui_component['x'] + ui_component['w'] and 
+            mouse['screen_y'] < leftbar_frame['y'] + ui_component['y'] + ui_component['h']
+        ):
+            ui_component['focus'] = True
+
+input_context_hover = ''
+input_context_focus = ''
+
 def inputs_mouse(event):
     global font_text
+    global input_context_hover
+    global input_context_focus
 
     mouse['screen_x'], mouse['screen_y'] = pygame.mouse.get_pos()
     mouse['world_x'], mouse['world_y'] = viewport.screen_to_world(mouse['screen_x'], mouse['screen_y'])
 
+    input_context_hover = ''
+    if (
+        mouse['screen_x'] > leftbar_frame['x']  and mouse['screen_x'] < leftbar_frame['x'] + leftbar_frame['w'] and 
+        mouse['screen_y'] > leftbar_frame['y']  and mouse['screen_y'] < leftbar_frame['y'] + leftbar_frame['h'] 
+    ):
+        input_context_hover = 'leftbar'
+
     if event.type == pygame.MOUSEBUTTONDOWN:
         # LEFT BUTTON
         if event.button == 1: 
-            if pygame.key.get_mods() & pygame.KMOD_CTRL:
-                edge_create_start() 
+            if input_context_hover == 'leftbar':
+                input_context_focus = 'leftbar'
+                ui_component_select()
             else:
-                node_drag_start()
+                input_context_focus = 'viewport'
+                if pygame.key.get_mods() & pygame.KMOD_CTRL:
+                    edge_create_start() 
+                else:
+                    node_select()
+                    node_drag_start()
         # WHEEL BUTTON
         elif event.button == 2:
             viewport.pan_start(mouse['screen_x'], mouse['screen_y'])
@@ -237,12 +328,27 @@ def inputs_mouse(event):
         if event.button == 2:
             viewport.pan_end()
 
-def main_inputs():
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            game['running'] = False
-            
-        if event.type == pygame.KEYDOWN:
+def inputs_keyboard(event):
+    if event.type == pygame.KEYDOWN:
+        if 0: pass
+        elif input_context_focus == 'leftbar':
+            if 0: pass
+            # typing
+            elif event.key == pygame.K_BACKSPACE:
+                elements = [item for item in ui_components if item['focus'] == True]
+                if elements != []:
+                    ui_component_focused = elements[0]
+                    ui_component_focused['text'] = ui_component_focused['text'][:-1]
+            else:
+                elements = [item for item in ui_components if item['focus'] == True]
+                if elements != []:
+                    ui_component_focused = elements[0]
+                    ui_component_focused['text'] += event.unicode
+                    thing = viewport.thing_focused_get(canvas)
+                    if thing != None:
+                        thing['entity_type'] = ui_component_focused['text']
+                    
+        elif input_context_focus == 'viewport':
             if 0: pass
             elif pygame.key.get_mods() & pygame.KMOD_CTRL:
                 if 0: pass
@@ -271,32 +377,43 @@ def main_inputs():
                     if thing['kind'] == 'node':
                         thing['text_lines'][0] += event.unicode
 
+def main_inputs():
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game['running'] = False
+            
+        inputs_keyboard(event)
         inputs_mouse(event)
 
+
+ui_component__entity_type = ui_component_create(
+    _id='0', kind='entry', field='entity_type', text='', command='', x=0, y=0, w=200, h=30, focus=False,
+)
+
+ui_components = []
+ui_components.append(ui_component__entity_type)
 
 def draw_leftbar():
     pygame.draw.rect(screen, (200, 200, 200), 
         (leftbar_frame['x'], leftbar_frame['y'], leftbar_frame['w'], leftbar_frame['h'])
     )
 
-    '''
-    for tool_i, tool in enumerate(tools['items']):
-        tool_w = 50
-        tool_h = 50
-        tool_x = x + (tool_w * tool_i)
-        tool_y = y
-        if tool_i % 2 == 0:
-            color = (100, 100, 100)
+    for ui_component in ui_components:
+        x = ui_component['x']
+        y = ui_component['y']
+        w = ui_component['w']
+        h = ui_component['h']
+        focus = ui_component['focus']
+        if not focus:
+            pygame.draw.rect(screen, COLOR_BACKGROUND, (x, y, w, h))
+            pygame.draw.rect(screen, COLOR_FOREGROUND, (x, y, w, h), 1)
         else:
-            color = (140, 140, 140)
-        if tool_i == tools['focus_i']:
-            color = (0, 0, 255)
-        pygame.draw.rect(screen, color, (tool_x, tool_y, tool_w, tool_h))
-        line = tool['label']
-        line_w, line_h = font_toolbar.size(line)
-        surface = font_toolbar.render(line, True, (255, 255, 255))
-        screen.blit(surface, (tool_x + (tool_w - line_w) // 2, tool_y + (tool_h - line_h) // 2))
-    '''
+            pygame.draw.rect(screen, COLOR_BACKGROUND, (x, y, w, h))
+            pygame.draw.rect(screen, COLOR_ELEMENT_FOCUS, (x, y, w, h), 1)
+        # text
+        surface = font_ui_components.render(ui_component['text'], True, COLOR_FOREGROUND)
+        screen.blit(surface, (x, y))
+        # print(ui_component['text'])
 
 def draw_grid():
     if viewport.state['visual_helpers'] == True:
@@ -373,14 +490,26 @@ def draw_nodes():
 def draw_edges():
     # EDGES
     for thing in canvas['things']:
+        if thing['id'] == '88': print(thing)
         if thing['kind'] == 'edge':
-            thing_start_screen_x, thing_start_screen_y, thing_start_screen_w, thing_start_screen_h = thing_bbox(thing['node_start'])
-            thing_end_screen_x, thing_end_screen_y, thing_end_screen_w, thing_end_screen_h = thing_bbox(thing['node_end'])
+            # print(json.dumps(thing, indent=4))
+            thing_start = [item for item in canvas['things'] if item['id'] == thing['node_start']['id']][0]
+            thing_end = [item for item in canvas['things'] if item['id'] == thing['node_end']['id']][0]
+            thing_start_screen_x, thing_start_screen_y, thing_start_screen_w, thing_start_screen_h = thing_bbox(thing_start)
+            thing_end_screen_x, thing_end_screen_y, thing_end_screen_w, thing_end_screen_h = thing_bbox(thing_end)
             c1x = thing_start_screen_x + (thing_start_screen_w//2)
             c1y = thing_start_screen_y + (thing_start_screen_h//2)
             c2x = thing_end_screen_x + (thing_end_screen_w//2)
             c2y = thing_end_screen_y + (thing_end_screen_h//2)
             pygame.draw.line(screen, COLOR_FOREGROUND, (c1x, c1y), (c2x, c2y), 1)
+            if debug_print:
+                if thing['id'] == canvas['things'][-1]['id']:
+                    # print(json.dumps(thing, indent=4))
+                    # print(json.dumps(thing_start, indent=4))
+                    # print(json.dumps(thing_end, indent=4))
+                    # print(thing_start)
+                    # print(thing_end)
+                    pass
 
     # EDGE TMP
     if edge_tmp['node_start'] != None:
@@ -401,7 +530,7 @@ def draw_viewport():
 def draw_debug():
     if viewport.state['debug_show']:
         surface = font_debug.render(str(diagram_index), True, COLOR_ELEMENT_FOCUS)
-        screen.blit(surface, (0, 0))
+        screen.blit(surface, (WINDOW_W - 200, 0))
 
 def main_draw():
     screen.fill(COLOR_BACKGROUND)
@@ -410,8 +539,13 @@ def main_draw():
     draw_debug()
     pygame.display.flip()
 
+def main_init():
+    for thing in canvas['things']:
+        if 'entity_type' not in thing:
+            thing['entity_type'] = ''
 
 def main():
+
     while game['running']:
 
         main_inputs()
