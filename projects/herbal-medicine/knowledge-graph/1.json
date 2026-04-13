@@ -454,8 +454,8 @@
             "text_lines": [
                 "constituents"
             ],
-            "x": 832,
-            "y": 0,
+            "x": 952,
+            "y": 272,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -2158,6 +2158,150 @@
                 ],
                 "x": 440,
                 "y": -8,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "59",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "terrawhisper"
+            ],
+            "x": 880,
+            "y": -280,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "60",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "herbal medicine"
+            ],
+            "x": 872,
+            "y": -232,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "61",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "59",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "terrawhisper"
+                ],
+                "x": 880,
+                "y": -280,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "62",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "preparations"
+                ],
+                "x": 640,
+                "y": 144,
                 "w": 0,
                 "h": 0,
                 "w_min": 32,
