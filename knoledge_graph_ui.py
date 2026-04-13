@@ -1,4 +1,5 @@
 import math
+import json
 
 import pygame
 
@@ -79,6 +80,8 @@ canvas = {
     'things': []
 }
 
+edge_tmp = thing_create('-1', kind='edge')
+
 def node_create():
     snap_x, snap_y = viewport.snap_to_grid(mouse['world_x'], mouse['world_y'])
     canvas['things'].append(
@@ -93,7 +96,30 @@ def node_create():
             h_min = viewport.GRID_SIZE,
         )
     )
-    print(canvas['things'])
+
+def node_delete():
+    thing = viewport.thing_focused_get(canvas)
+    if thing != None:
+        if thing in canvas['things']:
+            canvas['things'].remove(thing)
+    ids_to_remove = []
+    for edge in canvas['things']:
+        if edge['kind'] == 'edge':
+            if edge['node_start']['id'] == thing['id'] or edge['node_end']['id'] == thing['id']:
+                ids_to_remove.append(edge['id'])
+    canvas['things'] = [d for d in canvas['things'] if d['id'] not in ids_to_remove ]
+
+def edge_create():
+    if edge_tmp['node_start'] != None and edge_tmp['node_end'] != None:
+        _id = str(len(canvas['things'])+1)
+        canvas['things'].append(
+            thing_create(
+                _id,
+                kind = 'edge', 
+                node_start = edge_tmp['node_start'], 
+                node_end = edge_tmp['node_end'], 
+            )
+        )
 
 def node_drag_start():
     global dragging
@@ -129,6 +155,30 @@ def node_drag_end():
     dragging = False
     drag_index = None
 
+def edge_create_start():
+    for thing_i, thing in enumerate(canvas['things']):
+        thing_screen_x, thing_screen_y, thing_screen_w, thing_screen_h = thing_bbox(thing)
+        thing['focus'] = False
+        if (
+            mouse['screen_x'] > thing_screen_x and mouse['screen_x'] < thing_screen_x + thing_screen_w and 
+            mouse['screen_y'] > thing_screen_y and mouse['screen_y'] < thing_screen_y + thing_screen_h
+        ):
+            edge_tmp['node_start'] = thing
+
+def edge_create_end():
+    for thing_i, thing in enumerate(canvas['things']):
+        thing_screen_x, thing_screen_y, thing_screen_w, thing_screen_h = thing_bbox(thing)
+        if (
+            mouse['screen_x'] > thing_screen_x and mouse['screen_x'] < thing_screen_x + thing_screen_w and 
+            mouse['screen_y'] > thing_screen_y and mouse['screen_y'] < thing_screen_y + thing_screen_h
+        ):
+            edge_tmp['node_end'] = thing
+
+            edge_create()
+
+    edge_tmp['node_start'] = None
+    edge_tmp['node_end'] = None
+
 def inputs_mouse(event):
     global font_text
 
@@ -138,7 +188,10 @@ def inputs_mouse(event):
     if event.type == pygame.MOUSEBUTTONDOWN:
         # LEFT BUTTON
         if event.button == 1: 
-            node_drag_start()
+            if pygame.key.get_mods() & pygame.KMOD_CTRL:
+                edge_create_start() 
+            else:
+                node_drag_start()
         # WHEEL BUTTON
         elif event.button == 2:
             viewport.pan_start(mouse['screen_x'], mouse['screen_y'])
@@ -157,7 +210,10 @@ def inputs_mouse(event):
         node_drag_run()
         viewport.pan_run(mouse['screen_x'], mouse['screen_y'])
     elif event.type == pygame.MOUSEBUTTONUP:
-        node_drag_end()
+        # LEFT BUTTON
+        if event.button == 1:
+            node_drag_end()
+            edge_create_end() 
         # WHEEL BUTTON
         if event.button == 2:
             viewport.pan_end()
@@ -167,6 +223,22 @@ def main_inputs():
         if event.type == pygame.QUIT:
             game['running'] = False
             
+        if event.type == pygame.KEYDOWN:
+            # typing
+            if 0: pass
+            elif event.key == pygame.K_x: 
+                node_delete()
+            elif event.key == pygame.K_BACKSPACE:
+                thing = viewport.thing_focused_get(canvas)
+                if thing != None:
+                    if thing['kind'] == 'node':
+                        thing['text_lines'][0] = thing['text_lines'][0][:-1]
+            else:
+                thing = viewport.thing_focused_get(canvas)
+                if thing != None:
+                    if thing['kind'] == 'node':
+                        thing['text_lines'][0] += event.unicode
+
         inputs_mouse(event)
 
 
@@ -265,12 +337,32 @@ def draw_nodes():
                         cursor_y = line_y
                         pygame.draw.rect(screen, COLOR_FOREGROUND, (cursor_x, cursor_y, char_w, char_h), 1)
                 '''
+  
+def draw_edges():
+    # EDGES
+    for thing in canvas['things']:
+        if thing['kind'] == 'edge':
+            thing_start_screen_x, thing_start_screen_y, thing_start_screen_w, thing_start_screen_h = thing_bbox(thing['node_start'])
+            thing_end_screen_x, thing_end_screen_y, thing_end_screen_w, thing_end_screen_h = thing_bbox(thing['node_end'])
+            c1x = thing_start_screen_x + (thing_start_screen_w//2)
+            c1y = thing_start_screen_y + (thing_start_screen_h//2)
+            c2x = thing_end_screen_x + (thing_end_screen_w//2)
+            c2y = thing_end_screen_y + (thing_end_screen_h//2)
+            pygame.draw.line(screen, COLOR_FOREGROUND, (c1x, c1y), (c2x, c2y), 1)
+
+    # EDGE TMP
+    if edge_tmp['node_start'] != None:
+        thing_start_screen_x, thing_start_screen_y, thing_start_screen_w, thing_start_screen_h = thing_bbox(edge_tmp['node_start'])
+        c1x = thing_start_screen_x + (thing_start_screen_w//2)
+        c1y = thing_start_screen_y + (thing_start_screen_h//2)
+        mouse_screen_x, mouse_screen_y = viewport.snap_to_grid(mouse['screen_x'], mouse['screen_y'])
+        pygame.draw.line(screen, COLOR_FOREGROUND, (c1x, c1y), (mouse_screen_x, mouse_screen_y), 1)
 
 def draw_viewport():
     clip_rect = (viewport_frame['x'], viewport_frame['y'], viewport_frame['w'], viewport_frame['h'])
     screen.set_clip(clip_rect)
     draw_grid()
-    # draw_edges()
+    draw_edges()
     draw_nodes()
     screen.set_clip(None)
 
