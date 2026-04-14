@@ -5,7 +5,7 @@ import pygame
 
 from lib import viewport
 
-project_folderpath = 'projects/ozonogroup/'
+project_folderpath = 'projects/herbal-medicine/'
 
 pygame.init()
 clock = pygame.time.Clock()

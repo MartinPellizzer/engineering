@@ -1,0 +1,673 @@
+{
+    "x": 0,
+    "y": 0,
+    "things": [
+        {
+            "id": "0",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "sistemi industriali a ozono"
+            ],
+            "x": 680,
+            "y": 160,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "1",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "ozonogroup"
+            ],
+            "x": 720,
+            "y": 104,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "2",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "ozonogroup"
+                ],
+                "x": 720,
+                "y": 104,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "3",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "tecnologia"
+            ],
+            "x": 464,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "4",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "3",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "tecnologia"
+                ],
+                "x": 464,
+                "y": 216,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "5",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "applicazioni"
+            ],
+            "x": 536,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "6",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "progettazione"
+            ],
+            "x": 680,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "7",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "componenti"
+            ],
+            "x": 768,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "8",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "sicurezza"
+            ],
+            "x": 840,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "9",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "manutenzione"
+            ],
+            "x": 912,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "10",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "confronto"
+            ],
+            "x": 992,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "11",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "problemi"
+            ],
+            "x": 616,
+            "y": 216,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "12",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "5",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "applicazioni"
+                ],
+                "x": 536,
+                "y": 216,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "13",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "11",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "problemi"
+                ],
+                "x": 616,
+                "y": 216,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "14",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "6",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "progettazione"
+                ],
+                "x": 680,
+                "y": 216,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "15",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "7",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "componenti"
+                ],
+                "x": 768,
+                "y": 216,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "16",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "8",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sicurezza"
+                ],
+                "x": 840,
+                "y": 216,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "17",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "9",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "manutenzione"
+                ],
+                "x": 912,
+                "y": 216,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "18",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "0",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "sistemi industriali a ozono"
+                ],
+                "x": 680,
+                "y": 160,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "10",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "confronto"
+                ],
+                "x": 992,
+                "y": 216,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        }
+    ]
+}
