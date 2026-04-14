@@ -1,0 +1,6 @@
+
+TOPICS
+1. Domain Discovery
+2. Name Entity Recognition (NER)
+
+

@@ -448,25 +448,6 @@
             "entity_type": ""
         },
         {
-            "id": "13",
-            "kind": "node",
-            "text": "",
-            "text_lines": [
-                "chemical compounds"
-            ],
-            "x": 1016,
-            "y": 144,
-            "w": 0,
-            "h": 0,
-            "w_min": 32,
-            "h_min": 8,
-            "focus": false,
-            "node_start": null,
-            "node_end": null,
-            "edge_direction": 0,
-            "entity_type": ""
-        },
-        {
             "id": "14",
             "kind": "node",
             "text": "",
@@ -1823,7 +1804,7 @@
                 "terrawhisper"
             ],
             "x": 880,
-            "y": -280,
+            "y": -520,
             "w": 0,
             "h": 0,
             "w_min": 32,
@@ -2104,59 +2085,6 @@
             "entity_type": ""
         },
         {
-            "id": "67",
-            "kind": "edge",
-            "text": "",
-            "text_lines": [],
-            "x": 0,
-            "y": 0,
-            "w": 0,
-            "h": 0,
-            "w_min": 0,
-            "h_min": 0,
-            "focus": false,
-            "node_start": {
-                "id": "13",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "chemical compounds"
-                ],
-                "x": 1016,
-                "y": 144,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": ""
-            },
-            "node_end": {
-                "id": "60",
-                "kind": "node",
-                "text": "",
-                "text_lines": [
-                    "herbal medicine"
-                ],
-                "x": 872,
-                "y": -232,
-                "w": 0,
-                "h": 0,
-                "w_min": 32,
-                "h_min": 8,
-                "focus": false,
-                "node_start": null,
-                "node_end": null,
-                "edge_direction": 0,
-                "entity_type": ""
-            },
-            "edge_direction": 0,
-            "entity_type": ""
-        },
-        {
             "id": "68",
             "kind": "edge",
             "text": "",
@@ -2311,6 +2239,798 @@
                 "node_end": null,
                 "edge_direction": 0,
                 "entity_type": "form"
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "71",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "herbs"
+            ],
+            "x": 856,
+            "y": -112,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "72",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "71",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbs"
+                ],
+                "x": 856,
+                "y": -112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "73",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "herbal actions"
+            ],
+            "x": 856,
+            "y": -88,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "74",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "73",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal actions"
+                ],
+                "x": 856,
+                "y": -88,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "75",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "health conditions"
+            ],
+            "x": 904,
+            "y": -112,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "76",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "75",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "health conditions"
+                ],
+                "x": 904,
+                "y": -112,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "77",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "body systems"
+            ],
+            "x": 944,
+            "y": -88,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "78",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "77",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "body systems"
+                ],
+                "x": 944,
+                "y": -88,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "79",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "herbalism practice"
+            ],
+            "x": 968,
+            "y": -136,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "80",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "79",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbalism practice"
+                ],
+                "x": 968,
+                "y": -136,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "81",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "phytochemicals"
+            ],
+            "x": 1168,
+            "y": -152,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "82",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "81",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "phytochemicals"
+                ],
+                "x": 1168,
+                "y": -152,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "83",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "plant families"
+            ],
+            "x": 1176,
+            "y": -120,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "84",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "herbal energetics"
+            ],
+            "x": 1184,
+            "y": -96,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "85",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "herbal safety"
+            ],
+            "x": 1176,
+            "y": -64,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "86",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "herbal traditions"
+            ],
+            "x": 1176,
+            "y": -32,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "87",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "herbal identification"
+            ],
+            "x": 1176,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "88",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "83",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "plant families"
+                ],
+                "x": 1176,
+                "y": -120,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "89",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "84",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal energetics"
+                ],
+                "x": 1184,
+                "y": -96,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "90",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "85",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal safety"
+                ],
+                "x": 1176,
+                "y": -64,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "91",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "86",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal traditions"
+                ],
+                "x": 1176,
+                "y": -32,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "92",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "60",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal medicine"
+                ],
+                "x": 872,
+                "y": -232,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "87",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "herbal identification"
+                ],
+                "x": 1176,
+                "y": 0,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
             },
             "edge_direction": 0,
             "entity_type": ""
