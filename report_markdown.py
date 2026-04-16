@@ -648,6 +648,40 @@ Questa fase al momento non è inclusa nello sviluppo del primo prototipo. Lo svi
 ###
 elements.append(PageBreak())
 
+elements.append(Paragraph("Richieste Da Fare", h2))
+###
+elements.append(
+        Paragraph(f'''
+Per poter iniziare lo sviluppo del prototipo, si richiede che le varie entità forniscano quanto segue.
+    ''', body_style,)
+        )
+###
+elements.append(Paragraph("Pozzobon Distribuzione", h3))
+list_gen(f'''
+Sistema di spillatura contaminato (una linea di distribuzione)
+Fusto con bevanda (se possibile colorata, così da distinguerla meglio dall'acqua ozonizzata durante la fase di test)
+Valvole solenoidi per la commutazione delle linee "erogazione bevanda" e "sanificazione ozono" (chiedere se forniscono loro i componenti o i dettagli tecnici necessari per sceglierli)
+Sensore flusso e sensore "micro-switch" sull'accoppiatore per rilevare cambio fusto (chiedere se forniscono loro i componenti o i dettagli tecnici necessari per sceglierli)
+Tecnico che installa il sistema in sede Otregroup
+Tecnico che dimostra il funzionamento del sistema
+Tecnico che si rende disponibile a dare supporto e chiarimenti sul sistema (se fosse necessario)
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Sweesh", h3))
+list_gen(f'''
+Generatore ozono elettrolitico idoneo all'applicazione
+Dimostrazione pratica su come installare e utilizzare il generatore
+Supporto nello sviluppo di protocolli operativi per la sanificazione delle linee di distribuzione (da concordare)
+Supporto nella fase di analisi microbiologiche (da concordare)
+'''.strip().split('\n'))
+###
+if 0:
+    elements.append(Paragraph("Otregroup", h3))
+    list_gen(f'''
+    Centralina di controllo, inclusa scheda di controllo e interfaccia touchscreen
+    '''.strip().split('\n'))
+###
+elements.append(PageBreak())
 
 # BUILD
 doc.build(elements, onFirstPage=header_footer, onLaterPages=header_footer)
