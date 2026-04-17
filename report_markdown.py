@@ -153,7 +153,7 @@ elements.append(Spacer(1, 25))
 elements.append(Paragraph("Progetto Spillatrice - Fasi Prototipo", cover_title))
 elements.append(Spacer(1, 20))
 elements.append(Paragraph(
-    "Proposta Tecnica Preliminare",
+    "Proposta Tecnica Preliminare | Prog_Spill_1.0_MP_20260410",
     body_style,
 ))
 
@@ -163,7 +163,7 @@ elements.append(Spacer(1, 15))
 elements.append(Paragraph("Otregroup | Sweesh | Pozzobon Distribuzione", section))
 
 elements.append(Spacer(1, 60))
-elements.append(Paragraph("Marzo 2026", meta))
+elements.append(Paragraph("Aprile 2026", meta))
 ###
 mul = 0.15
 image_w = 239 * mul
@@ -196,7 +196,7 @@ Se tutte le parti coinvolte sono d'accordo con queste premesse, si intende proce
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Obbiettivi del prototipo", h3))
+elements.append(Paragraph("Obiettivi del prototipo", h3))
 list_gen(f'''
 validare l'avvenuta sanificazione della linea tramite analisi
 validare il corretto funzionamento del sistema di automatizzatione 
@@ -308,7 +308,7 @@ Il precedente diagramma mostra il sistema di spillatura nella sua forma base. Il
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Obbiettivi", h3))
+elements.append(Paragraph("Obiettivi", h3))
 elements.append(
     Paragraph(f'''
 Questa fase viene considerata un successo se si raggiungono i seguenti obiettivi:
@@ -376,7 +376,7 @@ Il precendente diagramma mostra l'utilizzo del generatore di ozono "O3 01" per s
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Obbiettivi", h3))
+elements.append(Paragraph("Obiettivi", h3))
 elements.append(
     Paragraph(f'''
 Questa fase viene considerata un successo se si raggiungono i seguenti obiettivi:
@@ -448,7 +448,7 @@ Il precedente diagramma mostra come integrare il generatore di ozono "O3 01" e i
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Obbiettivi", h3))
+elements.append(Paragraph("Obiettivi", h3))
 elements.append(
     Paragraph(f'''
 Questa fase viene considerata un successo se si raggiungono i seguenti obiettivi:
@@ -515,7 +515,7 @@ Il precedente diagramma mostra come integrare la centralina di controllo "PLC 01
     ''', body_style,)
 )
 ###
-elements.append(Paragraph("Obbiettivi", h3))
+elements.append(Paragraph("Obiettivi", h3))
 elements.append(
     Paragraph(f'''
 Questa fase viene considerata un successo se si raggiungono i seguenti obiettivi:
@@ -580,7 +580,7 @@ Il precedente diagramma mostra come integrare 2 sensori ritenuti fondamentali pe
     ''', body_style,)
     )
 ###
-elements.append(Paragraph("Obbiettivi", h3))
+elements.append(Paragraph("Obiettivi", h3))
 elements.append(
     Paragraph(f'''
 Questa fase viene considerata un successo se si raggiungono i seguenti obiettivi:
@@ -656,6 +656,24 @@ Per poter iniziare lo sviluppo del prototipo, si richiede che le varie entità f
     ''', body_style,)
         )
 ###
+elements.append(Paragraph("Otregroup", h3))
+list_gen(f'''
+Sviluppo dell'idea applicativa (l'idea è già stata depositata)
+Produzione della centralina di controllo
+Gestione dei controlli mecchanici ed elettronici
+Progettazione del software per la gestione del processo di automazione
+Fornitura del locale per lo sviluppo, il montaggio e i test del prototipo
+Coordinamento delle varie entità coinvolte nello sviluppo del prototipo (dal punto di vista tecnico e commerciale)
+'''.strip().split('\n'))
+###
+elements.append(Paragraph("Sweesh", h3))
+list_gen(f'''
+Generatore ozono elettrolitico idoneo all'applicazione
+Dimostrazione pratica su come installare e utilizzare il generatore
+Supporto nello sviluppo di protocolli operativi per la sanificazione delle linee di distribuzione (da concordare)
+Supporto nella fase di analisi microbiologiche (da concordare)
+'''.strip().split('\n'))
+###
 elements.append(Paragraph("Pozzobon Distribuzione", h3))
 list_gen(f'''
 Sistema di spillatura contaminato (una linea di distribuzione)
@@ -665,14 +683,6 @@ Sensore flusso e sensore "micro-switch" sull'accoppiatore per rilevare cambio fu
 Tecnico che installa il sistema in sede Otregroup
 Tecnico che dimostra il funzionamento del sistema
 Tecnico che si rende disponibile a dare supporto e chiarimenti sul sistema (se fosse necessario)
-'''.strip().split('\n'))
-###
-elements.append(Paragraph("Sweesh", h3))
-list_gen(f'''
-Generatore ozono elettrolitico idoneo all'applicazione
-Dimostrazione pratica su come installare e utilizzare il generatore
-Supporto nello sviluppo di protocolli operativi per la sanificazione delle linee di distribuzione (da concordare)
-Supporto nella fase di analisi microbiologiche (da concordare)
 '''.strip().split('\n'))
 ###
 if 0:
