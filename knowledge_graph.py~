@@ -96,13 +96,6 @@ triples = [
 for s, p, o in triples:
     G.add_edge(s, o, predicate=p)
 
-pos = nx.spring_layout(G)
-
-nx.draw(G, pos, with_labels=True, node_color='lightblue')
-
-edge_labels = nx.get_edge_attributes(G, 'predicate')
-
-nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
-
+nx.draw_spring(G, with_labels=True)
 plt.show()
 
