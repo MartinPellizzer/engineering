@@ -90,12 +90,27 @@ triplets = [
 ]
 
 triples = [
-    ('Ozone generator', 'instance_of', 'electrical appliance')
+    ('ozone', 'instance_of', 'simple substance'),
+    ('ozone', 'instance_of', 'allotrope of oxygen'),
+    ('ozone', 'instance_of', 'type of chemical entity'),
+    ('ozone', 'subclass_of', 'oxidizing agent'),
+    ('ozone', 'has_use', 'sterilization'),
+    ('ozone', 'associted_hazard', 'ozone exposure'),
+    ('ozone', 'chemical_formula', 'O3'),
+    ('ozone', 'subject_has_role', 'photochemical oxidant'),
+    ('ozone generator', 'instance_of', 'electrical appliance'),
 ]
 
 for s, p, o in triples:
     G.add_edge(s, o, predicate=p)
 
-nx.draw_spring(G, with_labels=True)
+pos = nx.spring_layout(G)
+
+nx.draw(G, pos, with_labels=True, node_color='lightblue')
+
+edge_labels = nx.get_edge_attributes(G, 'predicate')
+
+nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+
 plt.show()
 

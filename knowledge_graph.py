@@ -90,7 +90,16 @@ triplets = [
 ]
 
 triples = [
-    ('Ozone generator', 'instance_of', 'electrical appliance')
+    ('ozone', 'instance_of', 'simple substance'),
+    ('ozone', 'instance_of', 'allotrope of oxygen'),
+    ('ozone', 'instance_of', 'type of chemical entity'),
+    ('ozone', 'subclass_of', 'oxidizing agent'),
+    ('ozone', 'has_use', 'sterilization'),
+    ('ozone', 'associted_hazard', 'ozone exposure'),
+    ('ozone', 'chemical_formula', 'O3'),
+    ('ozone', 'subject_has_role', 'photochemical oxidant'),
+    ('ozone', 'has_part(s)', 'oxygen'),
+    ('ozone generator', 'instance_of', 'electrical appliance'),
 ]
 
 for s, p, o in triples:
