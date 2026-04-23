@@ -40,7 +40,43 @@ def naics_xlsx_to_json():
     with open(f'{naics_folderpath}/data.json', 'w') as f:
         json.dump(rows, f, indent=4)
 
-data = io.csv_to_dict(ateco_csv_filepath)
-for i, item in enumerate(data):
-    if i >= 5: break
-    print(json.dumps(item, indent=4))
+def ateco_csv_to_json():
+    data = io.csv_to_dict(ateco_csv_filepath)
+    output_data = []
+    for i, item in enumerate(data):
+        print(json.dumps(item, indent=4))
+        item = {
+            'node_i': item['ORDINE_CODICE_ATECO_2025'],
+            'node_id': item['CODICE_ATECO_2025'],
+            'node_title_italian': item['TITOLO_ITALIANO_ATECO_2025'],
+            'node_title_english': item['TITOLO_INGLESE_ATECO_2025'],
+            'node_rank': item['GERARCHIA_ATECO_2025'],
+            'parent_id': item['CODICE_PADRE_ATECO_2025'],
+            'parent_rank': item['GERARCHIA_PADRE_ATECO_2025'],
+        }
+        output_data.append(item)
+    with open(f'{ateco_folderpath}/data.json', 'w') as f:
+        json.dump(output_data, f, indent=4)
+
+# industrial ontology foundry (facilities) | industry -> facility
+def iof_lib_to_json():
+    from ontolearner.ontology import IOF
+    ontology = IOF()
+    ontology.load(f'{kg_folderpath}/iof/ontology-Release_202601/core/Core.rdf')
+    data = ontology.extract()
+    # print(json.dumps(data, indent=4))
+    term_types = data.term_typings
+    taxonomic_relationships = data.type_taxonomies
+    non_taxonomic_relationships = data.type_non_taxonomies_relations
+
+    for x in term_types:
+        print(x)
+    print('--------------------------------------------')
+    for x in taxonomic_relationships:
+        print(x)
+    print('--------------------------------------------')
+    for x in non_taxonomic_relationships:
+        print(x)
+
+# ateco_csv_to_json()
+iof_lib_to_json()
