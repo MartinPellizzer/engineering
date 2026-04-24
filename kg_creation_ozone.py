@@ -67,7 +67,7 @@ def iof_lib_to_json():
     # print(json.dumps(data, indent=4))
     term_types = data.term_typings
     taxonomic_relationships = data.type_taxonomies
-    non_taxonomic_relationships = data.type_non_taxonomies_relations
+    non_taxonomic_relationships = data.type_non_taxonomic_relations
 
     for x in term_types:
         print(x)
@@ -78,5 +78,14 @@ def iof_lib_to_json():
     for x in non_taxonomic_relationships:
         print(x)
 
+
+def ontolearner_agro():
+    from ontolearner import AgrO
+    ontology = AgrO()
+    ontology.load()
+    ontological_data = ontology.extract()
+    print(ontological_data)
+
 # ateco_csv_to_json()
-iof_lib_to_json()
+# iof_lib_to_json()
+ontolearner_agro()
