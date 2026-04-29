@@ -1,3 +1,80 @@
+import os
+
+vault_folderpath = f'C:\\vault'
+ozonogroup_folderpath = f'{vault_folderpath}/ozonogroup'
+database_folderpath = f'{ozonogroup_folderpath}/database'
+kg_folderpath = f'{database_folderpath}/kg'
+
+triples_raw_folderpath = f'{kg_folderpath}/0003-abstracts-triples-raw'
+triples_raw_filenames = sorted(os.listdir(triples_raw_folderpath))
+for triples_raw_filename_i, triples_raw_filename in enumerate(triples_raw_filenames):
+    print(f'{triples_raw_filename_i}/{len(triples_raw_filenames)}')
+    triples_raw_filepath = f'{triples_raw_folderpath}/{triples_raw_filename}'
+    with open(triples_raw_filepath) as f: content = f.read()
+    # print(content)
+    print()
+    print()
+    print()
+    triples = []
+    for line in content.split('\n'):
+        line = line.strip()
+        if line == '': continue
+        if line.startswith('[') and line.endswith(']'):
+            line = line[1:]
+            line = line[:-1]
+            triple = [item.strip() for item in line.split(',')]
+            if len(triple) == 5:
+                triples.append(triple)
+
+    running = True
+    while running:
+        en_filepath = f'{kg_folderpath}/knowledge_graph_entity_normalization.txt'
+        with open(en_filepath) as f: en_content = f.read()
+        en_lines = en_content.split('\n')
+        entities_normalized = []
+        for en_line in en_lines:
+            en_line = en_line.strip()
+            if en_line == '': continue
+            en_line = en_line.replace('[', '')
+            en_line = en_line.replace(']', '')
+            en_chunks = [chunk.strip() for chunk in en_line.split('|')]
+            entity_names = [item.strip() for item in en_chunks[0].split(',')]
+            entity_types = [item.strip() for item in en_chunks[1].split(',')]
+            # print(entity_names)
+            # print(entity_types)
+            entities_normalized.append([entity_names, entity_types])
+        # print(entities_normalized)
+        for triple in triples:
+            entity_1 = triple[0].strip()
+            entity_type_1 = triple[1].strip()
+            entity_2 = triple[3].strip()
+            entity_type_2 = triple[4].strip()
+            # print(f'{entity_1} ({entity_type_1})')
+            # print(f'{entity_2} ({entity_type_2})')
+            # print(triple)
+            triple_normalized = [x for x in triple]
+            for entity_normalized in entities_normalized:
+                if (
+                    entity_1.lower().strip() in [e.lower() for e in entity_normalized[0]] and
+                    entity_type_1.lower().strip() in [e.lower() for e in entity_normalized[1]]
+                ):
+                    triple_normalized[0] = entity_normalized[0][0]
+                    triple_normalized[1] = '__' + entity_normalized[1][0] + '__'
+                if (
+                    entity_2.lower().strip() in [e.lower() for e in entity_normalized[0]] and
+                    entity_type_2.lower().strip() in [e.lower() for e in entity_normalized[1]]
+                ):
+                    triple_normalized[3] = entity_normalized[0][0]
+                    triple_normalized[4] = '__' + entity_normalized[1][0] + '__'
+            print(triple_normalized)
+        cmd = input('>>')
+        if cmd == '': continue
+        else: running = False
+    # quit()
+    # print(triples_raw_filepath)
+
+quit()
+
 import networkx as nx
 import matplotlib.pyplot as plt
 
@@ -102,6 +179,53 @@ triples = [
     ('ozone generator', 'instance_of', 'electrical appliance'),
 ]
 
+triples = [
+    ["Ozone treatment", "technology", "is", "food-processing technology", "technology"],
+    ["Ozone treatment", "technology", "has attribute", "cost-effective", "property"],
+    ["Ozone treatment", "technology", "has attribute", "eco-friendly", "property"],
+    ["Ozone treatment", "technology", "used for removal of", "milk residues", "substance"],
+    ["Ozone treatment", "technology", "used for removal of", "biofilm-forming bacteria", "organism"],
+    ["milk residues", "substance", "found on", "stainless steel surfaces", "material"],
+    ["biofilm-forming bacteria", "organism", "found on", "stainless steel surfaces", "material"],
+    ["Ozone treatment", "technology", "used in", "milk processing", "process"],
+    ["milk processing", "process", "includes", "fluid milk", "product"],
+    ["milk processing", "process", "includes", "powdered milk products", "product"],
+    ["milk processing", "process", "includes", "cheese", "product"],
+    ["Ozonation", "process", "prevents", "mould growth", "biological process"],
+    ["mould growth", "biological process", "occurs on", "cheese", "product"],
+    ["Ozonation", "process", "inactivates", "airborne moulds", "organism"],
+    ["airborne moulds", "organism", "present in", "cheese ripening facilities", "facility"],
+    ["airborne moulds", "organism", "present in", "storage facilities", "facility"],
+    ["Ozone treatment", "technology", "reduces", "pollutants", "substance"],
+    ["pollutants", "substance", "found in", "dairy wastewaters", "waste"],
+]
+
+triples = [
+    ['mould growth', 'problem', 'where', 'cheese', 'location'],
+    ['airborne moulds', 'problem', 'where', 'cheese ripening and storage facilities', 'location'],
+    ['pollutants', 'problem', 'where', 'dairy wastewaters', 'location'],
+    ['milk residues', 'problem', 'where', 'stainless steel surfaces', 'location'],
+    ['biofilm-forming bacteria', 'problem', 'where', 'stainless steel surfaces', 'location'],
+]
+
+triples = [
+    ["milk residues", "problem", "present_in", "stainless steel surfaces", "location"],
+    ["milk residues", "problem", "present_in", "milk processing", "location"],
+    ["milk residues", "problem", "present_in", "fluid milk", "location"],
+    ["milk residues", "problem", "present_in", "powdered milk products", "location"],
+    ["milk residues", "problem", "present_in", "cheese", "location"],
+    ["biofilm-forming bacteria", "problem", "present_in", "stainless steel surfaces", "location"],
+    ["biofilm-forming bacteria", "problem", "present_in", "milk processing", "location"],
+    ["biofilm-forming bacteria", "problem", "present_in", "fluid milk", "location"],
+    ["biofilm-forming bacteria", "problem", "present_in", "powdered milk products", "location"],
+    ["biofilm-forming bacteria", "problem", "present_in", "cheese", "location"],
+    ["mould growth", "problem", "present_in", "cheese", "location"],
+    ["mould growth", "problem", "present_in", "cheese ripening and storage facilities", "location"],
+    ["airborne moulds", "problem", "present_in", "cheese ripening and storage facilities", "location"],
+    ["pollutants in dairy wastewaters", "problem", "present_in", "dairy wastewaters", "location"]
+]
+triples = [[row[0], row[2], row[3]] for row in triples]
+
 for s, p, o in triples:
     G.add_edge(s, o, predicate=p)
 
@@ -111,7 +235,7 @@ nx.draw(G, pos, with_labels=True, node_color='lightblue')
 
 edge_labels = nx.get_edge_attributes(G, 'predicate')
 
-nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+# nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
 plt.show()
 
