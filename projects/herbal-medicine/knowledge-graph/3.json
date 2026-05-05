@@ -92,6 +92,78 @@
             },
             "edge_direction": 0,
             "entity_type": ""
+        },
+        {
+            "id": "3",
+            "kind": "node",
+            "text": "",
+            "text_lines": [
+                "PROCESS {name: \"ozonation\"}"
+            ],
+            "x": 864,
+            "y": 264,
+            "w": 0,
+            "h": 0,
+            "w_min": 32,
+            "h_min": 8,
+            "focus": false,
+            "node_start": null,
+            "node_end": null,
+            "edge_direction": 0,
+            "entity_type": ""
+        },
+        {
+            "id": "4",
+            "kind": "edge",
+            "text": "",
+            "text_lines": [],
+            "x": 0,
+            "y": 0,
+            "w": 0,
+            "h": 0,
+            "w_min": 0,
+            "h_min": 0,
+            "focus": false,
+            "node_start": {
+                "id": "1",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "SUBSTANCE {name: \"ozone\"}"
+                ],
+                "x": 632,
+                "y": 176,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "node_end": {
+                "id": "3",
+                "kind": "node",
+                "text": "",
+                "text_lines": [
+                    "PROCESS {name: \"ozonation\"}"
+                ],
+                "x": 864,
+                "y": 264,
+                "w": 0,
+                "h": 0,
+                "w_min": 32,
+                "h_min": 8,
+                "focus": false,
+                "node_start": null,
+                "node_end": null,
+                "edge_direction": 0,
+                "entity_type": ""
+            },
+            "edge_direction": 0,
+            "entity_type": ""
         }
     ]
 }

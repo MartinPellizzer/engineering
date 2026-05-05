@@ -97,7 +97,7 @@ def industries_files_parse():
         try: extracted_data = json.loads(extracted_text_cleaned)
         except:
             print(extracted_text_cleaned)
-            quit()
+            # quit()
         if extracted_data == {}: continue
         try: triples = extracted_data['triples']
         except:
@@ -116,9 +116,7 @@ def industries_files_parse():
     output_filepath = f'{output_folderpath}/industries-names.txt'
     io.file_write(output_filepath, industries_names)
 
-industries_files_parse()
-
-quit()
+# industries_files_parse()
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -269,6 +267,14 @@ triples = [
     ["airborne moulds", "problem", "present_in", "cheese ripening and storage facilities", "location"],
     ["pollutants in dairy wastewaters", "problem", "present_in", "dairy wastewaters", "location"]
 ]
+triples = [[row[0], row[2], row[3]] for row in triples]
+
+triples = []
+for line in io.file_read('C:/vault/ozonogroup/database/kg/relationships/all.txt').split('\n'):
+    line = line.strip()
+    if line == '': continue
+    line = line.split(',')
+    triples.append(line)
 triples = [[row[0], row[2], row[3]] for row in triples]
 
 for s, p, o in triples:

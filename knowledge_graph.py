@@ -116,9 +116,7 @@ def industries_files_parse():
     output_filepath = f'{output_folderpath}/industries-names.txt'
     io.file_write(output_filepath, industries_names)
 
-industries_files_parse()
-
-quit()
+# industries_files_parse()
 
 import networkx as nx
 import matplotlib.pyplot as plt
@@ -271,6 +269,14 @@ triples = [
 ]
 triples = [[row[0], row[2], row[3]] for row in triples]
 
+triples = []
+for line in io.file_read('C:/vault/ozonogroup/database/kg/relationships/all.txt').split('\n'):
+    line = line.strip()
+    if line == '': continue
+    line = line.split(',')
+    triples.append(line)
+triples = [[row[0], row[2], row[3]] for row in triples]
+
 for s, p, o in triples:
     G.add_edge(s, o, predicate=p)
 
@@ -280,7 +286,7 @@ nx.draw(G, pos, with_labels=True, node_color='lightblue')
 
 edge_labels = nx.get_edge_attributes(G, 'predicate')
 
-# nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
+nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels)
 
 plt.show()
 
