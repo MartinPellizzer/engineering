@@ -1,77 +1,122 @@
 import os
+import json
+
+from lib import io
 
 vault_folderpath = f'C:\\vault'
 ozonogroup_folderpath = f'{vault_folderpath}/ozonogroup'
 database_folderpath = f'{ozonogroup_folderpath}/database'
 kg_folderpath = f'{database_folderpath}/kg'
 
-triples_raw_folderpath = f'{kg_folderpath}/0003-abstracts-triples-raw'
-triples_raw_filenames = sorted(os.listdir(triples_raw_folderpath))
-for triples_raw_filename_i, triples_raw_filename in enumerate(triples_raw_filenames):
-    print(f'{triples_raw_filename_i}/{len(triples_raw_filenames)}')
-    triples_raw_filepath = f'{triples_raw_folderpath}/{triples_raw_filename}'
-    with open(triples_raw_filepath) as f: content = f.read()
-    # print(content)
-    print()
-    print()
-    print()
-    triples = []
-    for line in content.split('\n'):
-        line = line.strip()
-        if line == '': continue
-        if line.startswith('[') and line.endswith(']'):
-            line = line[1:]
-            line = line[:-1]
-            triple = [item.strip() for item in line.split(',')]
-            if len(triple) == 5:
-                triples.append(triple)
+def entities_normalization():
+    triples_raw_folderpath = f'{kg_folderpath}/0003-abstracts-triples-raw'
+    triples_raw_filenames = sorted(os.listdir(triples_raw_folderpath))
+    for triples_raw_filename_i, triples_raw_filename in enumerate(triples_raw_filenames):
+        print(f'{triples_raw_filename_i}/{len(triples_raw_filenames)}')
+        triples_raw_filepath = f'{triples_raw_folderpath}/{triples_raw_filename}'
+        with open(triples_raw_filepath) as f: content = f.read()
+        # print(content)
+        print()
+        print()
+        print()
+        triples = []
+        for line in content.split('\n'):
+            line = line.strip()
+            if line == '': continue
+            if line.startswith('[') and line.endswith(']'):
+                line = line[1:]
+                line = line[:-1]
+                triple = [item.strip() for item in line.split(',')]
+                if len(triple) == 5:
+                    triples.append(triple)
+        running = True
+        while running:
+            en_filepath = f'{kg_folderpath}/knowledge_graph_entity_normalization.txt'
+            with open(en_filepath) as f: en_content = f.read()
+            en_lines = en_content.split('\n')
+            entities_normalized = []
+            for en_line in en_lines:
+                en_line = en_line.strip()
+                if en_line == '': continue
+                en_line = en_line.replace('[', '')
+                en_line = en_line.replace(']', '')
+                en_chunks = [chunk.strip() for chunk in en_line.split('|')]
+                entity_names = [item.strip() for item in en_chunks[0].split(',')]
+                entity_types = [item.strip() for item in en_chunks[1].split(',')]
+                # print(entity_names)
+                # print(entity_types)
+                entities_normalized.append([entity_names, entity_types])
+            # print(entities_normalized)
+            for triple in triples:
+                entity_1 = triple[0].strip()
+                entity_type_1 = triple[1].strip()
+                entity_2 = triple[3].strip()
+                entity_type_2 = triple[4].strip()
+                # print(f'{entity_1} ({entity_type_1})')
+                # print(f'{entity_2} ({entity_type_2})')
+                # print(triple)
+                triple_normalized = [x for x in triple]
+                for entity_normalized in entities_normalized:
+                    if (
+                        entity_1.lower().strip() in [e.lower() for e in entity_normalized[0]] and
+                        entity_type_1.lower().strip() in [e.lower() for e in entity_normalized[1]]
+                    ):
+                        triple_normalized[0] = entity_normalized[0][0]
+                        triple_normalized[1] = '__' + entity_normalized[1][0] + '__'
+                    if (
+                        entity_2.lower().strip() in [e.lower() for e in entity_normalized[0]] and
+                        entity_type_2.lower().strip() in [e.lower() for e in entity_normalized[1]]
+                    ):
+                        triple_normalized[3] = entity_normalized[0][0]
+                        triple_normalized[4] = '__' + entity_normalized[1][0] + '__'
+                print(triple_normalized)
+            cmd = input('>>')
+            if cmd == '': continue
+            else: running = False
+        # quit()
+        # print(triples_raw_filepath)
 
-    running = True
-    while running:
-        en_filepath = f'{kg_folderpath}/knowledge_graph_entity_normalization.txt'
-        with open(en_filepath) as f: en_content = f.read()
-        en_lines = en_content.split('\n')
-        entities_normalized = []
-        for en_line in en_lines:
-            en_line = en_line.strip()
-            if en_line == '': continue
-            en_line = en_line.replace('[', '')
-            en_line = en_line.replace(']', '')
-            en_chunks = [chunk.strip() for chunk in en_line.split('|')]
-            entity_names = [item.strip() for item in en_chunks[0].split(',')]
-            entity_types = [item.strip() for item in en_chunks[1].split(',')]
-            # print(entity_names)
-            # print(entity_types)
-            entities_normalized.append([entity_names, entity_types])
-        # print(entities_normalized)
+def industries_files_parse():
+    input_folderpath = f'{kg_folderpath}/0004-industries'
+    input_filenames = sorted(os.listdir(input_folderpath))
+    industries_names = []
+    for input_filename_i, input_filename in enumerate(input_filenames):
+        print(f'{input_filename_i}/{len(input_filenames)}')
+        input_filepath = f'{input_folderpath}/{input_filename}'
+        # with open(input_filepath) as f: content = f.read()
+        input_data = io.json_read(input_filepath)
+        # with open(input_filepath) as f: content = f.read()
+        extracted_text = input_data['extracted_text']
+        lines = []
+        for line in extracted_text.split('\n'):
+            line = line.strip()
+            if line == '': continue
+            if line.startswith('`'): continue
+            lines.append(line)
+        extracted_text_cleaned = '\n'.join(lines)
+        try: extracted_data = json.loads(extracted_text_cleaned)
+        except:
+            print(extracted_text_cleaned)
+            # quit()
+        if extracted_data == {}: continue
+        try: triples = extracted_data['triples']
+        except:
+            print(extracted_data)
+            quit()
         for triple in triples:
-            entity_1 = triple[0].strip()
-            entity_type_1 = triple[1].strip()
-            entity_2 = triple[3].strip()
-            entity_type_2 = triple[4].strip()
-            # print(f'{entity_1} ({entity_type_1})')
-            # print(f'{entity_2} ({entity_type_2})')
-            # print(triple)
-            triple_normalized = [x for x in triple]
-            for entity_normalized in entities_normalized:
-                if (
-                    entity_1.lower().strip() in [e.lower() for e in entity_normalized[0]] and
-                    entity_type_1.lower().strip() in [e.lower() for e in entity_normalized[1]]
-                ):
-                    triple_normalized[0] = entity_normalized[0][0]
-                    triple_normalized[1] = '__' + entity_normalized[1][0] + '__'
-                if (
-                    entity_2.lower().strip() in [e.lower() for e in entity_normalized[0]] and
-                    entity_type_2.lower().strip() in [e.lower() for e in entity_normalized[1]]
-                ):
-                    triple_normalized[3] = entity_normalized[0][0]
-                    triple_normalized[4] = '__' + entity_normalized[1][0] + '__'
-            print(triple_normalized)
-        cmd = input('>>')
-        if cmd == '': continue
-        else: running = False
-    # quit()
-    # print(triples_raw_filepath)
+            industry_name = triple['entity2_name']
+            industries_names.append(industry_name)
+        if input_filename_i > 100000:
+            break
+    industries_names = sorted(list(set(industries_names)))
+    for industry_name in industries_names:
+        print(industry_name)
+    industries_names = '\n'.join(industries_names)
+    output_folderpath = f'{kg_folderpath}/0005-industries-names'
+    output_filepath = f'{output_folderpath}/industries-names.txt'
+    io.file_write(output_filepath, industries_names)
+
+industries_files_parse()
 
 quit()
 
