@@ -12,7 +12,7 @@ from reportlab.graphics.charts.lineplots import LinePlot
 # DOCUMENT SETUP
 ################################################################################
 doc = SimpleDocTemplate(
-    "./projects/ozone/reports/wine-brettanomyces-barrels.pdf",
+    "./projects/ozone/reports/vino-fruttaie.pdf",
     pagesize=A4,
     rightMargin=70,
     leftMargin=70,
@@ -118,14 +118,14 @@ elements = []
 elements.append(Spacer(1, 100))
 elements.append(AccentLine())
 elements.append(Spacer(1, 25))
-cover_title_text = "Riduzione dei Brettanomyces nelle Botti di Vino"
+cover_title_text = "Campagna Sanificazione Fruttaie Con Ozono Gassoso"
 elements.append(Paragraph(cover_title_text, cover_title_style))
 elements.append(Spacer(1, 20))
-elements.append(Paragraph("Proposta Applicazione", body_style))
+elements.append(Paragraph("Proposta Campagna", body_style))
 elements.append(Spacer(1, 100))
 elements.append(Paragraph("Preparata per", meta_style))
 elements.append(Spacer(1, 15))
-elements.append(Paragraph("Elena Ceccato", section_style))
+elements.append(Paragraph("Elena Ceccato | Mauro Dottori", section_style))
 elements.append(Spacer(1, 60))
 elements.append(Paragraph("Maggio 2026", meta_style))
 mul = 0.15
@@ -141,7 +141,7 @@ elements.append(PageBreak())
 
 # EXECUTIVE SUMMARY
 # ------------------------------------------------------------------------------
-with open('wine-brettanomyces-barrels.md', encoding='utf-8') as f: lines = f.read().split('\n')
+with open('vino-fruttaie.md', encoding='utf-8') as f: lines = f.read().split('\n')
 print(lines)
 for line in lines:
     if line.startswith('###'):
@@ -150,6 +150,8 @@ for line in lines:
     elif line.startswith('##'):
         line = line.replace('##', '').strip()
         elements.append(Paragraph(line, h2))
+    elif line.startswith('---'):
+        elements.append(PageBreak())
 
         
     else:
