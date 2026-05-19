@@ -1,26 +1,28 @@
 # Migliora le proprietà sensoriali dei vini rossi
 
-Uno studio scentifico dimosta che il trattamento con ozono gassoso durante la fase di appassimento dell'uva incrementa il contenuto di flavanoli nella buccia degli acini. I flavanoli nei vini rossi hanno un diretto impatto sulle proprietà sensoriali, come l'amaro, l'astringenza, la struttura e il colore. Per questo incidono sulla qualità e sul valore di mercato dei vini, al punto che un contenuto elevato di flavanoidi è spesso associato ai vini premium.
+Uno studio scientifico dimostra che il trattamento con ozono gassoso durante la fase di appassimento dell'uva incrementa il contenuto di flavanoli nella buccia degli acini. I flavanoli nei vini rossi hanno un diretto impatto sulle proprietà sensoriali, come l'amaro, l'astringenza, la struttura e il colore. Per questo incidono sulla qualità e sul valore di mercato dei vini, al punto che un contenuto elevato di flavanoidi è spesso associato ai vini premium.
 
 ## Metodo
 
-Lo studio è stato effettuato uva di Nebbiolo e Barbera (Vitis vinifera L.) proveniente dallo stesso vigneto, in Piemonte. Sei scatole di uva sono state sottoposte al trattamento di appassimento parziale in un ambiente con ozono gassoso ad una concentrazione di 30 uL/L con flusso continuo di 120 m3/h, utilizzando un generatore di ozono con capacità produttiva nominale di 32 g/h. Di queste sei scatole, le prime tre hanno subito il trattamento di appassimento con ozono fino a raggiungere una perdita di peso (WL) di 10%, mentre le seconde tre scatole fino ad una perdita di peso del 20%. Tutto il trattamento è stato eseguito in ambiente controllato, a 20 °C di temperatura e 70% di umidità relativa.
+Lo studio è stato effettuato su uva di Nebbiolo e Barbera (Vitis vinifera L.) proveniente dallo stesso vigneto, in Piemonte. Sei scatole di uva sono state sottoposte al trattamento di appassimento parziale in un ambiente con ozono gassoso a una concentrazione di 30 uL/L con flusso continuo di 120 m3/h, utilizzando un generatore di ozono con capacità produttiva nominale di 32 g/h. Di queste sei scatole, le prime tre hanno subito il trattamento di appassimento con ozono fino a raggiungere una perdita di peso (WL) del 10%, mentre le seconde tre scatole fino a una perdita di peso del 20%. Tutto il trattamento è stato eseguito in ambiente controllato, a 20 °C di temperatura e 70% di umidità relativa.
 
-Allo stesso tempo, è stato fatto un altro trattamento di appassimento in parallelo su altre sei scatole, ma senza usare gas ozono. Questo trattamento in parallelo viene usato come controllo, per controverificare il trattamento con ozono.
+Allo stesso tempo, è stato effettuato un altro trattamento di appassimento in parallelo su altre sei scatole, ma senza usare gas ozono. Questo trattamento parallelo viene usato come controllo, per verificare il trattamento con ozono.
 
 ## Risultati
 
-I risultati hanno dimostrato che gli effetti dell'appassimento con ozono dipendono dalla varietà. Nelle bucce di Barbera, che avevano un contenuto inferiore di proantocianidine, i due effetti sono risultati significativi e la loro combinazione ha mostrato interessanti vantaggi legati a una minore perdita di proantocianidine, nonché a percentuali più elevate di prodelfinidine e pià basse di alloilazione. Nel Nebbiolo, invece, la composizione dei flavaoli della buccia è risultata appena influenzata. Da questo si deduce che le varietà con un contenuto pià basso di tannini beneficiano maggiormente del trattamento con l'ozono, in quanto sono più sensibili al meccanismo di stress ossidativo indotto dall'ozono. Al contratio...
+I risultati dello studio hanno dimostrato che gli effetti dell'appassimento con ozono dipendono dalla varietà dell'uva. Nelle bucce di Barbera, che avevano un contenuto inferiore di proantocianidine, gli effetti sono risultati significativi e la loro combinazione ha mostrato interessanti vantaggi legati a una minore perdita di proantocianidine, nonché a percentuali più elevate di prodelfinidine e più basse di alloilazione. Nel Nebbiolo, invece, la composizione dei flavanoli della buccia è stata meno significativa.
 
+Da questo si deduce che le varietà d'uva con un contenuto più basso di tannini beneficiano maggiormente del trattamento con l'ozono, in quanto sono più sensibili al meccanismo di stress ossidativo indotto dal gas. Al contrario, le varietà d'uva già ricche dal punto di vista fenolico hanno beneficiato meno del trattamento.
 
-## Interpretazione
+https://pubs.acs.org/doi/full/10.1021/acs.jafc.0c04081
 
-La Barbera, caratterizzata da un contenuto iniziale più basso di tannini, appare più sensibile agli stress post-raccolta. Il trattamento combinato potrebbe quindi modulare la qualità fenolica in modo utile per migliorare equilibrio e morbidezza dei vini. Il Nebbiolo, già ricco e strutturato dal punto di vista fenolico, mostra invece una maggiore stabilità chimica e una minore reattività a questi trattamenti.
+---
 
-## Limiti
+## L'ozono rovina le proprietà dell'uva?
 
-Lo studio si concentra esclusivamente sull’analisi chimica delle bucce e non include valutazioni sensoriali o degustative del vino ottenuto. Inoltre, le condizioni sperimentali in camera controllata potrebbero non riprodurre completamente quelle reali di cantina.
+No, l'ozono non rovina l'uva se viene usato correttamente, ovvero se viene applicato con il giusto dosaggio, durata e frequenza.
 
-## Conclusione / impatto
+Anzi, in molti casi l'ozono aiuta a preservare la qualità dell'uva, se non addirittura a migliorarne i parametri qualitativi come i composti aromatici e le sostanze antiossidanti.
 
-I risultati suggeriscono che interventi post-raccolta come appassimento e ozono possono rappresentare strumenti interessanti per modulare la composizione fenolica dell’uva, ma il loro effetto dipende fortemente dal vitigno. In particolare, la Barbera sembra più adatta a questo tipo di trattamento rispetto al Nebbiolo. Lo studio apre quindi a possibili applicazioni mirate in enologia, pur richiedendo ulteriori verifiche sul piano sensoriale e produttivo.
+Tuttavia, bisogna fare un attimo di attenzione, perché concentazioni troppo elevate o trattamenti troppo frequenti possono stressare troppo l'uva e alterare il colore, il contenuto di polifenoli o le caratteristiche sensoriali. Per questo è importante usare protocolli controllati.
+
