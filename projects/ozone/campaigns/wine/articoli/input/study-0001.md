@@ -8,7 +8,7 @@ In questo studio, sono stati fatti due test sull'uva Pignola. Nel primo test (tr
 
 ## Risultati
 
-Nel trattamento shock, l'uva non ha subito degradazione significativa del contenuto di carotenoidi, polifenoli e antociani. Mentre, nel trattamento prolungato, si è notata una degradazione significativa di questi composti. Infine, entrambi i trattamenti hanno ridotto funghi e lieviti indesiderati del 50%. Per questo, si ritiene migliore il trattamento shock, in quanto ottengono gli stessi risultati di quello prolungato ma senza degradazione della qualità dell'uva.  
+Nel trattamento shock, l'uva non ha subito degradazione significativa del contenuto di carotenoidi, polifenoli e antociani. Mentre, nel trattamento prolungato, si è notata una degradazione significativa di questi composti. Infine, entrambi i trattamenti hanno ridotto funghi e lieviti indesiderati del 50%. Per questo, si ritiene migliore il trattamento shock, in quanto ottengono gli stessi risultati di quello prolungato ma senza degradazione della qualità dell'uva.
 
 ## Punti salienti
 
