@@ -44,7 +44,7 @@ Se poi per qualsiasi momento c'è bisogno di spegnere il sistema, si può fare f
 
 E' normale. Infatti spesso coinvolgiamo direttamente l'enologo nel confronto tecnico.
 
-Ci rendiamo conto che l'enologo ha bisogno di analizzare sia i dati teorici e i risultati pratici prima di poter prendere una decisione. Per questo diventa molto più semplice confrontarsi a livello concreto se è presente anche l'enologo durante l'analisi. Se poi l'enologo ritiene che sia meglio evitare di fare questo tipo di trattamento, allora il trattamento non si fa. Per quanto ci riguara, l'enologo ha sempre l'ultima parola.  
+Ci rendiamo conto che l'enologo ha bisogno di analizzare sia i dati teorici e i risultati pratici prima di poter prendere una decisione. Per questo diventa molto più semplice confrontarsi a livello concreto se è presente anche l'enologo durante l'analisi. Se poi l'enologo ritiene che sia meglio evitare di fare questo tipo di trattamento, allora il trattamento non si fa. Per quanto ci riguara, l'enologo ha sempre l'ultima parola.
 
 7. Devo modificare la fruttaia?
 
