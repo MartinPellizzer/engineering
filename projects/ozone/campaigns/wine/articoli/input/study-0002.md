@@ -16,3 +16,5 @@ L'ozono non influisce sul tempo di appassimento se dosato correttamente. Invece,
 - L'ozono attiva gli enzimi antiossidanti dell'uva
 - L'ozono inibisce LOX e PPO.
 - L'ozono aumenta il contenuto di polifenoli
+
+https://www.sciencedirect.com/science/article/abs/pii/S0963996918305143
