@@ -1,9 +1,257 @@
-# Protocollo
+# Protocollo Operativo (Bozza)
 
-1. Room preparation
-2. Loading
-3. Short high-intensity ozone sanitation
-4. Continuous low-level ozone maintenance
+Dopo aver analizzato diversi studi scientifici, è stato identificato il seguente proctocollo operativo per la riduzione dei microrganismi indesiderati durante il processo di appassimento dell'uva.
+
+Protocollo PLSS:
+
+1. Prepara
+2. Carica
+3. Shock
+4. Stabilizza
+
+Questo protocollo è da considerarsi solo una bozza, in quanto la maggior parte degli studi non offrono i date e i metodi applicativi gratuitamente. Quindi questo protocollo è stato abbozzato utilizzando e incrociando i pochi dati resi disponibili.
+
+Ogni fase del protocollo viene descritto nelle seguenti pagine.
+
+---
+
+## FASE 1. Prepara
+
+Lo scopo di questa fase è quello di preparare la stanza prima di caricare l'uva al suo interno. Per "preparare" si intende pulire e disinfettare la stanza (fare tabula rasa). Questa operazione non è negoziabile, se non viene fatta le probabilità che il resto del processo non funzioni sono altissime.
+
+### PASSO 1. Rimuovi tutto il materiale organico
+
+Azione: Fai una pulizia fisica dell'ambiente
+
+Metodo:
+
+- Rimuovi uva, foglie, altri residui
+- Aspira i residui fini rimanenti
+- Porta immediatamente i rifiuti fuori dalla stanza, non confinarli in un angolo
+- NOTA: Pulisci dall'alto verso il basso (ordine gravità)
+
+Condizione superamento: Nessun materiale organico visibile o libero in alcuna area
+
+### PASSO 2. Pulisci le superfici
+
+Azione: Lava e disinfetta tutte le superfici
+
+Metodo:
+
+- Applica detergente alcalino alimentare
+- Risciacqua completamente (nessun residuo)
+- Asciuga completamente
+- NOTA: Le superfici includono pavimenti, scaffali, cassette, vassoi, pareti, ventilatori, prese d'aria, condotti accessibili
+
+Condizione superamento: Assenza di sporco e umidità su tutte le superfici
+
+---
+
+### PASSO 3. Sigilla la stanza
+
+Azione: Converti la stanza in un sistema chiuso
+
+Metodo:
+
+- Libera ostacoli entro 50 cm da tutte le prese/ventole
+- Chiudi tutte le porte, finestre, aperture esterne
+- Imposta HVAC in ricircolo interno (se possiblie)
+
+Condizione superamento: Nessun ingresso d'aria esterna + nessuna ostruzione flusso
+
+### PASSO 4. Sanifica con ozono
+
+Azione: Esegui un ciclo completo di ozone per un reset microbico
+
+Metodo:
+
+- Avvia la circolazione interna
+- Attiva il generatore di ozono
+- Esegui il ciclo senza interruzioni, a 4 ppm per 60 minuti
+- Al termine del ciclo, arieggia la stanza fino alla completa dissipazione dell'ozono prima di entrare (persone) e di caricare il prodotto (uva), solitamente dopo 2-3 giorni.
+- NOTA: non aprire o modificare i parametri durante il ciclo
+
+Condizione superamento: Ambiente sanificato e asciutto + assenza di ozono
+
+---
+
+## FASE 2. Carica
+
+Lo scopo di questa fase è quello di cariare l'uva all'interno dell'ambiente di appassimento sanificato al passo precedente, nel modo più uniforme possibile così che il flusso d'aria e l'ozono possano raggiungere ogni grappolo, prevenendo umidità itrappolata e deterioramento localizzato.
+
+### PASSO 1. Allinea i rack con la direzione del flusso d'aria
+
+Azione:
+
+Orienta i rack in modo che l'aria attraversi uniformemente la l'uva.
+
+Metodo:
+
+- Identifica la direzione del flusso d'aria del locale (dall'ingresso all'uscita)
+- Allinea i rack parallelamente al percorso del flusso d'aria
+- Assicurati che nessun rack ostruisca il flusso d'aria per gli altri rack
+- Lascia almeno 50 cm di spazio davanti ai punti di ingresso e uscita dell'aria
+
+Condizione successo:
+
+L'aria può muoversi attraverso tutte le file senza ostacoli, ovvero nessun rack blocca una linea diretta del flusso d'aria.
+
+### PASSO 2. Bilancia la distribuzione del carico
+
+Azione:
+
+Distribuisci uniformemente il volume totale d'uva all'interno della stanza
+
+Metodo:
+
+- Dividi la stanza in zone uguali (minimo consigliato: 4 zone)
+- Carica ogni zona con densità visiva uguale (variazione massima ±10%)
+- Evita di concentrare più del 30% del carico totale in una singola zona
+
+Condizione di successo:
+
+Tutte le zone hanno una densità di carico visivamente simile e nessuna area appare significativamente più affollata.
+
+### PASSO 3. Distanzia i grappoli orizzontalmente
+
+Azione: 
+
+Posiziona ogni grappolo d'uva con spaziatura fissa.
+
+Metodo:
+
+- Posiziona i grappoli sui rack uno per uno
+- Mantieni uno spazion di 10 cm tra i grappoli
+- Assicurati che nessun grappolo tocchi un altro grappolo in nessun punto
+
+Condizione successo: 
+
+Nessun contatto tra grappoli (chiari spazi d'aria attorno a ogni grappolo).
+
+
+### PASSO 4. Limita la sovrapposizione di grappoli
+
+Azione:
+
+Se hai poco spazio, puoi posizionare un grappolo d'uva sopra l'altro (verticalmente sullo stesso rack), ma limita a 2 layers (1 layer è comunque consigliato).
+
+Metodo:
+
+- Riempire ogni rack alla stessa altezza, per ottenere uno strato singolo o massimo 2 strati di grappoli
+- Non variare lo spessore tra i rack
+- Se un rack supera la profondità target, ridistribuire l'uva in eccesso in altri rack
+
+Condizione di successo:
+
+Tutti i rack hanno una profondità di carico visivamente identica, ovvero nessun rack appare più denso o più alto degli altri
+
+### CONTROLLO FINALE
+
+Prima di procedere alla fase 3, fai la seguente verifica:
+
+- Il percorso del flusso d'aria è libero da ostacoli da ingresso a uscita (posizionamento rack parallelo a flusso aria)
+- Il carico è distribuito uniformemente tra le zone
+- Tutti i grappoli sono distanziati orizzontalmente di 10 cm
+- Tutti i rack hanno massimo 2 layers di altezza
+
+Se anche una sola condizione non è rispettata, correggere prima di proseguire.
+
+---
+
+## FASE 3. SHOCK
+
+Lo scopo di questa fase è quello di sanificare l'uva utilizzando un trattamento ad ozono "shock", inteso come trattamento ad alto dosaggio di ozono per un ciclo unico. Questo ciclo serve ad eliminare la maggior parte delle contaminazioni microbiche sugli acini e, al contrario dei trattamenti prolungati ad alto dosaggio, non danneggia la qualità dell'uva (anzi la migliora).
+
+### PASSO 1. Sigilla la stanza
+
+Azione:
+
+Chiudi la stanza di appassimento prima dell'attivazione del sistema ad ozono (fai uscire persone e animali).
+
+Metodo:
+
+- Allontana il personale dalla stanza
+- Chiudi tutte le porte, finestre, altri punti di accesso
+- Imposta il sistema di ventilazione in modalità ricircolo interno (se disponibile)
+- Verifica l'assenza di scambio d'aria con l'esterno durante il ciclo
+
+Condizione di successo:
+
+Stanza completamente sigillata con sola circolazione interna controllata (nessuno scambio con l'ambiente esterno).
+
+
+### PASSO 2. Attiva la circolazione dell'aria
+
+Azione:
+
+Garantsci movimento uniforme dell'aria prima della produzione di ozono.
+
+Metodo:
+
+- Accendi ventilatori interni o sistema di flusso aria
+- Verifica la circolazione nelle zone superiori dei rack e attorno ad essi
+- Evita zone di aria stagnante
+
+Condizione di successo:
+
+Aria uniformemente circolante in tutte le zone caricate, verificata visivamente o meccanicamente.
+
+### PASSO 3. Avvia il ciclo di ozono ad alta intensità (shock)
+
+Azione:
+
+Esegui un singolo ciclo di sanificazione con ozono ad alta intensità.
+
+Metodo:
+
+- Avvia il generatore di ozono, calibrato per produrre 1.5 ppm di ozono dentro la stanza
+- Mantieni questa produzione di ozono in modo per 8 ore
+- Mantieni la circolazione dell'aria attiva per tutto il ciclo
+- Non aprire né modificare il sistema durante il funzionamento
+
+Condizione di successo:
+
+Ciclo completato senza interruzioni, con esposizione uniforme garantita dal generatore di ozono e dal flusso d'aria attivo.
+
+
+### PASSO 4. Arieggia la stanza
+
+Azione:
+
+Fai uscire l'ozono residuo e riportare la stanza a condizioni operative sicure.
+
+Metodo:
+
+- Spegni il generatore di ozono
+- Attiva ventilazione/estrazione
+- Arieggia fino a completa assenza di ozono rilevabile (sensori o tempo 2-3 giorni)
+- Mantieni flusso d'aria fino a stabilizzare queste condizioni
+
+Condizione di successo:
+
+Stanza riportata a condizioni sicure e respirabili, senza accumulo residuo di ozono, pronta per la fase operativa successiva.
+
+### CONTROLLO FINALE
+
+Prima di procedere alla fase 3, fai la seguente verifica:
+
+- Il percorso del flusso d'aria è libero da ostacoli da ingresso a uscita (posizionamento rack parallelo a flusso aria)
+- Il carico è distribuito uniformemente tra le zone
+- Tutti i grappoli sono distanziati orizzontalmente di 10 cm
+- Tutti i rack hanno massimo 2 layers di altezza
+
+Se anche una sola condizione non è rispettata, correggere prima di proseguire.
+
+CONTROLLO FINALE
+
+Prima di procedere alla fase 4, fai la seguente verifica:
+
+- La stanza è completamente sigillata e il sistema è in modalità ricircolo chiuso
+- Il flusso d'aria interno è attivo e uniformemente distribuito in tutte le zone di carico
+- Il generatore di ozono è pronto in modalità "shock", nessun personale è presente in stanza e il ciclo viene eseguito sedondo le modalità descritte precedentemente
+- La stanza è stata opportunamente arieggiata a fine trattamento e non è rilevabile alcuna quantità di ozono prima che il personale possa entrarci
+
+Se anche una sola condizione non è rispettata, correggere prima di procedere.
 
 ---
 
@@ -134,182 +382,6 @@ If all four are true, continue to Section 2.
 
 
 
-# SECTION 2 — ROOM PREPARATION
-
-## Step 1: Prepare the Room (Sanitation Baseline)
-
-**Reader:** A winery operator using an existing grape dehydration system who is adding an ozone layer to reduce mold and microbial spoilage during drying.
-
-**Goal of this section:**
-Get you to **prepare the drying room so ozone can operate at full effectiveness by removing residual contamination and ensuring uniform exposure conditions before grapes are loaded.**
-
-## Do this before every batch
-
-This step is not optional and not “periodic maintenance.”
-
-If the room is not prepared correctly, ozone performance becomes inconsistent and unpredictable.
-
-## Step 1: Remove all residual organic material
-
-Before anything else:
-
-* Clear all remaining grapes or dried clusters from previous batches
-* Remove loose stems, debris, and organic residue from floors and trays
-* Empty any collection points where organic matter accumulates
-
-No visible biological material should remain in the room.
-
-## Step 2: Reset all contact surfaces
-
-Every surface that will be exposed to grapes or airflow must be cleared:
-
-* racks
-* trays
-* walls within the drying zone
-* fan housings and airflow channels
-
-The objective is not visual cleanliness—it is removing residual microbial load that can survive between cycles.
-
-## Step 3: Verify airflow is unobstructed
-
-Before ozone is introduced:
-
-* Ensure air circulation paths are fully open
-* Remove any objects blocking vents or fans
-* Confirm airflow moves consistently through all zones identified in your system layout
-
-If airflow is uneven now, it will remain uneven during ozone cycles.
-
-## Step 4: Confirm room is in a sealed operational state
-
-Before moving to ozone application:
-
-* Close external access points
-* Ensure the room is isolated from uncontrolled air exchange
-* Confirm the system is ready to operate as a closed treatment environment during sanitation
-
-You are preparing a controlled chamber, not an open environment.
-
-## Step 5: Establish “ready for loading” condition
-
-The room is ready only when:
-
-* No organic residue remains
-* All surfaces are cleared
-* Airflow is unobstructed and stable
-* The environment is sealed for controlled operation
-
-If any of these are not true, do not proceed.
-
-## Output you must achieve before moving on
-
-At the end of this step, your drying room must be:
-
-* physically clean of residual organic matter
-* structurally clear for airflow and ozone movement
-* sealed and ready for controlled treatment
-* free of any hidden contamination sources from previous batches
-
-## What you do NOT do in this step
-
-* Do not apply ozone yet
-* Do not load grapes
-* Do not adjust humidity or temperature systems
-* Do not begin any drying process operations
-
-## Why this step matters (in one line)
-
-Ozone cannot reliably reduce microbial load if it is being constantly reintroduced by residual organic contamination in the room.
-
----
-
-
-# SECTION 3 — GRAPE PLACEMENT CONDITIONS
-
-## Step 2: Place Grapes in the Room
-
-**Reader:** A winery operator using an existing grape dehydration system and adding a controlled ozone layer to reduce mold and stabilize drying outcomes.
-
-**Goal of this section:**
-Get you to **load grapes into the drying room in a way that guarantees even ozone exposure and airflow penetration across all clusters, preventing hidden moisture pockets and localized spoilage.**
-
-## Do this immediately after Room Preparation (Step 1)
-
-Once the room is clean and sealed, the next variable that determines success is not the environment—it is **how you physically place the grapes inside it.**
-
-Most failures at this stage come from placement, not climate settings.
-
-## Step 1: Maintain mandatory spacing between clusters
-
-Every grape cluster must be placed so that:
-
-* it does not touch neighboring clusters
-* air can move freely around all sides
-* no compressed or overlapping contact points exist
-
-If clusters touch, you create trapped zones where ozone and airflow cannot reach consistently.
-
-## Step 2: Use uniform layer depth across all racks
-
-Load grapes in consistent thickness:
-
-* avoid dense piles in any section
-* avoid thin and thick zones in the same rack
-* keep layer depth identical across the entire room
-
-Uneven depth creates uneven drying and uneven microbial suppression.
-
-## Step 3: Align placement with airflow direction
-
-Using the airflow pattern established in your system:
-
-* orient racks so air passes through, not against, the grape mass
-* ensure no rack blocks a full airflow path
-* avoid perpendicular “barrier loading” against ventilation flow
-
-Airflow must move through grapes, not around them.
-
-## Step 4: Eliminate structural dead zones
-
-Do not create areas where air movement is restricted:
-
-* no fully enclosed corners of dense loading
-* no tight stacking near walls or corners
-* no blocked ventilation channels caused by overloading
-
-If air cannot pass through a zone, ozone cannot stabilize it.
-
-## Step 5: Balance load distribution across the room
-
-The total grape load must be evenly distributed:
-
-* do not overload one section and underload another
-* avoid clustering all high-density loads in a single area
-* maintain consistent spatial density across all zones
-
-Imbalance creates localized spoilage risk even if overall conditions are correct.
-
-## Output you must achieve before moving on
-
-Your loaded room must have:
-
-* consistent spacing between all clusters
-* uniform load depth across racks
-* full airflow accessibility throughout all zones
-* no structural dead zones or blocked paths
-* even distribution of total grape mass
-
-## What you do NOT do in this step
-
-* Do not apply ozone yet
-* Do not adjust environmental controls to compensate for poor placement
-* Do not begin drying cycle timing
-* Do not “fix spacing later” after loading
-
-## Why this step matters (in one line)
-
-Even perfectly controlled ozone and environmental conditions cannot compensate for grape placement that blocks airflow and traps moisture at the cluster level.
-
 ---
 
 # SECTION 4 — HIGH-INTENSITY OZONE RESET
@@ -400,3 +472,609 @@ After this step:
 Without a single high-intensity reset after loading, you begin the drying cycle on an already active microbial baseline that maintenance ozone cannot fully compensate for.
 
 ---
+
+
+
+
+
+## **ONE-PAGE SOP — PLSS OZONE SYSTEM**
+
+### *Drying Room Microbial Control Protocol*
+
+# **PLSS SYSTEM**
+
+## **Prepare → Load → Shock → Stabilize**
+
+## 🟩 1. PREPARE
+
+**Objective: Reset contamination baseline**
+
+* Remove all organic residues (grapes, stems, debris)
+* Clean all contact surfaces (racks, trays, floor, walls)
+* Ensure airflow paths are fully open
+* Seal room for controlled operation
+
+❌ No residual organic material allowed
+❌ No blocked airflow zones
+
+## 🟦 2. LOAD
+
+**Objective: Ensure uniform ozone + airflow exposure**
+
+* Space grape clusters (NO contact between clusters)
+* Load in uniform layers across all racks
+* Maintain consistent density across all zones
+* Align load with airflow direction
+
+❌ No dense piles or compressed zones
+❌ No airflow obstruction
+❌ No uneven loading distribution
+
+## 🟥 3. SHOCK
+
+**Objective: Rapid microbial reset (one-time high-intensity cycle)**
+
+* Seal room completely
+* Activate high-intensity ozone cycle
+* Maintain airflow circulation during cycle
+* Run fixed duration — DO NOT MODIFY
+
+❌ Do not open room during cycle
+❌ Do not interrupt or adjust ozone settings
+❌ Do not react to transient conditions
+
+## 🟨 4. STABILIZE
+
+**Objective: Continuous microbial suppression during drying**
+
+* Maintain low-level continuous ozone output
+* Keep airflow stable and uninterrupted
+* Maintain constant environmental conditions
+* Monitor only for critical deviations
+
+❌ No parameter adjustments during cycle
+❌ No reactive “optimizations”
+❌ No interruption of ozone maintenance phase
+
+# ⚠️ GLOBAL RULES
+
+* Every batch MUST follow full PLSS sequence
+* No step can be skipped or reordered
+* Shock = reset phase (short, intense, non-repetitive)
+* Stabilize = continuous protection layer (low dose, long duration)
+* Stability > optimization
+
+# 🧭 SYSTEM DEFINITION
+
+**PLSS is a controlled ozone protocol that stabilizes microbial activity during grape dehydration by combining:**
+
+* environmental preparation
+* structured loading geometry
+* high-intensity microbial reset
+* continuous low-level stabilization
+
+## **END OF SOP — DO NOT MODIFY IN FIELD USE**
+
+
+
+
+
+
+Below is your **single unified ozone integration protocol** built from your 4-step system, structured as a **continuous operational SOP (not a guide)**. It is designed so the operator runs it the same way every batch, without interpretation.
+
+---
+
+# OZONE INTEGRATION PROTOCOL FOR GRAPE DEHYDRATION (UNIFIED SOP)
+
+## SYSTEM PURPOSE
+
+To stabilize microbial conditions in an existing grape dehydration process using a controlled ozone layer:
+
+* one-time high-intensity sanitation reset
+* continuous low-level microbial suppression during drying
+
+This protocol does not modify dehydration mechanics. It overlays microbial control.
+
+---
+
+# STEP 1 — PREPARE (ROOM RESET)
+
+## Action: Make the room ozone-ready
+
+### 1. Remove organic load
+
+* Remove all grapes, stems, residues, dust
+* Clear all collection points
+* Empty waste outside facility
+
+**PASS:** No organic material present anywhere
+
+---
+
+### 2. Clean all surfaces
+
+Targets:
+
+* racks, trays
+* floors
+* walls (up to 2 m)
+* fans, vents, accessible ducts
+
+Method:
+
+* detergent wash (food-grade alkaline)
+* full rinse (no residue)
+* complete drying before next step
+
+**PASS:** No visible residue or moisture film
+
+---
+
+### 3. Open airflow paths
+
+* Remove obstructions near vents/fans (≥50 cm clearance)
+* Ensure full air circulation pathways are open
+
+**PASS:** No blocked airflow zones
+
+---
+
+### 4. Seal room
+
+* Close all external access points
+* Disable external air exchange
+* Set internal recirculation (if available)
+
+**PASS:** Closed, isolated environment
+
+---
+
+# STEP 2 — CARICA (GRAPE LOADING)
+
+## Action: Load grapes for uniform exposure
+
+* Maintain spacing between clusters (no contact)
+* Use uniform layer depth across racks
+* Avoid dense accumulation zones
+* Align loading with airflow direction
+* Avoid corner and wall congestion
+
+**PASS CONDITION:**
+
+* Uniform density
+* Full airflow accessibility
+* No contact clusters
+* No blocked zones
+
+---
+
+# STEP 3 — SHOCK (HIGH-INTENSITY OZONE RESET)
+
+## Action: One-time microbial reset after loading
+
+### Operating conditions:
+
+* Ozone: **20–40 ppm**
+* Duration: **30–60 minutes**
+* Air circulation: ON
+* Room: fully sealed
+
+### Procedure:
+
+1. Activate internal airflow
+2. Start ozone at full sanitation mode
+3. Run uninterrupted cycle
+4. Do not open or adjust during operation
+
+### Post-cycle:
+
+* Ventilate until ozone is fully cleared before proceeding
+
+**PASS CONDITION:**
+
+* Low microbial baseline established across air and surfaces
+
+---
+
+# STEP 4 — STABILIZZA (CONTINUOUS LOW-LEVEL OZONE)
+
+## Action: Maintain microbial suppression during drying
+
+### Operating conditions:
+
+* Ozone: **0.5–2 ppm (continuous low dose)**
+* Duration: entire dehydration cycle
+* Air circulation: continuous, stable
+
+### Rules:
+
+* NO cycle variation during batch
+* NO reactive adjustments
+* Maintain constant output level
+
+### Function:
+
+* prevent microbial regrowth
+* stabilize environmental pressure during dehydration
+
+**PASS CONDITION:**
+
+* stable low microbial environment throughout drying cycle
+
+---
+
+# FINAL SYSTEM BEHAVIOR (WHAT SUCCESS LOOKS LIKE)
+
+When correctly applied:
+
+* Room starts from sanitized baseline (Shock)
+* Grapes dry under controlled microbial pressure (Stabilizza)
+* No uncontrolled mold outbreaks
+* No batch-to-batch variability from contamination
+* Dehydration process remains unchanged mechanically
+
+---
+
+# NON-NEGOTIABLE RULES
+
+* Shock is performed ONCE per batch
+* Stabilizza is continuous and unchanged
+* No ozone used to compensate for poor loading or airflow design
+* No mid-cycle intervention unless system failure occurs
+* Cleanliness is mandatory before every batch
+
+---
+
+If you want next step, I can turn this into a **true industrial “laminated wall SOP” layout (A4 visual, ultra minimal, readable in 10 seconds on a winery floor)** or help you **name this system so it feels like a proprietary winery standard (e.g., “O3 Drying Protocol v1”)**.
+
+
+
+
+
+
+
+Below is your **laminated industrial wall SOP layout**—designed to be read in seconds on a winery floor, not studied. It removes explanation, keeps only decisions and actions, and uses strict operational hierarchy.
+
+---
+
+# OZONE DRYING ROOM PROTOCOL (O3 SYSTEM v1)
+
+## USE: EVERY BATCH — NO EXCEPTIONS
+
+---
+
+# 1. PREPARE (ROOM RESET)
+
+### REMOVE
+
+* grapes, stems, residues, dust
+* all waste containers emptied
+
+### CLEAN
+
+* racks / trays
+* floors
+* walls (≤2 m)
+* fans / vents / ducts
+
+→ detergent wash → full rinse → fully dry
+
+### CLEAR AIRFLOW
+
+* remove all obstructions (≥50 cm from vents)
+* ensure full circulation paths open
+
+### SEAL ROOM
+
+* close all external access points
+* disable external air exchange
+* set internal recirculation (if available)
+
+### ✔ READY CONDITION
+
+* no organic material
+* clean + dry surfaces
+* open airflow
+* sealed room
+
+---
+
+# 2. CARICA (GRAPE LOADING)
+
+### LOAD RULES
+
+* no cluster contact
+* uniform layer depth
+* no dense zones
+* no corner overloading
+* follow airflow direction
+
+### ✔ READY CONDITION
+
+* uniform distribution
+* full airflow access
+* no blocked zones
+
+---
+
+# 3. SHOCK (OZONE RESET)
+
+### SETTINGS
+
+* Ozone: **20–40 ppm**
+* Time: **30–60 min**
+* Airflow: ON
+* Room: SEALED
+
+### RUN
+
+1. Start airflow
+2. Activate ozone (full mode)
+3. Run uninterrupted cycle
+4. DO NOT OPEN / DO NOT ADJUST
+
+### AFTER CYCLE
+
+* ventilate until ozone cleared
+
+### ✔ RESULT
+
+* microbial reset achieved
+
+---
+
+# 4. STABILIZZA (CONTINUOUS CONTROL)
+
+### SETTINGS
+
+* Ozone: **0.5–2 ppm (continuous)**
+* Duration: full drying cycle
+* Airflow: constant
+
+### RULES
+
+* NO changes during batch
+* NO interruption
+* NO adjustment reactions
+
+### FUNCTION
+
+* suppress microbial regrowth
+* stabilize drying environment
+
+### ✔ RESULT
+
+* controlled dehydration environment
+
+---
+
+# FINAL SYSTEM PASS CRITERIA
+
+ALL MUST BE TRUE:
+
+* room cleaned + sealed before each batch
+* uniform grape loading achieved
+* one full shock cycle completed
+* continuous stabilization active
+* no mid-cycle intervention
+
+---
+
+# NON-NEGOTIABLE RULES
+
+* Shock = ONCE ONLY per batch
+* Stabilizza = CONSTANT and UNCHANGED
+* Ozone ≠ substitute for poor hygiene or loading
+* No deviations during cycle
+
+---
+
+If you want, I can next:
+
+* convert this into a **designed poster layout (typography + spacing like a real industrial wall chart)**
+* or create a **brandable version (O3 System™ with versioning, safety class, and SOP numbering like ISO documentation)**
+
+
+
+
+
+
+
+Below is a **brandable, ISO-style system framework** for your method. It turns your process into something that feels like a **proprietary industrial standard used in professional wineries**, with structure, versioning, and controlled documentation logic.
+
+---
+
+# O3 SYSTEM™ — OZONE CONTROL PROTOCOL FOR GRAPE DEHYDRATION
+
+## SYSTEM CLASSIFICATION
+
+**Document Type:** Operational Standard (SOP)
+**Category:** Post-Harvest Microbial Control System
+**Application:** Grape Dehydration Rooms (Appassimento / Passito / Air-Dried Wines)
+
+---
+
+# SYSTEM IDENTIFIER
+
+**System Name:** O3 SYSTEM™
+**Version:** v1.0
+**Release Status:** Operational Use Standard
+**Revision Cycle:** Annual (or per process validation update)
+**Owner:** Winery Operations / Technical Process Lead
+
+---
+
+# SAFETY CLASSIFICATION
+
+## CLASS: OZONE CONTROLLED FOOD PROCESS SYSTEM (OC-FPS)
+
+### Hazard Level: CONTROLLED HIGH-RISK (CH-2)
+
+* Ozone is a reactive oxidizing agent
+* Exposure must be strictly time- and concentration-controlled
+* Human access prohibited during active cycles
+* Ventilation mandatory before re-entry
+
+### Required Controls:
+
+* sealed environment during ozone phases
+* calibrated ozone generator (ppm verified)
+* forced ventilation system
+* interlock or manual lockout procedure during SHOCK phase
+
+---
+
+# PROCESS ARCHITECTURE
+
+## CORE MODULES (4-STAGE SYSTEM)
+
+| Step Code | Module Name | Function                                    |
+| --------- | ----------- | ------------------------------------------- |
+| O3-PR     | PREPARE     | Environmental reset + contamination removal |
+| O3-LO     | LOAD        | Controlled grape placement geometry         |
+| O3-SH     | SHOCK       | High-intensity microbial reset cycle        |
+| O3-ST     | STABILIZE   | Continuous low-dose microbial suppression   |
+
+---
+
+# SOP STRUCTURE (ISO-STYLE NUMBERING)
+
+## O3-PR.01 — ROOM PREPARATION
+
+### Objective:
+
+Establish clean, sealed, airflow-ready chamber
+
+### Mandatory Actions:
+
+* Remove all organic material (grapes, stems, residues)
+* Clean all contact surfaces (racks, trays, walls ≤2m, fans, ducts)
+* Dry all surfaces completely
+* Clear airflow paths (≥50 cm clearance from vents)
+* Seal room from external air exchange
+
+### Output Condition:
+
+O3-PR PASS = Clean + dry + sealed + airflow open
+
+---
+
+## O3-LO.01 — GRAPE LOADING
+
+### Objective:
+
+Achieve uniform exposure geometry for ozone + airflow
+
+### Mandatory Rules:
+
+* No cluster-to-cluster contact
+* Uniform layer depth across all racks
+* No high-density zones
+* No corner accumulation
+* Align loading with airflow direction
+
+### Output Condition:
+
+O3-LO PASS = uniform distribution + full airflow access
+
+---
+
+## O3-SH.01 — OZONE SHOCK CYCLE
+
+### Objective:
+
+One-time microbial reset of loaded system
+
+### Parameters:
+
+* Ozone concentration: 20–40 ppm
+* Duration: 30–60 minutes
+* Airflow: active internal circulation
+* State: fully sealed chamber
+
+### Execution Rules:
+
+* Start airflow before ozone injection
+* Run uninterrupted cycle
+* No entry or adjustment during operation
+
+### Post-Cycle Requirement:
+
+* full ventilation until ozone clearance threshold is reached
+
+### Output Condition:
+
+O3-SH PASS = low microbial baseline established
+
+---
+
+## O3-ST.01 — CONTINUOUS STABILIZATION
+
+### Objective:
+
+Maintain microbial suppression throughout dehydration cycle
+
+### Parameters:
+
+* Ozone concentration: 0.5–2 ppm
+* Mode: continuous low-dose output
+* Duration: entire drying cycle
+* Airflow: constant, non-interrupted
+
+### Execution Rules:
+
+* no parameter changes during batch
+* no reactive adjustments allowed
+* system runs autonomously once set
+
+### Output Condition:
+
+O3-ST PASS = stable microbial suppression environment
+
+---
+
+# SYSTEM BEHAVIOR MODEL
+
+## EXPECTED PROCESS FLOW
+
+1. O3-PR → Environmental reset
+2. O3-LO → Controlled loading geometry
+3. O3-SH → Microbial baseline reset
+4. O3-ST → Continuous stabilization
+
+---
+
+# NON-CONFORMANCE CONDITIONS (FAILURE RULES)
+
+System is INVALID if:
+
+* ozone applied before full PREPARE completion
+* uneven loading creates airflow blockage
+* SHOCK cycle interrupted or shortened
+* STABILIZE mode is modified during batch
+* room not sealed during ozone phases
+
+---
+
+# OPERATIONAL PRINCIPLE
+
+> O3 SYSTEM™ is not a treatment method.
+> It is a controlled environmental protocol for microbial stabilization during grape dehydration.
+
+---
+
+# VERSION CONTROL LOGIC (FOR SCALING)
+
+Future revisions should be labeled:
+
+* v1.0 → baseline operational system
+* v1.1 → parameter optimization updates
+* v2.0 → structural protocol changes (flow redesign)
+
+---
+
+If you want next step, I can:
+
+* design a **logo + visual identity system for O3 SYSTEM™**
+* or convert this into a **real ISO-style PDF layout with typography hierarchy and page structure**
+* or help you position it as a **premium “licensed protocol” rather than an info product (high-end winery positioning)**
