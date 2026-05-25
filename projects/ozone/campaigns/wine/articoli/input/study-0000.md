@@ -16,7 +16,7 @@ Da questo si deduce che le varietà d'uva con un contenuto più basso di tannini
 
 https://pubs.acs.org/doi/full/10.1021/acs.jafc.0c04081
 
----
+-----
 
 ## L'ozono rovina le proprietà dell'uva?
 

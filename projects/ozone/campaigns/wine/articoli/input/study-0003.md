@@ -1,4 +1,4 @@
-## Effetti metabolici e strutturali dei trattamenti post-raccolta con disidratazione e ozono sull’uva da vino
+# Effetti metabolici dei trattamenti post-raccolta con appassimento e ozono sull'uva da vino
 
 Uno studio dimostra che l'ozono può essere usato come agente sanificante per trattare l'uva post-raccolta e migliorare il processo di appassimento dell'uva riducendo notevolmente l'uso di solfiti. Questo trattamento ecologico, oltre a non lasciare residui tossici nell'uva, non altera negativamente i parametri base del vino (colore, zuccheri, acidità, perdita peso, ecc.). Anzi, se dosato correttamente, aumenta il contenuto di composti antiossidanti, migliorando la qualità del vino.
 
@@ -17,3 +17,5 @@ flavonoli e diminuzione di catechine ed epicatechine. Gli antociani, invece, res
 - L'uva non viende dannegiata se l'ozono viene dosato correttamente
 - L'ozono stimola alcuni antiossidanti, come flavonoli e composti fenolici
 - L'ozono induce una dose moderata di stress sull'uva, la quale risponde producendo più composti antiossidanti 
+
+https://dspace.unitus.it/entities/publication/c84f8c33-24f6-4d31-84e3-43f5014041e2

@@ -10,10 +10,12 @@ In questo studio, sono stati fatti due test sull'uva Pignola. Nel primo test (tr
 
 Nel trattamento shock, l'uva non ha subito degradazione significativa del contenuto di carotenoidi, polifenoli e antociani. Mentre, nel trattamento prolungato, si è notata una degradazione significativa di questi composti. Infine, entrambi i trattamenti hanno ridotto funghi e lieviti indesiderati del 50%. Per questo, si ritiene migliore il trattamento shock, in quanto ottengono gli stessi risultati di quello prolungato ma senza degradazione della qualità dell'uva.
 
-## Punti salienti
+## Punti principali
 
 - La disidratazione delle uve da vino, una tecnica utile per aumentare la qualità del vino, può essere compromessa dai funghi.
-- L’ozono è stato applicato come trattamento d’urto o a lungo termine durante la disidratazione.
-- In entrambi i casi, l’ozono ha ridotto la contaminazione da funghi e lieviti di circa il 50%.
-- Il trattamento d’urto con ozono ha preservato polifenoli, antociani e carotenoidi.
-- Il trattamento a lungo termine con ozono ha ridotto l’attività della PME e della PG.
+- L'ozono è stato applicato come trattamento d'urto o a lungo termine durante la disidratazione.
+- In entrambi i casi, l'ozono ha ridotto la contaminazione da funghi e lieviti di circa il 50%.
+- Il trattamento d'urto con ozono ha preservato polifenoli, antociani e carotenoidi.
+- Il trattamento a lungo termine con ozono ha ridotto l'attività della PME e della PG.
+
+https://www.sciencedirect.com/science/article/abs/pii/S0308814615007517
