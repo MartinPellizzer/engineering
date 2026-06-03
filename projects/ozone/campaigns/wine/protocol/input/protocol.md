@@ -209,7 +209,7 @@ Aria uniformemente circolante in tutte le zone caricate, verificata visivamente 
 
 **Azione:
 
-Esegui un singolo ciclo di sanificazione con ozono ad alta intensità.
+Esegui un singolo ciclo di sanificazione con ozono ad alta intensità. Nota che i dati forniti in questo passo non sono ritenuti affidabili, in quanto il dosaggio di ozono e il tempo di contatto indicati hanno dato risultati contrastanti in diversi studi.
 
 **Metodo:
 

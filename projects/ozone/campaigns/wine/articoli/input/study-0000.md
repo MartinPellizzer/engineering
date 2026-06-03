@@ -1,14 +1,14 @@
-# Migliora le proprietà sensoriali dei vini rossi
+## Migliora le proprietà sensoriali dei vini rossi
 
 Uno studio scientifico dimostra che il trattamento con ozono gassoso durante la fase di appassimento dell'uva incrementa il contenuto di flavanoli nella buccia degli acini. I flavanoli nei vini rossi hanno un diretto impatto sulle proprietà sensoriali, come l'amaro, l'astringenza, la struttura e il colore. Per questo incidono sulla qualità e sul valore di mercato dei vini, al punto che un contenuto elevato di flavanoidi è spesso associato ai vini premium.
 
-## Metodo
+### Metodo
 
 Lo studio è stato effettuato su uva di Nebbiolo e Barbera (Vitis vinifera L.) proveniente dallo stesso vigneto, in Piemonte. Sei scatole di uva sono state sottoposte al trattamento di appassimento parziale in un ambiente con ozono gassoso a una concentrazione di 30 uL/L con flusso continuo di 120 m3/h, utilizzando un generatore di ozono con capacità produttiva nominale di 32 g/h. Di queste sei scatole, le prime tre hanno subito il trattamento di appassimento con ozono fino a raggiungere una perdita di peso (WL) del 10%, mentre le seconde tre scatole fino a una perdita di peso del 20%. Tutto il trattamento è stato eseguito in ambiente controllato, a 20 °C di temperatura e 70% di umidità relativa.
 
 Allo stesso tempo, è stato effettuato un altro trattamento di appassimento in parallelo su altre sei scatole, ma senza usare gas ozono. Questo trattamento parallelo viene usato come controllo, per verificare il trattamento con ozono.
 
-## Risultati
+### Risultati
 
 I risultati dello studio hanno dimostrato che gli effetti dell'appassimento con ozono dipendono dalla varietà dell'uva. Nelle bucce di Barbera, che avevano un contenuto inferiore di proantocianidine, gli effetti sono risultati significativi e la loro combinazione ha mostrato interessanti vantaggi legati a una minore perdita di proantocianidine, nonché a percentuali più elevate di prodelfinidine e più basse di alloilazione. Nel Nebbiolo, invece, la composizione dei flavanoli della buccia è stata meno significativa.
 

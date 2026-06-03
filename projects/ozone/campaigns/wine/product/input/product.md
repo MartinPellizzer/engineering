@@ -13,7 +13,7 @@ A seguire, vengono forniti maggiori dettagli.
 
 ## Aurora 2.0
 
-L'Aurora 2.0 è la fase successiva dell'attrezzatura Aurora che doveva essere pronta nel gennaio 2025, ma mai ultimata. Nella versione 2.0, vanno sviluppati i seguenti aggiornamenti:
+L'Aurora 2.0 è la versione successiva dell'attrezzatura Aurora (intesa come il modello sviluppato nel gennaio 2025). Nella versione 2.0, vanno sviluppati i seguenti aggiornamenti:
 
 - Implementazione sistema modulare (basato su Modbus)
 - Aggiunta sensore ozono ottico (led) per il monitoraggio dell'ozono prodotto in linea dal generatore di ozono
@@ -23,7 +23,7 @@ L'Aurora 2.0 è la fase successiva dell'attrezzatura Aurora che doveva essere pr
 
 ## Aurora 1.0
 
-L'Aurora 1.0 è l'attrezzatura che doveva essere pronta nel gennaio 2025. Include questi componenti essenziali dentro lo stesso quadro elettrico:
+L'Aurora 1.0 è la versione attuale dell'attrezzatura Aurora (intesa come il modello sviluppato nel gennaio 2025). Include questi componenti essenziali dentro lo stesso quadro elettrico:
 
 - Generatore ozono
 - Ossigenatore
