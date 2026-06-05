@@ -229,7 +229,7 @@ def parse(lines, elements):
             print(line)
             # with PIL.Image.open(line) as img:
             #     width, height = img.size
-            mul = 1
+            mul = 0.5
             # image_w = width * mul
             # image_h = height * mul
             target_width = 451.27

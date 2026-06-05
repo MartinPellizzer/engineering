@@ -10,9 +10,9 @@ Sarà necessario sviluppare una scheda (modulo) per pemettere la comumicazione t
 
 ## Stime
 
-- 150€ (acquisto schede)
-- 2 settimane (tempo sviluppo)
-- Facile (livello difficoltà)
+- Investimento: 150€ (acquisto schede)
+- Tempo Sviluppo: 2 settimane
+- Rischio: Basso
 
 ## Richiesta a procedere
 

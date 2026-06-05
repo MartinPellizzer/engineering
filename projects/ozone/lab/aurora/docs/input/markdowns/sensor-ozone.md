@@ -10,9 +10,9 @@ Sarà necessario sviluppare l'intero sensore, incluso scheda (modulo) e stampa 3
 
 ## Stime
 
-- 300€ (acquisto leds e photodiodes)
-- 2 mesi (tempo sviluppo)
-- Difficile (livello difficoltà)
+- Investimento: 300€ (acquisto leds e photodiodes) + ???€ (acquisto materiali accessori, esempio occhiali per UV-C)
+- Tempo Sviluppo: 2 mesi
+- Rischio: Alto
 
 ## Richiesta a procedere
 
