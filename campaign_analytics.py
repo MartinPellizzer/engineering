@@ -1,6 +1,5 @@
 import os
 import subprocess
-from datetime import date
 
 from reportlab.platypus import *
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
@@ -10,22 +9,27 @@ from reportlab.lib.enums import TA_RIGHT
 from reportlab.graphics.shapes import Drawing, Rect, String
 from reportlab.graphics.charts.lineplots import LinePlot
 
-import PIL
 import matplotlib.pyplot as plt
 
-doc_version = '0.1.0'
-project_folderpath = f'projects/sweesh'
-subproject_folderpath = f'{project_folderpath}/partnership-commerciale'
-input_folderpath = f'{subproject_folderpath}/input'
-output_folderpath = f'{subproject_folderpath}/output'
+report_slug = 'vino-fruttaie'
+report_version = '2.0'
+report_folderpath = f'./tmp/{report_slug}-{report_version}'
+report_filepath = f'./tmp/{report_slug}-{report_version}/{report_slug}-{report_version}.pdf'
 
-cover_title_text = "Proposta Partnership Commerciale tra SWEESH e OTREGROUP"
-cover_subtitle_text = "Proposta Preliminare"
+try: os.mkdir(report_folderpath)
+except: pass
 
-os.makedirs(project_folderpath, exist_ok=True)
-os.makedirs(subproject_folderpath, exist_ok=True)
-os.makedirs(input_folderpath, exist_ok=True)
-os.makedirs(output_folderpath, exist_ok=True)
+################################################################################
+# DOCUMENT SETUP
+################################################################################
+doc = SimpleDocTemplate(
+    report_filepath,
+    pagesize=A4,
+    rightMargin=70,
+    leftMargin=70,
+    topMargin=90,
+    bottomMargin=60
+)
 
 ################################################################################
 # STYLES
@@ -175,9 +179,9 @@ def header_footer(canvas, doc):
 
     canvas.setFont("Helvetica", 8)
     canvas.drawString(70, 820, "OTREGROUP")
-    canvas.drawRightString(525, 820, f"{date.today()}")
+    canvas.drawRightString(525, 820, f"Confidenziale V{report_version}")
 
-    canvas.drawString(70, 30, f"Confidenziale - V{doc_version}")
+    canvas.drawString(70, 30, f"Confidenziale V{report_version}")
     canvas.drawRightString(525, 30, str(doc.page))
     canvas.restoreState()
 
@@ -229,29 +233,7 @@ def parse(lines, elements):
         elif line.startswith('#'):
             line = line.replace('#', '').strip()
             elements.append(Paragraph(line, h1))
-
-        elif line.startswith('!'):
-            line = line.split('(')[1].split(')')[0].split(' ')[0]
-            print(line)
-            # with PIL.Image.open(line) as img:
-            #     width, height = img.size
-            mul = 0.5
-            # image_w = width * mul
-            # image_h = height * mul
-            target_width = 451.27
-            target_width *= mul
-            with PIL.Image.open(line) as im:
-                width, height = im.size
-            scale = target_width / width
-            image_w = width * scale
-            image_h = height * scale  # SAME scale → keeps ratio
-
-            img = Image(line, image_w, image_h)
-            elements.append(Spacer(1, 10))
-            img.hAlign = "CENTER"
-            elements.append(img)
-            elements.append(Spacer(1, 20))
-
+            
         elif line.startswith('**'):
             line = line.replace('**', '').strip()
             # elements.append(Paragraph(line, body_bold_style))
@@ -267,66 +249,108 @@ def parse(lines, elements):
 ################################################################################
 elements = []
 
-# COVER
+
+# ANALYTICS
 # ------------------------------------------------------------------------------
-elements.append(Spacer(1, 100))
-elements.append(AccentLine())
-elements.append(Spacer(1, 25))
-elements.append(Paragraph(cover_title_text, cover_title_style))
-elements.append(Spacer(1, 20))
-elements.append(Paragraph(cover_subtitle_text, body_style))
-elements.append(Spacer(1, 100))
-elements.append(Paragraph("Preparata per", meta_style))
-elements.append(Spacer(1, 15))
-elements.append(Paragraph("Elena Ceccato", section_style))
-elements.append(Spacer(1, 60))
-if date.today().month == 1: month = 'Gennaio'
-if date.today().month == 2: month = 'Febbraio'
-if date.today().month == 3: month = 'Marzo'
-if date.today().month == 4: month = 'Aprile'
-if date.today().month == 5: month = 'Maggio'
-if date.today().month == 6: month = 'Giugno'
-if date.today().month == 7: month = 'Luglio'
-if date.today().month == 8: month = 'Agosto'
-if date.today().month == 9: month = 'Settembre'
-if date.today().month == 10: month = 'Ottobre'
-if date.today().month == 11: month = 'Novembre'
-if date.today().month == 12: month = 'Dicembre'
-elements.append(Paragraph(f"{month} {date.today().year}", meta_style))
+metrics = [
+    "Email Inviate",
+    "Risposte Totali",
+    "Risposte Positive",
+    "Chiamate Conoscitive",
+    "Appuntamenti Fissati"
+]
+values = [210, 7, 0, 0, 0]
+plt.figure(figsize=(10, 6))
+bars = plt.bar(metrics, values)
+# Labels on bars
+for bar in bars:
+    plt.text(
+        bar.get_x() + bar.get_width()/2,
+        bar.get_height(),
+        f'{int(bar.get_height())}',
+        ha='center',
+        va='bottom',
+        fontweight='bold'
+    )
+plt.title("Risultati Campagnia Fruttaie 18/05/2026", fontsize=16, fontweight='bold')
+plt.ylabel("Numero di Contatti")
+plt.grid(axis='y', alpha=0.3)
+plt.tight_layout()
+plt.savefig("risultati-campagnia-fruttaie-18-05-2026.png", dpi=300, bbox_inches="tight")
+
+line = 'Risultati Campagnia Fruttaie 05/06/2026'
+elements.append(Paragraph(line, h1))
+line = 'Il seguente grafico mostra i risultati della campagnia fruttaie 05/06/2026 - 19/06/2026 (usando email a freddo). Maggiori dettagli sulle email verranno dati nelle prossime sezioni.'
+elements.append(Paragraph(line, body_style))
 mul = 0.15
-image_w = 239 * mul
-image_h = 230 * mul
-img = Image(f"projects/spillatura/logo.png", image_w, image_h)
+image_w = 2970 * mul
+image_h = 1774 * mul
+img = Image(f"risultati-campagnia-fruttaie-18-05-2026.png", image_w, image_h)
 elements.append(Spacer(1, 20))
 img.hAlign = "LEFT"
 elements.append(img)
-elements.append(Spacer(1, 120))
-elements.append(Paragraph("Non consentita la divulgazione", footer_style))
+
+
 elements.append(PageBreak())
 
-# JOURNAL
-# ------------------------------------------------------------------------------
+doc.build(elements, onFirstPage=header_footer, onLaterPages=header_footer)
 
-for input_filename in os.listdir(input_folderpath):
-    filename_raw = input_filename.split('.')[0].strip()
-    input_filepath = f'{input_folderpath}/{filename_raw}.md'
-    output_filepath = f'{output_folderpath}/{filename_raw}.pdf'
-    with open(input_filepath, encoding='utf-8') as f: lines = f.read().split('\n')
-    print(lines)
-    parse(lines, elements)
+'''
 
-    ################################################################################
-    # DOCUMENT SETUP
-    ################################################################################
-    doc = SimpleDocTemplate(
-        output_filepath,
-        pagesize=A4,
-        rightMargin=70,
-        leftMargin=70,
-        topMargin=90,
-        bottomMargin=60
-    )
-    # BUILD
-    doc.build(elements, onFirstPage=header_footer, onLaterPages=header_footer)
-
-# subprocess.run(["xdg-open", "doc.pdf"])
+GIORNO 	NUMERO MAIL					
+18/05/2026	20					
+19/05/2026	20					
+20/05/2026	20					
+21/05/2026	20					
+22/05/2026	20					
+23/05/2026						
+24/05/2026						
+25/05/2026	20					
+26/05/2026	15					
+27/05/2026	25					
+28/05/2026	20					
+29/05/2026	20					
+						
+TOTALE	200					
+						
+						
+						
+						
+CHI	RISPOSTA	ESITO RISP	TELEFONATA	RISULT TELEFONATA	APPUNTAMENTO	
+cantine nepos	1	no				
+vini montresor	1	si	in attesa ( chiamato un paio di volte, riprovare)			
+vigne san pietro	1	no				
+Cadis 1898	1	si	si	non interessato		
+farina	1	Forse ( segretaria inoltrato mail all’enologo)				
+Il Pignetto	1	no				
+Annafrancesca	1	No ( no appassimento)				
+Raval Bardolino	1	No ( no appassimento)				
+Cesari	1	si	in attesa ( chiamato un paio di volte, riprovare)			
+Corte saibante	1	si	in attesa (da sentire venerdì)			
+Benedetti la villa	1	no				
+Cantina viviani	1	no				
+San dionigi	1	no				
+Pasini san giovanni 	1	No ( no appassimento)				
+Cantrina	1	no				
+Accordini stefano	1	Forse ( io ho inoltrato mail all’enologo)				
+Fraghe	1	No ( no appassimento)				
+Trabucchi wine	1 ( ha chiamato il pomeriggio  e l’ho richiamato)		si	si	si il 7 giugno 	
+						
+						
+	NUMERO MAIL	RISPOSTE TOTALI 	POSITIVE	NEGATIVE	TELEFONATE	INCONTRI
+05/06/2026	10 n – 10 r					
+06/06/2026						
+07/06/2026						
+08/06/2026	10 n – 10 r					
+09/06/2026	10 n – 10 r					
+10/06/2026	10 n – 10 r					
+11/06/2026	10 n – 10 r					
+12/06/2026	10 n – 10 r					
+13/06/2026						
+14/06/2026						
+15/06/2026	10 n – 10 r					
+16/06/2026	10 n – 10 r					
+17/06/2026	10 n – 10 r					
+18/06/2026	10 n – 10 r					
+19/06/2026	10 n – 10 r	6+ 1 RICONTATTO	0	6 + 1 HA GIRATO MAIL AL RESPONSABILE 		
+'''
