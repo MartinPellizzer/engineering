@@ -74,14 +74,7 @@ while running:
 
     canvas_x = screen_w//2 - canvas_w//2
     canvas_y = screen_h//2 - canvas_h//2
-
-    # # draw_grid()
-    # draw_ruler()
-
     screen.blit(canvas, (canvas_x, canvas_y))
-
-
-    
 
     pygame.display.flip()
 
