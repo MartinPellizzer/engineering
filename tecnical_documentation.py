@@ -13,16 +13,17 @@ from reportlab.graphics.charts.lineplots import LinePlot
 import PIL
 import matplotlib.pyplot as plt
 
-product_filename = f'sensore_ossigeno'
-product_version = 'v1_0_0'
-docs_folderpath = f'C:/og-new/products/sensore_ossigeno/{product_filename}_{product_version}/docs'
+product_filename = f'modulo_monitoraggio_ossigeno'
+product_version = '1_0_0'
+docs_folderpath = f'C:/og-new/products/{product_filename}/{product_filename}_v{product_version}/docs'
 input_folderpath = f'{docs_folderpath}/input'
 output_folderpath = f'{docs_folderpath}/output'
+prepared_for = "Staff Tecnico Interno"
 
 ### TODO: do the rest
 
-cover_title_text = "Proposta Partnership Commerciale tra SWEESH e OTREGROUP"
-cover_subtitle_text = "Proposta Preliminare"
+cover_title_text = "Modulo Monitoraggio Ossigeno"
+cover_subtitle_text = "Documento Tecnico"
 
 ################################################################################
 # STYLES
@@ -174,7 +175,7 @@ def header_footer(canvas, doc):
     canvas.drawString(70, 820, "OTREGROUP")
     canvas.drawRightString(525, 820, f"{date.today()}")
 
-    canvas.drawString(70, 30, f"Confidenziale - V{doc_version}")
+    canvas.drawString(70, 30, f"Confidenziale - V{product_version}")
     canvas.drawRightString(525, 30, str(doc.page))
     canvas.restoreState()
 
@@ -188,6 +189,8 @@ def parse(lines, elements):
     ol_items = []
     for line in lines:
         line = line.strip()
+        line = line.replace('–', '-')
+        line = line.replace('*', '')
         if line == '': continue
         
         if line.startswith('-----'):
@@ -273,9 +276,9 @@ elements.append(Paragraph(cover_title_text, cover_title_style))
 elements.append(Spacer(1, 20))
 elements.append(Paragraph(cover_subtitle_text, body_style))
 elements.append(Spacer(1, 100))
-elements.append(Paragraph("Preparata per", meta_style))
+elements.append(Paragraph("Documento preparato per", meta_style))
 elements.append(Spacer(1, 15))
-elements.append(Paragraph("Elena Ceccato", section_style))
+elements.append(Paragraph(prepared_for, section_style))
 elements.append(Spacer(1, 60))
 if date.today().month == 1: month = 'Gennaio'
 if date.today().month == 2: month = 'Febbraio'
