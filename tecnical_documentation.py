@@ -197,7 +197,15 @@ def parse(lines, elements):
             break
         
         if line.startswith('---'):
+            if ul_start == True:
+                ul_start = False
+                ul_gen(ul_items)
+                ul_items = []
             elements.append(PageBreak())
+            continue
+        
+        if line.startswith('<spacer>'):
+            elements.append(Spacer(1, 20))
             continue
         
         if line[0] == '-':
@@ -235,7 +243,7 @@ def parse(lines, elements):
             print(line)
             # with PIL.Image.open(line) as img:
             #     width, height = img.size
-            mul = 0.5
+            mul = 1.0
             # image_w = width * mul
             # image_h = height * mul
             target_width = 451.27
@@ -259,6 +267,10 @@ def parse(lines, elements):
         else:
             line = line.strip()
             elements.append(Paragraph(line, body_style))
+    if ul_start == True:
+        ul_start = False
+        ul_gen(ul_items)
+        ul_items = []
     if lines:
         elements.append(PageBreak())
 

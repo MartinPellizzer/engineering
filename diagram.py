@@ -8,6 +8,7 @@ from lib import viewport
 
 project_folderpath = 'projects/pyramid'
 project_folderpath = 'projects/herbal-medicine'
+project_folderpath = 'C:/og-new/products/modulo_monitoraggio_ossigeno/modulo_monitoraggio_ossigeno_v1_0_0/docs/input_assets'
 
 try: os.mkdir(project_folderpath)
 except: pass
@@ -116,6 +117,11 @@ def screenshot_create():
     y = y1
     w = x2 - x1
     h = y2 - y1
+    ### override width to full screen
+    x = viewport_frame['x']
+    # y = viewport_frame['y']
+    w = viewport_frame['w']
+    # h = viewport_frame['h']
     rect = pygame.Rect(x, y, w, h)
     snapshot = screen.subsurface(rect).copy()
     pygame.image.save(snapshot, 'exports/diagram.png')
