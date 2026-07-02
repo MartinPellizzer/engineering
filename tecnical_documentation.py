@@ -27,12 +27,7 @@ prepared_for = "Staff Tecnico Interno"
 cover_title_text = "Modulo Monitoraggio Ossigeno"
 cover_subtitle_text = "Documento Tecnico"
 
-revision_history = [
-    ["Versione", "Data", "Autore", "Descrizione"],
-
-    ["1.0.0", "2026-07-02", "Martin Pellizzer",
-     "Versione iniziale"],
-]
+revision_history = []
 
 ################################################################################
 # STYLES
@@ -248,13 +243,19 @@ def parse(lines, elements):
 
         if   line == '[head]':  state = '[head]'
         elif line == '[/head]': state = ''
+        if   line == '[rev]':  state = '[rev]'
+        elif line == '[/rev]': state = ''
         elif line == '[body]':  state = '[body]'
-        elif line == '[/body]': state = '[/body]'
+        elif line == '[/body]': state = ''
 
         if line.startswith('[') and line.endswith(']'): continue
 
-        
         if state == '[head]':
+            pass
+
+        elif state == '[rev]':
+            pass
+
 
         elif state == '[body]':
         
@@ -342,133 +343,154 @@ def parse(lines, elements):
 ################################################################################
 # CONTENT
 ################################################################################
-elements = []
 
-# COVER
-# ------------------------------------------------------------------------------
-elements.append(Spacer(1, 100))
-elements.append(AccentLine())
-elements.append(Spacer(1, 25))
-elements.append(Paragraph(cover_title_text, cover_title_style))
-elements.append(Spacer(1, 20))
-elements.append(Paragraph(cover_subtitle_text, body_style))
-elements.append(Spacer(1, 100))
-elements.append(Paragraph("Documento preparato per", meta_style))
-elements.append(Spacer(1, 15))
-elements.append(Paragraph(prepared_for, section_style))
-elements.append(Spacer(1, 60))
-if date.today().month == 1: month = 'Gennaio'
-if date.today().month == 2: month = 'Febbraio'
-if date.today().month == 3: month = 'Marzo'
-if date.today().month == 4: month = 'Aprile'
-if date.today().month == 5: month = 'Maggio'
-if date.today().month == 6: month = 'Giugno'
-if date.today().month == 7: month = 'Luglio'
-if date.today().month == 8: month = 'Agosto'
-if date.today().month == 9: month = 'Settembre'
-if date.today().month == 10: month = 'Ottobre'
-if date.today().month == 11: month = 'Novembre'
-if date.today().month == 12: month = 'Dicembre'
-elements.append(Paragraph(f"{month} {date.today().year}", meta_style))
-mul = 0.15
-image_w = 239 * mul
-image_h = 230 * mul
-img = Image(f"projects/spillatura/logo.png", image_w, image_h)
-elements.append(Spacer(1, 20))
-img.hAlign = "LEFT"
-elements.append(img)
-elements.append(Spacer(1, 120))
-elements.append(Paragraph("Non consentita la divulgazione", footer_style))
-elements.append(PageBreak())
+def cover_add(elements):
+    elements.append(Spacer(1, 100))
+    elements.append(AccentLine())
+    elements.append(Spacer(1, 25))
+    elements.append(Paragraph(cover_title_text, cover_title_style))
+    elements.append(Spacer(1, 20))
+    elements.append(Paragraph(cover_subtitle_text, body_style))
+    elements.append(Spacer(1, 100))
+    elements.append(Paragraph("Documento preparato per", meta_style))
+    elements.append(Spacer(1, 15))
+    elements.append(Paragraph(prepared_for, section_style))
+    elements.append(Spacer(1, 60))
+    if date.today().month == 1: month = 'Gennaio'
+    if date.today().month == 2: month = 'Febbraio'
+    if date.today().month == 3: month = 'Marzo'
+    if date.today().month == 4: month = 'Aprile'
+    if date.today().month == 5: month = 'Maggio'
+    if date.today().month == 6: month = 'Giugno'
+    if date.today().month == 7: month = 'Luglio'
+    if date.today().month == 8: month = 'Agosto'
+    if date.today().month == 9: month = 'Settembre'
+    if date.today().month == 10: month = 'Ottobre'
+    if date.today().month == 11: month = 'Novembre'
+    if date.today().month == 12: month = 'Dicembre'
+    elements.append(Paragraph(f"{month} {date.today().year}", meta_style))
+    mul = 0.15
+    image_w = 239 * mul
+    image_h = 230 * mul
+    img = Image(f"projects/spillatura/logo.png", image_w, image_h)
+    elements.append(Spacer(1, 20))
+    img.hAlign = "LEFT"
+    elements.append(img)
+    elements.append(Spacer(1, 120))
+    elements.append(Paragraph("Non consentita la divulgazione", footer_style))
+    elements.append(PageBreak())
 
 # REV
 # ------------------------------------------------------------------------------
-table = Table(
-    revision_history,
-    colWidths=[
-        55,   # Version
-        70,   # Date
-        90,   # Author
-        240,  # Description
-    ],
-)
-table.setStyle(TableStyle([
-    # Header
-    ('BACKGROUND', (0, 0), (-1, 0), PRIMARY),
-    ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
-    ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
-    ('FONTSIZE', (0, 0), (-1, 0), 10),
-    ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
-    ('TOPPADDING', (0, 0), (-1, 0), 8),
 
-    # Body
-    ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
-    ('FONTSIZE', (0, 1), (-1, -1), 9),
-    ('TEXTCOLOR', (0, 1), (-1, -1), colors.HexColor("#222222")),
-    ('TOPPADDING', (0, 1), (-1, -1), 6),
-    ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+def rev_parse(lines):
+    for line in lines:
+        line = line.strip()
+        if line == '': continue
 
-    # Alternate row colors
-    ('ROWBACKGROUNDS', (0, 1), (-1, -1),
-        [colors.white, colors.HexColor("#F8FAFC")]),
+        if   line == '[rev]':  state = '[rev]'
+        elif line == '[/rev]': state = '[/rev]'
 
-    # Borders
-    ('LINEBELOW', (0, 0), (-1, 0), 1, PRIMARY),
-    ('LINEBELOW', (0, 1), (-1, -1), 0.25, LIGHT_GREY),
+        if line.startswith('[') and line.endswith(']'): continue
 
-    # Outer border
-    ('BOX', (0, 0), (-1, -1), 0.5, LIGHT_GREY),
+        if state == '[rev]':
+            row = [col.strip() for col in line.split(',')]
+            revision_history.append(row)
 
-    # Alignment
-    ('ALIGN', (0, 0), (0, -1), 'CENTER'),   # Version
-    ('ALIGN', (1, 0), (2, -1), 'CENTER'),   # Date, Author
-    ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+        elif state == '[/rev]': 
+            break
 
-    # Left padding
-    ('LEFTPADDING', (0, 0), (-1, -1), 8),
-    ('RIGHTPADDING', (0, 0), (-1, -1), 8),
-]))
-elements.append(Paragraph("Revision History", h1))
-# elements.append(AccentLine())
-elements.append(Spacer(1, 10))
-elements.append(table)
-elements.append(PageBreak())
+def rev_add(elements):
+    table = Table(
+        revision_history,
+        colWidths=[
+            55,   # Version
+            70,   # Date
+            90,   # Author
+            240,  # Description
+        ],
+    )
+    table.setStyle(TableStyle([
+        # Header
+        ('BACKGROUND', (0, 0), (-1, 0), PRIMARY),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+        ('TOPPADDING', (0, 0), (-1, 0), 8),
+
+        # Body
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 1), (-1, -1), 9),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.HexColor("#222222")),
+        ('TOPPADDING', (0, 1), (-1, -1), 6),
+        ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+
+        # Alternate row colors
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1),
+            [colors.white, colors.HexColor("#F8FAFC")]),
+
+        # Borders
+        ('LINEBELOW', (0, 0), (-1, 0), 1, PRIMARY),
+        ('LINEBELOW', (0, 1), (-1, -1), 0.25, LIGHT_GREY),
+
+        # Outer border
+        ('BOX', (0, 0), (-1, -1), 0.5, LIGHT_GREY),
+
+        # Alignment
+        ('ALIGN', (0, 0), (0, -1), 'CENTER'),   # Version
+        ('ALIGN', (1, 0), (2, -1), 'CENTER'),   # Date, Author
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+
+        # Left padding
+        ('LEFTPADDING', (0, 0), (-1, -1), 8),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+    ]))
+    elements.append(Paragraph("Revision History", h1))
+    # elements.append(AccentLine())
+    elements.append(Spacer(1, 10))
+    elements.append(table)
+    elements.append(PageBreak())
 
 # TOC
 # ------------------------------------------------------------------------------
-toc = TableOfContents()
-toc.levelStyles = [
-    ParagraphStyle(
-        "TOC1",
-        fontName="Helvetica",
-        fontSize=12,
-        leftIndent=20,
-        firstLineIndent=-20,
-        spaceBefore=5,
-    ),
-    ParagraphStyle(
-        "TOC2",
-        fontName="Helvetica",
-        fontSize=10,
-        leftIndent=40,
-        firstLineIndent=-20,
-        spaceBefore=2,
-    ),
-    ParagraphStyle(
-        "TOC3",
-        fontName="Helvetica",
-        fontSize=9,
-        leftIndent=60,
-        firstLineIndent=-20,
-        spaceBefore=1,
-    ),
-]
-elements.append(Paragraph("Indice", h1))
-elements.append(toc)
-elements.append(PageBreak())
 
-# JOURNAL
+def toc_add(elements):
+    toc = TableOfContents()
+    toc.levelStyles = [
+        ParagraphStyle(
+            "TOC1",
+            fontName="Helvetica",
+            fontSize=12,
+            leftIndent=20,
+            firstLineIndent=-20,
+            spaceBefore=5,
+        ),
+        ParagraphStyle(
+            "TOC2",
+            fontName="Helvetica",
+            fontSize=10,
+            leftIndent=40,
+            firstLineIndent=-20,
+            spaceBefore=2,
+        ),
+        ParagraphStyle(
+            "TOC3",
+            fontName="Helvetica",
+            fontSize=9,
+            leftIndent=60,
+            firstLineIndent=-20,
+            spaceBefore=1,
+        ),
+    ]
+    elements.append(Paragraph("Indice", h1))
+    elements.append(toc)
+    elements.append(PageBreak())
+
+# BUILD
 # ------------------------------------------------------------------------------
+
+elements = []
 
 for input_filename in os.listdir(input_folderpath):
     filename_raw = input_filename.split('.')[0].strip()
@@ -476,6 +498,10 @@ for input_filename in os.listdir(input_folderpath):
     output_filepath = f'{output_folderpath}/{filename_raw}.pdf'
     with open(input_filepath, encoding='utf-8') as f: lines = f.read().split('\n')
     print(lines)
+    cover_add(elements)
+    rev_parse(lines)
+    rev_add(elements)
+    toc_add(elements)
     parse(lines, elements)
 
     ################################################################################
