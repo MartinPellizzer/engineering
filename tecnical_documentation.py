@@ -252,6 +252,7 @@ def table_gen(items):
         ('RIGHTPADDING', (0, 0), (-1, -1), 8),
     ]))
     elements.append(table)
+    elements.append(Spacer(1, 20))
 
 ################################################################################
 # HEADER / FOOTER
