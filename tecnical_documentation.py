@@ -209,6 +209,49 @@ def ol_gen(items):
             spaceAfter=12,
         )
     )
+    
+def table_gen(items):
+    table = Table(
+        items,
+        colWidths=[doc.width / len(items[0])] * len(items[0]),
+    )
+    table.setStyle(TableStyle([
+        # Header
+        ('BACKGROUND', (0, 0), (-1, 0), PRIMARY),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 10),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 8),
+        ('TOPPADDING', (0, 0), (-1, 0), 8),
+
+        # Body
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 1), (-1, -1), 9),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.HexColor("#222222")),
+        ('TOPPADDING', (0, 1), (-1, -1), 6),
+        ('BOTTOMPADDING', (0, 1), (-1, -1), 6),
+
+        # Alternate row colors
+        ('ROWBACKGROUNDS', (0, 1), (-1, -1),
+            [colors.white, colors.HexColor("#F8FAFC")]),
+
+        # Borders
+        ('LINEBELOW', (0, 0), (-1, 0), 1, PRIMARY),
+        ('LINEBELOW', (0, 1), (-1, -1), 0.25, LIGHT_GREY),
+
+        # Outer border
+        ('BOX', (0, 0), (-1, -1), 0.5, LIGHT_GREY),
+
+        # Alignment
+        ('ALIGN', (0, 0), (0, -1), 'CENTER'),   # Version
+        ('ALIGN', (1, 0), (2, -1), 'CENTER'),   # Date, Author
+        ('VALIGN', (0, 0), (-1, -1), 'MIDDLE'),
+
+        # Left padding
+        ('LEFTPADDING', (0, 0), (-1, -1), 8),
+        ('RIGHTPADDING', (0, 0), (-1, -1), 8),
+    ]))
+    elements.append(table)
 
 ################################################################################
 # HEADER / FOOTER
@@ -234,6 +277,8 @@ def parse(lines, elements):
     ul_items = []
     ol_start = False
     ol_items = []
+    table_start = False
+    table_items = []
     state = ''
     for line in lines:
         line = line.strip()
@@ -241,21 +286,10 @@ def parse(lines, elements):
         line = line.replace('*', '')
         if line == '': continue
 
-        if   line == '[head]':  state = '[head]'
-        elif line == '[/head]': state = ''
-        if   line == '[rev]':  state = '[rev]'
-        elif line == '[/rev]': state = ''
-        elif line == '[body]':  state = '[body]'
+        if line == '[body]':  state = '[body]'
         elif line == '[/body]': state = ''
 
         if line.startswith('[') and line.endswith(']'): continue
-
-        if state == '[head]':
-            pass
-
-        elif state == '[rev]':
-            pass
-
 
         elif state == '[body]':
         
@@ -267,6 +301,14 @@ def parse(lines, elements):
                     ul_start = False
                     ul_gen(ul_items)
                     ul_items = []
+                if ol_start == True:
+                    ol_start = False
+                    ol_gen(ol_items)
+                    ol_items = []
+                if table_start == True:
+                    table_start = False
+                    table_gen(table_items)
+                    table_items = []
                 elements.append(PageBreak())
                 continue
             
@@ -293,6 +335,17 @@ def parse(lines, elements):
                 ol_start = False
                 ol_gen(ol_items)
                 ol_items = []
+                
+            if line[0] == ':':
+                line = line[1:].strip()
+                row = [col.strip() for col in line.split(',')]
+                table_items.append(row)
+                table_start = True
+                continue
+            if table_start == True:
+                table_start = False
+                table_gen(table_items)
+                table_items = []
 
             if line.startswith('###'):
                 line = line.replace('###', '').strip()
@@ -498,11 +551,6 @@ for input_filename in os.listdir(input_folderpath):
     output_filepath = f'{output_folderpath}/{filename_raw}.pdf'
     with open(input_filepath, encoding='utf-8') as f: lines = f.read().split('\n')
     print(lines)
-    cover_add(elements)
-    rev_parse(lines)
-    rev_add(elements)
-    toc_add(elements)
-    parse(lines, elements)
 
     ################################################################################
     # DOCUMENT SETUP
@@ -515,6 +563,12 @@ for input_filename in os.listdir(input_folderpath):
         topMargin=90,
         bottomMargin=60
     )
+
+    cover_add(elements)
+    rev_parse(lines)
+    rev_add(elements)
+    toc_add(elements)
+    parse(lines, elements)
     
     # BUILD
     # doc.build(elements, onFirstPage=header_footer, onLaterPages=header_footer)
