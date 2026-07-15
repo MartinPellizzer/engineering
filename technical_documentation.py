@@ -15,9 +15,17 @@ from reportlab.platypus.tableofcontents import TableOfContents
 import PIL
 import matplotlib.pyplot as plt
 
+'''
 product_filename = f'modulo_monitoraggio_ossigeno'
 product_version = '1_0_0'
 docs_folderpath = f'C:/og-new/products/{product_filename}/{product_filename}_v{product_version}/docs'
+'''
+
+product_filename = f'modulo_ossigeno_ottico'
+product_version = '1_0_0'
+component_foldername = 'cella_misurazione'
+docs_folderpath = f'C:/og-new/products/{product_filename}/{product_filename}__v{product_version}/{product_filename}__{component_foldername}__v{product_version}/docs'
+
 input_folderpath = f'{docs_folderpath}/input'
 output_folderpath = f'{docs_folderpath}/output'
 prepared_for = "Staff Tecnico Interno"
