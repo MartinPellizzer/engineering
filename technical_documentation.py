@@ -21,7 +21,7 @@ product_version = '1_0_0'
 docs_folderpath = f'C:/og-new/products/{product_filename}/{product_filename}_v{product_version}/docs'
 '''
 
-product_filename = f'modulo_ossigeno_ottico'
+product_filename = f'modulo_ozono_ottico'
 product_version = '1_0_0'
 component_foldername = 'cella_misurazione'
 docs_folderpath = f'C:/og-new/products/{product_filename}/{product_filename}__v{product_version}/{product_filename}__{component_foldername}__v{product_version}/docs'
@@ -32,8 +32,8 @@ prepared_for = "Staff Tecnico Interno"
 
 ### TODO: do the rest
 
-cover_title_text = "Modulo Monitoraggio Ossigeno"
-cover_subtitle_text = "Documento Tecnico"
+cover_title_text = "Modulo Ozono Ottico"
+cover_subtitle_text = "Registro Sviluppo"
 
 revision_history = []
 
